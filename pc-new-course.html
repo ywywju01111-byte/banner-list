@@ -53,10 +53,6 @@ body {
 }
 
 .page-info {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 20px;
     margin-bottom: 24px;
 }
 
@@ -69,27 +65,6 @@ body {
     margin: 0;
     color: #666;
     font-size: 15px;
-}
-
-.search-box {
-    width: 320px;
-    max-width: 100%;
-}
-
-.search-box input {
-    width: 100%;
-    height: 44px;
-    padding: 0 15px;
-    border: 1px solid #ccd1d8;
-    border-radius: 8px;
-    background: #fff;
-    font-size: 15px;
-    outline: none;
-}
-
-.search-box input:focus {
-    border-color: #0068e8;
-    box-shadow: 0 0 0 3px rgba(0, 104, 232, 0.12);
 }
 
 .banner-list {
@@ -167,16 +142,6 @@ body {
     opacity: 0.85;
 }
 
-.empty-message {
-    display: none;
-    padding: 60px 20px;
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 12px;
-    color: #777;
-    text-align: center;
-}
-
 .toast {
     position: fixed;
     right: 25px;
@@ -213,15 +178,6 @@ body {
         padding: 25px 20px 50px;
     }
 
-    .page-info {
-        align-items: stretch;
-        flex-direction: column;
-    }
-
-    .search-box {
-        width: 100%;
-    }
-
     .banner-list {
         grid-template-columns: 1fr;
     }
@@ -242,28 +198,14 @@ body {
     <a class="back" href="index.html">← 전체 배너 리스트</a>
 
     <section class="page-info">
-        <div>
-            <h2>PC 신규 개강 배너</h2>
+        <h2>PC 신규 개강 배너</h2>
 
-            <p class="count">
-                총 <strong id="totalCount">0</strong>개
-            </p>
-        </div>
-
-        <div class="search-box">
-            <input
-                type="search"
-                id="searchInput"
-                placeholder="파일명 또는 이미지 주소 검색"
-            >
-        </div>
+        <p class="count">
+            총 <strong id="totalCount">0</strong>개
+        </p>
     </section>
 
     <div class="banner-list" id="bannerList"></div>
-
-    <div class="empty-message" id="emptyMessage">
-        검색 결과가 없습니다.
-    </div>
 
 </main>
 
@@ -273,70 +215,47 @@ body {
 
 <script>
 const bannerUrls = [
-    "http://img.megaexpert.co.kr/2026/0624_bnr/bnr_590x170_01.png",
-    "http://img.megaexpert.co.kr/2026/0624_bnr/bnr_590x170_02.png",
-    "http://img.megaexpert.co.kr/2026/0624_bnr/bnr_590x170_03.png",
-    "http://img.megaexpert.co.kr/2026/0624_bnr/bnr_590x170_04.png",
-    "http://img.megaexpert.co.kr/2026/0624_bnr/bnr_590x170_05.png",
-    "http://img.megaexpert.co.kr/2026/0624_bnr/bnr_590x170_06.png",
-    "http://img.megaexpert.co.kr/2026/0624_bnr/bnr_590x170_07.png",
-    "http://img.megaexpert.co.kr/2026/0624_bnr/bnr_590x170_08.png",
-    "http://img.megaexpert.co.kr/2026/0624_bnr/bnr_590x170_09.png",
-    "http://img.megaexpert.co.kr/2026/0624_bnr/bnr_590x170_10.png",
-    "http://img.megaexpert.co.kr/2026/0624_bnr/bnr_590x170_11.png",
-    "http://img.megaexpert.co.kr/2026/0624_bnr/bnr_590x170_12.png",
-    "http://img.megaexpert.co.kr/2026/0624_bnr/bnr_590x170_13.png",
-    "http://img.megaexpert.co.kr/2026/0624_bnr/bnr_590x170_14.png",
-    "http://img.megaexpert.co.kr/2026/0624_bnr/bnr_590x170_15.png",
-    "http://img.megaexpert.co.kr/2026/0624_bnr/bnr_590x170_16.png",
-    "http://img.megaexpert.co.kr/2026/0624_bnr/bnr_590x170_17.png",
-    "http://img.megaexpert.co.kr/2026/0624_bnr/bnr_590x170_18.png",
-    "http://img.megaexpert.co.kr/2026/0624_bnr/bnr_590x170_19.png"
+    "https://img.megaexpert.co.kr/2026/0624_bnr/bnr_590x170_01.png",
+    "https://img.megaexpert.co.kr/2026/0624_bnr/bnr_590x170_02.png",
+    "https://img.megaexpert.co.kr/2026/0624_bnr/bnr_590x170_03.png",
+    "https://img.megaexpert.co.kr/2026/0624_bnr/bnr_590x170_04.png",
+    "https://img.megaexpert.co.kr/2026/0624_bnr/bnr_590x170_05.png",
+    "https://img.megaexpert.co.kr/2026/0624_bnr/bnr_590x170_06.png",
+    "https://img.megaexpert.co.kr/2026/0624_bnr/bnr_590x170_07.png",
+    "https://img.megaexpert.co.kr/2026/0624_bnr/bnr_590x170_08.png",
+    "https://img.megaexpert.co.kr/2026/0624_bnr/bnr_590x170_09.png",
+    "https://img.megaexpert.co.kr/2026/0624_bnr/bnr_590x170_10.png",
+    "https://img.megaexpert.co.kr/2026/0624_bnr/bnr_590x170_11.png",
+    "https://img.megaexpert.co.kr/2026/0624_bnr/bnr_590x170_12.png",
+    "https://img.megaexpert.co.kr/2026/0624_bnr/bnr_590x170_13.png",
+    "https://img.megaexpert.co.kr/2026/0624_bnr/bnr_590x170_14.png",
+    "https://img.megaexpert.co.kr/2026/0624_bnr/bnr_590x170_15.png",
+    "https://img.megaexpert.co.kr/2026/0624_bnr/bnr_590x170_16.png",
+    "https://img.megaexpert.co.kr/2026/0624_bnr/bnr_590x170_17.png",
+    "https://img.megaexpert.co.kr/2026/0624_bnr/bnr_590x170_18.png",
+    "https://img.megaexpert.co.kr/2026/0624_bnr/bnr_590x170_19.png"
 ];
 
 const bannerList = document.getElementById("bannerList");
 const totalCount = document.getElementById("totalCount");
-const searchInput = document.getElementById("searchInput");
-const emptyMessage = document.getElementById("emptyMessage");
 const toast = document.getElementById("toast");
 
 function getFileName(url) {
     return decodeURIComponent(url.split("/").pop());
 }
 
-function renderBanners(keyword = "") {
-    const normalizedKeyword = keyword.trim().toLowerCase();
-
-    const filteredUrls = bannerUrls.filter((url) => {
-        const fileName = getFileName(url).toLowerCase();
-
-        return (
-            fileName.includes(normalizedKeyword) ||
-            url.toLowerCase().includes(normalizedKeyword)
-        );
-    });
-
+function renderBanners() {
     bannerList.innerHTML = "";
 
-    filteredUrls.forEach((url) => {
+    bannerUrls.forEach((url) => {
         const fileName = getFileName(url);
-
         const card = document.createElement("article");
+
         card.className = "banner";
 
         card.innerHTML = `
-            <a
-                class="image-link"
-                href="${url}"
-                target="_blank"
-                rel="noopener noreferrer"
-                title="원본 이미지 보기"
-            >
-                <img
-                    src="${url}"
-                    alt="${fileName}"
-                    loading="lazy"
-                >
+            <a class="image-link" href="${url}" target="_blank" rel="noopener noreferrer">
+                <img src="${url}" alt="${fileName}" loading="lazy">
             </a>
 
             <div class="banner-info">
@@ -368,10 +287,7 @@ function renderBanners(keyword = "") {
         bannerList.appendChild(card);
     });
 
-    totalCount.textContent = filteredUrls.length;
-
-    emptyMessage.style.display =
-        filteredUrls.length === 0 ? "block" : "none";
+    totalCount.textContent = bannerUrls.length;
 }
 
 async function copyUrl(url) {
@@ -410,10 +326,6 @@ bannerList.addEventListener("click", (event) => {
     }
 
     copyUrl(copyButton.dataset.url);
-});
-
-searchInput.addEventListener("input", (event) => {
-    renderBanners(event.target.value);
 });
 
 renderBanners();
