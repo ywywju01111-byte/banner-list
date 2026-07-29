@@ -2,115 +2,408 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>PC 강사 홍보 서브배너</title>
 
 <style>
-
-body{
-    margin:0;
-    padding:40px;
-    background:#f5f5f5;
-    font-family:Arial,sans-serif;
+* {
+    box-sizing: border-box;
 }
 
-.back{
-    display:inline-block;
-    margin-bottom:30px;
-    color:#0066cc;
-    text-decoration:none;
-    font-weight:bold;
+body {
+    margin: 0;
+    background: #f4f6f8;
+    color: #222;
+    font-family: Arial, "Apple SD Gothic Neo", sans-serif;
 }
 
-h1{
-    margin-bottom:30px;
+.header {
+    background: #222;
+    color: #fff;
+    padding: 24px 40px;
 }
 
-.banner-list{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:25px;
+.header-inner {
+    max-width: 1500px;
+    margin: 0 auto;
 }
 
-.banner{
-    background:#fff;
-    border:1px solid #ddd;
-    border-radius:10px;
-    overflow:hidden;
-    box-shadow:0 3px 8px rgba(0,0,0,.08);
+.header h1 {
+    margin: 0;
+    font-size: 25px;
 }
 
-.banner img{
-    width:100%;
-    display:block;
+.container {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 32px 40px 60px;
 }
 
-.banner p{
-    margin:0;
-    padding:12px;
-    font-size:13px;
-    color:#666;
-    text-align:center;
-    border-top:1px solid #eee;
+.back {
+    display: inline-block;
+    margin-bottom: 24px;
+    color: #0068e8;
+    font-weight: bold;
+    text-decoration: none;
 }
 
+.back:hover {
+    text-decoration: underline;
+}
+
+.page-info {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 24px;
+}
+
+.page-info h2 {
+    margin: 0 0 8px;
+    font-size: 26px;
+}
+
+.count {
+    margin: 0;
+    color: #666;
+    font-size: 15px;
+}
+
+.search-box {
+    width: 320px;
+    max-width: 100%;
+}
+
+.search-box input {
+    width: 100%;
+    height: 44px;
+    padding: 0 15px;
+    border: 1px solid #ccd1d8;
+    border-radius: 8px;
+    background: #fff;
+    font-size: 15px;
+    outline: none;
+}
+
+.search-box input:focus {
+    border-color: #0068e8;
+    box-shadow: 0 0 0 3px rgba(0, 104, 232, 0.12);
+}
+
+.banner-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.banner {
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid #dde1e6;
+    border-radius: 12px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.banner:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 9px 22px rgba(0, 0, 0, 0.12);
+}
+
+.image-link {
+    display: block;
+    background: #eee;
+}
+
+.banner img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.banner-info {
+    padding: 15px;
+}
+
+.file-name {
+    overflow: hidden;
+    margin: 0 0 13px;
+    color: #555;
+    font-size: 14px;
+    line-height: 1.5;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.button-group {
+    display: flex;
+    gap: 8px;
+}
+
+.button {
+    flex: 1;
+    padding: 10px 12px;
+    border: 0;
+    border-radius: 7px;
+    font-size: 14px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.original-button {
+    background: #eef4ff;
+    color: #0068e8;
+}
+
+.copy-button {
+    background: #0068e8;
+    color: #fff;
+}
+
+.button:hover {
+    opacity: 0.85;
+}
+
+.empty-message {
+    display: none;
+    padding: 60px 20px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    color: #777;
+    text-align: center;
+}
+
+.toast {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 100;
+    padding: 13px 18px;
+    border-radius: 8px;
+    background: #222;
+    color: #fff;
+    font-size: 14px;
+    opacity: 0;
+    transform: translateY(15px);
+    pointer-events: none;
+    transition: 0.25s;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (max-width: 1100px) {
+    .banner-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 700px) {
+    .header {
+        padding: 20px;
+    }
+
+    .container {
+        padding: 25px 20px 50px;
+    }
+
+    .page-info {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .search-box {
+        width: 100%;
+    }
+
+    .banner-list {
+        grid-template-columns: 1fr;
+    }
+}
 </style>
-
 </head>
 
 <body>
 
-<a class="back" href="index.html">← 배너 리스트</a>
+<header class="header">
+    <div class="header-inner">
+        <h1>메가변리사 배너 관리자</h1>
+    </div>
+</header>
 
-<h1>PC 강사 홍보 서브배너</h1>
+<main class="container">
 
-<div class="banner-list">
+    <a class="back" href="index.html">← 전체 배너 리스트</a>
 
-<div class="banner">
-<img src="https://img.megaexpert.co.kr/2026/0423_sub/bnr_sub_590x344_01.png">
-<p>bnr_sub_590x344_01.png</p>
+    <section class="page-info">
+        <div>
+            <h2>PC 강사 홍보 서브배너</h2>
+            <p class="count">
+                총 <strong id="totalCount">0</strong>개
+            </p>
+        </div>
+
+        <div class="search-box">
+            <input
+                type="search"
+                id="searchInput"
+                placeholder="파일명 또는 이미지 주소 검색"
+            >
+        </div>
+    </section>
+
+    <div class="banner-list" id="bannerList"></div>
+
+    <div class="empty-message" id="emptyMessage">
+        검색 결과가 없습니다.
+    </div>
+
+</main>
+
+<div class="toast" id="toast">
+    이미지 URL을 복사했습니다.
 </div>
 
-<div class="banner">
-<img src="https://img.megaexpert.co.kr/2026/0423_sub/bnr_sub_590x344_02.png">
-<p>bnr_sub_590x344_02.png</p>
-</div>
+<script>
+const bannerUrls = [
+    "https://img.megaexpert.co.kr/2026/0423_sub/bnr_sub_590x344_01.png",
+    "https://img.megaexpert.co.kr/2026/0423_sub/bnr_sub_590x344_02.png",
+    "https://img.megaexpert.co.kr/2026/0423_sub/bnr_sub_590x344_03.png",
+    "https://img.megaexpert.co.kr/2026/0423_sub/bnr_sub_590x344_04.png",
+    "https://img.megaexpert.co.kr/2026/0423_sub/bnr_sub_590x344_05.png",
+    "https://img.megaexpert.co.kr/2026/0423_sub/bnr_sub_590x344_06.png",
+    "https://img.megaexpert.co.kr/2026/0423_sub/bnr_sub_590x344_07.png",
+    "https://img.megaexpert.co.kr/2026/0423_sub/bnr_sub_590x344_08.png",
+    "https://img.megaexpert.co.kr/2026/0423_sub/bnr_sub_590x344_09.png"
+];
 
-<div class="banner">
-<img src="https://img.megaexpert.co.kr/2026/0423_sub/bnr_sub_590x344_03.png">
-<p>bnr_sub_590x344_03.png</p>
-</div>
+const bannerList = document.getElementById("bannerList");
+const totalCount = document.getElementById("totalCount");
+const searchInput = document.getElementById("searchInput");
+const emptyMessage = document.getElementById("emptyMessage");
+const toast = document.getElementById("toast");
 
-<div class="banner">
-<img src="https://img.megaexpert.co.kr/2026/0423_sub/bnr_sub_590x344_04.png">
-<p>bnr_sub_590x344_04.png</p>
-</div>
+function getFileName(url) {
+    return decodeURIComponent(url.split("/").pop());
+}
 
-<div class="banner">
-<img src="https://img.megaexpert.co.kr/2026/0423_sub/bnr_sub_590x344_05.png">
-<p>bnr_sub_590x344_05.png</p>
-</div>
+function renderBanners(keyword = "") {
+    const normalizedKeyword = keyword.trim().toLowerCase();
 
-<div class="banner">
-<img src="https://img.megaexpert.co.kr/2026/0423_sub/bnr_sub_590x344_06.png">
-<p>bnr_sub_590x344_06.png</p>
-</div>
+    const filteredUrls = bannerUrls.filter((url) => {
+        const fileName = getFileName(url).toLowerCase();
+        return (
+            fileName.includes(normalizedKeyword) ||
+            url.toLowerCase().includes(normalizedKeyword)
+        );
+    });
 
-<div class="banner">
-<img src="https://img.megaexpert.co.kr/2026/0423_sub/bnr_sub_590x344_07.png">
-<p>bnr_sub_590x344_07.png</p>
-</div>
+    bannerList.innerHTML = "";
 
-<div class="banner">
-<img src="https://img.megaexpert.co.kr/2026/0423_sub/bnr_sub_590x344_08.png">
-<p>bnr_sub_590x344_08.png</p>
-</div>
+    filteredUrls.forEach((url) => {
+        const fileName = getFileName(url);
 
-<div class="banner">
-<img src="https://img.megaexpert.co.kr/2026/0423_sub/bnr_sub_590x344_09.png">
-<p>bnr_sub_590x344_09.png</p>
-</div>
+        const card = document.createElement("article");
+        card.className = "banner";
 
-</div>
+        card.innerHTML = `
+            <a
+                class="image-link"
+                href="${url}"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="원본 이미지 보기"
+            >
+                <img
+                    src="${url}"
+                    alt="${fileName}"
+                    loading="lazy"
+                >
+            </a>
+
+            <div class="banner-info">
+                <p class="file-name" title="${fileName}">
+                    ${fileName}
+                </p>
+
+                <div class="button-group">
+                    <a
+                        class="button original-button"
+                        href="${url}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        원본 보기
+                    </a>
+
+                    <button
+                        class="button copy-button"
+                        type="button"
+                        data-url="${url}"
+                    >
+                        URL 복사
+                    </button>
+                </div>
+            </div>
+        `;
+
+        bannerList.appendChild(card);
+    });
+
+    totalCount.textContent = filteredUrls.length;
+    emptyMessage.style.display =
+        filteredUrls.length === 0 ? "block" : "none";
+}
+
+async function copyUrl(url) {
+    try {
+        await navigator.clipboard.writeText(url);
+        showToast("이미지 URL을 복사했습니다.");
+    } catch (error) {
+        const tempInput = document.createElement("textarea");
+        tempInput.value = url;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand("copy");
+        tempInput.remove();
+
+        showToast("이미지 URL을 복사했습니다.");
+    }
+}
+
+function showToast(message) {
+    toast.textContent = message;
+    toast.classList.add("show");
+
+    clearTimeout(window.toastTimer);
+
+    window.toastTimer = setTimeout(() => {
+        toast.classList.remove("show");
+    }, 1800);
+}
+
+bannerList.addEventListener("click", (event) => {
+    const copyButton = event.target.closest(".copy-button");
+
+    if (!copyButton) {
+        return;
+    }
+
+    copyUrl(copyButton.dataset.url);
+});
+
+searchInput.addEventListener("input", (event) => {
+    renderBanners(event.target.value);
+});
+
+renderBanners();
+</script>
 
 </body>
 </html>
