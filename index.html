@@ -2,32 +2,76 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>배너 리스트</title>
 
 <style>
-body{
+body {
+    margin: 0;
+    padding: 40px;
     font-family: Arial, sans-serif;
-    padding:20px;
+    background: #f5f6f8;
+    color: #222;
 }
 
-img{
-    width:590px;
-    margin-bottom:30px;
-    border:1px solid #ddd;
+h1 {
+    margin: 0 0 30px;
+}
+
+.category-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    max-width: 1000px;
+}
+
+.category {
+    display: block;
+    padding: 30px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    color: #222;
+    text-decoration: none;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+    transition: 0.2s;
+}
+
+.category:hover {
+    transform: translateY(-3px);
+    border-color: #999;
+}
+
+.category h2 {
+    margin: 0;
+    font-size: 20px;
 }
 </style>
-
 </head>
 
 <body>
 
-<h2>배너 리스트</h2>
+<h1>배너 리스트</h1>
 
-<img src="https://img.megaexpert.co.kr/2026/0423_sub/bnr_sub_590x344_01.png">
+<div class="category-list">
 
-<img src="https://img.megaexpert.co.kr/2026/0423_sub/bnr_sub_590x344_02.png">
+    <a class="category" href="pc-teacher.html">
+        <h2>PC 강사 홍보 서브배너</h2>
+    </a>
 
-<img src="https://img.megaexpert.co.kr/2026/0423_sub/bnr_sub_590x344_03.png">
+    <a class="category" href="pc-new-course.html">
+        <h2>PC 신규 개강 배너</h2>
+    </a>
+
+    <a class="category" href="book.html">
+        <h2>교재 홍보 배너</h2>
+    </a>
+
+    <a class="category" href="mo-teacher.html">
+        <h2>MO 강사 홍보 서브배너</h2>
+    </a>
+
+</div>
 
 </body>
 </html>
