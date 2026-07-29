@@ -3,75 +3,295 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>메가변리사 배너 리스트</title>
 
 <style>
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
-    padding: 40px;
-    font-family: Arial, sans-serif;
-    background: #f5f6f8;
-    color: #222;
+    background: #f3f5f8;
+    color: #191f28;
+    font-family: Arial, "Apple SD Gothic Neo", sans-serif;
 }
 
-h1 {
-    margin: 0 0 30px;
+.header {
+    padding: 55px 40px 65px;
+    background:
+        linear-gradient(
+            135deg,
+            #111827 0%,
+            #1e3a8a 55%,
+            #0068e8 100%
+        );
+    color: #fff;
 }
 
-.category-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-    max-width: 1000px;
+.header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.category {
-    display: block;
-    padding: 30px;
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 12px;
-    color: #222;
-    text-decoration: none;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.06);
-    transition: 0.2s;
+.badge {
+    display: inline-block;
+    margin-bottom: 18px;
+    padding: 7px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.12);
+    font-size: 13px;
+    font-weight: bold;
 }
 
-.category:hover {
-    transform: translateY(-3px);
-    border-color: #999;
+.header h1 {
+    margin: 0 0 14px;
+    font-size: 38px;
+    line-height: 1.3;
+    letter-spacing: -1.5px;
 }
 
-.category h2 {
+.header p {
     margin: 0;
-    font-size: 20px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: -32px auto 0;
+    padding: 0 40px 70px;
+}
+
+.banner-section {
+    padding: 34px;
+    border: 1px solid #e2e6ec;
+    border-radius: 18px;
+    background: #fff;
+    box-shadow: 0 12px 35px rgba(18, 38, 63, 0.1);
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 24px;
+}
+
+.section-title h2 {
+    margin: 0;
+    font-size: 22px;
+    letter-spacing: -0.7px;
+}
+
+.total-count {
+    margin: 0;
+    color: #7b8491;
+    font-size: 14px;
+}
+
+.banner-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.banner-card {
+    position: relative;
+    display: flex;
+    min-height: 125px;
+    padding: 25px;
+    overflow: hidden;
+    border: 1px solid #e1e5eb;
+    border-radius: 14px;
+    background: #fff;
+    color: #191f28;
+    text-decoration: none;
+    transition:
+        transform 0.2s,
+        border-color 0.2s,
+        box-shadow 0.2s;
+}
+
+.banner-card::after {
+    content: "→";
+    position: absolute;
+    right: 22px;
+    bottom: 20px;
+    color: #a4abb5;
+    font-size: 22px;
+    transition:
+        color 0.2s,
+        transform 0.2s;
+}
+
+.banner-card:hover {
+    border-color: #0068e8;
+    box-shadow: 0 9px 24px rgba(0, 104, 232, 0.12);
+    transform: translateY(-4px);
+}
+
+.banner-card:hover::after {
+    color: #0068e8;
+    transform: translateX(4px);
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-category {
+    margin-bottom: 18px;
+    color: #0068e8;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.card-title {
+    margin: 0;
+    padding-right: 35px;
+    font-size: 18px;
+    line-height: 1.5;
+    letter-spacing: -0.5px;
+}
+
+.footer-note {
+    margin: 24px 0 0;
+    color: #8b95a1;
+    font-size: 13px;
+    line-height: 1.6;
+    text-align: center;
+}
+
+@media (max-width: 900px) {
+    .banner-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .header {
+        padding: 42px 20px 55px;
+    }
+
+    .header h1 {
+        font-size: 30px;
+    }
+
+    .header p {
+        font-size: 14px;
+    }
+
+    .container {
+        margin-top: -25px;
+        padding: 0 18px 50px;
+    }
+
+    .banner-section {
+        padding: 24px 18px;
+        border-radius: 15px;
+    }
+
+    .section-title {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 7px;
+    }
+
+    .banner-list {
+        grid-template-columns: 1fr;
+    }
+
+    .banner-card {
+        min-height: 110px;
+        padding: 22px;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<h1>메가변리사 배너 리스트</h1>
+<header class="header">
+    <div class="header-inner">
 
-<div class="category-list">
+        <span class="badge">
+            업데이트 기준 2026. 7. 29.
+        </span>
 
-    <a class="category" href="pc-teacher.html">
-        <h2>PC 강사 홍보 서브배너</h2>
-    </a>
+        <h1>메가변리사 배너 리스트</h1>
 
-    <a class="category" href="pc-new-course.html">
-        <h2>PC 신규 개강 배너</h2>
-    </a>
+        <p>
+            2026. 7. 29. 기준으로 정리된 배너 목록입니다.<br>
+            카테고리를 선택하면 이미지와 파일 주소를 확인할 수 있습니다.
+        </p>
 
-    <a class="category" href="book.html">
-        <h2>교재 홍보 배너</h2>
-    </a>
+    </div>
+</header>
 
-    <a class="category" href="mo-teacher.html">
-        <h2>MO 강사 홍보 서브배너</h2>
-    </a>
+<main class="container">
 
-</div>
+    <section class="banner-section">
+
+        <div class="section-title">
+            <h2>배너 카테고리</h2>
+            <p class="total-count">총 4개 카테고리</p>
+        </div>
+
+        <div class="banner-list">
+
+            <a class="banner-card" href="pc-teacher.html">
+                <div class="card-content">
+                    <span class="card-category">PC BANNER</span>
+                    <h3 class="card-title">
+                        PC 강사 홍보 서브배너
+                    </h3>
+                </div>
+            </a>
+
+            <a class="banner-card" href="pc-new-course.html">
+                <div class="card-content">
+                    <span class="card-category">PC BANNER</span>
+                    <h3 class="card-title">
+                        PC 신규 개강 배너
+                    </h3>
+                </div>
+            </a>
+
+            <a class="banner-card" href="book.html">
+                <div class="card-content">
+                    <span class="card-category">BOOK BANNER</span>
+                    <h3 class="card-title">
+                        교재 홍보 배너
+                    </h3>
+                </div>
+            </a>
+
+            <a class="banner-card" href="mo-teacher.html">
+                <div class="card-content">
+                    <span class="card-category">MO BANNER</span>
+                    <h3 class="card-title">
+                        MO 강사배너
+                    </h3>
+                </div>
+            </a>
+
+        </div>
+
+        <p class="footer-note">
+            이후 추가되는 배너는 업데이트 기준일과 함께 순차적으로 반영합니다.
+        </p>
+
+    </section>
+
+</main>
 
 </body>
 </html>
