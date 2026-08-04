@@ -219,9 +219,9 @@ const bannerUrls = [
     "https://img.megaexpert.co.kr/2026/0805_subbnr/bnr_590x200_02.png",
     "https://img.megaexpert.co.kr/2026/0805_subbnr/bnr_590x200_03.png",
     "https://img.megaexpert.co.kr/2026/0805_subbnr/bnr_590x200_04.png",
-        "https://img.megaexpert.co.kr/2026/0805_subbnr/bnr_590x200_05.png",
+    "https://img.megaexpert.co.kr/2026/0805_subbnr/bnr_590x200_05.png",
     "https://img.megaexpert.co.kr/2026/0805_subbnr/bnr_590x200_06.png",
-        "https://img.megaexpert.co.kr/2026/0805_subbnr/bnr_590x200_07.png",
+    "https://img.megaexpert.co.kr/2026/0805_subbnr/bnr_590x200_07.png"
 ];
 
 const bannerList = document.getElementById("bannerList");
@@ -242,8 +242,18 @@ function renderBanners() {
         card.className = "banner";
 
         card.innerHTML = `
-            <a class="image-link" href="${url}" target="_blank" rel="noopener noreferrer">
-                <img src="${url}" alt="${fileName}" loading="lazy">
+            <a
+                class="image-link"
+                href="${url}"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="원본 이미지 보기"
+            >
+                <img
+                    src="${url}"
+                    alt="${fileName}"
+                    loading="lazy"
+                >
             </a>
 
             <div class="banner-info">
