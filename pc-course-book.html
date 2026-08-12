@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PC 강좌/교재 배너</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #f4f6f8;
+    color: #222;
+    font-family: Arial, "Apple SD Gothic Neo", sans-serif;
+}
+
+.header {
+    background: #222;
+    color: #fff;
+    padding: 24px 40px;
+}
+
+.header-inner {
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 25px;
+}
+
+.container {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 32px 40px 60px;
+}
+
+.back {
+    display: inline-block;
+    margin-bottom: 24px;
+    color: #0068e8;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.back:hover {
+    text-decoration: underline;
+}
+
+.page-info {
+    margin-bottom: 24px;
+}
+
+.page-info h2 {
+    margin: 0 0 8px;
+    font-size: 26px;
+}
+
+.count {
+    margin: 0;
+    color: #666;
+    font-size: 15px;
+}
+
+.section-title {
+    margin: 34px 0 16px;
+    font-size: 20px;
+}
+
+.banner-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.banner {
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid #dde1e6;
+    border-radius: 12px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.banner:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 9px 22px rgba(0, 0, 0, 0.12);
+}
+
+.image-link {
+    display: block;
+    background: #eee;
+}
+
+.banner img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.banner-info {
+    padding: 15px;
+}
+
+.file-name {
+    overflow: hidden;
+    margin: 0 0 13px;
+    color: #555;
+    font-size: 14px;
+    line-height: 1.5;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.button-group {
+    display: flex;
+    gap: 8px;
+}
+
+.button {
+    flex: 1;
+    padding: 10px 12px;
+    border: 0;
+    border-radius: 7px;
+    font-size: 14px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.original-button {
+    background: #eef4ff;
+    color: #0068e8;
+}
+
+.copy-button {
+    background: #0068e8;
+    color: #fff;
+}
+
+.button:hover {
+    opacity: 0.85;
+}
+
+.toast {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 100;
+    padding: 13px 18px;
+    border-radius: 8px;
+    background: #222;
+    color: #fff;
+    font-size: 14px;
+    opacity: 0;
+    transform: translateY(15px);
+    pointer-events: none;
+    transition: 0.25s;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (max-width: 1100px) {
+    .banner-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 700px) {
+    .header {
+        padding: 20px;
+    }
+
+    .container {
+        padding: 25px 20px 50px;
+    }
+
+    .banner-list {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+    <div class="header-inner">
+        <h1>메가변리사 배너 관리자</h1>
+    </div>
+</header>
+
+<main class="container">
+
+    <a class="back" href="index.html">← 전체 배너 리스트</a>
+
+    <section class="page-info">
+        <h2>PC 강좌/교재 배너</h2>
+
+        <p class="count">
+            총 <strong id="totalCount">0</strong>개
+        </p>
+    </section>
+
+    <h3 class="section-title">강좌 배너</h3>
+    <div class="banner-list" id="courseBannerList"></div>
+
+    <h3 class="section-title">교재 배너</h3>
+    <div class="banner-list" id="bookBannerList"></div>
+
+</main>
+
+<div class="toast" id="toast">
+    이미지 URL을 복사했습니다.
+</div>
+
+<script>
+const courseBannerUrls = [
+    "https://img.megaexpert.co.kr/2026/0812_bnr/bnr_590x170_01.png",
+    "https://img.megaexpert.co.kr/2026/0812_bnr/bnr_590x170_02.png",
+    "https://img.megaexpert.co.kr/2026/0812_bnr/bnr_590x170_03.png",
+    "https://img.megaexpert.co.kr/2026/0812_bnr/bnr_590x170_04.png",
+    "https://img.megaexpert.co.kr/2026/0812_bnr/bnr_590x170_05.png"
+];
+
+const bookBannerUrls = [
+    "https://img.megaexpert.co.kr/2026/0812_bnr/bnr_book_590x170_01.png",
+    "https://img.megaexpert.co.kr/2026/0812_bnr/bnr_book_590x170_02.png",
+    "https://img.megaexpert.co.kr/2026/0812_bnr/bnr_book_590x170_03.png",
+    "https://img.megaexpert.co.kr/2026/0812_bnr/bnr_book_590x170_04.png",
+    "https://img.megaexpert.co.kr/2026/0812_bnr/bnr_book_590x170_05.png",
+    "https://img.megaexpert.co.kr/2026/0812_bnr/bnr_book_590x170_06.png"
+];
+
+const courseBannerList = document.getElementById("courseBannerList");
+const bookBannerList = document.getElementById("bookBannerList");
+const totalCount = document.getElementById("totalCount");
+const toast = document.getElementById("toast");
+
+function getFileName(url) {
+    return decodeURIComponent(url.split("/").pop());
+}
+
+function createBannerCard(url) {
+    const fileName = getFileName(url);
+    const card = document.createElement("article");
+
+    card.className = "banner";
+
+    card.innerHTML = `
+        <a
+            class="image-link"
+            href="${url}"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="원본 이미지 보기"
+        >
+            <img
+                src="${url}"
+                alt="${fileName}"
+                loading="lazy"
+            >
+        </a>
+
+        <div class="banner-info">
+            <p class="file-name" title="${fileName}">
+                ${fileName}
+            </p>
+
+            <div class="button-group">
+                <a
+                    class="button original-button"
+                    href="${url}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    원본 보기
+                </a>
+
+                <button
+                    class="button copy-button"
+                    type="button"
+                    data-url="${url}"
+                >
+                    URL 복사
+                </button>
+            </div>
+        </div>
+    `;
+
+    return card;
+}
+
+function renderBanners() {
+    courseBannerUrls.forEach((url) => {
+        courseBannerList.appendChild(createBannerCard(url));
+    });
+
+    bookBannerUrls.forEach((url) => {
+        bookBannerList.appendChild(createBannerCard(url));
+    });
+
+    totalCount.textContent =
+        courseBannerUrls.length + bookBannerUrls.length;
+}
+
+async function copyUrl(url) {
+    try {
+        await navigator.clipboard.writeText(url);
+        showToast("이미지 URL을 복사했습니다.");
+    } catch (error) {
+        const tempInput = document.createElement("textarea");
+
+        tempInput.value = url;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand("copy");
+        tempInput.remove();
+
+        showToast("이미지 URL을 복사했습니다.");
+    }
+}
+
+function showToast(message) {
+    toast.textContent = message;
+    toast.classList.add("show");
+
+    clearTimeout(window.toastTimer);
+
+    window.toastTimer = setTimeout(() => {
+        toast.classList.remove("show");
+    }, 1800);
+}
+
+document.addEventListener("click", (event) => {
+    const copyButton = event.target.closest(".copy-button");
+
+    if (!copyButton) {
+        return;
+    }
+
+    copyUrl(copyButton.dataset.url);
+});
+
+renderBanners();
+</script>
+
+</body>
+</html>
