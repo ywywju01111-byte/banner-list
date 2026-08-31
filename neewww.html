@@ -556,7 +556,214 @@
         font-size: 12px;
         line-height: 1.8;
     }
+/* 인증 이미지 샘플 */
+.sample-process-card {
+    position: relative;
+    overflow: visible;
+}
 
+.sample-wrap {
+    position: relative;
+    margin-top: 15px;
+}
+
+.sample-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 36px;
+    padding: 0 12px;
+    border: 1px solid #dedfff;
+    border-radius: 8px;
+    background: #f2f2ff;
+    color: #5d5ed8;
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: .2s ease;
+}
+
+.sample-btn:hover {
+    background: #e8e8ff;
+}
+
+.sample-popup {
+    position: absolute;
+    z-index: 100;
+    top: calc(100% + 10px);
+    left: 0;
+    width: 390px;
+    padding: 18px;
+    border: 1px solid #dedfe4;
+    border-radius: 15px;
+    background: #fff;
+    box-shadow: 0 15px 40px rgba(0,0,0,.18);
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-5px);
+    transition: .18s ease;
+}
+
+.sample-wrap:hover .sample-popup,
+.sample-wrap:focus-within .sample-popup,
+.sample-wrap.is-open .sample-popup {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.sample-popup-title {
+    margin-bottom: 12px;
+    font-size: 14px;
+    font-weight: 800;
+    color: #191f28;
+}
+
+
+/* 시험응시 확인서 */
+.exam-paper {
+    position: relative;
+    overflow: hidden;
+    min-height: 400px;
+    padding: 28px 20px 24px;
+    border: 1px solid #bfc3ca;
+    background: #fff;
+    color: #222;
+}
+
+.exam-paper-title {
+    margin-bottom: 27px;
+    text-align: center;
+    font-size: 23px;
+    font-weight: 900;
+    letter-spacing: -1px;
+}
+
+.exam-table {
+    position: relative;
+    z-index: 2;
+    border-top: 1px solid #555;
+    border-left: 1px solid #555;
+}
+
+.exam-row {
+    display: grid;
+    grid-template-columns: 72px 1fr 72px 1fr;
+}
+
+.exam-row.full {
+    grid-template-columns: 72px 1fr;
+}
+
+.exam-th,
+.exam-td {
+    min-height: 40px;
+    padding: 9px 8px;
+    border-right: 1px solid #555;
+    border-bottom: 1px solid #555;
+    font-size: 10px;
+    line-height: 1.45;
+}
+
+.exam-th {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f2f3f5;
+    font-weight: 800;
+}
+
+.exam-td {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.exam-name {
+    background: #eeeeff;
+    color: #4f50c8;
+    font-weight: 900;
+}
+
+.exam-check {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    padding: 2px 5px;
+    border-radius: 4px;
+    background: #6667de;
+    color: #fff;
+    font-size: 8px;
+    font-weight: 800;
+}
+
+.exam-text {
+    position: relative;
+    z-index: 2;
+    margin-top: 26px;
+    text-align: center;
+    font-size: 11px;
+    line-height: 1.8;
+}
+
+.exam-watermark {
+    position: absolute;
+    z-index: 1;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-15deg);
+    color: rgba(98,99,229,.08);
+    font-size: 48px;
+    font-weight: 900;
+    letter-spacing: 3px;
+}
+
+.exam-date {
+    position: absolute;
+    z-index: 2;
+    right: 0;
+    bottom: 28px;
+    left: 0;
+    text-align: center;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.sample-guide {
+    margin: 12px 0 0;
+    color: #747984;
+    font-size: 11px;
+    line-height: 1.65;
+}
+
+.sample-guide strong {
+    color: #5556cf;
+}
+
+
+/* 모바일 */
+@media (max-width: 600px) {
+
+    .sample-popup {
+        width: min(340px, calc(100vw - 70px));
+    }
+
+    .exam-row {
+        grid-template-columns: 60px 1fr 60px 1fr;
+    }
+
+    .exam-row.full {
+        grid-template-columns: 60px 1fr;
+    }
+
+    .exam-th,
+    .exam-td {
+        padding: 7px 5px;
+        font-size: 9px;
+    }
+}
 
     /* PRODUCTS */
     .product-grid {
@@ -1460,22 +1667,129 @@
             <div class="verify-process">
 
 
-                <div class="process-card">
+ <div class="process-card sample-process-card">
 
-                    <div class="process-num">
-                        1
+    <div class="process-num">
+        1
+    </div>
+
+    <strong>
+        N시생 인증 신청
+    </strong>
+
+    <span>
+        과거 변리사 시험 응시를 확인할 수 있는
+        수험표 등 증빙자료를 제출합니다.
+    </span>
+
+
+    <div class="sample-wrap">
+
+        <button type="button" class="sample-btn">
+            인증 이미지 샘플 확인하기 →
+        </button>
+
+
+        <div class="sample-popup">
+
+            <div class="sample-popup-title">
+                인증 이미지 예시
+            </div>
+
+
+            <div class="exam-paper">
+
+                <div class="exam-paper-title">
+                    시험응시 확인서
+                </div>
+
+
+                <div class="exam-table">
+
+                    <div class="exam-row full">
+
+                        <div class="exam-th">
+                            시험구분
+                        </div>
+
+                        <div class="exam-td">
+                            국가자격 변리사 1차 시험
+                        </div>
+
                     </div>
 
-                    <strong>
-                        N시생 인증 신청
-                    </strong>
 
-                    <span>
-                        과거 변리사 시험 응시를 확인할 수 있는
-                        수험표 등 증빙자료를 제출합니다.
-                    </span>
+                    <div class="exam-row">
+
+                        <div class="exam-th">
+                            성명
+                        </div>
+
+                        <div class="exam-td exam-name">
+                            홍길동
+
+                            <span class="exam-check">
+                                확인 필수
+                            </span>
+                        </div>
+
+
+                        <div class="exam-th">
+                            생년월일
+                        </div>
+
+                        <div class="exam-td">
+                            1999.00.00
+                        </div>
+
+                    </div>
+
+
+                    <div class="exam-row full">
+
+                        <div class="exam-th">
+                            자격명
+                        </div>
+
+                        <div class="exam-td">
+                            변리사
+                        </div>
+
+                    </div>
 
                 </div>
+
+
+                <div class="exam-text">
+                    위 사람은 20XX년 제XX회<br>
+                    변리사 1차 시험에 응시하였음을<br>
+                    확인합니다.
+                </div>
+
+
+                <div class="exam-watermark">
+                    SAMPLE
+                </div>
+
+
+                <div class="exam-date">
+                    20XX년 XX월 XX일
+                </div>
+
+            </div>
+
+
+            <p class="sample-guide">
+                ※ 본인 확인이 가능한 <strong>성명</strong>과
+                <strong>과거 시험 응시 이력</strong>이 확인되는
+                이미지를 제출해주세요.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
 
 
                 <div class="process-card">
@@ -2157,6 +2471,49 @@
 
 </div>
 
+<script>
+document.querySelectorAll('.sample-btn').forEach(function(button) {
 
+    button.addEventListener('click', function(e) {
+
+        e.stopPropagation();
+
+        var wrap = button.closest('.sample-wrap');
+
+        wrap.classList.toggle('is-open');
+
+    });
+
+});
+
+
+document.addEventListener('click', function(e) {
+
+    document.querySelectorAll('.sample-wrap.is-open').forEach(function(wrap) {
+
+        if (!wrap.contains(e.target)) {
+            wrap.classList.remove('is-open');
+        }
+
+    });
+
+});
+
+
+document.addEventListener('keydown', function(e) {
+
+    if (e.key === 'Escape') {
+
+        document.querySelectorAll('.sample-wrap.is-open').forEach(function(wrap) {
+            wrap.classList.remove('is-open');
+        });
+
+    }
+
+});
+</script>
+
+</body>
+</html>
 </body>
 </html>
