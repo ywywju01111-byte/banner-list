@@ -93,7 +93,6 @@ button {
         );
 
     color: #fff;
-
     text-align: center;
 }
 
@@ -145,7 +144,7 @@ button {
 }
 
 
-/* TOP 혜택 박스 */
+/* TOP 혜택 */
 
 .stats {
     display: flex;
@@ -199,7 +198,6 @@ button {
 
 .section {
     padding: 100px 0;
-
     text-align: center;
 }
 
@@ -239,310 +237,6 @@ button {
 
 .dark .desc {
     color: #b8c1d6;
-}
-
-
-/* =========================================================
-    GS 수강생 증가 그래프
-========================================================= */
-
-.gs_growth {
-    position: relative;
-
-    padding: 105px 0 90px;
-
-    overflow: hidden;
-}
-
-.gs_growth .eyebrow {
-    color: #7ea9ff;
-}
-
-.gs_growth h2 {
-    margin: 14px 0 18px;
-
-    font-size: 44px;
-    line-height: 1.3;
-    letter-spacing: -1.8px;
-}
-
-.gs_growth .desc {
-    color: #b8c1d6;
-
-    font-size: 19px;
-}
-
-.gs_growth .desc strong {
-    color: #8fc0ff;
-    font-weight: 900;
-}
-
-
-/* 그래프 전체 영역 */
-
-.growth_chart_wrap {
-    position: relative;
-
-    width: 730px;
-    height: 360px;
-
-    margin: 50px auto 0;
-}
-
-
-/* 막대그래프 */
-
-.growth_chart {
-    position: absolute;
-
-    left: 50%;
-    bottom: 38px;
-
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-
-    width: 100%;
-    height: 285px;
-
-    gap: 82px;
-
-    transform: translateX(-50%);
-
-    border-bottom: 1px solid rgba(255, 255, 255, .12);
-}
-
-.bar_item {
-    position: relative;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-
-    width: 145px;
-    height: 100%;
-
-    text-align: center;
-}
-
-
-/* 퍼센트 */
-
-.percent {
-    margin-bottom: 13px;
-
-    color: #c4d3f4;
-
-    font-size: 22px;
-    line-height: 1;
-    font-weight: 800;
-
-    letter-spacing: -.5px;
-}
-
-.percent.point {
-    color: #8fc0ff;
-
-    font-size: 28px;
-}
-
-
-/* 막대 */
-
-.bar_wrap {
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-
-    height: 220px;
-}
-
-.bar {
-    position: relative;
-
-    width: 90px;
-
-    border-radius: 14px 14px 0 0;
-
-    background:
-        linear-gradient(
-            180deg,
-            #8fc0ff 0%,
-            #5d8de6 52%,
-            #315fbd 100%
-        );
-
-    box-shadow:
-        0 15px 35px rgba(47, 96, 214, .25);
-
-    transform-origin: bottom;
-
-    animation:
-        barUp 1s cubic-bezier(.22, .8, .28, 1) both;
-}
-
-.bar::before {
-    content: "";
-
-    position: absolute;
-
-    left: 12px;
-    right: 12px;
-    top: 12px;
-
-    height: 1px;
-
-    background: rgba(255, 255, 255, .38);
-}
-
-.bar_2024 {
-    height: 120px;
-}
-
-.bar_2025 {
-    height: 165px;
-
-    animation-delay: .15s;
-}
-
-.bar_2026 {
-    height: 215px;
-
-    animation-delay: .3s;
-}
-
-
-/* 연도 */
-
-.year {
-    margin-top: 14px;
-
-    color: #fff;
-
-    font-size: 17px;
-    line-height: 1;
-    font-weight: 700;
-}
-
-
-/* =========================================================
-    우상향 효과
-========================================================= */
-
-.growth_arrow {
-    position: absolute;
-
-    left: 90px;
-    right: 85px;
-    top: 68px;
-
-    height: 150px;
-
-    z-index: 3;
-
-    pointer-events: none;
-}
-
-.growth_arrow svg {
-    display: block;
-
-    width: 100%;
-    height: 100%;
-
-    overflow: visible;
-}
-
-
-/* 우상향 점선 */
-
-.growth_arrow .trend-line {
-    fill: none;
-
-    stroke: #9ec5ff;
-    stroke-width: 3;
-
-    stroke-linecap: round;
-    stroke-linejoin: round;
-
-    stroke-dasharray: 8 10;
-
-    opacity: .85;
-
-    animation:
-        drawTrend 1.5s .4s ease-out both;
-}
-
-
-/* 화살표 머리 */
-
-.growth_arrow .trend-head {
-    fill: none;
-
-    stroke: #9ec5ff;
-    stroke-width: 3;
-
-    stroke-linecap: round;
-    stroke-linejoin: round;
-
-    opacity: 0;
-
-    animation:
-        arrowShow .35s 1.45s ease-out forwards;
-}
-
-
-/* 그래프 주석 */
-
-.chart_noti {
-    margin: 20px 0 0;
-
-    color: #7f8da9;
-
-    font-size: 12px;
-    line-height: 1.6;
-}
-
-
-/* 애니메이션 */
-
-@keyframes barUp {
-
-    from {
-        transform: scaleY(0);
-        opacity: 0;
-    }
-
-    to {
-        transform: scaleY(1);
-        opacity: 1;
-    }
-
-}
-
-@keyframes drawTrend {
-
-    from {
-        stroke-dashoffset: 430;
-        opacity: 0;
-    }
-
-    to {
-        stroke-dashoffset: 0;
-        opacity: .85;
-    }
-
-}
-
-@keyframes arrowShow {
-
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-
 }
 
 
@@ -698,8 +392,30 @@ button {
 
 
 /* =========================================================
-    선택과목 / GS 혜택
+    SPECIAL BENEFIT
 ========================================================= */
+
+.special {
+    position: relative;
+
+    padding: 105px 0 100px;
+
+    overflow: hidden;
+
+    background: #0c1730;
+    color: #fff;
+}
+
+.special .eyebrow {
+    color: #7ea9ff;
+}
+
+.special .desc {
+    color: #b8c1d6;
+}
+
+
+/* 혜택 카드 */
 
 .benefit {
     display: grid;
@@ -716,6 +432,7 @@ button {
 
     padding: 40px;
 
+    border: 1px solid rgba(130, 179, 255, .12);
     border-radius: 22px;
 
     background: #132347;
@@ -753,6 +470,302 @@ button {
 
     font-size: 15px;
     line-height: 1.7;
+}
+
+
+/* =========================================================
+    SPECIAL BENEFIT 내부 GS 성장 영역
+========================================================= */
+
+.gs_growth {
+    margin-top: 90px;
+    padding-top: 85px;
+
+    border-top: 1px solid rgba(255, 255, 255, .10);
+}
+
+.gs_growth .mini_title {
+    color: #7ea9ff;
+
+    font-size: 13px;
+    line-height: 1;
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+.gs_growth h3 {
+    margin: 14px 0 15px;
+
+    color: #fff;
+
+    font-size: 38px;
+    line-height: 1.3;
+    font-weight: 900;
+
+    letter-spacing: -1.5px;
+}
+
+.gs_growth .growth_desc {
+    margin: 0;
+
+    color: #b8c1d6;
+
+    font-size: 18px;
+    line-height: 1.7;
+}
+
+.gs_growth .growth_desc strong {
+    color: #8fc0ff;
+    font-weight: 900;
+}
+
+
+/* 그래프 전체 */
+
+.growth_chart_wrap {
+    position: relative;
+
+    width: 730px;
+    height: 355px;
+
+    margin: 45px auto 0;
+}
+
+
+/* 막대 */
+
+.growth_chart {
+    position: absolute;
+
+    left: 50%;
+    bottom: 38px;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+
+    width: 100%;
+    height: 280px;
+
+    gap: 82px;
+
+    transform: translateX(-50%);
+
+    border-bottom: 1px solid rgba(255, 255, 255, .12);
+}
+
+.bar_item {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    width: 145px;
+    height: 100%;
+
+    text-align: center;
+}
+
+.percent {
+    margin-bottom: 13px;
+
+    color: #c4d3f4;
+
+    font-size: 21px;
+    line-height: 1;
+    font-weight: 800;
+}
+
+.percent.point {
+    color: #8fc0ff;
+    font-size: 28px;
+}
+
+.bar_wrap {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+
+    height: 215px;
+}
+
+.bar {
+    position: relative;
+
+    width: 90px;
+
+    border-radius: 14px 14px 0 0;
+
+    background:
+        linear-gradient(
+            180deg,
+            #8fc0ff 0%,
+            #5d8de6 52%,
+            #315fbd 100%
+        );
+
+    box-shadow:
+        0 15px 35px rgba(47, 96, 214, .25);
+
+    transform-origin: bottom;
+
+    animation:
+        barUp 1s cubic-bezier(.22, .8, .28, 1) both;
+}
+
+.bar::before {
+    content: "";
+
+    position: absolute;
+
+    left: 12px;
+    right: 12px;
+    top: 12px;
+
+    height: 1px;
+
+    background: rgba(255, 255, 255, .38);
+}
+
+.bar_2024 {
+    height: 115px;
+}
+
+.bar_2025 {
+    height: 160px;
+
+    animation-delay: .15s;
+}
+
+.bar_2026 {
+    height: 210px;
+
+    animation-delay: .3s;
+}
+
+.year {
+    margin-top: 14px;
+
+    color: #fff;
+
+    font-size: 17px;
+    line-height: 1;
+    font-weight: 700;
+}
+
+
+/* 우상향 라인 */
+
+.growth_arrow {
+    position: absolute;
+
+    left: 90px;
+    right: 85px;
+    top: 68px;
+
+    height: 145px;
+
+    z-index: 3;
+
+    pointer-events: none;
+}
+
+.growth_arrow svg {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: visible;
+}
+
+.growth_arrow .trend-line {
+    fill: none;
+
+    stroke: #9ec5ff;
+    stroke-width: 3;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+
+    stroke-dasharray: 8 10;
+
+    opacity: .85;
+
+    animation:
+        drawTrend 1.5s .4s ease-out both;
+}
+
+.growth_arrow .trend-head {
+    fill: none;
+
+    stroke: #9ec5ff;
+    stroke-width: 3;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+
+    opacity: 0;
+
+    animation:
+        arrowShow .35s 1.45s ease-out forwards;
+}
+
+
+/* 주석 */
+
+.chart_noti {
+    margin: 18px 0 0;
+
+    color: #7f8da9;
+
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+
+/* 애니메이션 */
+
+@keyframes barUp {
+
+    from {
+        transform: scaleY(0);
+        opacity: 0;
+    }
+
+    to {
+        transform: scaleY(1);
+        opacity: 1;
+    }
+
+}
+
+@keyframes drawTrend {
+
+    from {
+        stroke-dashoffset: 430;
+        opacity: 0;
+    }
+
+    to {
+        stroke-dashoffset: 0;
+        opacity: .85;
+    }
+
+}
+
+@keyframes arrowShow {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+
 }
 
 
@@ -905,18 +918,13 @@ button {
         width: 92%;
     }
 
-
-    /* TOP */
-
     .hero {
         min-height: auto;
-
         padding: 75px 0 65px;
     }
 
     .hero h1 {
         font-size: 45px;
-
         letter-spacing: -2px;
     }
 
@@ -940,41 +948,58 @@ button {
         max-width: 420px;
     }
 
-
-    /* SECTION */
-
     .section,
-    .gs_growth {
+    .special {
         padding: 75px 0;
     }
 
     .section h2,
-    .gs_growth h2 {
+    .special h2 {
         font-size: 33px;
-
         letter-spacing: -1.2px;
     }
 
-    .desc,
-    .gs_growth .desc {
+    .desc {
         font-size: 16px;
     }
 
+    .flow {
+        flex-wrap: wrap;
+    }
 
-    /* 그래프 */
+    .step {
+        width: calc(50% - 9px);
+    }
+
+    .cards,
+    .benefit {
+        grid-template-columns: 1fr;
+    }
+
+    .gs_growth {
+        margin-top: 65px;
+        padding-top: 65px;
+    }
+
+    .gs_growth h3 {
+        font-size: 30px;
+    }
+
+    .gs_growth .growth_desc {
+        font-size: 16px;
+    }
 
     .growth_chart_wrap {
         width: 100%;
         max-width: 620px;
 
-        height: 320px;
+        height: 315px;
 
-        margin-top: 38px;
+        margin-top: 35px;
     }
 
     .growth_chart {
-        height: 250px;
-
+        height: 245px;
         gap: 22px;
     }
 
@@ -988,15 +1013,15 @@ button {
     }
 
     .bar_2024 {
-        height: 105px;
+        height: 100px;
     }
 
     .bar_2025 {
-        height: 145px;
+        height: 140px;
     }
 
     .bar_2026 {
-        height: 190px;
+        height: 185px;
     }
 
     .percent {
@@ -1014,44 +1039,16 @@ button {
     .growth_arrow {
         left: 11%;
         right: 9%;
-
-        top: 69px;
-
-        height: 120px;
+        top: 68px;
+        height: 115px;
     }
-
-
-    /* 커리큘럼 */
-
-    .flow {
-        flex-wrap: wrap;
-    }
-
-    .step {
-        width: calc(50% - 9px);
-    }
-
-
-    /* 카드 */
-
-    .cards,
-    .benefit {
-        grid-template-columns: 1fr;
-    }
-
-
-    /* 강사진 */
 
     .lineup {
         grid-template-columns: repeat(2, 1fr);
     }
 
-
-    /* 상품 */
-
     .product {
         align-items: flex-start;
-
         flex-direction: column;
     }
 
@@ -1064,9 +1061,7 @@ button {
 <body>
 
 
-<!-- =====================================================
-    상단 이벤트
-===================================================== -->
+<!-- 상단 이벤트 -->
 
 <div class="event">
     10/1~10/14 단강좌 수강생 T-PASS 전환 이벤트 진행중!
@@ -1085,17 +1080,14 @@ button {
             2027 변리사 2차 대비
         </span>
 
-
         <h1>
             <b>2차 대비 T-PASS</b>
         </h1>
-
 
         <div class="lead">
             원하는 과목, 원하는 강사로<br>
             나에게 필요한 2차 커리큘럼을 완성하세요.
         </div>
-
 
         <div class="sub">
             이론부터 실전까지, 합격을 위한 선택을 한 번에
@@ -1138,150 +1130,6 @@ button {
 
 
 <!-- =====================================================
-    GS 수강생 증가
-===================================================== -->
-
-<section class="section dark gs_growth">
-
-    <div class="inner">
-
-        <div class="eyebrow">
-            MEGA 2ND EXAM
-        </div>
-
-
-        <h2>
-            매년 더 많은 수험생이 선택한<br>
-            메가변리사 2차 GS
-        </h2>
-
-
-        <p class="desc">
-            2024년 대비 2026년 GS 수강생
-            <strong>약 48% 증가</strong>
-        </p>
-
-
-        <div class="growth_chart_wrap">
-
-
-            <!-- 우상향 라인 -->
-
-            <div class="growth_arrow" aria-hidden="true">
-
-                <svg
-                    viewBox="0 0 540 150"
-                    preserveAspectRatio="none">
-
-                    <path
-                        class="trend-line"
-                        d="
-                            M18 125
-                            C150 110,
-                            280 82,
-                            462 30
-                        "
-                    />
-
-                    <path
-                        class="trend-head"
-                        d="
-                            M445 25
-                            L470 28
-                            L458 49
-                        "
-                    />
-
-                </svg>
-
-            </div>
-
-
-            <!-- 막대그래프 -->
-
-            <div class="growth_chart">
-
-
-                <!-- 2024 -->
-
-                <div class="bar_item">
-
-                    <div class="percent">
-                        100%
-                    </div>
-
-                    <div class="bar_wrap">
-
-                        <div class="bar bar_2024"></div>
-
-                    </div>
-
-                    <div class="year">
-                        2024
-                    </div>
-
-                </div>
-
-
-                <!-- 2025 -->
-
-                <div class="bar_item">
-
-                    <div class="percent">
-                        122%
-                    </div>
-
-                    <div class="bar_wrap">
-
-                        <div class="bar bar_2025"></div>
-
-                    </div>
-
-                    <div class="year">
-                        2025
-                    </div>
-
-                </div>
-
-
-                <!-- 2026 -->
-
-                <div class="bar_item">
-
-                    <div class="percent point">
-                        148%
-                    </div>
-
-                    <div class="bar_wrap">
-
-                        <div class="bar bar_2026"></div>
-
-                    </div>
-
-                    <div class="year">
-                        2026
-                    </div>
-
-                </div>
-
-
-            </div>
-
-        </div>
-
-
-        <p class="chart_noti">
-            ※ 2024~2026년 메가변리사 현장·온라인 GS 강좌
-            연도별 총 수강생 수 기준
-        </p>
-
-
-    </div>
-
-</section>
-
-
-<!-- =====================================================
     커리큘럼
 ===================================================== -->
 
@@ -1293,11 +1141,9 @@ button {
             2027 CURRICULUM
         </div>
 
-
         <h2>
             합격까지 이어지는 탄탄한 커리큘럼
         </h2>
-
 
         <p class="desc">
             지금 시작해 2차 시험까지.<br>
@@ -1309,54 +1155,23 @@ button {
         <div class="flow">
 
             <div class="step">
-
-                <span>
-                    STEP 01
-                </span>
-
-                <b>
-                    이론완성
-                </b>
-
+                <span>STEP 01</span>
+                <b>이론완성</b>
             </div>
 
-
             <div class="step">
-
-                <span>
-                    STEP 02
-                </span>
-
-                <b>
-                    답안작성
-                </b>
-
+                <span>STEP 02</span>
+                <b>답안작성</b>
             </div>
 
-
             <div class="step">
-
-                <span>
-                    STEP 03
-                </span>
-
-                <b>
-                    기초 GS
-                </b>
-
+                <span>STEP 03</span>
+                <b>기초 GS</b>
             </div>
 
-
             <div class="step">
-
-                <span>
-                    STEP 04
-                </span>
-
-                <b>
-                    실전 GS
-                </b>
-
+                <span>STEP 04</span>
+                <b>실전 GS</b>
             </div>
 
         </div>
@@ -1365,7 +1180,6 @@ button {
         <div class="video">
             ▶ 2027년 2차 커리큘럼 가이드 영상 영역
         </div>
-
 
     </div>
 
@@ -1384,12 +1198,10 @@ button {
             MAKE YOUR T-PASS
         </div>
 
-
         <h2>
             필요한 과목도,<br>
             듣고 싶은 강사도 다르니까
         </h2>
-
 
         <p class="desc">
             과목별 원하는 강사의 T-PASS를 선택해<br>
@@ -1400,20 +1212,15 @@ button {
         <div class="subject">
 
             <span>민사소송법</span>
-
             <span>특허법</span>
-
             <span>상표법</span>
-
             <span>디자인보호법</span>
-
             <span>저작권법</span>
 
         </div>
 
 
         <div class="cards">
-
 
             <div class="card">
 
@@ -1471,9 +1278,7 @@ button {
 
             </div>
 
-
         </div>
-
 
     </div>
 
@@ -1481,10 +1286,10 @@ button {
 
 
 <!-- =====================================================
-    선택과목 / GS
+    SPECIAL BENEFIT
 ===================================================== -->
 
-<section class="section dark">
+<section class="special">
 
     <div class="inner">
 
@@ -1504,8 +1309,9 @@ button {
         </p>
 
 
-        <div class="benefit">
+        <!-- 혜택 카드 -->
 
+        <div class="benefit">
 
             <div>
 
@@ -1550,6 +1356,130 @@ button {
 
             </div>
 
+        </div>
+
+
+        <!-- GS 성장 그래프 -->
+
+        <div class="gs_growth">
+
+            <div class="mini_title">
+                MEGA GS
+            </div>
+
+
+            <h3>
+                매년 더 많은 수험생이 선택하는<br>
+                메가변리사 2차 GS
+            </h3>
+
+
+            <p class="growth_desc">
+                2024년 대비 2026년 GS 수강생
+                <strong>약 48% 증가</strong>
+            </p>
+
+
+            <div class="growth_chart_wrap">
+
+
+                <!-- 우상향 효과 -->
+
+                <div class="growth_arrow" aria-hidden="true">
+
+                    <svg
+                        viewBox="0 0 540 150"
+                        preserveAspectRatio="none">
+
+                        <path
+                            class="trend-line"
+                            d="
+                                M18 125
+                                C150 110,
+                                280 82,
+                                462 30
+                            "
+                        />
+
+                        <path
+                            class="trend-head"
+                            d="
+                                M445 25
+                                L470 28
+                                L458 49
+                            "
+                        />
+
+                    </svg>
+
+                </div>
+
+
+                <!-- 막대그래프 -->
+
+                <div class="growth_chart">
+
+
+                    <div class="bar_item">
+
+                        <div class="percent">
+                            100%
+                        </div>
+
+                        <div class="bar_wrap">
+                            <div class="bar bar_2024"></div>
+                        </div>
+
+                        <div class="year">
+                            2024
+                        </div>
+
+                    </div>
+
+
+                    <div class="bar_item">
+
+                        <div class="percent">
+                            122%
+                        </div>
+
+                        <div class="bar_wrap">
+                            <div class="bar bar_2025"></div>
+                        </div>
+
+                        <div class="year">
+                            2025
+                        </div>
+
+                    </div>
+
+
+                    <div class="bar_item">
+
+                        <div class="percent point">
+                            148%
+                        </div>
+
+                        <div class="bar_wrap">
+                            <div class="bar bar_2026"></div>
+                        </div>
+
+                        <div class="year">
+                            2026
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+            <p class="chart_noti">
+                ※ 2024~2026년 메가변리사 현장·온라인 GS 강좌
+                연도별 총 수강생 수 기준
+            </p>
 
         </div>
 
@@ -1571,16 +1501,13 @@ button {
             LINE UP
         </div>
 
-
         <h2>
             2027 합격을 함께할<br>
             메가변리사 2차 강사진
         </h2>
 
-
         <p class="desc">
-            실제 기획 시 강사 사진 및
-            과목별 프로필 배치
+            실제 기획 시 강사 사진 및 과목별 프로필 배치
         </p>
 
 
@@ -1608,7 +1535,6 @@ button {
 
         </div>
 
-
     </div>
 
 </section>
@@ -1626,7 +1552,6 @@ button {
             SELECT T-PASS
         </div>
 
-
         <h2>
             나에게 필요한 T-PASS를 선택하세요
         </h2>
@@ -1634,15 +1559,11 @@ button {
 
         <div class="buybox">
 
-
             <div class="tabs">
 
                 <span>민사소송법</span>
-
                 <span>특허법</span>
-
                 <span>상표법</span>
-
                 <span>선택과목</span>
 
             </div>
@@ -1653,8 +1574,7 @@ button {
                 <div>
 
                     <b>
-                        [2027 2차 T-PASS]
-                        민사소송법 OOO
+                        [2027 2차 T-PASS] 민사소송법 OOO
                     </b>
 
                     <br>
@@ -1664,7 +1584,6 @@ button {
                     </small>
 
                 </div>
-
 
                 <button>
                     선택하기
@@ -1678,8 +1597,7 @@ button {
                 <div>
 
                     <b>
-                        [2027 2차 T-PASS]
-                        특허법 OOO
+                        [2027 2차 T-PASS] 특허법 OOO
                     </b>
 
                     <br>
@@ -1689,7 +1607,6 @@ button {
                     </small>
 
                 </div>
-
 
                 <button>
                     선택하기
@@ -1703,8 +1620,7 @@ button {
                 <div>
 
                     <b>
-                        [2027 2차 T-PASS]
-                        상표법 OOO
+                        [2027 2차 T-PASS] 상표법 OOO
                     </b>
 
                     <br>
@@ -1715,25 +1631,20 @@ button {
 
                 </div>
 
-
                 <button>
                     선택하기
                 </button>
 
             </div>
-
 
         </div>
-
 
     </div>
 
 </section>
 
 
-<!-- =====================================================
-    FOOTER
-===================================================== -->
+<!-- FOOTER -->
 
 <div class="footer">
     MEGA PATENT · 2027 2차 T-PASS
