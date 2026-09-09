@@ -117,6 +117,7 @@ button {
     font-size: 72px;
     line-height: 1.08;
     font-weight: 900;
+
     letter-spacing: -3px;
 }
 
@@ -337,9 +338,6 @@ button {
     font-weight: 700;
 }
 
-
-/* POINT 카드 */
-
 .cards {
     display: grid;
 
@@ -392,13 +390,13 @@ button {
 
 
 /* =========================================================
-    SPECIAL BENEFIT
+    GS 강점 영역
 ========================================================= */
 
-.special {
+.gs_power {
     position: relative;
 
-    padding: 105px 0 100px;
+    padding: 105px 0 95px;
 
     overflow: hidden;
 
@@ -406,134 +404,42 @@ button {
     color: #fff;
 }
 
-.special .eyebrow {
+.gs_power .eyebrow {
     color: #7ea9ff;
 }
 
-.special .desc {
-    color: #b8c1d6;
-}
+.gs_power h2 {
+    margin: 14px 0 18px;
 
-
-/* 혜택 카드 */
-
-.benefit {
-    display: grid;
-
-    grid-template-columns: 1fr 1fr;
-
-    gap: 22px;
-
-    margin-top: 45px;
-}
-
-.benefit > div {
-    min-height: 230px;
-
-    padding: 40px;
-
-    border: 1px solid rgba(130, 179, 255, .12);
-    border-radius: 22px;
-
-    background: #132347;
-
-    text-align: left;
-}
-
-.benefit small {
-    color: #8ba5d9;
-
-    font-size: 12px;
-    line-height: 1;
-    font-weight: 800;
-
-    letter-spacing: .8px;
-}
-
-.benefit h3 {
-    margin: 15px 0;
-
-    font-size: 27px;
-    line-height: 1.4;
-
-    letter-spacing: -1px;
-}
-
-.benefit strong {
-    color: #82b3ff;
-}
-
-.benefit p {
-    margin: 0;
-
-    color: #b8c1d6;
-
-    font-size: 15px;
-    line-height: 1.7;
-}
-
-
-/* =========================================================
-    SPECIAL BENEFIT 내부 GS 성장 영역
-========================================================= */
-
-.gs_growth {
-    margin-top: 90px;
-    padding-top: 85px;
-
-    border-top: 1px solid rgba(255, 255, 255, .10);
-}
-
-.gs_growth .mini_title {
-    color: #7ea9ff;
-
-    font-size: 13px;
-    line-height: 1;
-    font-weight: 800;
-
-    letter-spacing: 1px;
-}
-
-.gs_growth h3 {
-    margin: 14px 0 15px;
-
-    color: #fff;
-
-    font-size: 38px;
+    font-size: 44px;
     line-height: 1.3;
     font-weight: 900;
 
-    letter-spacing: -1.5px;
+    letter-spacing: -1.8px;
 }
 
-.gs_growth .growth_desc {
-    margin: 0;
-
+.gs_power .desc {
     color: #b8c1d6;
 
-    font-size: 18px;
-    line-height: 1.7;
+    font-size: 19px;
 }
 
-.gs_growth .growth_desc strong {
+.gs_power .desc strong {
     color: #8fc0ff;
     font-weight: 900;
 }
 
 
-/* 그래프 전체 */
+/* 그래프 */
 
 .growth_chart_wrap {
     position: relative;
 
     width: 730px;
-    height: 355px;
+    height: 360px;
 
-    margin: 45px auto 0;
+    margin: 50px auto 0;
 }
-
-
-/* 막대 */
 
 .growth_chart {
     position: absolute;
@@ -546,7 +452,7 @@ button {
     justify-content: center;
 
     width: 100%;
-    height: 280px;
+    height: 285px;
 
     gap: 82px;
 
@@ -713,9 +619,6 @@ button {
         arrowShow .35s 1.45s ease-out forwards;
 }
 
-
-/* 주석 */
-
 .chart_noti {
     margin: 18px 0 0;
 
@@ -726,7 +629,131 @@ button {
 }
 
 
-/* 애니메이션 */
+/* =========================================================
+    SPECIAL BENEFIT
+========================================================= */
+
+.special {
+    padding: 100px 0 110px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #101d3a 0%,
+            #0c1730 100%
+        );
+
+    color: #fff;
+
+    text-align: center;
+}
+
+.special .eyebrow {
+    color: #7ea9ff;
+}
+
+.special h2 {
+    margin: 14px 0 18px;
+
+    font-size: 44px;
+    line-height: 1.3;
+    font-weight: 900;
+
+    letter-spacing: -1.8px;
+}
+
+.special .desc {
+    color: #b8c1d6;
+}
+
+
+/* 혜택 강조 박스 */
+
+.benefit {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 22px;
+
+    margin-top: 55px;
+}
+
+.benefit_box {
+    position: relative;
+
+    min-height: 270px;
+
+    padding: 42px 38px;
+
+    border: 1px solid rgba(130, 179, 255, .17);
+    border-radius: 24px;
+
+    background: #132347;
+
+    text-align: left;
+}
+
+.benefit_box small {
+    color: #8ba5d9;
+
+    font-size: 12px;
+    line-height: 1;
+    font-weight: 800;
+
+    letter-spacing: .8px;
+}
+
+.benefit_box .benefit_sub {
+    margin-top: 17px;
+
+    color: #c2cce0;
+
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.benefit_box h3 {
+    margin: 8px 0 16px;
+
+    color: #fff;
+
+    font-size: 31px;
+    line-height: 1.35;
+    font-weight: 900;
+
+    letter-spacing: -1px;
+}
+
+.benefit_box h3 strong {
+    color: #82b3ff;
+}
+
+.benefit_box p {
+    margin: 0;
+
+    color: #aebbd4;
+
+    font-size: 15px;
+    line-height: 1.75;
+}
+
+
+/* SPECIAL 연결 문구 */
+
+.benefit_intro {
+    margin-top: 20px;
+
+    color: #90a0be;
+
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+    애니메이션
+========================================================= */
 
 @keyframes barUp {
 
@@ -920,11 +947,13 @@ button {
 
     .hero {
         min-height: auto;
+
         padding: 75px 0 65px;
     }
 
     .hero h1 {
         font-size: 45px;
+
         letter-spacing: -2px;
     }
 
@@ -949,13 +978,16 @@ button {
     }
 
     .section,
+    .gs_power,
     .special {
         padding: 75px 0;
     }
 
     .section h2,
+    .gs_power h2,
     .special h2 {
         font-size: 33px;
+
         letter-spacing: -1.2px;
     }
 
@@ -974,19 +1006,6 @@ button {
     .cards,
     .benefit {
         grid-template-columns: 1fr;
-    }
-
-    .gs_growth {
-        margin-top: 65px;
-        padding-top: 65px;
-    }
-
-    .gs_growth h3 {
-        font-size: 30px;
-    }
-
-    .gs_growth .growth_desc {
-        font-size: 16px;
     }
 
     .growth_chart_wrap {
@@ -1039,8 +1058,13 @@ button {
     .growth_arrow {
         left: 11%;
         right: 9%;
+
         top: 68px;
         height: 115px;
+    }
+
+    .benefit_box {
+        min-height: auto;
     }
 
     .lineup {
@@ -1048,8 +1072,8 @@ button {
     }
 
     .product {
-        align-items: flex-start;
         flex-direction: column;
+        align-items: flex-start;
     }
 
 }
@@ -1061,7 +1085,9 @@ button {
 <body>
 
 
-<!-- 상단 이벤트 -->
+<!-- =====================================================
+    상단 이벤트
+===================================================== -->
 
 <div class="event">
     10/1~10/14 단강좌 수강생 T-PASS 전환 이벤트 진행중!
@@ -1080,14 +1106,17 @@ button {
             2027 변리사 2차 대비
         </span>
 
+
         <h1>
             <b>2차 대비 T-PASS</b>
         </h1>
+
 
         <div class="lead">
             원하는 과목, 원하는 강사로<br>
             나에게 필요한 2차 커리큘럼을 완성하세요.
         </div>
+
 
         <div class="sub">
             이론부터 실전까지, 합격을 위한 선택을 한 번에
@@ -1141,9 +1170,11 @@ button {
             2027 CURRICULUM
         </div>
 
+
         <h2>
             합격까지 이어지는 탄탄한 커리큘럼
         </h2>
+
 
         <p class="desc">
             지금 시작해 2차 시험까지.<br>
@@ -1198,10 +1229,12 @@ button {
             MAKE YOUR T-PASS
         </div>
 
+
         <h2>
             필요한 과목도,<br>
             듣고 싶은 강사도 다르니까
         </h2>
+
 
         <p class="desc">
             과목별 원하는 강사의 T-PASS를 선택해<br>
@@ -1229,11 +1262,11 @@ button {
                 </div>
 
                 <h3>
-                    강사별 교수패스
+                    원하는 강사를 직접 선택
                 </h3>
 
                 <p>
-                    주요 과목 전 강사진 중
+                    주요 과목 전 강사진의 T-PASS 중
                     원하는 강사를 직접 선택해
                     커리큘럼을 따라갈 수 있습니다.
                 </p>
@@ -1267,18 +1300,148 @@ button {
                 </div>
 
                 <h3>
-                    2027 시험까지 연결
+                    시험까지 이어지는 커리큘럼
                 </h3>
 
                 <p>
                     단기 수강이 아니라
-                    시험까지 이어지는 강사별 커리큘럼으로
-                    준비할 수 있습니다.
+                    2027년 2차 시험까지 이어지는
+                    강사별 커리큘럼으로 준비하세요.
                 </p>
 
             </div>
 
         </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+    메가변리사 GS 강점
+===================================================== -->
+
+<section class="gs_power">
+
+    <div class="inner">
+
+        <div class="eyebrow">
+            MEGA 2ND EXAM
+        </div>
+
+
+        <h2>
+            2차도, 메가변리사가 대세
+        </h2>
+
+
+        <p class="desc">
+            매년 더 많은 수험생이 선택하는
+            <strong>메가변리사 2차 GS</strong>
+        </p>
+
+
+        <div class="growth_chart_wrap">
+
+
+            <!-- 우상향 효과 -->
+
+            <div class="growth_arrow" aria-hidden="true">
+
+                <svg
+                    viewBox="0 0 540 150"
+                    preserveAspectRatio="none">
+
+                    <path
+                        class="trend-line"
+                        d="
+                            M18 125
+                            C150 110,
+                            280 82,
+                            462 30
+                        "
+                    />
+
+                    <path
+                        class="trend-head"
+                        d="
+                            M445 25
+                            L470 28
+                            L458 49
+                        "
+                    />
+
+                </svg>
+
+            </div>
+
+
+            <!-- 그래프 -->
+
+            <div class="growth_chart">
+
+
+                <div class="bar_item">
+
+                    <div class="percent">
+                        기준
+                    </div>
+
+                    <div class="bar_wrap">
+                        <div class="bar bar_2024"></div>
+                    </div>
+
+                    <div class="year">
+                        2024
+                    </div>
+
+                </div>
+
+
+                <div class="bar_item">
+
+                    <div class="percent">
+                        +22%
+                    </div>
+
+                    <div class="bar_wrap">
+                        <div class="bar bar_2025"></div>
+                    </div>
+
+                    <div class="year">
+                        2025
+                    </div>
+
+                </div>
+
+
+                <div class="bar_item">
+
+                    <div class="percent point">
+                        +48%
+                    </div>
+
+                    <div class="bar_wrap">
+                        <div class="bar bar_2026"></div>
+                    </div>
+
+                    <div class="year">
+                        2026
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <p class="chart_noti">
+            ※ 2024년 메가변리사 GS 수강생 수를 기준으로 한 증가율<br>
+            ※ 2024~2026년 메가변리사 현장·온라인 GS 강좌 연도별 총 수강생 수 기준
+        </p>
 
     </div>
 
@@ -1299,190 +1462,79 @@ button {
 
 
         <h2>
-            선택과목은 이론부터 GS까지 한 번에
+            많이 선택하는 메가변리사 GS,<br>
+            T-PASS에서는 혜택으로 더합니다.
         </h2>
 
 
         <p class="desc">
-            디자인보호법 · 저작권법은<br>
-            이론 학습부터 실전 GS까지 전 커리큘럼으로 연결
+            메가변리사 2차의 강점을<br>
+            T-PASS에서도 그대로 이어가세요.
         </p>
 
 
-        <!-- 혜택 카드 -->
-
         <div class="benefit">
 
-            <div>
+
+            <!-- 선택과목 GS 포함 -->
+
+            <div class="benefit_box">
 
                 <small>
-                    SELECT SUBJECT
+                    BENEFIT 01
                 </small>
 
+                <div class="benefit_sub">
+                    선택과목 구매 시
+                </div>
+
                 <h3>
-                    선택과목
-                    <strong>
-                        FULL CURRICULUM
-                    </strong>
+                    온라인 GS까지
+                    <strong>포함</strong>
                 </h3>
 
                 <p>
-                    중간에 다시 강의를 선택하고
-                    구매할 필요 없이
-                    2차 시험까지 이어서 준비하세요.
+                    디자인보호법 · 저작권법은<br>
+                    이론 학습부터 GS까지
+                    한 번에 이어서 수강할 수 있습니다.
                 </p>
 
             </div>
 
 
-            <div>
+            <!-- 채점권 -->
+
+            <div class="benefit_box">
 
                 <small>
-                    GS BENEFIT
+                    BENEFIT 02
                 </small>
+
+                <div class="benefit_sub">
+                    여기에 실전 혜택까지
+                </div>
 
                 <h3>
                     온라인 GS
-                    <strong>
-                        채점권 혜택
-                    </strong>
+                    <strong>채점권 제공</strong>
                 </h3>
 
                 <p>
-                    T-PASS 수강 시 추가로 제공되는
-                    GS 채점권으로
-                    실전 답안까지 점검하세요.
+                    강의를 듣는 데서 끝나지 않고<br>
+                    직접 작성한 답안까지
+                    채점받으며 실전을 점검하세요.
                 </p>
 
             </div>
 
-        </div>
-
-
-        <!-- GS 성장 그래프 -->
-
-        <div class="gs_growth">
-
-            <div class="mini_title">
-                MEGA GS
-            </div>
-
-
-            <h3>
-                매년 더 많은 수험생이 선택하는<br>
-                메가변리사 2차 GS
-            </h3>
-
-
-            <p class="growth_desc">
-                2024년 대비 2026년 GS 수강생
-                <strong>약 48% 증가</strong>
-            </p>
-
-
-            <div class="growth_chart_wrap">
-
-
-                <!-- 우상향 효과 -->
-
-                <div class="growth_arrow" aria-hidden="true">
-
-                    <svg
-                        viewBox="0 0 540 150"
-                        preserveAspectRatio="none">
-
-                        <path
-                            class="trend-line"
-                            d="
-                                M18 125
-                                C150 110,
-                                280 82,
-                                462 30
-                            "
-                        />
-
-                        <path
-                            class="trend-head"
-                            d="
-                                M445 25
-                                L470 28
-                                L458 49
-                            "
-                        />
-
-                    </svg>
-
-                </div>
-
-
-                <!-- 막대그래프 -->
-
-                <div class="growth_chart">
-
-
-                    <div class="bar_item">
-
-                        <div class="percent">
-                            100%
-                        </div>
-
-                        <div class="bar_wrap">
-                            <div class="bar bar_2024"></div>
-                        </div>
-
-                        <div class="year">
-                            2024
-                        </div>
-
-                    </div>
-
-
-                    <div class="bar_item">
-
-                        <div class="percent">
-                            122%
-                        </div>
-
-                        <div class="bar_wrap">
-                            <div class="bar bar_2025"></div>
-                        </div>
-
-                        <div class="year">
-                            2025
-                        </div>
-
-                    </div>
-
-
-                    <div class="bar_item">
-
-                        <div class="percent point">
-                            148%
-                        </div>
-
-                        <div class="bar_wrap">
-                            <div class="bar bar_2026"></div>
-                        </div>
-
-                        <div class="year">
-                            2026
-                        </div>
-
-                    </div>
-
-
-                </div>
-
-            </div>
-
-
-            <p class="chart_noti">
-                ※ 2024~2026년 메가변리사 현장·온라인 GS 강좌
-                연도별 총 수강생 수 기준
-            </p>
 
         </div>
 
+
+        <div class="benefit_intro">
+            강의 수강부터 실전 답안 점검까지,
+            메가변리사 T-PASS 하나로 이어집니다.
+        </div>
 
     </div>
 
@@ -1501,13 +1553,15 @@ button {
             LINE UP
         </div>
 
+
         <h2>
             2027 합격을 함께할<br>
             메가변리사 2차 강사진
         </h2>
 
+
         <p class="desc">
-            실제 기획 시 강사 사진 및 과목별 프로필 배치
+            원하는 과목, 원하는 강사를 직접 선택하세요.
         </p>
 
 
@@ -1552,9 +1606,16 @@ button {
             SELECT T-PASS
         </div>
 
+
         <h2>
             나에게 필요한 T-PASS를 선택하세요
         </h2>
+
+
+        <p class="desc">
+            과목별 원하는 강사의 T-PASS를 선택해
+            나만의 2차 학습 조합을 완성하세요.
+        </p>
 
 
         <div class="buybox">
@@ -1644,7 +1705,9 @@ button {
 </section>
 
 
-<!-- FOOTER -->
+<!-- =====================================================
+    FOOTER
+===================================================== -->
 
 <div class="footer">
     MEGA PATENT · 2027 2차 T-PASS
