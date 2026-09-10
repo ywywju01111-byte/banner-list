@@ -1154,13 +1154,41 @@ button {
     width: 100%;
 }
 
-.stn03_cont01 li {
-    flex: 1;
+/* 강사진 행 */
+.stn03_cont01 ul {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 0;
+    margin: 0;
+    padding: 0;
 }
 
+/* 기본 li는 늘어나지 않게 */
+.stn03_cont01 li {
+    flex: 0 0 auto;
+}
+
+/* 이미지 원본 비율 유지 */
 .stn03_cont01 li img {
-    width: 100%;
+    display: block;
+    width: auto;
+    max-width: 100%;
     height: auto;
+}
+
+/* 과목 타이틀 이미지 */
+.stn03_cont01 li:first-child {
+    flex: 0 0 190px;
+}
+
+/* 강사 이미지 */
+.stn03_cont01 li:not(:first-child) {
+    flex: 0 0 280px;
+}
+
+.stn03_cont01 li:not(:first-child) img {
+    width: 280px;
 }
 
 .stn03_cont01 a {
