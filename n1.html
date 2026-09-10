@@ -29,7 +29,6 @@ body {
         "Apple SD Gothic Neo",
         Arial,
         sans-serif;
-
     color: #172033;
     background: #fff;
     word-break: keep-all;
@@ -49,7 +48,6 @@ a {
 
 img {
     display: block;
-    max-width: 100%;
 }
 
 button {
@@ -57,7 +55,8 @@ button {
 }
 
 .inner {
-    width: min(1180px, 92%);
+    width: 1180px;
+    max-width: calc(100% - 40px);
     margin: 0 auto;
 }
 
@@ -67,48 +66,37 @@ button {
 ========================================================= */
 
 .section {
-    position: relative;
-    padding: 120px 0;
+    padding: 110px 0;
     text-align: center;
 }
 
 .eyebrow {
-    margin-bottom: 16px;
-
-    color: #3569dd;
-
-    font-size: 13px;
+    margin-bottom: 15px;
+    color: #3973e6;
+    font-size: 14px;
     line-height: 1;
     font-weight: 900;
-
-    letter-spacing: 1.8px;
+    letter-spacing: 1.5px;
 }
 
-.section_title {
+.section-title {
     margin: 0;
-
     color: #172033;
-
-    font-size: 46px;
+    font-size: 45px;
     line-height: 1.3;
     font-weight: 900;
-
-    letter-spacing: -2.2px;
+    letter-spacing: -2px;
 }
 
-.section_desc {
+.section-desc {
     margin: 20px 0 0;
-
-    color: #697386;
-
+    color: #6e788b;
     font-size: 18px;
-    line-height: 1.75;
-
-    letter-spacing: -.4px;
+    line-height: 1.7;
 }
 
 .blue {
-    color: #3975ed;
+    color: #3973e6;
 }
 
 
@@ -116,14 +104,11 @@ button {
    EVENT BAR
 ========================================================= */
 
-.event_bar {
-    padding: 15px 20px;
-
-    background: #ffeaa8;
-    color: #5a440a;
-
+.event-bar {
+    padding: 14px 20px;
+    background: #ffe9a5;
+    color: #5d4505;
     text-align: center;
-
     font-size: 15px;
     font-weight: 800;
 }
@@ -135,58 +120,34 @@ button {
 
 .hero {
     position: relative;
-
-    min-height: 720px;
-    padding: 115px 0 100px;
-
     overflow: hidden;
+    padding: 110px 0 100px;
+    color: #fff;
+    text-align: center;
 
     background:
         radial-gradient(
-            circle at 75% 22%,
-            rgba(68, 123, 235, .64) 0,
-            rgba(68, 123, 235, 0) 34%
+            circle at 76% 25%,
+            rgba(62, 118, 230, .58),
+            transparent 34%
         ),
         linear-gradient(
             135deg,
-            #061023 0%,
-            #0b1937 48%,
-            #183568 100%
+            #071126 0%,
+            #0c1936 50%,
+            #193767 100%
         );
-
-    color: #fff;
-    text-align: center;
 }
 
 .hero::before {
     content: "";
-
     position: absolute;
-
-    width: 700px;
-    height: 700px;
-
-    top: -370px;
-    left: -190px;
-
-    border: 1px solid rgba(255,255,255,.05);
+    top: -330px;
+    left: -180px;
+    width: 650px;
+    height: 650px;
+    border: 1px solid rgba(255,255,255,.06);
     border-radius: 50%;
-}
-
-.hero::after {
-    content: "";
-
-    position: absolute;
-
-    width: 420px;
-    height: 420px;
-
-    right: -170px;
-    bottom: -220px;
-
-    border-radius: 50%;
-
-    background: rgba(64,118,229,.09);
 }
 
 .hero .inner {
@@ -194,104 +155,81 @@ button {
     z-index: 2;
 }
 
-.hero_badge {
+.hero-badge {
     display: inline-block;
-
     padding: 9px 18px;
-
     border: 1px solid rgba(143,192,255,.45);
     border-radius: 40px;
-
-    color: #dae8ff;
-
+    color: #d7e7ff;
     font-size: 14px;
     font-weight: 800;
 }
 
 .hero h1 {
-    margin: 28px 0 18px;
-
+    margin: 27px 0 17px;
     font-size: 76px;
     line-height: 1.05;
     font-weight: 900;
-
     letter-spacing: -4px;
 }
 
 .hero h1 span {
-    color: #84b9ff;
+    color: #88bcff;
 }
 
-.hero_lead {
+.hero-lead {
     margin: 0;
-
-    font-size: 28px;
+    font-size: 27px;
     line-height: 1.5;
     font-weight: 800;
-
     letter-spacing: -1.2px;
 }
 
-.hero_sub {
+.hero-sub {
     margin-top: 17px;
-
-    color: #b9c8e1;
-
+    color: #b8c7df;
     font-size: 16px;
 }
 
 
-/* TOP POINT */
+/* TOP BENEFITS */
 
-.hero_points {
+.hero-benefits {
     display: flex;
     justify-content: center;
-
-    margin-top: 65px;
-
+    margin-top: 60px;
     border-top: 1px solid rgba(255,255,255,.14);
     border-bottom: 1px solid rgba(255,255,255,.14);
 }
 
-.hero_point {
+.hero-benefit {
     position: relative;
-
-    width: 280px;
-
-    padding: 25px 20px;
+    width: 285px;
+    padding: 27px 18px;
 }
 
-.hero_point + .hero_point::before {
+.hero-benefit + .hero-benefit::before {
     content: "";
-
     position: absolute;
-
+    top: 23px;
+    bottom: 23px;
     left: 0;
-    top: 24px;
-    bottom: 24px;
-
     width: 1px;
-
-    background: rgba(255,255,255,.12);
+    background: rgba(255,255,255,.13);
 }
 
-.hero_point small {
+.hero-benefit small {
     display: block;
-
-    color: #8799ba;
-
+    color: #96a7c4;
     font-size: 12px;
     font-weight: 700;
 }
 
-.hero_point strong {
+.hero-benefit strong {
     display: block;
-
-    margin-top: 8px;
-
-    color: #93c4ff;
-
-    font-size: 24px;
+    margin-top: 7px;
+    color: #93c5ff;
+    font-size: 23px;
     line-height: 1.3;
     font-weight: 900;
 }
@@ -305,71 +243,51 @@ button {
     background: #fff;
 }
 
-.curriculum_flow {
+.curriculum-flow {
     display: flex;
-    justify-content: center;
-    align-items: center;
-
-    max-width: 980px;
-
-    margin: 60px auto 0;
+    max-width: 950px;
+    margin: 58px auto 0;
 }
 
-.cur_step {
+.curriculum-item {
     position: relative;
-
     flex: 1;
-
-    padding: 32px 20px;
+    padding: 27px 15px;
 }
 
-.cur_step:not(:last-child)::after {
+.curriculum-item:not(:last-child)::after {
     content: "";
-
     position: absolute;
-
-    top: 50%;
-    right: -15px;
-
-    width: 30px;
+    top: 47px;
+    right: -14px;
+    width: 28px;
     height: 1px;
-
-    background: #cfd7e5;
+    background: #ccd6e4;
 }
 
-.cur_num {
+.curriculum-num {
     display: flex;
     align-items: center;
     justify-content: center;
-
-    width: 36px;
-    height: 36px;
-
-    margin: 0 auto 14px;
-
+    width: 40px;
+    height: 40px;
+    margin: 0 auto 15px;
     border-radius: 50%;
-
     background: #edf3ff;
-    color: #3972df;
-
+    color: #3973e6;
     font-size: 12px;
     font-weight: 900;
 }
 
-.cur_step strong {
+.curriculum-item strong {
     display: block;
-
-    font-size: 22px;
+    font-size: 21px;
     font-weight: 900;
 }
 
-.cur_step span {
-    display: block;
-
-    margin-top: 8px;
-
-    color: #8a94a6;
-
+.curriculum-item p {
+    margin: 8px 0 0;
+    color: #8993a4;
     font-size: 13px;
 }
 
@@ -378,189 +296,139 @@ button {
    T-PASS INTRO
 ========================================================= */
 
-.tpass_intro {
-    overflow: hidden;
-
-    background:
-        linear-gradient(
-            180deg,
-            #f5f8fd 0%,
-            #eef3fb 100%
-        );
+.tpass {
+    background: #f3f6fb;
 }
 
-
-/* 큰 선택 영역 */
-
-.tpass_visual {
-    display: grid;
-
-    grid-template-columns: 1fr 1.1fr;
-
-    max-width: 1000px;
-
-    margin: 60px auto 0;
-
-    overflow: hidden;
-
-    border-radius: 28px;
-
-    background: #fff;
-
-    box-shadow: 0 20px 60px rgba(24,55,108,.09);
-
-    text-align: left;
-}
-
-.tpass_visual_left {
-    padding: 48px 45px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #173267,
-            #315fbd
-        );
-
-    color: #fff;
-}
-
-.tpass_visual_left small {
-    color: #9fc3ff;
-
-    font-size: 12px;
-    font-weight: 900;
-
-    letter-spacing: 1px;
-}
-
-.tpass_visual_left h3 {
-    margin: 15px 0 18px;
-
-    font-size: 31px;
-    line-height: 1.35;
-    font-weight: 900;
-
-    letter-spacing: -1.3px;
-}
-
-.tpass_visual_left p {
-    margin: 0;
-
-    color: #c4d3ec;
-
-    font-size: 15px;
-    line-height: 1.75;
-}
-
-.tpass_visual_right {
-    padding: 42px 45px;
-}
-
-.choose_line {
-    display: flex;
-    align-items: center;
-
-    min-height: 72px;
-
-    border-bottom: 1px solid #edf0f5;
-}
-
-.choose_line:last-child {
-    border-bottom: 0;
-}
-
-.choose_icon {
-    flex: 0 0 48px;
-
-    color: #3c73df;
-
-    font-size: 17px;
-    font-weight: 900;
-}
-
-.choose_txt strong {
-    display: block;
-
-    font-size: 18px;
-    font-weight: 900;
-}
-
-.choose_txt span {
-    display: block;
-
-    margin-top: 5px;
-
-    color: #7b8596;
-
-    font-size: 13px;
-}
-
-
-/* SUBJECTS */
-
-.subjects {
+.subject-list {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-
-    gap: 9px;
-
+    gap: 8px;
     margin-top: 35px;
 }
 
-.subjects span {
+.subject-list span {
     padding: 11px 20px;
-
-    border: 1px solid #dbe3ef;
+    border: 1px solid #dce3ee;
     border-radius: 30px;
-
     background: #fff;
-
-    color: #3d4a61;
-
+    color: #435066;
     font-size: 14px;
     font-weight: 800;
 }
 
 
+.tpass-box {
+    display: grid;
+    grid-template-columns: .95fr 1.15fr;
+    max-width: 980px;
+    margin: 50px auto 0;
+    overflow: hidden;
+    border-radius: 26px;
+    background: #fff;
+    box-shadow: 0 20px 55px rgba(37,65,116,.09);
+    text-align: left;
+}
+
+.tpass-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 50px 45px;
+    background: linear-gradient(145deg,#18346c,#3466c5);
+    color: #fff;
+}
+
+.tpass-left small {
+    color: #a8c9ff;
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.tpass-left h3 {
+    margin: 15px 0;
+    font-size: 30px;
+    line-height: 1.4;
+    font-weight: 900;
+    letter-spacing: -1.4px;
+}
+
+.tpass-left p {
+    margin: 0;
+    color: #c8d6ed;
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+.tpass-right {
+    padding: 30px 45px;
+}
+
+.choice {
+    display: flex;
+    align-items: center;
+    min-height: 88px;
+    border-bottom: 1px solid #edf0f5;
+}
+
+.choice:last-child {
+    border-bottom: 0;
+}
+
+.choice-num {
+    flex: 0 0 52px;
+    color: #3973e6;
+    font-size: 17px;
+    font-weight: 900;
+}
+
+.choice strong {
+    display: block;
+    font-size: 18px;
+}
+
+.choice span {
+    display: block;
+    margin-top: 5px;
+    color: #80899a;
+    font-size: 13px;
+}
+
+
 /* =========================================================
-   GS STORY
+   GS
 ========================================================= */
 
-.gs_story {
-    padding: 120px 0 0;
-
+.gs {
+    padding: 115px 0 0;
     overflow: hidden;
-
     background:
         radial-gradient(
             circle at 50% 30%,
-            rgba(46,93,185,.22),
-            transparent 35%
+            rgba(58,104,198,.22),
+            transparent 38%
         ),
         #09152c;
-
     color: #fff;
-
     text-align: center;
 }
 
-.gs_story .eyebrow {
-    color: #78a9ff;
+.gs .eyebrow {
+    color: #80afff;
 }
 
-.gs_story .section_title {
+.gs .section-title {
     color: #fff;
-
     font-size: 50px;
 }
 
-.gs_story .section_desc {
+.gs .section-desc {
     color: #aebbd2;
 }
 
-.gs_story .section_desc strong {
+.gs .section-desc strong {
     color: #8fc0ff;
 }
 
@@ -569,179 +437,127 @@ button {
    GRAPH
 ========================================================= */
 
-.graph_area {
+.graph {
     position: relative;
-
     width: 760px;
-    height: 390px;
-
+    max-width: 100%;
+    height: 370px;
     margin: 45px auto 0;
 }
 
-.graph_bars {
+.graph-bars {
     position: absolute;
-
     left: 0;
     right: 0;
-    bottom: 50px;
-
+    bottom: 45px;
     display: flex;
-    align-items: flex-end;
     justify-content: center;
-
-    gap: 100px;
-
-    height: 290px;
-
-    border-bottom: 1px solid rgba(255,255,255,.13);
+    align-items: flex-end;
+    gap: 90px;
+    height: 275px;
+    border-bottom: 1px solid rgba(255,255,255,.12);
 }
 
-.graph_item {
+.graph-item {
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: flex-end;
-
-    width: 145px;
+    align-items: center;
+    width: 150px;
     height: 100%;
 }
 
-.graph_value {
-    margin-bottom: 13px;
-
-    color: #bac8e0;
-
+.graph-value {
+    margin-bottom: 12px;
+    color: #bac7de;
     font-size: 20px;
     font-weight: 900;
 }
 
-.graph_value.big {
-    color: #91c1ff;
-
-    font-size: 31px;
+.graph-value.active {
+    color: #91c3ff;
+    font-size: 30px;
 }
 
-.graph_barbox {
+.bar-wrap {
     display: flex;
     align-items: flex-end;
-
-    height: 220px;
+    height: 210px;
 }
 
-.graph_bar {
-    position: relative;
-
-    width: 94px;
-
-    border-radius: 15px 15px 0 0;
-
+.bar {
+    width: 88px;
+    border-radius: 13px 13px 0 0;
     background:
         linear-gradient(
             180deg,
-            #99c9ff 0%,
-            #5386e7 57%,
-            #2d58b0 100%
+            #9dccff,
+            #5689e8 55%,
+            #2c59b3
         );
-
-    box-shadow:
-        0 20px 35px rgba(33,84,187,.22);
-
     transform-origin: bottom;
-
-    animation: barUp 1s cubic-bezier(.2,.8,.3,1) both;
+    animation: bar-up 1s ease both;
 }
 
-.graph_bar::after {
-    content: "";
-
-    position: absolute;
-
-    left: 14px;
-    right: 14px;
-    top: 13px;
-
-    height: 1px;
-
-    background: rgba(255,255,255,.38);
+.bar-2024 {
+    height: 105px;
 }
 
-.y2024 {
-    height: 115px;
-}
-
-.y2025 {
-    height: 160px;
-
+.bar-2025 {
+    height: 150px;
     animation-delay: .15s;
 }
 
-.y2026 {
-    height: 215px;
-
+.bar-2026 {
+    height: 200px;
     animation-delay: .3s;
 }
 
-.graph_year {
-    margin-top: 14px;
-
-    color: #fff;
-
-    font-size: 16px;
+.graph-year {
+    margin-top: 13px;
+    font-size: 15px;
     font-weight: 800;
 }
 
 
-/* 우상향 */
+/* TREND LINE */
 
 .trend {
     position: absolute;
-
+    top: 62px;
     left: 100px;
-    right: 90px;
-    top: 66px;
-
-    height: 160px;
-
-    z-index: 4;
-
+    right: 88px;
+    height: 150px;
+    z-index: 5;
     pointer-events: none;
 }
 
 .trend svg {
     width: 100%;
     height: 100%;
-
     overflow: visible;
 }
 
-.trend_line {
+.trend-line {
     fill: none;
-
-    stroke: #a2c8ff;
+    stroke: #a3caff;
     stroke-width: 3;
-
     stroke-linecap: round;
-
     stroke-dasharray: 7 10;
-
-    animation: trendDraw 1.4s .4s both;
+    animation: trend-draw 1.5s .4s both;
 }
 
-.trend_head {
+.trend-head {
     fill: none;
-
-    stroke: #a2c8ff;
+    stroke: #a3caff;
     stroke-width: 3;
-
     stroke-linecap: round;
     stroke-linejoin: round;
 }
 
-.graph_note {
-    margin-top: -5px;
-
-    color: #77869f;
-
+.graph-note {
+    margin: 0;
+    color: #77869e;
     font-size: 12px;
     line-height: 1.7;
 }
@@ -752,560 +568,402 @@ button {
 ========================================================= */
 
 .special {
-    position: relative;
-
-    margin-top: 90px;
-    padding: 90px 0 115px;
-
-    background:
-        linear-gradient(
-            180deg,
-            rgba(24,48,96,.78),
-            #101f3f
-        );
+    margin-top: 85px;
+    padding: 85px 0 105px;
+    border-top: 1px solid rgba(255,255,255,.10);
+    background: rgba(23,45,88,.50);
 }
 
-.special::before {
-    content: "";
-
-    position: absolute;
-
-    top: 0;
-    left: 50%;
-
-    width: 80%;
-
-    height: 1px;
-
-    transform: translateX(-50%);
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            rgba(130,180,255,.35),
-            transparent
-        );
-}
-
-.special_badge {
-    color: #8db7ff;
-
+.special-label {
+    color: #8cb7ff;
     font-size: 13px;
     font-weight: 900;
-
-    letter-spacing: 1.5px;
+    letter-spacing: 1.4px;
 }
 
 .special h3 {
-    margin: 14px 0 0;
-
-    color: #fff;
-
-    font-size: 40px;
+    margin: 15px 0 0;
+    font-size: 39px;
     line-height: 1.4;
     font-weight: 900;
-
     letter-spacing: -1.7px;
 }
 
 .special h3 span {
-    color: #87baff;
+    color: #89bbff;
 }
 
-.special_desc {
-    margin-top: 16px;
-
-    color: #a9b8d1;
-
+.special-desc {
+    margin: 15px 0 0;
+    color: #a7b6ce;
     font-size: 16px;
 }
 
-
-/* BENEFIT */
-
-.benefit_wrap {
+.benefit-box {
     display: flex;
-
     max-width: 950px;
-
-    margin: 55px auto 0;
-
-    border: 1px solid rgba(137,177,243,.18);
-    border-radius: 28px;
-
+    margin: 48px auto 0;
     overflow: hidden;
-
-    background: rgba(8,23,52,.35);
-
+    border: 1px solid rgba(136,178,247,.18);
+    border-radius: 25px;
+    background: rgba(5,18,44,.30);
     text-align: left;
 }
 
-.benefit {
+.benefit-item {
     position: relative;
-
     flex: 1;
-
-    padding: 45px;
+    padding: 42px;
 }
 
-.benefit + .benefit::before {
+.benefit-item + .benefit-item::before {
     content: "";
-
     position: absolute;
-
-    left: 0;
     top: 40px;
     bottom: 40px;
-
+    left: 0;
     width: 1px;
-
     background: rgba(255,255,255,.11);
 }
 
-.benefit_num {
+.benefit-num {
     color: #7daeff;
-
     font-size: 12px;
     font-weight: 900;
-
-    letter-spacing: 1px;
 }
 
-.benefit_sub {
-    margin-top: 17px;
-
+.benefit-sub {
+    margin-top: 18px;
     color: #b6c2d7;
-
     font-size: 14px;
     font-weight: 700;
 }
 
-.benefit strong {
+.benefit-item strong {
     display: block;
-
     margin-top: 8px;
-
     color: #fff;
-
-    font-size: 30px;
+    font-size: 29px;
     line-height: 1.35;
-    font-weight: 900;
 }
 
-.benefit strong span {
+.benefit-item strong span {
     color: #88bbff;
 }
 
-.benefit p {
-    margin: 15px 0 0;
-
+.benefit-item p {
+    margin: 14px 0 0;
     color: #9daec8;
-
     font-size: 14px;
-    line-height: 1.75;
+    line-height: 1.7;
 }
 
 
 /* =========================================================
-   MORE PICK
+   DISCOUNT
 ========================================================= */
 
-.morepick {
-    overflow: hidden;
-
-    background:
-        linear-gradient(
-            180deg,
-            #f5f8fd 0%,
-            #edf3fc 100%
-        );
+.discount {
+    background: #f3f6fb;
 }
 
-.discount_visual {
+.discount-cards {
     display: flex;
-    align-items: flex-end;
     justify-content: center;
-
+    align-items: flex-end;
     gap: 18px;
-
-    max-width: 920px;
-
-    margin: 60px auto 0;
+    max-width: 900px;
+    margin: 55px auto 0;
 }
 
-.discount_item {
+.discount-card {
     position: relative;
-
     flex: 1;
-
-    padding: 34px 20px;
-
+    padding: 32px 20px;
     border: 1px solid #dce4ef;
-    border-radius: 22px;
-
+    border-radius: 21px;
     background: #fff;
-
-    box-shadow: 0 10px 25px rgba(30,62,120,.04);
 }
 
-.discount_item:nth-child(2) {
-    padding-top: 42px;
-    padding-bottom: 42px;
+.discount-card:nth-child(2) {
+    padding-top: 40px;
+    padding-bottom: 40px;
 }
 
-.discount_item.best {
-    padding-top: 50px;
-    padding-bottom: 50px;
-
-    border: 2px solid #356fdf;
-
-    box-shadow: 0 20px 45px rgba(36,81,173,.14);
+.discount-card.best {
+    padding-top: 48px;
+    padding-bottom: 48px;
+    border: 2px solid #3973e6;
+    box-shadow: 0 18px 45px rgba(39,84,174,.15);
 }
 
-.discount_item.best::before {
-    content: "MAX BENEFIT";
-
+.discount-card.best::before {
+    content: "MAX";
     position: absolute;
-
-    top: -14px;
+    top: -13px;
     left: 50%;
-
     transform: translateX(-50%);
-
-    padding: 6px 14px;
-
+    padding: 5px 14px;
     border-radius: 30px;
-
-    background: #356fdf;
+    background: #3973e6;
     color: #fff;
-
     font-size: 10px;
     font-weight: 900;
-
-    letter-spacing: .7px;
 }
 
-.discount_item small {
-    display: block;
-
-    color: #707b8e;
-
+.discount-card small {
+    color: #727d8e;
     font-size: 13px;
     font-weight: 800;
 }
 
-.discount_item strong {
+.discount-card strong {
     display: block;
-
-    margin: 12px 0 4px;
-
-    color: #356fdf;
-
-    font-size: 42px;
+    margin: 11px 0 5px;
+    color: #3973e6;
+    font-size: 40px;
     line-height: 1;
     font-weight: 900;
-
     letter-spacing: -2px;
 }
 
-.discount_item span {
-    color: #525f73;
-
+.discount-card span {
+    color: #535f71;
     font-size: 14px;
     font-weight: 800;
 }
 
 
-/* 상세표 */
+/* DETAIL TABLE */
 
-.discount_detail {
+.discount-table {
     max-width: 900px;
-
-    margin: 38px auto 0;
-
+    margin: 35px auto 0;
     overflow: hidden;
-
-    border: 1px solid #dce3ed;
-    border-radius: 14px;
-
-    background: rgba(255,255,255,.76);
+    border: 1px solid #dfe5ee;
+    border-radius: 13px;
+    background: #fff;
 }
 
-.discount_row {
+.discount-row {
     display: grid;
-
-    grid-template-columns: 2fr repeat(3, 1fr);
+    grid-template-columns: 2fr repeat(3,1fr);
 }
 
-.discount_row > div {
+.discount-row > div {
     padding: 15px 12px;
-
-    border-right: 1px solid #e2e7ef;
-    border-bottom: 1px solid #e2e7ef;
-
-    color: #536075;
-
+    border-right: 1px solid #e6eaf0;
+    border-bottom: 1px solid #e6eaf0;
+    color: #566177;
     font-size: 13px;
 }
 
-.discount_row > div:last-child {
+.discount-row > div:last-child {
     border-right: 0;
 }
 
-.discount_row:last-child > div {
+.discount-row:last-child > div {
     border-bottom: 0;
 }
 
-.discount_row.head {
-    background: #253a64;
+.discount-row.head {
+    background: #263c68;
 }
 
-.discount_row.head > div {
+.discount-row.head > div {
     color: #fff;
-
     font-weight: 800;
 }
 
-.discount_row:not(.head) > div:first-child {
+.discount-row:not(.head) > div:first-child {
     text-align: left;
-
     font-weight: 700;
 }
 
-.discount_row:not(.head) > div:not(:first-child) {
-    color: #356fdf;
-
+.discount-row:not(.head) > div:not(:first-child) {
+    color: #3973e6;
     font-weight: 900;
 }
 
-.discount_notice {
+.discount-notice {
     max-width: 900px;
-
     margin: 14px auto 0;
-
-    color: #7f8999;
-
+    color: #828c9c;
     font-size: 11px;
     line-height: 1.7;
-
     text-align: left;
 }
 
 
 /* =========================================================
-   TEACHER
+   TEACHERS
+   ★ 이미지 원본 비율 유지
+   ★ 전 이미지 높이만 동일하게 맞춤
 ========================================================= */
 
-.stn_03 {
-    padding: 120px 0;
-
+.teachers {
+    padding: 115px 0;
+    overflow: hidden;
     background: #fff;
-
     text-align: center;
 }
 
-.stn_03 .contitle {
+.teachers-title {
     margin-bottom: 55px;
 }
 
-.stn_03 .depth1 {
+.teachers-title h2 {
+    margin: 0;
     color: #172033;
-
     font-size: 44px;
     line-height: 1.3;
     font-weight: 900;
-
     letter-spacing: -2px;
 }
 
-.stn_03 .depth1 .color {
+.teachers-title h2 span {
     color: #3973e6;
 }
 
-.stn_03 .depth2 {
-    margin-top: 15px;
-
+.teachers-title p {
+    margin: 15px 0 0;
     color: #697386;
-
     font-size: 17px;
-    line-height: 1.6;
 }
 
-.stn03_cont01 {
-    max-width: 1100px;
 
-    margin: 0 auto;
-}
+/* 한 과목 = 한 줄 */
 
-.stn03_cont01 > div {
+.teacher-row-wrap {
+    width: 100%;
     margin-top: 18px;
+    overflow: hidden;
 }
 
-.stn03_cont01 > div:first-child {
+.teacher-row-wrap:first-child {
     margin-top: 0;
 }
 
-.stn03_cont01 ul {
+.teacher-row {
     display: flex;
-    align-items: stretch;
     justify-content: center;
-
-    width: 100%;
-}
-
-/* 강사진 행 */
-.stn03_cont01 ul {
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
+    align-items: stretch;
     gap: 0;
-    margin: 0;
-    padding: 0;
 }
 
-/* 기본 li는 늘어나지 않게 */
-.stn03_cont01 li {
-    flex: 0 0 auto;
+
+/*
+    ★ 핵심
+    width를 강제로 맞추지 않음.
+    모든 이미지의 HEIGHT만 맞춘다.
+*/
+
+.teacher-row img {
+    display: block;
+    width: auto;
+    height: 205px;
+    max-width: none;
 }
 
-/* 이미지 원본 비율 유지 */
-.stn03_cont01 li img {
+
+/* 강사 클릭 효과 */
+
+.teacher-row a {
+    display: block;
+    transition:
+        transform .22s ease,
+        filter .22s ease;
+}
+
+.teacher-row a:hover {
+    position: relative;
+    z-index: 3;
+    transform: translateY(-5px);
+    filter: brightness(1.03);
+}
+
+
+/* 선택과목 이미지 */
+
+.select-subject-title {
     display: block;
     width: auto;
     max-width: 100%;
     height: auto;
-}
-
-/* 과목 타이틀 이미지 */
-.stn03_cont01 li:first-child {
-    flex: 0 0 190px;
-}
-
-/* 강사 이미지 */
-.stn03_cont01 li:not(:first-child) {
-    flex: 0 0 280px;
-}
-
-.stn03_cont01 li:not(:first-child) img {
-    width: 280px;
-}
-
-.stn03_cont01 a {
-    display: block;
-
-    transition:
-        transform .25s ease,
-        filter .25s ease;
-}
-
-.stn03_cont01 a:hover {
-    z-index: 2;
-
-    transform: translateY(-6px);
-
-    filter: brightness(1.03);
-}
-
-.mt20 {
-    margin-top: 18px !important;
-}
-
-.mt30 {
-    margin: 42px auto 0;
+    margin: 40px auto 22px;
 }
 
 
 /* =========================================================
-   BUY
+   PRODUCTS
 ========================================================= */
 
-.buy {
-    background: #ecf2fb;
+.products {
+    background: #edf3fc;
 }
 
-.buy_box {
+.product-box {
     max-width: 1000px;
-
-    margin: 50px auto 0;
-    padding: 35px;
-
-    border-radius: 24px;
-
+    margin: 45px auto 0;
+    padding: 32px;
+    border-radius: 22px;
     background: #fff;
-
-    box-shadow: 0 16px 45px rgba(31,60,113,.08);
-
+    box-shadow: 0 15px 45px rgba(31,60,113,.08);
     text-align: left;
 }
 
-.buy_tabs {
+.product-tabs {
     display: flex;
     flex-wrap: wrap;
-
     gap: 8px;
-
-    margin-bottom: 25px;
+    margin-bottom: 22px;
 }
 
-.buy_tabs span {
-    padding: 10px 18px;
-
+.product-tabs span {
+    padding: 9px 16px;
     border-radius: 7px;
-
     background: #eef2f7;
-    color: #556174;
-
+    color: #536074;
     font-size: 13px;
     font-weight: 800;
 }
 
-.buy_tabs span:first-child {
-    background: #3169d7;
-    color: #fff;
-}
-
-.product {
+.product-item {
     display: flex;
     align-items: center;
     justify-content: space-between;
-
     gap: 20px;
-
     padding: 21px 5px;
-
     border-top: 1px solid #edf0f5;
 }
 
-.product strong {
+.product-info strong {
     color: #243049;
-
     font-size: 16px;
 }
 
-.product small {
+.product-info small {
     display: block;
-
     margin-top: 6px;
-
-    color: #7c8696;
-
+    color: #7d8797;
     font-size: 12px;
 }
 
-.product button {
+.product-price {
+    color: #3973e6;
+    font-size: 18px;
+    font-weight: 900;
+}
+
+.product-btn {
     flex: 0 0 auto;
-
     padding: 12px 20px;
-
     border: 0;
     border-radius: 8px;
-
-    background: #3269d6;
+    background: #3973e6;
     color: #fff;
-
+    font-size: 13px;
     font-weight: 800;
-
     cursor: pointer;
 }
 
@@ -1315,13 +973,10 @@ button {
 ========================================================= */
 
 .footer {
-    padding: 40px 20px;
-
+    padding: 38px 20px;
     background: #101624;
-    color: #8894a7;
-
+    color: #8995a8;
     text-align: center;
-
     font-size: 12px;
 }
 
@@ -1330,7 +985,7 @@ button {
    ANIMATION
 ========================================================= */
 
-@keyframes barUp {
+@keyframes bar-up {
 
     from {
         transform: scaleY(0);
@@ -1343,8 +998,7 @@ button {
     }
 }
 
-
-@keyframes trendDraw {
+@keyframes trend-draw {
 
     from {
         stroke-dashoffset: 500;
@@ -1364,138 +1018,144 @@ button {
 
 @media (max-width: 800px) {
 
+    .inner {
+        max-width: calc(100% - 30px);
+    }
+
     .section,
-    .stn_03 {
+    .teachers {
         padding: 75px 0;
     }
 
-    .section_title,
-    .stn_03 .depth1 {
+    .section-title,
+    .teachers-title h2 {
         font-size: 32px;
-
         letter-spacing: -1.3px;
     }
 
-    .section_desc,
-    .stn_03 .depth2 {
+    .section-desc,
+    .teachers-title p {
         font-size: 15px;
     }
 
 
-    .hero {
-        min-height: auto;
+    /* HERO */
 
+    .hero {
         padding: 75px 0 65px;
     }
 
     .hero h1 {
         font-size: 46px;
-
         letter-spacing: -2px;
     }
 
-    .hero_lead {
+    .hero-lead {
         font-size: 20px;
     }
 
-    .hero_points {
+    .hero-benefits {
         flex-direction: column;
-
-        max-width: 420px;
-
+        max-width: 400px;
         margin: 45px auto 0;
     }
 
-    .hero_point {
+    .hero-benefit {
         width: 100%;
     }
 
-    .hero_point + .hero_point::before {
+    .hero-benefit + .hero-benefit::before {
         top: 0;
-        left: 30px;
-        right: 30px;
-
+        left: 25px;
+        right: 25px;
+        bottom: auto;
         width: auto;
         height: 1px;
     }
 
 
-    .curriculum_flow {
+    /* CURRICULUM */
+
+    .curriculum-flow {
         flex-wrap: wrap;
     }
 
-    .cur_step {
+    .curriculum-item {
         flex: 0 0 50%;
     }
 
-    .cur_step::after {
+    .curriculum-item::after {
         display: none;
     }
 
 
-    .tpass_visual {
+    /* T-PASS */
+
+    .tpass-box {
         grid-template-columns: 1fr;
     }
 
-    .tpass_visual_left,
-    .tpass_visual_right {
+    .tpass-left,
+    .tpass-right {
         padding: 35px 28px;
     }
 
 
-    .gs_story {
+    /* GS */
+
+    .gs {
         padding-top: 75px;
     }
 
-    .gs_story .section_title {
+    .gs .section-title {
         font-size: 34px;
     }
 
-
-    .graph_area {
-        width: 100%;
+    .graph {
         height: 310px;
     }
 
-    .graph_bars {
-        gap: 20px;
+    .graph-bars {
+        gap: 18px;
         height: 235px;
     }
 
-    .graph_item {
+    .graph-item {
         width: 28%;
     }
 
-    .graph_bar {
+    .bar {
         width: 60px;
     }
 
-    .y2024 {
+    .bar-2024 {
         height: 90px;
     }
 
-    .y2025 {
+    .bar-2025 {
         height: 130px;
     }
 
-    .y2026 {
+    .bar-2026 {
         height: 175px;
     }
 
-    .graph_value {
+    .graph-value {
         font-size: 16px;
     }
 
-    .graph_value.big {
+    .graph-value.active {
         font-size: 22px;
     }
 
     .trend {
+        top: 67px;
         left: 10%;
         right: 8%;
-        top: 68px;
     }
 
+
+    /* SPECIAL */
 
     .special {
         margin-top: 55px;
@@ -1503,65 +1163,75 @@ button {
     }
 
     .special h3 {
-        font-size: 29px;
+        font-size: 28px;
     }
 
-    .benefit_wrap {
+    .benefit-box {
         flex-direction: column;
     }
 
-    .benefit {
-        padding: 35px 28px;
+    .benefit-item {
+        padding: 34px 27px;
     }
 
-    .benefit + .benefit::before {
+    .benefit-item + .benefit-item::before {
         top: 0;
-        left: 28px;
-        right: 28px;
-
+        left: 27px;
+        right: 27px;
+        bottom: auto;
         width: auto;
         height: 1px;
     }
 
 
-    .discount_visual {
+    /* DISCOUNT */
+
+    .discount-cards {
         flex-direction: column;
         align-items: stretch;
     }
 
-    .discount_item,
-    .discount_item:nth-child(2),
-    .discount_item.best {
+    .discount-card,
+    .discount-card:nth-child(2),
+    .discount-card.best {
         padding: 30px 20px;
     }
 
-    .discount_row {
+    .discount-row {
         grid-template-columns: 1.5fr repeat(3,1fr);
     }
 
-    .discount_row > div {
+    .discount-row > div {
         padding: 11px 5px;
-
         font-size: 10px;
     }
 
 
-    .stn03_cont01 ul {
+    /*
+        강사진 모바일
+        한 줄 구성 유지 + 좌우 스크롤
+    */
+
+    .teacher-row-wrap {
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .teacher-row {
+        justify-content: flex-start;
+        width: max-content;
+    }
+
+    .teacher-row img {
+        height: 150px;
+    }
+
+
+    /* PRODUCTS */
+
+    .product-item {
         flex-wrap: wrap;
-    }
-
-    .stn03_cont01 li {
-        flex: 0 0 50%;
-    }
-
-    .stn03_cont01 li:first-child {
-        flex: 0 0 100%;
-    }
-
-
-    .product {
-        flex-direction: column;
-        align-items: flex-start;
     }
 
 }
@@ -1574,23 +1244,23 @@ button {
 
 
 <!-- =========================================================
-    EVENT
+   EVENT
 ========================================================= -->
 
-<div class="event_bar">
+<div class="event-bar">
     10/1~10/14 단강좌 수강생 T-PASS 전환 이벤트 진행중!
 </div>
 
 
 <!-- =========================================================
-    HERO
+   HERO
 ========================================================= -->
 
 <section class="hero">
 
     <div class="inner">
 
-        <div class="hero_badge">
+        <div class="hero-badge">
             2027 제64회 변리사 2차 대비
         </div>
 
@@ -1598,29 +1268,29 @@ button {
             2차 대비 <span>T-PASS</span>
         </h1>
 
-        <p class="hero_lead">
+        <p class="hero-lead">
             원하는 과목, 원하는 강사로<br>
             나에게 필요한 2차 커리큘럼을 완성하세요.
         </p>
 
-        <div class="hero_sub">
+        <p class="hero-sub">
             이론부터 실전까지, 합격을 위한 선택을 한 번에
-        </div>
+        </p>
 
 
-        <div class="hero_points">
+        <div class="hero-benefits">
 
-            <div class="hero_point">
-                <small>원하는 강사를 직접 선택</small>
-                <strong>전 강사진 T-PASS</strong>
+            <div class="hero-benefit">
+                <small>과목별 원하는 강사 선택</small>
+                <strong>나만의 T-PASS</strong>
             </div>
 
-            <div class="hero_point">
-                <small>T-PASS 수강 시 추가 혜택</small>
+            <div class="hero-benefit">
+                <small>T-PASS 수강 시</small>
                 <strong>GS 채점권 1매</strong>
             </div>
 
-            <div class="hero_point">
+            <div class="hero-benefit">
                 <small>선택과목 구매 시</small>
                 <strong>온라인 GS 포함</strong>
             </div>
@@ -1633,7 +1303,7 @@ button {
 
 
 <!-- =========================================================
-    CURRICULUM
+   CURRICULUM
 ========================================================= -->
 
 <section class="section curriculum">
@@ -1644,41 +1314,41 @@ button {
             2027 CURRICULUM
         </div>
 
-        <h2 class="section_title">
+        <h2 class="section-title">
             합격까지 이어지는<br>
             탄탄한 2차 커리큘럼
         </h2>
 
-        <p class="section_desc">
-            지금 시작해 2차 시험까지.<br>
-            이론 학습부터 답안 작성과 실전까지 단계별로 준비하세요.
+        <p class="section-desc">
+            이론부터 답안 작성, GS까지<br>
+            2차 시험에 필요한 학습을 단계별로 완성하세요.
         </p>
 
 
-        <div class="curriculum_flow">
+        <div class="curriculum-flow">
 
-            <div class="cur_step">
-                <div class="cur_num">01</div>
+            <div class="curriculum-item">
+                <div class="curriculum-num">01</div>
                 <strong>이론완성</strong>
-                <span>핵심 이론 정리</span>
+                <p>핵심 이론 정리</p>
             </div>
 
-            <div class="cur_step">
-                <div class="cur_num">02</div>
+            <div class="curriculum-item">
+                <div class="curriculum-num">02</div>
                 <strong>답안작성</strong>
-                <span>답안 작성 훈련</span>
+                <p>답안 작성 훈련</p>
             </div>
 
-            <div class="cur_step">
-                <div class="cur_num">03</div>
+            <div class="curriculum-item">
+                <div class="curriculum-num">03</div>
                 <strong>기초 GS</strong>
-                <span>GS 실전 적응</span>
+                <p>GS 실전 적응</p>
             </div>
 
-            <div class="cur_step">
-                <div class="cur_num">04</div>
+            <div class="curriculum-item">
+                <div class="curriculum-num">04</div>
                 <strong>실전 GS</strong>
-                <span>최종 실전 완성</span>
+                <p>실전 완성</p>
             </div>
 
         </div>
@@ -1689,10 +1359,10 @@ button {
 
 
 <!-- =========================================================
-    T-PASS INTRO
+   T-PASS INTRO
 ========================================================= -->
 
-<section class="section tpass_intro">
+<section class="section tpass">
 
     <div class="inner">
 
@@ -1700,18 +1370,18 @@ button {
             MAKE YOUR T-PASS
         </div>
 
-        <h2 class="section_title">
+        <h2 class="section-title">
             필요한 과목도,<br>
             듣고 싶은 강사도 다르니까
         </h2>
 
-        <p class="section_desc">
-            필요한 강의만 선택해<br>
-            나에게 맞는 2차 합격 커리큘럼을 완성하세요.
+        <p class="section-desc">
+            정해진 조합 대신,<br>
+            지금 내게 필요한 T-PASS를 직접 선택하세요.
         </p>
 
 
-        <div class="subjects">
+        <div class="subject-list">
             <span>민사소송법</span>
             <span>특허법</span>
             <span>상표법</span>
@@ -1720,36 +1390,36 @@ button {
         </div>
 
 
-        <div class="tpass_visual">
+        <div class="tpass-box">
 
-            <div class="tpass_visual_left">
+            <div class="tpass-left">
 
                 <small>
                     YOUR OWN T-PASS
                 </small>
 
                 <h3>
-                    정해진 조합이 아닌,<br>
-                    나에게 필요한 선택만.
+                    필요한 만큼 선택하고,<br>
+                    필요한 과정에 집중하세요.
                 </h3>
 
                 <p>
-                    원하는 강사의 T-PASS를 선택하고<br>
-                    필요한 과목을 원하는 만큼 조합하세요.
+                    과목별 원하는 강사의 T-PASS를 선택해<br>
+                    나에게 맞는 2차 학습 조합을 완성하세요.
                 </p>
 
             </div>
 
 
-            <div class="tpass_visual_right">
+            <div class="tpass-right">
 
-                <div class="choose_line">
+                <div class="choice">
 
-                    <div class="choose_icon">
+                    <div class="choice-num">
                         01
                     </div>
 
-                    <div class="choose_txt">
+                    <div>
                         <strong>원하는 강사 선택</strong>
                         <span>과목별 강사진 중 직접 선택</span>
                     </div>
@@ -1757,29 +1427,29 @@ button {
                 </div>
 
 
-                <div class="choose_line">
+                <div class="choice">
 
-                    <div class="choose_icon">
+                    <div class="choice-num">
                         02
                     </div>
 
-                    <div class="choose_txt">
-                        <strong>필요한 과목만 구성</strong>
-                        <span>내 학습 상황에 맞춰 필요한 T-PASS만</span>
+                    <div>
+                        <strong>필요한 과목만 선택</strong>
+                        <span>현재 학습 상황에 맞춰 자유롭게 구성</span>
                     </div>
 
                 </div>
 
 
-                <div class="choose_line">
+                <div class="choice">
 
-                    <div class="choose_icon">
+                    <div class="choice-num">
                         03
                     </div>
 
-                    <div class="choose_txt">
-                        <strong>2027년 2차 시험까지</strong>
-                        <span>강사별 커리큘럼을 따라 체계적으로 학습</span>
+                    <div>
+                        <strong>2차 시험일까지 학습</strong>
+                        <span>강사별 커리큘럼을 따라 체계적으로 준비</span>
                     </div>
 
                 </div>
@@ -1794,10 +1464,10 @@ button {
 
 
 <!-- =========================================================
-    GS STORY
+   GS
 ========================================================= -->
 
-<section class="gs_story">
+<section class="gs">
 
     <div class="inner">
 
@@ -1805,36 +1475,34 @@ button {
             MEGA 2ND EXAM
         </div>
 
-        <h2 class="section_title">
+        <h2 class="section-title">
             2차도, 메가변리사가 대세
         </h2>
 
-        <p class="section_desc">
+        <p class="section-desc">
             매년 더 많은 수험생이 선택하는<br>
             <strong>메가변리사 2차 GS</strong>
         </p>
 
 
-        <!-- GRAPH -->
-
-        <div class="graph_area">
+        <div class="graph">
 
 
             <div class="trend">
 
                 <svg
-                    viewBox="0 0 540 160"
+                    viewBox="0 0 540 150"
                     preserveAspectRatio="none"
                 >
 
                     <path
-                        class="trend_line"
-                        d="M18 132 C150 112, 295 83, 464 30"
+                        class="trend-line"
+                        d="M18 128 C150 110, 292 82, 463 29"
                     />
 
                     <path
-                        class="trend_head"
-                        d="M447 25 L472 28 L459 50"
+                        class="trend-head"
+                        d="M445 24 L471 28 L458 50"
                     />
 
                 </svg>
@@ -1842,54 +1510,54 @@ button {
             </div>
 
 
-            <div class="graph_bars">
+            <div class="graph-bars">
 
 
-                <div class="graph_item">
+                <div class="graph-item">
 
-                    <div class="graph_value">
+                    <div class="graph-value">
                         기준
                     </div>
 
-                    <div class="graph_barbox">
-                        <div class="graph_bar y2024"></div>
+                    <div class="bar-wrap">
+                        <div class="bar bar-2024"></div>
                     </div>
 
-                    <div class="graph_year">
+                    <div class="graph-year">
                         2024
                     </div>
 
                 </div>
 
 
-                <div class="graph_item">
+                <div class="graph-item">
 
-                    <div class="graph_value">
+                    <div class="graph-value">
                         +22%
                     </div>
 
-                    <div class="graph_barbox">
-                        <div class="graph_bar y2025"></div>
+                    <div class="bar-wrap">
+                        <div class="bar bar-2025"></div>
                     </div>
 
-                    <div class="graph_year">
+                    <div class="graph-year">
                         2025
                     </div>
 
                 </div>
 
 
-                <div class="graph_item">
+                <div class="graph-item">
 
-                    <div class="graph_value big">
+                    <div class="graph-value active">
                         +48%
                     </div>
 
-                    <div class="graph_barbox">
-                        <div class="graph_bar y2026"></div>
+                    <div class="bar-wrap">
+                        <div class="bar bar-2026"></div>
                     </div>
 
-                    <div class="graph_year">
+                    <div class="graph-year">
                         2026
                     </div>
 
@@ -1901,21 +1569,19 @@ button {
         </div>
 
 
-        <p class="graph_note">
+        <p class="graph-note">
             ※ 2024년 메가변리사 GS 수강생 수를 기준으로 한 증가율<br>
             ※ 2024~2026년 메가변리사 현장·온라인 GS 강좌 연도별 총 수강생 수 기준
         </p>
 
 
-        <!-- =================================================
-             SPECIAL BENEFIT
-        ================================================== -->
+        <!-- SPECIAL BENEFIT -->
 
         <div class="special">
 
             <div class="inner">
 
-                <div class="special_badge">
+                <div class="special-label">
                     SPECIAL BENEFIT
                 </div>
 
@@ -1924,21 +1590,20 @@ button {
                     <span>T-PASS에서는 혜택으로 더합니다.</span>
                 </h3>
 
-                <p class="special_desc">
-                    이론 학습부터 실전 답안 점검까지 한 번에 이어가세요.
+                <p class="special-desc">
+                    이론 학습에서 끝내지 말고 실전까지 이어가세요.
                 </p>
 
 
-                <div class="benefit_wrap">
+                <div class="benefit-box">
 
+                    <div class="benefit-item">
 
-                    <div class="benefit">
-
-                        <div class="benefit_num">
+                        <div class="benefit-num">
                             BENEFIT 01
                         </div>
 
-                        <div class="benefit_sub">
+                        <div class="benefit-sub">
                             선택과목 T-PASS 구매 시
                         </div>
 
@@ -1949,19 +1614,19 @@ button {
 
                         <p>
                             디자인보호법 · 저작권법은<br>
-                            이론부터 GS까지 이어서 준비할 수 있습니다.
+                            이론 학습부터 GS까지 이어서 준비할 수 있습니다.
                         </p>
 
                     </div>
 
 
-                    <div class="benefit">
+                    <div class="benefit-item">
 
-                        <div class="benefit_num">
+                        <div class="benefit-num">
                             BENEFIT 02
                         </div>
 
-                        <div class="benefit_sub">
+                        <div class="benefit-sub">
                             여기에 실전 혜택까지
                         </div>
 
@@ -1971,12 +1636,11 @@ button {
                         </strong>
 
                         <p>
-                            직접 작성한 답안을 채점받고<br>
-                            실전 답안 작성 능력까지 점검하세요.
+                            직접 작성한 답안을 채점받으며<br>
+                            실전 답안 작성 능력을 점검하세요.
                         </p>
 
                     </div>
-
 
                 </div>
 
@@ -1990,10 +1654,10 @@ button {
 
 
 <!-- =========================================================
-    MORE PICK
+   DISCOUNT
 ========================================================= -->
 
-<section class="section morepick">
+<section class="section discount">
 
     <div class="inner">
 
@@ -2001,21 +1665,20 @@ button {
             MORE PICK, MORE BENEFIT
         </div>
 
-        <h2 class="section_title">
+        <h2 class="section-title">
             필요한 T-PASS가 많을수록<br>
             <span class="blue">할인 혜택도 커집니다.</span>
         </h2>
 
-        <p class="section_desc">
+        <p class="section-desc">
             필요한 과목을 함께 선택하고<br>
             다다익선 할인 혜택까지 받아보세요.
         </p>
 
 
-        <div class="discount_visual">
+        <div class="discount-cards">
 
-
-            <div class="discount_item">
+            <div class="discount-card">
 
                 <small>
                     T-PASS 2개 선택
@@ -2032,7 +1695,7 @@ button {
             </div>
 
 
-            <div class="discount_item">
+            <div class="discount-card">
 
                 <small>
                     T-PASS 3개 선택
@@ -2049,7 +1712,7 @@ button {
             </div>
 
 
-            <div class="discount_item best">
+            <div class="discount-card best">
 
                 <small>
                     T-PASS 4개 이상 선택
@@ -2065,16 +1728,12 @@ button {
 
             </div>
 
-
         </div>
 
 
-        <!-- 상세 할인 -->
+        <div class="discount-table">
 
-        <div class="discount_detail">
-
-
-            <div class="discount_row head">
+            <div class="discount-row head">
 
                 <div>
                     대상 T-PASS
@@ -2095,7 +1754,7 @@ button {
             </div>
 
 
-            <div class="discount_row">
+            <div class="discount-row">
 
                 <div>
                     곽준형 · 박지환 · 최지환
@@ -2116,7 +1775,7 @@ button {
             </div>
 
 
-            <div class="discount_row">
+            <div class="discount-row">
 
                 <div>
                     김수영 · 유시훈 · 정다운 · 선혜민 · 손민규 · 정요한
@@ -2136,13 +1795,251 @@ button {
 
             </div>
 
+        </div>
+
+
+        <p class="discount-notice">
+            ※ 다다익선 할인율은 선택한 T-PASS 및 구매 수량에 따라 상이합니다.<br>
+            ※ 3개 선택 시 최대 20%, 4개 이상 선택 시 최대 30% 할인이 적용됩니다.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+   TEACHERS
+========================================================= -->
+
+<section class="teachers">
+
+    <div class="inner">
+
+        <div class="teachers-title">
+
+            <div class="eyebrow">
+                MEGA PROFESSOR LINE-UP
+            </div>
+
+            <h2>
+                원하는 강사로 완성하는<br>
+                <span>2차 합격 커리큘럼</span>
+            </h2>
+
+            <p>
+                과목별 원하는 강사를 선택하세요.
+            </p>
 
         </div>
 
 
-        <div class="discount_notice">
-            ※ 다다익선 할인율은 선택한 T-PASS 및 구매 수량에 따라 상이합니다.<br>
-            ※ 3개 선택 시 최대 20%, 4개 이상 선택 시 최대 30% 할인이 적용됩니다.
+        <!-- 민사소송법 -->
+
+        <div class="teacher-row-wrap">
+
+            <ul class="teacher-row">
+
+                <li>
+                    <img
+                        src="https://img.megaexpert.co.kr/2026/0814_allpass/list01_tit.png"
+                        alt="민사소송법"
+                    >
+                </li>
+
+                <li>
+                    <a href="https://www.megaexpert.co.kr/prof/prof_main.asp?bCode=kwakduck1993&sub_cd=11">
+
+                        <img
+                            src="https://img.megaexpert.co.kr/2026/0814_allpass/list01_cont01.png"
+                            alt="곽준형"
+                        >
+
+                    </a>
+                </li>
+
+                <li>
+                    <a href="https://www.megaexpert.co.kr/prof/prof_main.asp?bCode=wjddustjr02&sub_cd=11">
+
+                        <img
+                            src="https://img.megaexpert.co.kr/2026/0814_allpass/list01_cont02.png"
+                            alt="정연석"
+                        >
+
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <!-- 특허법 -->
+
+        <div class="teacher-row-wrap">
+
+            <ul class="teacher-row">
+
+                <li>
+                    <img
+                        src="https://img.megaexpert.co.kr/2026/0814_allpass/list02_tit.png"
+                        alt="특허법"
+                    >
+                </li>
+
+                <li>
+                    <a href="https://www.megaexpert.co.kr/prof/prof_main.asp?bCode=pjh7635&sub_cd=12">
+
+                        <img
+                            src="https://img.megaexpert.co.kr/2026/0814_allpass/list02_cont01.png"
+                            alt="박지환"
+                        >
+
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <!-- 상표법 -->
+
+        <div class="teacher-row-wrap">
+
+            <ul class="teacher-row">
+
+                <li>
+                    <img
+                        src="https://img.megaexpert.co.kr/2026/0814_allpass/list03_tit.png"
+                        alt="상표법"
+                    >
+                </li>
+
+                <li>
+                    <a href="https://www.megaexpert.co.kr/prof/prof_main.asp?bCode=markchoi53&sub_cd=13">
+
+                        <img
+                            src="https://img.megaexpert.co.kr/2026/0814_allpass/list03_cont01.png"
+                            alt="최지환"
+                        >
+
+                    </a>
+                </li>
+
+                <li>
+                    <a href="https://www.megaexpert.co.kr/prof/prof_main.asp?bCode=sooyoung1108&sub_cd=13">
+
+                        <img
+                            src="https://img.megaexpert.co.kr/2026/0814_allpass/list03_cont02.png"
+                            alt="김수영"
+                        >
+
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <!-- 선택과목 타이틀 -->
+
+        <img
+            src="https://img.megaexpert.co.kr/2026/0814_allpass/stn03_tit.png"
+            alt="선택과목"
+            class="select-subject-title"
+        >
+
+
+        <!-- 디자인보호법 -->
+
+        <div class="teacher-row-wrap">
+
+            <ul class="teacher-row">
+
+                <li>
+                    <img
+                        src="https://img.megaexpert.co.kr/2026/0814_allpass/list04_tit.png"
+                        alt="디자인보호법"
+                    >
+                </li>
+
+                <li>
+                    <a href="https://www.megaexpert.co.kr/prof/prof_main.asp?bCode=55designdw&sub_cd=14">
+
+                        <img
+                            src="https://img.megaexpert.co.kr/2026/0814_allpass/list04_cont01.png"
+                            alt="정다운"
+                        >
+
+                    </a>
+                </li>
+
+                <li>
+                    <a href="https://www.megaexpert.co.kr/prof/prof_main.asp?bCode=dbtlgns01&sub_cd=14">
+
+                        <img
+                            src="https://img.megaexpert.co.kr/2026/0814_allpass/list04_cont02.png"
+                            alt="유시훈"
+                        >
+
+                    </a>
+                </li>
+
+                <li>
+                    <a href="https://www.megaexpert.co.kr/prof/prof_main.asp?bCode=tjs0117&sub_cd=14">
+
+                        <img
+                            src="https://img.megaexpert.co.kr/2026/0814_allpass/list04_cont03.png"
+                            alt="선혜민"
+                        >
+
+                    </a>
+                </li>
+
+                <li>
+                    <a href="https://www.megaexpert.co.kr/prof/prof_main.asp?bCode=smg9025&sub_cd=14">
+
+                        <img
+                            src="https://img.megaexpert.co.kr/2026/0814_allpass/list04_cont04.png"
+                            alt="손민규"
+                        >
+
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <!-- 저작권법 -->
+
+        <div class="teacher-row-wrap">
+
+            <ul class="teacher-row">
+
+                <li>
+                    <img
+                        src="https://img.megaexpert.co.kr/2026/0814_allpass/list05_tit.png"
+                        alt="저작권법"
+                    >
+                </li>
+
+                <li>
+                    <a href="https://www.megaexpert.co.kr/prof/prof_main.asp?bCode=hokma1234&sub_cd=23">
+
+                        <img
+                            src="https://img.megaexpert.co.kr/2026/0814_allpass/list05_cont01.png"
+                            alt="정요한"
+                        >
+
+                    </a>
+                </li>
+
+            </ul>
+
         </div>
 
     </div>
@@ -2151,255 +2048,10 @@ button {
 
 
 <!-- =========================================================
-    TEACHERS
+   PRODUCTS
 ========================================================= -->
 
-<div class="stn_03">
-
-    <div class="inner">
-
-
-        <div class="contitle">
-
-            <div class="depth1">
-                원하는 강사로 완성하는
-                <span class="color">
-                    2차 합격 커리큘럼
-                </span>
-            </div>
-
-            <div class="depth2">
-                과목별 원하는 강사를 선택하고,
-                T-PASS로 2차 시험까지 준비하세요.
-            </div>
-
-        </div>
-
-
-        <div class="stn03_cont01">
-
-
-            <!-- 민사소송법 -->
-
-            <div class="list01">
-
-                <ul>
-
-                    <li>
-                        <img
-                            src="https://img.megaexpert.co.kr/2026/0814_allpass/list01_tit.png"
-                            alt="민사소송법"
-                        >
-                    </li>
-
-                    <li>
-                        <a href="https://www.megaexpert.co.kr/prof/prof_main.asp?bCode=kwakduck1993&sub_cd=11">
-
-                            <img
-                                src="https://img.megaexpert.co.kr/2026/0814_allpass/list01_cont01.png"
-                                alt="곽준형"
-                            >
-
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="https://www.megaexpert.co.kr/prof/prof_main.asp?bCode=wjddustjr02&sub_cd=11">
-
-                            <img
-                                src="https://img.megaexpert.co.kr/2026/0814_allpass/list01_cont02.png"
-                                alt="정연석"
-                            >
-
-                        </a>
-                    </li>
-
-                </ul>
-
-            </div>
-
-
-            <!-- 특허법 -->
-
-            <div class="list02 mt20">
-
-                <ul>
-
-                    <li>
-                        <img
-                            src="https://img.megaexpert.co.kr/2026/0814_allpass/list02_tit.png"
-                            alt="특허법"
-                        >
-                    </li>
-
-                    <li>
-                        <a href="https://www.megaexpert.co.kr/prof/prof_main.asp?bCode=pjh7635&sub_cd=12">
-
-                            <img
-                                src="https://img.megaexpert.co.kr/2026/0814_allpass/list02_cont01.png"
-                                alt="박지환"
-                            >
-
-                        </a>
-                    </li>
-
-                </ul>
-
-            </div>
-
-
-            <!-- 상표법 -->
-
-            <div class="list03 mt20">
-
-                <ul>
-
-                    <li>
-                        <img
-                            src="https://img.megaexpert.co.kr/2026/0814_allpass/list03_tit.png"
-                            alt="상표법"
-                        >
-                    </li>
-
-                    <li>
-                        <a href="https://www.megaexpert.co.kr/prof/prof_main.asp?bCode=markchoi53&sub_cd=13">
-
-                            <img
-                                src="https://img.megaexpert.co.kr/2026/0814_allpass/list03_cont01.png"
-                                alt="최지환"
-                            >
-
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="https://www.megaexpert.co.kr/prof/prof_main.asp?bCode=sooyoung1108&sub_cd=13">
-
-                            <img
-                                src="https://img.megaexpert.co.kr/2026/0814_allpass/list03_cont02.png"
-                                alt="김수영"
-                            >
-
-                        </a>
-                    </li>
-
-                </ul>
-
-            </div>
-
-
-            <!-- 선택과목 -->
-
-            <img
-                src="https://img.megaexpert.co.kr/2026/0814_allpass/stn03_tit.png"
-                alt="선택과목"
-                class="mt30"
-            >
-
-
-            <!-- 디자인보호법 -->
-
-            <div class="list04 mt20">
-
-                <ul>
-
-                    <li>
-                        <img
-                            src="https://img.megaexpert.co.kr/2026/0814_allpass/list04_tit.png"
-                            alt="디자인보호법"
-                        >
-                    </li>
-
-                    <li>
-                        <a href="https://www.megaexpert.co.kr/prof/prof_main.asp?bCode=55designdw&sub_cd=14">
-
-                            <img
-                                src="https://img.megaexpert.co.kr/2026/0814_allpass/list04_cont01.png"
-                                alt="정다운"
-                            >
-
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="https://www.megaexpert.co.kr/prof/prof_main.asp?bCode=dbtlgns01&sub_cd=14">
-
-                            <img
-                                src="https://img.megaexpert.co.kr/2026/0814_allpass/list04_cont02.png"
-                                alt="유시훈"
-                            >
-
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="https://www.megaexpert.co.kr/prof/prof_main.asp?bCode=tjs0117&sub_cd=14">
-
-                            <img
-                                src="https://img.megaexpert.co.kr/2026/0814_allpass/list04_cont03.png"
-                                alt="선혜민"
-                            >
-
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="https://www.megaexpert.co.kr/prof/prof_main.asp?bCode=smg9025&sub_cd=14">
-
-                            <img
-                                src="https://img.megaexpert.co.kr/2026/0814_allpass/list04_cont04.png"
-                                alt="손민규"
-                            >
-
-                        </a>
-                    </li>
-
-                </ul>
-
-            </div>
-
-
-            <!-- 저작권법 -->
-
-            <div class="list05 mt20">
-
-                <ul>
-
-                    <li>
-                        <img
-                            src="https://img.megaexpert.co.kr/2026/0814_allpass/list05_tit.png"
-                            alt="저작권법"
-                        >
-                    </li>
-
-                    <li>
-                        <a href="https://www.megaexpert.co.kr/prof/prof_main.asp?bCode=hokma1234&sub_cd=23">
-
-                            <img
-                                src="https://img.megaexpert.co.kr/2026/0814_allpass/list05_cont01.png"
-                                alt="정요한"
-                            >
-
-                        </a>
-                    </li>
-
-                </ul>
-
-            </div>
-
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- =========================================================
-    BUY
-========================================================= -->
-
-<section class="section buy">
+<section class="section products">
 
     <div class="inner">
 
@@ -2407,20 +2059,21 @@ button {
             SELECT T-PASS
         </div>
 
-        <h2 class="section_title">
+        <h2 class="section-title">
             나에게 필요한<br>
             T-PASS를 선택하세요
         </h2>
 
-        <p class="section_desc">
-            원하는 과목과 강사를 선택하고,<br>
+        <p class="section-desc">
+            원하는 강사의 T-PASS를 선택하고<br>
             여러 개 선택할수록 더 큰 할인 혜택을 받아보세요.
         </p>
 
 
-        <div class="buy_box">
+        <div class="product-box">
 
-            <div class="buy_tabs">
+
+            <div class="product-tabs">
                 <span>민사소송법</span>
                 <span>특허법</span>
                 <span>상표법</span>
@@ -2428,112 +2081,167 @@ button {
             </div>
 
 
-            <div class="product">
+            <div class="product-item">
 
-                <div>
+                <div class="product-info">
                     <strong>[64회 2차] 곽준형 T-PASS</strong>
                     <small>GS 채점권 1매 제공</small>
                 </div>
 
-                <button>선택하기</button>
+                <div class="product-price">
+                    800,000원
+                </div>
+
+                <button class="product-btn">
+                    선택하기
+                </button>
 
             </div>
 
 
-            <div class="product">
+            <div class="product-item">
 
-                <div>
+                <div class="product-info">
                     <strong>[64회 2차] 박지환 T-PASS</strong>
                     <small>GS 채점권 1매 제공</small>
                 </div>
 
-                <button>선택하기</button>
+                <div class="product-price">
+                    750,000원
+                </div>
+
+                <button class="product-btn">
+                    선택하기
+                </button>
 
             </div>
 
 
-            <div class="product">
+            <div class="product-item">
 
-                <div>
+                <div class="product-info">
                     <strong>[64회 2차] 최지환 T-PASS</strong>
                     <small>GS 채점권 1매 제공</small>
                 </div>
 
-                <button>선택하기</button>
+                <div class="product-price">
+                    700,000원
+                </div>
+
+                <button class="product-btn">
+                    선택하기
+                </button>
 
             </div>
 
 
-            <div class="product">
+            <div class="product-item">
 
-                <div>
+                <div class="product-info">
                     <strong>[64회 2차] 김수영 T-PASS</strong>
                     <small>GS 채점권 1매 제공</small>
                 </div>
 
-                <button>선택하기</button>
+                <div class="product-price">
+                    350,000원
+                </div>
+
+                <button class="product-btn">
+                    선택하기
+                </button>
 
             </div>
 
 
-            <div class="product">
+            <div class="product-item">
 
-                <div>
+                <div class="product-info">
                     <strong>[64회 2차] 유시훈 T-PASS</strong>
                     <small>온라인 GS 포함 · GS 채점권 1매 제공</small>
                 </div>
 
-                <button>선택하기</button>
+                <div class="product-price">
+                    300,000원
+                </div>
+
+                <button class="product-btn">
+                    선택하기
+                </button>
 
             </div>
 
 
-            <div class="product">
+            <div class="product-item">
 
-                <div>
+                <div class="product-info">
                     <strong>[64회 2차] 정다운 T-PASS</strong>
                     <small>온라인 GS 포함 · GS 채점권 1매 제공</small>
                 </div>
 
-                <button>선택하기</button>
+                <div class="product-price">
+                    400,000원
+                </div>
+
+                <button class="product-btn">
+                    선택하기
+                </button>
 
             </div>
 
 
-            <div class="product">
+            <div class="product-item">
 
-                <div>
+                <div class="product-info">
                     <strong>[64회 2차] 선혜민 T-PASS</strong>
                     <small>온라인 GS 포함 · GS 채점권 1매 제공</small>
                 </div>
 
-                <button>선택하기</button>
+                <div class="product-price">
+                    150,000원
+                </div>
+
+                <button class="product-btn">
+                    선택하기
+                </button>
 
             </div>
 
 
-            <div class="product">
+            <div class="product-item">
 
-                <div>
+                <div class="product-info">
                     <strong>[64회 2차] 손민규 T-PASS</strong>
                     <small>온라인 GS 포함 · GS 채점권 1매 제공</small>
                 </div>
 
-                <button>선택하기</button>
+                <div class="product-price">
+                    150,000원
+                </div>
+
+                <button class="product-btn">
+                    선택하기
+                </button>
 
             </div>
 
 
-            <div class="product">
+            <div class="product-item">
 
-                <div>
+                <div class="product-info">
                     <strong>[64회 2차] 정요한 T-PASS</strong>
                     <small>온라인 GS 포함 · GS 채점권 1매 제공</small>
                 </div>
 
-                <button>선택하기</button>
+                <div class="product-price">
+                    300,000원
+                </div>
+
+                <button class="product-btn">
+                    선택하기
+                </button>
 
             </div>
+
 
         </div>
 
