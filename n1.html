@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>메가변리사 설문조사</title>
 
   <style>
@@ -17,18 +17,41 @@
       color: #222;
     }
 
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
     .page {
       width: 100%;
-      max-width: 760px;
+      max-width: 780px;
       margin: 0 auto;
-      padding: 48px 20px 80px;
+      padding: 42px 20px 80px;
+    }
+
+    .top-util {
+      margin-bottom: 16px;
+    }
+
+    .home-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 30px;
+      padding: 0 12px;
+      border-radius: 2px;
+      background: #315fd3;
+      color: #fff;
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 700;
     }
 
     .page-title {
       margin: 0 0 28px;
       text-align: center;
       font-size: 34px;
-      line-height: 1.25;
       font-weight: 800;
       letter-spacing: -1.4px;
     }
@@ -45,7 +68,7 @@
       border-radius: 6px;
       background: #fff;
       font-size: 13px;
-      line-height: 1.75;
+      line-height: 1.7;
       color: #555;
     }
 
@@ -88,10 +111,10 @@
     .sub {
       display: block;
       margin-top: 4px;
-      color: #777;
       font-size: 11px;
       line-height: 1.55;
       font-weight: 500;
+      color: #777;
     }
 
     .options {
@@ -99,28 +122,68 @@
       gap: 8px;
     }
 
-    label.option {
+    .option {
       display: flex;
       align-items: flex-start;
       gap: 7px;
       font-size: 12.5px;
       line-height: 1.45;
-      cursor: pointer;
       color: #333;
+      cursor: pointer;
     }
 
     input[type="radio"],
     input[type="checkbox"] {
       margin: 2px 0 0;
-      accent-color: #3d67e8;
+      accent-color: #315fd3;
       flex: 0 0 auto;
     }
 
-    .branch {
+    .text-input,
+    .text-area {
+      width: 100%;
+      border: 1px solid #d9d9d9;
+      border-radius: 4px;
+      background: #fff;
+      color: #333;
+      outline: none;
+    }
+
+    .text-input {
+      height: 38px;
+      padding: 0 11px;
+      font-size: 12px;
+    }
+
+    .text-area {
+      min-height: 116px;
+      padding: 11px;
+      resize: vertical;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .text-input:focus,
+    .text-area:focus {
+      border-color: #315fd3;
+    }
+
+    .char-count {
+      margin-top: 5px;
+      text-align: right;
+      color: #999;
+      font-size: 10px;
+    }
+
+    .branch,
+    .sub-branch,
+    .conditional {
       display: none;
     }
 
-    .branch.active {
+    .branch.active,
+    .sub-branch.active,
+    .conditional.active {
       display: contents;
     }
 
@@ -128,55 +191,30 @@
       grid-column: 1 / -1;
       margin: 3px 0 -2px;
       padding: 8px 0 2px;
+      border-bottom: 1px solid #dfe6fb;
+      color: #315fd3;
       font-size: 12px;
       font-weight: 800;
-      color: #315fd3;
-      border-bottom: 1px solid #dfe6fb;
     }
 
-
-    /* =========================
-       기간 선택형
-    ========================== */
+    /* =============================
+       Q5 학습기간
+    ============================== */
 
     .range-guide {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
       margin: -2px 0 12px;
       font-size: 11px;
       color: #777;
     }
 
-    .range-guide span {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-    }
-
-    .range-guide .dot {
-      display: inline-block;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-    }
-
-    .start-dot {
-      background: #315fd3;
-    }
-
-    .range-dot {
-      background: #dfe7ff;
-    }
-
     .range-scroll {
       overflow-x: auto;
-      padding-bottom: 3px;
+      padding-bottom: 4px;
     }
 
     .range-table {
       width: 100%;
-      min-width: 860px;
+      min-width: 920px;
       border-collapse: collapse;
       table-layout: fixed;
       font-size: 11px;
@@ -190,7 +228,7 @@
     }
 
     .range-table th {
-      height: 38px;
+      height: 40px;
       padding: 6px 3px;
       background: #f8f8f8;
       color: #555;
@@ -204,26 +242,37 @@
     }
 
     .range-table .none-col {
-      width: 86px;
+      width: 88px;
     }
 
-    .range-table .stage-name {
+    .stage-name {
       width: 150px;
       padding: 13px 10px;
-      text-align: left;
-      font-weight: 700;
+      text-align: left !important;
+      background: #fff;
       color: #333;
+      font-weight: 700;
+    }
+
+    .stage-name small {
+      color: #8a8a8a;
+      font-weight: 500;
+    }
+
+    .none-cell {
+      width: 88px;
       background: #fff;
     }
 
-    .range-table .months-cell {
+    .none-check {
+      width: 15px;
+      height: 15px;
+      margin: 0 !important;
+      cursor: pointer;
+    }
+
+    .months-cell {
       padding: 0;
-      background: #fff;
-    }
-
-    .range-table .none-cell {
-      width: 86px;
-      padding: 8px 6px;
       background: #fff;
     }
 
@@ -235,14 +284,14 @@
 
     .month {
       position: relative;
-      min-width: 46px;
+      min-width: 48px;
       height: 52px;
       border: 0;
       border-right: 1px solid #ececec;
       background: #fff;
       color: transparent;
       cursor: pointer;
-      transition: background .12s ease;
+      transition: background .12s ease, opacity .12s ease;
     }
 
     .month:last-child {
@@ -252,15 +301,14 @@
     .month::after {
       content: "";
       position: absolute;
-      left: 50%;
       top: 50%;
+      left: 50%;
       width: 12px;
       height: 12px;
       transform: translate(-50%, -50%);
       border: 1px solid #aeb4bf;
       border-radius: 50%;
       background: #fff;
-      transition: all .12s ease;
     }
 
     .month:hover {
@@ -276,7 +324,8 @@
       background: #cbd7ff;
     }
 
-    .month.endpoint {
+    .month.endpoint,
+    .month.pending {
       background: #e7edff;
     }
 
@@ -289,36 +338,18 @@
       box-shadow: 0 0 0 1px #315fd3;
     }
 
-    .month.pending {
-      background: #eef2ff;
+    .range-row.is-none .month {
+      opacity: .3;
     }
 
-   .range-row.is-none .month {
-  opacity: .45;
-}
-
-    .none-btn {
-      width: 100%;
-      height: 30px;
-      border: 1px solid #d9d9d9;
-      border-radius: 3px;
-      background: #fff;
-      color: #666;
-      font-size: 11px;
-      cursor: pointer;
+    .range-row.is-none .month:hover {
+      opacity: 1;
+      background: #f5f7ff;
     }
 
-    .none-btn.active {
-      border-color: #315fd3;
-      background: #315fd3;
-      color: #fff;
-      font-weight: 700;
-    }
-
-
-    /* =========================
+    /* =============================
        제출
-    ========================== */
+    ============================== */
 
     .submit-area {
       margin-top: 22px;
@@ -337,9 +368,7 @@
       cursor: pointer;
     }
 
-
     @media (max-width: 640px) {
-
       .page {
         padding: 32px 12px 60px;
       }
@@ -360,868 +389,1215 @@
       .divider {
         grid-column: auto;
       }
-
     }
   </style>
 </head>
 
-
 <body>
 
-  <main class="page">
+<main class="page">
 
-    <h1 class="page-title">
-      메가변리사 설문조사
-    </h1>
+  <div class="top-util">
+    <a href="#" class="home-btn" onclick="history.back(); return false;">
+      메인 페이지로
+    </a>
+  </div>
+
+  <h1 class="page-title">메가변리사 설문조사</h1>
+
+  <form id="surveyForm" class="survey-wrap">
+
+    <div class="intro-box">
+      <strong>더 나은 강의와 학습 서비스를 위해 여러분의 의견을 들려주세요.</strong><br>
+      응답 내용은 상품·강의·학습 서비스 개선을 위한 자료로 활용됩니다.
+    </div>
+
+    <div class="grid">
+
+      <!-- =============================
+           Q1
+      ============================== -->
+
+      <section class="card full">
+        <h2 class="question">
+          <span class="num">1.</span>
+          제63회 변리사 2차 시험에 실제 응시하셨나요?
+          <span class="sub">응시 여부에 따라 설문 문항이 달라집니다.</span>
+        </h2>
+
+        <div class="options">
+          <label class="option">
+            <input type="radio" name="q63_exam" value="yes">
+            ① 예, 제63회 2차 시험에 응시했습니다.
+          </label>
+
+          <label class="option">
+            <input type="radio" name="q63_exam" value="no">
+            ② 아니오, 제63회 2차 시험에 응시하지 않았습니다.
+          </label>
+        </div>
+      </section>
 
 
-    <form id="surveyForm" class="survey-wrap">
+      <!-- =============================
+           63회 2차 응시자
+      ============================== -->
 
-      <div class="intro-box">
+      <div id="branch63" class="branch">
 
-        <strong>
-          더 나은 강의와 학습 서비스를 위해 여러분의 의견을 들려주세요.
-        </strong>
+        <div class="divider">
+          제63회 2차 시험 응시자 문항
+        </div>
 
-        <br>
-
-        응답 내용은 상품·강의·학습 서비스 개선을 위한 자료로 활용됩니다.
-
-      </div>
-
-
-      <div class="grid">
-
-
-        <!-- =========================
-             Q1
-        ========================== -->
+        <!-- Q2 -->
 
         <section class="card full">
-
           <h2 class="question">
-
-            <span class="num">1.</span>
-
-            제63회 변리사 2차 시험에 실제 응시하셨나요?
-
+            <span class="num">2.</span>
+            제63회 변리사 2차 시험 결과는 어떻게 되셨나요?
             <span class="sub">
-              응시 여부에 따라 설문 문항이 달라집니다.
+              응답 내용은 학습경로 분석을 위한 통계 자료로만 활용됩니다.
             </span>
-
           </h2>
 
-
           <div class="options">
-
             <label class="option">
-
-              <input
-                type="radio"
-                name="q63_exam"
-                value="yes"
-              >
-
-              ① 예, 제63회 2차 시험에 응시했습니다.
-
+              <input type="radio" name="q63_result" value="합격">
+              ① 합격
             </label>
 
-
             <label class="option">
-
-              <input
-                type="radio"
-                name="q63_exam"
-                value="no"
-              >
-
-              ② 아니오, 제63회 2차 시험에 응시하지 않았습니다.
-
+              <input type="radio" name="q63_result" value="불합격">
+              ② 불합격
             </label>
 
+            <label class="option">
+              <input type="radio" name="q63_result" value="응답하지 않음">
+              ③ 응답하지 않음
+            </label>
           </div>
-
         </section>
 
 
+        <!-- Q3 -->
 
-        <!-- =========================
-             63회 2차 응시자
-        ========================== -->
+        <section class="card">
+          <h2 class="question">
+            <span class="num">3.</span>
+            제63회 2차 시험 응시 당시 본인의 수험 단계는 무엇이었나요?
+          </h2>
 
-        <div id="branch63" class="branch">
+          <div class="options">
+            <label class="option">
+              <input type="radio" name="q63_stage" value="동차">
+              ① 동차 – 제63회 1차 합격 후 제63회 2차 응시
+            </label>
 
-          <div class="divider">
-            제63회 2차 시험 응시자 문항
+            <label class="option">
+              <input type="radio" name="q63_stage" value="기득">
+              ② 기득 – 제62회 1차 합격 후 제63회 2차 응시
+            </label>
+
+            <label class="option">
+              <input type="radio" name="q63_stage" value="재시">
+              ③ 재시 – 2차 시험 두 번째 응시
+            </label>
+
+            <label class="option">
+              <input type="radio" name="q63_stage" value="삼시 이상">
+              ④ 삼시 이상 – 2차 시험 세 번째 이상 응시
+            </label>
+          </div>
+        </section>
+
+
+        <!-- Q4 -->
+
+        <section class="card">
+          <h2 class="question">
+            <span class="num">4.</span>
+            변리사 시험을 준비한 전체 기간은 어느 정도인가요?
+          </h2>
+
+          <div class="options">
+            <label class="option">
+              <input type="radio" name="q63_period" value="6개월 이내">
+              ① 6개월 이내
+            </label>
+
+            <label class="option">
+              <input type="radio" name="q63_period" value="6개월~1년">
+              ② 6개월~1년
+            </label>
+
+            <label class="option">
+              <input type="radio" name="q63_period" value="1~2년">
+              ③ 1~2년
+            </label>
+
+            <label class="option">
+              <input type="radio" name="q63_period" value="2~3년">
+              ④ 2~3년
+            </label>
+
+            <label class="option">
+              <input type="radio" name="q63_period" value="3년 이상">
+              ⑤ 3년 이상
+            </label>
+          </div>
+        </section>
+
+
+        <!-- Q5 -->
+
+        <section class="card full">
+          <h2 class="question">
+            <span class="num">5.</span>
+            제63회 2차 시험을 준비하며 아래 학습을 진행한 기간을 선택해 주세요.
+
+            <span class="sub">
+              각 학습별로 시작 월을 한 번, 종료 월을 한 번 선택해 주세요.
+              같은 달에 시작·종료한 경우 같은 월을 두 번 선택하면 됩니다.
+              해당 학습을 진행하지 않았다면 '학습하지 않음'에 체크해 주세요.
+            </span>
+          </h2>
+
+          <div class="range-guide">
+            월을 두 번 선택하면 해당 기간이 표시됩니다.
           </div>
 
+          <div class="range-scroll">
+
+            <table class="range-table">
+
+              <thead>
+                <tr>
+                  <th class="stage-col">학습 단계</th>
+                  <th class="none-col">학습하지 않음</th>
+                  <th>8월</th>
+                  <th>9월</th>
+                  <th>10월</th>
+                  <th>11월</th>
+                  <th>12월</th>
+                  <th>1월</th>
+                  <th>2월</th>
+                  <th>3월</th>
+                  <th>4월</th>
+                  <th>5월</th>
+                  <th>6월</th>
+                  <th>7월</th>
+                </tr>
+              </thead>
+
+              <tbody>
+
+                <!-- 기본이론 -->
+
+                <tr class="range-row" data-field="q63_basic">
+
+                  <td class="stage-name">
+                    2차 기본이론<br>
+                    <small>(구 이론완성)</small>
+                  </td>
+
+                  <td class="none-cell">
+                    <input
+                      type="checkbox"
+                      class="none-check"
+                      aria-label="2차 기본이론 학습하지 않음"
+                    >
+                  </td>
+
+                  <td colspan="12" class="months-cell">
+                    <div class="month-track">
+                      <button type="button" class="month" data-index="0" data-label="8월">8</button>
+                      <button type="button" class="month" data-index="1" data-label="9월">9</button>
+                      <button type="button" class="month" data-index="2" data-label="10월">10</button>
+                      <button type="button" class="month" data-index="3" data-label="11월">11</button>
+                      <button type="button" class="month" data-index="4" data-label="12월">12</button>
+                      <button type="button" class="month" data-index="5" data-label="1월">1</button>
+                      <button type="button" class="month" data-index="6" data-label="2월">2</button>
+                      <button type="button" class="month" data-index="7" data-label="3월">3</button>
+                      <button type="button" class="month" data-index="8" data-label="4월">4</button>
+                      <button type="button" class="month" data-index="9" data-label="5월">5</button>
+                      <button type="button" class="month" data-index="10" data-label="6월">6</button>
+                      <button type="button" class="month" data-index="11" data-label="7월">7</button>
+                    </div>
+
+                    <input type="hidden" name="q63_basic_start">
+                    <input type="hidden" name="q63_basic_end">
+                  </td>
+
+                </tr>
 
 
-          <!-- =========================
-               Q2 합불
-          ========================== -->
+                <!-- 사례 판례 기출 -->
 
-          <section class="card full">
+                <tr class="range-row" data-field="q63_case">
 
-            <h2 class="question">
+                  <td class="stage-name">
+                    사례·판례·기출<br>
+                    <small>(구 답안작성)</small>
+                  </td>
 
-              <span class="num">2.</span>
+                  <td class="none-cell">
+                    <input
+                      type="checkbox"
+                      class="none-check"
+                      aria-label="사례 판례 기출 학습하지 않음"
+                    >
+                  </td>
 
-              제63회 변리사 2차 시험 결과는 어떻게 되셨나요?
+                  <td colspan="12" class="months-cell">
+                    <div class="month-track">
+                      <button type="button" class="month" data-index="0" data-label="8월">8</button>
+                      <button type="button" class="month" data-index="1" data-label="9월">9</button>
+                      <button type="button" class="month" data-index="2" data-label="10월">10</button>
+                      <button type="button" class="month" data-index="3" data-label="11월">11</button>
+                      <button type="button" class="month" data-index="4" data-label="12월">12</button>
+                      <button type="button" class="month" data-index="5" data-label="1월">1</button>
+                      <button type="button" class="month" data-index="6" data-label="2월">2</button>
+                      <button type="button" class="month" data-index="7" data-label="3월">3</button>
+                      <button type="button" class="month" data-index="8" data-label="4월">4</button>
+                      <button type="button" class="month" data-index="9" data-label="5월">5</button>
+                      <button type="button" class="month" data-index="10" data-label="6월">6</button>
+                      <button type="button" class="month" data-index="11" data-label="7월">7</button>
+                    </div>
 
-              <span class="sub">
-                응답 내용은 학습경로 분석을 위한 통계 자료로만 활용됩니다.
-              </span>
+                    <input type="hidden" name="q63_case_start">
+                    <input type="hidden" name="q63_case_end">
+                  </td>
 
-            </h2>
-
-
-            <div class="options">
-
-              <label class="option">
-
-                <input
-                  type="radio"
-                  name="q63_result"
-                  value="합격"
-                >
-
-                ① 합격
-
-              </label>
-
-
-              <label class="option">
-
-                <input
-                  type="radio"
-                  name="q63_result"
-                  value="불합격"
-                >
-
-                ② 불합격
-
-              </label>
+                </tr>
 
 
-              <label class="option">
+                <!-- GS -->
 
-                <input
-                  type="radio"
-                  name="q63_result"
-                  value="응답하지 않음"
-                >
+                <tr class="range-row" data-field="q63_gs">
 
-                ③ 응답하지 않음
+                  <td class="stage-name">
+                    GS
+                  </td>
 
-              </label>
+                  <td class="none-cell">
+                    <input
+                      type="checkbox"
+                      class="none-check"
+                      aria-label="GS 학습하지 않음"
+                    >
+                  </td>
 
-            </div>
+                  <td colspan="12" class="months-cell">
+                    <div class="month-track">
+                      <button type="button" class="month" data-index="0" data-label="8월">8</button>
+                      <button type="button" class="month" data-index="1" data-label="9월">9</button>
+                      <button type="button" class="month" data-index="2" data-label="10월">10</button>
+                      <button type="button" class="month" data-index="3" data-label="11월">11</button>
+                      <button type="button" class="month" data-index="4" data-label="12월">12</button>
+                      <button type="button" class="month" data-index="5" data-label="1월">1</button>
+                      <button type="button" class="month" data-index="6" data-label="2월">2</button>
+                      <button type="button" class="month" data-index="7" data-label="3월">3</button>
+                      <button type="button" class="month" data-index="8" data-label="4월">4</button>
+                      <button type="button" class="month" data-index="9" data-label="5월">5</button>
+                      <button type="button" class="month" data-index="10" data-label="6월">6</button>
+                      <button type="button" class="month" data-index="11" data-label="7월">7</button>
+                    </div>
 
-          </section>
+                    <input type="hidden" name="q63_gs_start">
+                    <input type="hidden" name="q63_gs_end">
+                  </td>
 
-
-
-          <!-- =========================
-               Q3 수험단계
-          ========================== -->
-<!-- =========================
-     Q3 수험단계
-========================== -->
-
-<section class="card">
-
-  <h2 class="question">
-
-    <span class="num">3.</span>
-
-    제63회 2차 시험 응시 당시
-    본인의 수험 단계는 무엇이었나요?
-
-  </h2>
-
-  <div class="options">
-
-    <label class="option">
-
-      <input
-        type="radio"
-        name="q63_stage"
-        value="동차"
-      >
-
-      ① 동차 – 제63회 1차 합격 후 제63회 2차 응시
-
-    </label>
+                </tr>
 
 
-    <label class="option">
+                <!-- 파이널 -->
 
-      <input
-        type="radio"
-        name="q63_stage"
-        value="기득"
-      >
+                <tr class="range-row" data-field="q63_final">
 
-      ② 기득 – 제62회 1차 합격 후 제63회 2차 응시
+                  <td class="stage-name">
+                    2차 파이널
+                  </td>
 
-    </label>
+                  <td class="none-cell">
+                    <input
+                      type="checkbox"
+                      class="none-check"
+                      aria-label="2차 파이널 학습하지 않음"
+                    >
+                  </td>
+
+                  <td colspan="12" class="months-cell">
+                    <div class="month-track">
+                      <button type="button" class="month" data-index="0" data-label="8월">8</button>
+                      <button type="button" class="month" data-index="1" data-label="9월">9</button>
+                      <button type="button" class="month" data-index="2" data-label="10월">10</button>
+                      <button type="button" class="month" data-index="3" data-label="11월">11</button>
+                      <button type="button" class="month" data-index="4" data-label="12월">12</button>
+                      <button type="button" class="month" data-index="5" data-label="1월">1</button>
+                      <button type="button" class="month" data-index="6" data-label="2월">2</button>
+                      <button type="button" class="month" data-index="7" data-label="3월">3</button>
+                      <button type="button" class="month" data-index="8" data-label="4월">4</button>
+                      <button type="button" class="month" data-index="9" data-label="5월">5</button>
+                      <button type="button" class="month" data-index="10" data-label="6월">6</button>
+                      <button type="button" class="month" data-index="11" data-label="7월">7</button>
+                    </div>
+
+                    <input type="hidden" name="q63_final_start">
+                    <input type="hidden" name="q63_final_end">
+                  </td>
+
+                </tr>
+
+              </tbody>
+
+            </table>
+
+          </div>
+        </section>
 
 
-    <label class="option">
+        <!-- Q6 -->
 
-      <input
-        type="radio"
-        name="q63_stage"
-        value="재시"
-      >
+        <section class="card full">
+          <h2 class="question">
+            <span class="num">6.</span>
+            제63회 2차 시험을 준비하며 메가변리사에서 실제로 이용한 상품·서비스를 모두 선택해 주세요.
+            <span class="sub">복수선택 가능</span>
+          </h2>
 
-      ③ 재시 – 2차 시험 두 번째 응시
+          <div class="options">
+            <label class="option">
+              <input type="checkbox" name="q63_mega" value="온라인 PASS">
+              ① 온라인 PASS 상품
+            </label>
 
-    </label>
+            <label class="option">
+              <input type="checkbox" name="q63_mega" value="온라인 단강좌">
+              ② 온라인 단강좌
+            </label>
+
+            <label class="option">
+              <input type="checkbox" name="q63_mega" value="온라인 GS">
+              ③ 온라인 GS
+            </label>
+
+            <label class="option">
+              <input type="checkbox" name="q63_mega" value="현장 GS">
+              ④ 현장 GS
+            </label>
+
+            <label class="option">
+              <input type="checkbox" name="q63_mega" value="2차 파이널">
+              ⑤ 2차 파이널 모의고사
+            </label>
+
+            <label class="option">
+              <input type="checkbox" name="q63_mega" value="교재">
+              ⑥ 교재
+            </label>
+
+            <label class="option">
+              <input type="checkbox" name="q63_mega" value="이용하지 않음">
+              ⑦ 이용하지 않음
+            </label>
+          </div>
+        </section>
 
 
-    <label class="option">
+        <!-- Q7 -->
 
-      <input
-        type="radio"
-        name="q63_stage"
-        value="삼시 이상"
-      >
+        <section class="card">
+          <h2 class="question">
+            <span class="num">7.</span>
+            제63회 2차 시험 대비 GS는 총 몇 개 정도 수강하셨나요?
+          </h2>
 
-      ④ 삼시 이상 – 2차 시험 세 번째 이상 응시
+          <div class="options">
+            <label class="option">
+              <input type="radio" name="q63_gs_count" value="1~2개">
+              ① 1~2개
+            </label>
 
-    </label>
+            <label class="option">
+              <input type="radio" name="q63_gs_count" value="3~4개">
+              ② 3~4개
+            </label>
 
-  </div>
+            <label class="option">
+              <input type="radio" name="q63_gs_count" value="5개 이상">
+              ③ 5개 이상
+            </label>
 
-</section>
+            <label class="option">
+              <input type="radio" name="q63_gs_count" value="미수강">
+              ④ 수강하지 않음
+            </label>
+          </div>
+        </section>
 
 
-          <!-- =========================
-               Q4 전체 수험기간
-          ========================== -->
+        <!-- Q8 -->
+
+        <section id="gsModeCard" class="card conditional">
+          <h2 class="question">
+            <span class="num">8.</span>
+            GS는 어떤 방식으로 수강하셨나요?
+          </h2>
+
+          <div class="options">
+            <label class="option">
+              <input type="radio" name="q63_gs_mode" value="온라인">
+              ① 온라인
+            </label>
+
+            <label class="option">
+              <input type="radio" name="q63_gs_mode" value="현장">
+              ② 현장
+            </label>
+
+            <label class="option">
+              <input type="radio" name="q63_gs_mode" value="온라인+현장">
+              ③ 온라인·현장 모두
+            </label>
+          </div>
+        </section>
+
+
+        <!-- Q9 -->
+
+        <section id="gsTypeCard" class="card conditional">
+          <h2 class="question">
+            <span class="num">9.</span>
+            수강한 GS 유형을 모두 선택해 주세요.
+            <span class="sub">복수선택 가능</span>
+          </h2>
+
+          <div class="options">
+            <label class="option">
+              <input type="checkbox" name="q63_gs_type" value="기초">
+              ① 기초 GS
+            </label>
+
+            <label class="option">
+              <input type="checkbox" name="q63_gs_type" value="워밍업">
+              ② 워밍업 GS
+            </label>
+
+            <label class="option">
+              <input type="checkbox" name="q63_gs_type" value="리얼타임">
+              ③ 리얼타임 GS
+            </label>
+          </div>
+        </section>
+
+
+        <!-- Q10 -->
+
+        <section id="gsFactorCard" class="card full conditional">
+          <h2 class="question">
+            <span class="num">10.</span>
+            GS를 선택할 때 중요하게 고려한 요소를 모두 선택해 주세요.
+            <span class="sub">복수선택 가능</span>
+          </h2>
+
+          <div class="options">
+            <label class="option">
+              <input type="checkbox" name="q63_gs_factor" value="강사">
+              ① 강사
+            </label>
+
+            <label class="option">
+              <input type="checkbox" name="q63_gs_factor" value="문제">
+              ② 문제의 질·난이도
+            </label>
+
+            <label class="option">
+              <input type="checkbox" name="q63_gs_factor" value="첨삭">
+              ③ 답안 첨삭·피드백
+            </label>
+
+            <label class="option">
+              <input type="checkbox" name="q63_gs_factor" value="일정">
+              ④ 일정·수강 시기
+            </label>
+
+            <label class="option">
+              <input type="checkbox" name="q63_gs_factor" value="수강방식">
+              ⑤ 온라인·현장 수강 방식
+            </label>
+
+            <label class="option">
+              <input type="checkbox" name="q63_gs_factor" value="가격">
+              ⑥ 가격·할인
+            </label>
+          </div>
+        </section>
+
+
+        <!-- Q11 -->
+
+        <section class="card full">
+          <h2 class="question">
+            <span class="num">11.</span>
+            제63회 2차 시험을 치르며 가장 부족하다고 느낀 부분을 모두 선택해 주세요.
+            <span class="sub">복수선택 가능</span>
+          </h2>
+
+          <div class="options">
+            <label class="option">
+              <input type="checkbox" name="q63_weakness" value="이론">
+              ① 기본 이론·쟁점 이해
+            </label>
+
+            <label class="option">
+              <input type="checkbox" name="q63_weakness" value="판례기출">
+              ② 사례·판례·기출 정리
+            </label>
+
+            <label class="option">
+              <input type="checkbox" name="q63_weakness" value="답안작성">
+              ③ 답안 작성력
+            </label>
+
+            <label class="option">
+              <input type="checkbox" name="q63_weakness" value="시간관리">
+              ④ 시험 시간 관리
+            </label>
+
+            <label class="option">
+              <input type="checkbox" name="q63_weakness" value="실전연습">
+              ⑤ 실전 문제풀이 경험
+            </label>
+
+            <label class="option">
+              <input type="checkbox" name="q63_weakness" value="과목별취약">
+              ⑥ 특정 과목에 대한 부족
+            </label>
+          </div>
+        </section>
+
+
+        <!-- Q12 -->
+
+        <section class="card full">
+          <h2 class="question">
+            <span class="num">12.</span>
+            제63회 2차 시험 대비에 실제로 도움이 되었다고 느낀 학습을 모두 선택해 주세요.
+            <span class="sub">
+              메가변리사 이용 여부와 관계없이 실제 학습 경험을 기준으로 응답해 주세요.
+            </span>
+          </h2>
+
+          <div class="options">
+            <label class="option">
+              <input type="checkbox" name="q63_helpful" value="기본이론">
+              ① 2차 기본이론
+            </label>
+
+            <label class="option">
+              <input type="checkbox" name="q63_helpful" value="사례판례기출">
+              ② 사례·판례·기출 학습
+            </label>
+
+            <label class="option">
+              <input type="checkbox" name="q63_helpful" value="GS">
+              ③ GS
+            </label>
+
+            <label class="option">
+              <input type="checkbox" name="q63_helpful" value="파이널">
+              ④ 2차 파이널
+            </label>
+
+            <label class="option">
+              <input type="checkbox" name="q63_helpful" value="교재">
+              ⑤ 교재·개인 정리
+            </label>
+
+            <label class="option">
+              <input type="checkbox" name="q63_helpful" value="스터디">
+              ⑥ 스터디·개인 답안연습
+            </label>
+          </div>
+        </section>
+
+
+        <!-- Q13 -->
+
+        <section class="card">
+          <h2 class="question">
+            <span class="num">13.</span>
+            제64회 2차 시험을 준비할 계획이 있으신가요?
+          </h2>
+
+          <div class="options">
+            <label class="option">
+              <input type="radio" name="q64_second_plan" value="yes">
+              ① 준비할 예정
+            </label>
+
+            <label class="option">
+              <input type="radio" name="q64_second_plan" value="undecided">
+              ② 아직 결정하지 않음
+            </label>
+
+            <label class="option">
+              <input type="radio" name="q64_second_plan" value="no">
+              ③ 준비하지 않을 예정
+            </label>
+
+            <label class="option">
+              <input type="radio" name="q64_second_plan" value="none">
+              ④ 해당 없음
+            </label>
+          </div>
+        </section>
+
+
+        <!-- Q14 -->
+
+        <section class="card">
+          <h2 class="question">
+            <span class="num">14.</span>
+            향후 2차 대비에서 가장 보완되었으면 하는 부분을 모두 선택해 주세요.
+            <span class="sub">복수선택 가능</span>
+          </h2>
+
+          <div class="options">
+            <label class="option">
+              <input type="checkbox" name="q63_future_need" value="기본이론">
+              ① 기본이론
+            </label>
+
+            <label class="option">
+              <input type="checkbox" name="q63_future_need" value="사례판례기출">
+              ② 사례·판례·기출
+            </label>
+
+            <label class="option">
+              <input type="checkbox" name="q63_future_need" value="GS">
+              ③ GS
+            </label>
+
+            <label class="option">
+              <input type="checkbox" name="q63_future_need" value="첨삭">
+              ④ 답안 첨삭·피드백
+            </label>
+
+            <label class="option">
+              <input type="checkbox" name="q63_future_need" value="파이널">
+              ⑤ 파이널
+            </label>
+
+            <label class="option">
+              <input type="checkbox" name="q63_future_need" value="해당 없음">
+              ⑥ 해당 없음
+            </label>
+          </div>
+        </section>
+
+      </div>
+
+
+      <!-- =============================
+           63회 2차 비응시자
+      ============================== -->
+
+      <div id="branchNon63" class="branch">
+
+        <div class="divider">
+          제63회 2차 시험 비응시자 문항
+        </div>
+
+        <section class="card full">
+          <h2 class="question">
+            <span class="num">2.</span>
+            현재 준비 중이거나 가장 최근 준비한 시험 단계를 선택해 주세요.
+          </h2>
+
+          <div class="options">
+            <label class="option">
+              <input type="radio" name="current_track" value="first">
+              ① 제64회 1차 시험 준비
+            </label>
+
+            <label class="option">
+              <input type="radio" name="current_track" value="second">
+              ② 제64회 2차 시험 준비
+            </label>
+
+            <label class="option">
+              <input type="radio" name="current_track" value="none">
+              ③ 현재 시험 준비 중이 아님
+            </label>
+          </div>
+        </section>
+
+
+        <!-- 64회 1차 -->
+
+        <div id="trackFirst" class="sub-branch">
 
           <section class="card">
-
             <h2 class="question">
+              <span class="num">3.</span>
+              제64회 1차 시험 기준 본인의 수험 단계는 무엇인가요?
+            </h2>
 
+            <div class="options">
+              <label class="option">
+                <input type="radio" name="q64_first_stage" value="초시">
+                ① 초시
+              </label>
+
+              <label class="option">
+                <input type="radio" name="q64_first_stage" value="재시">
+                ② 재시
+              </label>
+
+              <label class="option">
+                <input type="radio" name="q64_first_stage" value="삼시 이상">
+                ③ 삼시 이상
+              </label>
+            </div>
+          </section>
+
+
+          <section class="card">
+            <h2 class="question">
               <span class="num">4.</span>
-
-              변리사 시험을 준비한
-              전체 기간은 어느 정도인가요?
-
+              변리사 시험을 준비한 전체 기간은 어느 정도인가요?
             </h2>
 
-
             <div class="options">
-
               <label class="option">
-
-                <input
-                  type="radio"
-                  name="q63_period"
-                  value="6개월 이내"
-                >
-
+                <input type="radio" name="q64_first_period" value="6개월 이내">
                 ① 6개월 이내
-
               </label>
 
-
               <label class="option">
-
-                <input
-                  type="radio"
-                  name="q63_period"
-                  value="6개월~1년"
-                >
-
+                <input type="radio" name="q64_first_period" value="6개월~1년">
                 ② 6개월~1년
-
               </label>
 
-
               <label class="option">
-
-                <input
-                  type="radio"
-                  name="q63_period"
-                  value="1~2년"
-                >
-
+                <input type="radio" name="q64_first_period" value="1~2년">
                 ③ 1~2년
-
               </label>
 
-
               <label class="option">
-
-                <input
-                  type="radio"
-                  name="q63_period"
-                  value="2~3년"
-                >
-
+                <input type="radio" name="q64_first_period" value="2~3년">
                 ④ 2~3년
-
               </label>
 
-
               <label class="option">
-
-                <input
-                  type="radio"
-                  name="q63_period"
-                  value="3년 이상"
-                >
-
+                <input type="radio" name="q64_first_period" value="3년 이상">
                 ⑤ 3년 이상
-
               </label>
-
             </div>
-
           </section>
 
 
-
-          <!-- =========================
-               Q5 학습기간
-          ========================== -->
-
           <section class="card full">
-
             <h2 class="question">
-
               <span class="num">5.</span>
-
-              제63회 2차 시험을 준비하며
-              아래 학습을 진행한 기간을 선택해 주세요.
-
-              <span class="sub">
-                각 학습별로 시작 월을 한 번,
-                종료 월을 한 번 선택해 주세요.
-                같은 달에 시작·종료한 경우 같은 월을 두 번 선택하면 됩니다.
-              </span>
-
+              현재 진행 중이거나 최근 진행한 1차 학습 단계를 모두 선택해 주세요.
+              <span class="sub">복수선택 가능</span>
             </h2>
 
+            <div class="options">
+              <label class="option">
+                <input type="checkbox" name="q64_first_learning" value="기초입문">
+                ① 기초입문
+              </label>
 
-            <div class="range-guide">
+              <label class="option">
+                <input type="checkbox" name="q64_first_learning" value="기본이론">
+                ② 기본이론
+              </label>
 
-              <span>
-                <i class="dot start-dot"></i>
-                시작·종료 월
-              </span>
+              <label class="option">
+                <input type="checkbox" name="q64_first_learning" value="심화이론">
+                ③ 심화이론
+              </label>
 
-              <span>
-                <i class="dot range-dot"></i>
-                선택된 학습기간
-              </span>
+              <label class="option">
+                <input type="checkbox" name="q64_first_learning" value="객관식 문제풀이">
+                ④ 객관식 문제풀이
+              </label>
 
+              <label class="option">
+                <input type="checkbox" name="q64_first_learning" value="파이널">
+                ⑤ 파이널
+              </label>
             </div>
-
-
-            <div class="range-scroll">
-
-              <table class="range-table">
-
-                <thead>
-
-                  <tr>
-
-                    <th class="stage-col">
-                      학습 단계
-                    </th>
-
-                    <th>8월</th>
-                    <th>9월</th>
-                    <th>10월</th>
-                    <th>11월</th>
-                    <th>12월</th>
-                    <th>1월</th>
-                    <th>2월</th>
-                    <th>3월</th>
-                    <th>4월</th>
-                    <th>5월</th>
-                    <th>6월</th>
-                    <th>7월</th>
-
-                    <th class="none-col">
-                      학습하지 않음
-                    </th>
-
-                  </tr>
-
-                </thead>
-
-
-                <tbody>
-
-
-                  <!-- 기본이론 -->
-
-                  <tr
-                    class="range-row"
-                    data-field="q63_basic"
-                  >
-
-                    <td class="stage-name">
-
-                      2차 기본이론
-
-                      <br>
-
-                      <small>
-                        (구 이론완성)
-                      </small>
-
-                    </td>
-
-
-                    <td
-                      colspan="12"
-                      class="months-cell"
-                    >
-
-                      <div class="month-track">
-
-                        <button type="button" class="month" data-index="0" data-label="8월">8</button>
-                        <button type="button" class="month" data-index="1" data-label="9월">9</button>
-                        <button type="button" class="month" data-index="2" data-label="10월">10</button>
-                        <button type="button" class="month" data-index="3" data-label="11월">11</button>
-                        <button type="button" class="month" data-index="4" data-label="12월">12</button>
-                        <button type="button" class="month" data-index="5" data-label="1월">1</button>
-                        <button type="button" class="month" data-index="6" data-label="2월">2</button>
-                        <button type="button" class="month" data-index="7" data-label="3월">3</button>
-                        <button type="button" class="month" data-index="8" data-label="4월">4</button>
-                        <button type="button" class="month" data-index="9" data-label="5월">5</button>
-                        <button type="button" class="month" data-index="10" data-label="6월">6</button>
-                        <button type="button" class="month" data-index="11" data-label="7월">7</button>
-
-                      </div>
-
-
-                      <input
-                        type="hidden"
-                        name="q63_basic_start"
-                      >
-
-                      <input
-                        type="hidden"
-                        name="q63_basic_end"
-                      >
-
-                    </td>
-
-
-                    <td class="none-cell">
-
-                      <button
-                        type="button"
-                        class="none-btn"
-                      >
-                        선택
-                      </button>
-
-                    </td>
-
-                  </tr>
-
-
-
-                  <!-- 사례·판례·기출 -->
-
-                  <tr
-                    class="range-row"
-                    data-field="q63_case"
-                  >
-
-                    <td class="stage-name">
-
-                      사례·판례·기출
-
-                      <br>
-
-                      <small>
-                        (구 답안작성)
-                      </small>
-
-                    </td>
-
-
-                    <td
-                      colspan="12"
-                      class="months-cell"
-                    >
-
-                      <div class="month-track">
-
-                        <button type="button" class="month" data-index="0" data-label="8월">8</button>
-                        <button type="button" class="month" data-index="1" data-label="9월">9</button>
-                        <button type="button" class="month" data-index="2" data-label="10월">10</button>
-                        <button type="button" class="month" data-index="3" data-label="11월">11</button>
-                        <button type="button" class="month" data-index="4" data-label="12월">12</button>
-                        <button type="button" class="month" data-index="5" data-label="1월">1</button>
-                        <button type="button" class="month" data-index="6" data-label="2월">2</button>
-                        <button type="button" class="month" data-index="7" data-label="3월">3</button>
-                        <button type="button" class="month" data-index="8" data-label="4월">4</button>
-                        <button type="button" class="month" data-index="9" data-label="5월">5</button>
-                        <button type="button" class="month" data-index="10" data-label="6월">6</button>
-                        <button type="button" class="month" data-index="11" data-label="7월">7</button>
-
-                      </div>
-
-
-                      <input
-                        type="hidden"
-                        name="q63_case_start"
-                      >
-
-                      <input
-                        type="hidden"
-                        name="q63_case_end"
-                      >
-
-                    </td>
-
-
-                    <td class="none-cell">
-
-                      <button
-                        type="button"
-                        class="none-btn"
-                      >
-                        선택
-                      </button>
-
-                    </td>
-
-                  </tr>
-
-
-
-                  <!-- GS -->
-
-                  <tr
-                    class="range-row"
-                    data-field="q63_gs"
-                  >
-
-                    <td class="stage-name">
-                      GS
-                    </td>
-
-
-                    <td
-                      colspan="12"
-                      class="months-cell"
-                    >
-
-                      <div class="month-track">
-
-                        <button type="button" class="month" data-index="0" data-label="8월">8</button>
-                        <button type="button" class="month" data-index="1" data-label="9월">9</button>
-                        <button type="button" class="month" data-index="2" data-label="10월">10</button>
-                        <button type="button" class="month" data-index="3" data-label="11월">11</button>
-                        <button type="button" class="month" data-index="4" data-label="12월">12</button>
-                        <button type="button" class="month" data-index="5" data-label="1월">1</button>
-                        <button type="button" class="month" data-index="6" data-label="2월">2</button>
-                        <button type="button" class="month" data-index="7" data-label="3월">3</button>
-                        <button type="button" class="month" data-index="8" data-label="4월">4</button>
-                        <button type="button" class="month" data-index="9" data-label="5월">5</button>
-                        <button type="button" class="month" data-index="10" data-label="6월">6</button>
-                        <button type="button" class="month" data-index="11" data-label="7월">7</button>
-
-                      </div>
-
-
-                      <input
-                        type="hidden"
-                        name="q63_gs_start"
-                      >
-
-                      <input
-                        type="hidden"
-                        name="q63_gs_end"
-                      >
-
-                    </td>
-
-
-                    <td class="none-cell">
-
-                      <button
-                        type="button"
-                        class="none-btn"
-                      >
-                        선택
-                      </button>
-
-                    </td>
-
-                  </tr>
-
-
-
-                  <!-- 2차 파이널 -->
-
-                  <tr
-                    class="range-row"
-                    data-field="q63_final"
-                  >
-
-                    <td class="stage-name">
-                      2차 파이널
-                    </td>
-
-
-                    <td
-                      colspan="12"
-                      class="months-cell"
-                    >
-
-                      <div class="month-track">
-
-                        <button type="button" class="month" data-index="0" data-label="8월">8</button>
-                        <button type="button" class="month" data-index="1" data-label="9월">9</button>
-                        <button type="button" class="month" data-index="2" data-label="10월">10</button>
-                        <button type="button" class="month" data-index="3" data-label="11월">11</button>
-                        <button type="button" class="month" data-index="4" data-label="12월">12</button>
-                        <button type="button" class="month" data-index="5" data-label="1월">1</button>
-                        <button type="button" class="month" data-index="6" data-label="2월">2</button>
-                        <button type="button" class="month" data-index="7" data-label="3월">3</button>
-                        <button type="button" class="month" data-index="8" data-label="4월">4</button>
-                        <button type="button" class="month" data-index="9" data-label="5월">5</button>
-                        <button type="button" class="month" data-index="10" data-label="6월">6</button>
-                        <button type="button" class="month" data-index="11" data-label="7월">7</button>
-
-                      </div>
-
-
-                      <input
-                        type="hidden"
-                        name="q63_final_start"
-                      >
-
-                      <input
-                        type="hidden"
-                        name="q63_final_end"
-                      >
-
-                    </td>
-
-
-                    <td class="none-cell">
-
-                      <button
-                        type="button"
-                        class="none-btn"
-                      >
-                        선택
-                      </button>
-
-                    </td>
-
-                  </tr>
-
-                </tbody>
-
-              </table>
-
-            </div>
-
           </section>
 
 
-
-          <!-- =========================
-               Q6 메가 이용
-          ========================== -->
-
           <section class="card full">
-
             <h2 class="question">
-
               <span class="num">6.</span>
-
-              제63회 2차 시험을 준비하며
-              메가변리사에서 실제로 이용한 상품·서비스를
-              모두 선택해 주세요.
-
-              <span class="sub">
-                복수선택 가능
-              </span>
-
+              제64회 1차 시험을 준비하며 메가변리사에서 이용 중인 상품·서비스를 모두 선택해 주세요.
+              <span class="sub">복수선택 가능</span>
             </h2>
 
-
             <div class="options">
-
               <label class="option">
-
-                <input
-                  type="checkbox"
-                  name="q63_mega"
-                  value="온라인 PASS"
-                >
-
-                ① 온라인 PASS 상품
-
+                <input type="checkbox" name="q64_first_mega" value="올패스">
+                ① 올패스·PASS
               </label>
 
-
               <label class="option">
-
-                <input
-                  type="checkbox"
-                  name="q63_mega"
-                  value="온라인 단강좌"
-                >
-
-                ② 온라인 단강좌
-
+                <input type="checkbox" name="q64_first_mega" value="선택형 PASS">
+                ② T-PASS 등 선택형 PASS
               </label>
 
-
               <label class="option">
-
-                <input
-                  type="checkbox"
-                  name="q63_mega"
-                  value="온라인 GS"
-                >
-
-                ③ 온라인 GS
-
+                <input type="checkbox" name="q64_first_mega" value="단강좌">
+                ③ 단강좌
               </label>
 
-
               <label class="option">
-
-                <input
-                  type="checkbox"
-                  name="q63_mega"
-                  value="현장 GS"
-                >
-
-                ④ 현장 GS
-
+                <input type="checkbox" name="q64_first_mega" value="교재">
+                ④ 교재
               </label>
 
-
               <label class="option">
-
-                <input
-                  type="checkbox"
-                  name="q63_mega"
-                  value="2차 파이널"
-                >
-
-                ⑤ 2차 파이널 모의고사
-
+                <input type="checkbox" name="q64_first_mega" value="모의고사">
+                ⑤ 모의고사·파이널
               </label>
 
-
               <label class="option">
-
-                <input
-                  type="checkbox"
-                  name="q63_mega"
-                  value="교재"
-                >
-
-                ⑥ 교재
-
+                <input type="checkbox" name="q64_first_mega" value="이용하지 않음">
+                ⑥ 이용하지 않음
               </label>
-
-
-              <label class="option">
-
-                <input
-                  type="checkbox"
-                  name="q63_mega"
-                  value="이용하지 않음"
-                >
-
-                ⑦ 이용하지 않음
-
-              </label>
-
             </div>
-
           </section>
-
-        </div>
-
-
-
-        <!-- =========================
-             63회 2차 비응시자
-        ========================== -->
-
-        <div id="branchNon63" class="branch">
-
-          <div class="divider">
-            제63회 2차 시험 비응시자 문항
-          </div>
 
 
           <section class="card full">
-
             <h2 class="question">
-
-              <span class="num">2.</span>
-
-              현재 준비 중이거나
-              가장 최근 준비한 시험 단계를 선택해 주세요.
-
+              <span class="num">7.</span>
+              현재 1차 대비에서 가장 보완이 필요한 부분은 무엇인가요?
+              <span class="sub">복수선택 가능</span>
             </h2>
 
+            <div class="options">
+              <label class="option">
+                <input type="checkbox" name="q64_first_need" value="민법">
+                ① 민법
+              </label>
+
+              <label class="option">
+                <input type="checkbox" name="q64_first_need" value="특허법">
+                ② 특허법
+              </label>
+
+              <label class="option">
+                <input type="checkbox" name="q64_first_need" value="상표법">
+                ③ 상표법
+              </label>
+
+              <label class="option">
+                <input type="checkbox" name="q64_first_need" value="디자인보호법">
+                ④ 디자인보호법
+              </label>
+
+              <label class="option">
+                <input type="checkbox" name="q64_first_need" value="자연과학">
+                ⑤ 자연과학
+              </label>
+
+              <label class="option">
+                <input type="checkbox" name="q64_first_need" value="문제풀이·회독">
+                ⑥ 문제풀이·회독
+              </label>
+            </div>
+          </section>
+
+
+          <section class="card full">
+            <h2 class="question">
+              <span class="num">8.</span>
+              앞으로 가장 이용하고 싶은 상품 형태는 무엇인가요?
+            </h2>
 
             <div class="options">
-
               <label class="option">
-
-                <input
-                  type="radio"
-                  name="current_track"
-                  value="first"
-                >
-
-                ① 제64회 1차 시험 준비
-
+                <input type="radio" name="q64_first_product" value="전과정 패키지">
+                ① 전과정 패키지
               </label>
 
-
               <label class="option">
-
-                <input
-                  type="radio"
-                  name="current_track"
-                  value="second"
-                >
-
-                ② 제64회 2차 시험 준비
-
+                <input type="radio" name="q64_first_product" value="선택형 PASS">
+                ② 필요한 과목·강좌만 선택하는 PASS
               </label>
 
-
               <label class="option">
-
-                <input
-                  type="radio"
-                  name="current_track"
-                  value="none"
-                >
-
-                ③ 현재 시험 준비 중이 아님
-
+                <input type="radio" name="q64_first_product" value="단강좌">
+                ③ 단강좌
               </label>
 
+              <label class="option">
+                <input type="radio" name="q64_first_product" value="미정">
+                ④ 아직 모르겠음
+              </label>
             </div>
+          </section>
 
+        </div>
+
+
+        <!-- 64회 2차 -->
+
+        <div id="trackSecond" class="sub-branch">
+
+          <section class="card">
+            <h2 class="question">
+              <span class="num">3.</span>
+              제64회 2차 시험 기준 본인의 수험 단계는 무엇인가요?
+            </h2>
+
+            <div class="options">
+              <label class="option">
+                <input type="radio" name="q64_second_stage" value="초시">
+                ① 2차 초시
+              </label>
+
+              <label class="option">
+                <input type="radio" name="q64_second_stage" value="재시">
+                ② 2차 재시
+              </label>
+
+              <label class="option">
+                <input type="radio" name="q64_second_stage" value="삼시 이상">
+                ③ 2차 삼시 이상
+              </label>
+            </div>
+          </section>
+
+
+          <section class="card">
+            <h2 class="question">
+              <span class="num">4.</span>
+              변리사 시험을 준비한 전체 기간은 어느 정도인가요?
+            </h2>
+
+            <div class="options">
+              <label class="option">
+                <input type="radio" name="q64_second_period" value="6개월 이내">
+                ① 6개월 이내
+              </label>
+
+              <label class="option">
+                <input type="radio" name="q64_second_period" value="6개월~1년">
+                ② 6개월~1년
+              </label>
+
+              <label class="option">
+                <input type="radio" name="q64_second_period" value="1~2년">
+                ③ 1~2년
+              </label>
+
+              <label class="option">
+                <input type="radio" name="q64_second_period" value="2~3년">
+                ④ 2~3년
+              </label>
+
+              <label class="option">
+                <input type="radio" name="q64_second_period" value="3년 이상">
+                ⑤ 3년 이상
+              </label>
+            </div>
+          </section>
+
+
+          <section class="card full">
+            <h2 class="question">
+              <span class="num">5.</span>
+              현재 진행 중이거나 최근 진행한 2차 학습 단계를 모두 선택해 주세요.
+              <span class="sub">복수선택 가능</span>
+            </h2>
+
+            <div class="options">
+              <label class="option">
+                <input type="checkbox" name="q64_second_learning" value="기본이론">
+                ① 2차 기본이론
+              </label>
+
+              <label class="option">
+                <input type="checkbox" name="q64_second_learning" value="사례판례기출">
+                ② 사례·판례·기출
+              </label>
+
+              <label class="option">
+                <input type="checkbox" name="q64_second_learning" value="GS">
+                ③ GS
+              </label>
+
+              <label class="option">
+                <input type="checkbox" name="q64_second_learning" value="파이널">
+                ④ 2차 파이널
+              </label>
+            </div>
+          </section>
+
+
+          <section class="card full">
+            <h2 class="question">
+              <span class="num">6.</span>
+              제64회 2차 시험을 준비하며 메가변리사에서 이용 중인 상품·서비스를 모두 선택해 주세요.
+              <span class="sub">복수선택 가능</span>
+            </h2>
+
+            <div class="options">
+              <label class="option">
+                <input type="checkbox" name="q64_second_mega" value="온라인 PASS">
+                ① 온라인 PASS
+              </label>
+
+              <label class="option">
+                <input type="checkbox" name="q64_second_mega" value="온라인 단강좌">
+                ② 온라인 단강좌
+              </label>
+
+              <label class="option">
+                <input type="checkbox" name="q64_second_mega" value="온라인 GS">
+                ③ 온라인 GS
+              </label>
+
+              <label class="option">
+                <input type="checkbox" name="q64_second_mega" value="현장 GS">
+                ④ 현장 GS
+              </label>
+
+              <label class="option">
+                <input type="checkbox" name="q64_second_mega" value="파이널">
+                ⑤ 2차 파이널
+              </label>
+
+              <label class="option">
+                <input type="checkbox" name="q64_second_mega" value="교재">
+                ⑥ 교재
+              </label>
+
+              <label class="option">
+                <input type="checkbox" name="q64_second_mega" value="이용하지 않음">
+                ⑦ 이용하지 않음
+              </label>
+            </div>
+          </section>
+
+
+          <section class="card full">
+            <h2 class="question">
+              <span class="num">7.</span>
+              현재 2차 대비에서 가장 보완이 필요한 부분은 무엇인가요?
+              <span class="sub">복수선택 가능</span>
+            </h2>
+
+            <div class="options">
+              <label class="option">
+                <input type="checkbox" name="q64_second_need" value="기본이론">
+                ① 기본이론
+              </label>
+
+              <label class="option">
+                <input type="checkbox" name="q64_second_need" value="사례판례기출">
+                ② 사례·판례·기출
+              </label>
+
+              <label class="option">
+                <input type="checkbox" name="q64_second_need" value="답안작성">
+                ③ 답안 작성
+              </label>
+
+              <label class="option">
+                <input type="checkbox" name="q64_second_need" value="GS">
+                ④ GS
+              </label>
+
+              <label class="option">
+                <input type="checkbox" name="q64_second_need" value="첨삭">
+                ⑤ 첨삭·피드백
+              </label>
+
+              <label class="option">
+                <input type="checkbox" name="q64_second_need" value="파이널">
+                ⑥ 파이널
+              </label>
+            </div>
+          </section>
+
+
+          <section class="card full">
+            <h2 class="question">
+              <span class="num">8.</span>
+              앞으로 가장 이용하고 싶은 상품 형태는 무엇인가요?
+            </h2>
+
+            <div class="options">
+              <label class="option">
+                <input type="radio" name="q64_second_product" value="전과정 패키지">
+                ① 전과정 패키지
+              </label>
+
+              <label class="option">
+                <input type="radio" name="q64_second_product" value="선택형 PASS">
+                ② 필요한 과목·강좌만 선택하는 PASS
+              </label>
+
+              <label class="option">
+                <input type="radio" name="q64_second_product" value="GS PASS">
+                ③ GS 중심 PASS
+              </label>
+
+              <label class="option">
+                <input type="radio" name="q64_second_product" value="단강좌">
+                ④ 단강좌
+              </label>
+
+              <label class="option">
+                <input type="radio" name="q64_second_product" value="미정">
+                ⑤ 아직 모르겠음
+              </label>
+            </div>
+          </section>
+
+        </div>
+
+
+        <!-- 현재 준비 안 함 -->
+
+        <div id="trackNone" class="sub-branch">
+
+          <section class="card full">
+            <h2 class="question">
+              <span class="num">3.</span>
+              현재 시험을 준비하고 있지 않은 가장 큰 이유는 무엇인가요?
+            </h2>
+
+            <div class="options">
+              <label class="option">
+                <input type="radio" name="q_none_reason" value="시험 합격">
+                ① 시험 합격
+              </label>
+
+              <label class="option">
+                <input type="radio" name="q_none_reason" value="잠시 중단">
+                ② 잠시 수험을 중단함
+              </label>
+
+              <label class="option">
+                <input type="radio" name="q_none_reason" value="진로 변경">
+                ③ 진로를 변경함
+              </label>
+
+              <label class="option">
+                <input type="radio" name="q_none_reason" value="기타">
+                ④ 기타
+              </label>
+            </div>
           </section>
 
         </div>
@@ -1229,461 +1605,817 @@
       </div>
 
 
+      <!-- =============================
+           공통 문항
+      ============================== -->
 
-      <div class="submit-area">
+      <div id="commonQuestions" class="branch">
 
-        <button
-          type="submit"
-          class="submit-btn"
-        >
-          설문 제출하기
-        </button>
+        <div class="divider">
+          공통 문항
+        </div>
+
+
+        <section class="card">
+          <h2 class="question">
+            <span class="num">공통 1.</span>
+            현재 또는 최근 수험 기간 중 다른 학원 강의·상품을 함께 이용한 경험이 있나요?
+          </h2>
+
+          <div class="options">
+            <label class="option">
+              <input type="radio" name="common_other_academy" value="yes">
+              ① 예
+            </label>
+
+            <label class="option">
+              <input type="radio" name="common_other_academy" value="no">
+              ② 아니오
+            </label>
+          </div>
+        </section>
+
+
+        <section id="otherAcademyDetail" class="card conditional">
+          <h2 class="question">
+            <span class="num">공통 1-1.</span>
+            함께 이용한 학원·강사·강좌가 있다면 자유롭게 적어 주세요.
+          </h2>
+
+          <input
+            type="text"
+            class="text-input"
+            name="common_other_academy_detail"
+            placeholder="예: ○○학원 / ○○강사 / 민법 기본이론"
+          >
+        </section>
+
+
+        <section class="card full">
+          <h2 class="question">
+            <span class="num">공통 2.</span>
+            강의나 상품을 선택할 때 중요하게 고려하는 요소를 모두 선택해 주세요.
+            <span class="sub">복수선택 가능</span>
+          </h2>
+
+          <div class="options">
+            <label class="option">
+              <input type="checkbox" name="common_choice_factor" value="강사">
+              ① 강사
+            </label>
+
+            <label class="option">
+              <input type="checkbox" name="common_choice_factor" value="커리큘럼">
+              ② 커리큘럼 구성
+            </label>
+
+            <label class="option">
+              <input type="checkbox" name="common_choice_factor" value="가격">
+              ③ 가격·할인
+            </label>
+
+            <label class="option">
+              <input type="checkbox" name="common_choice_factor" value="교재">
+              ④ 교재
+            </label>
+
+            <label class="option">
+              <input type="checkbox" name="common_choice_factor" value="후기">
+              ⑤ 수강후기·합격후기
+            </label>
+
+            <label class="option">
+              <input type="checkbox" name="common_choice_factor" value="학습관리">
+              ⑥ 학습관리·서비스
+            </label>
+
+            <label class="option">
+              <input type="checkbox" name="common_choice_factor" value="수강방식">
+              ⑦ 온라인·현장 등 수강 방식
+            </label>
+          </div>
+        </section>
+
+
+        <section class="card">
+          <h2 class="question">
+            <span class="num">공통 3.</span>
+            메가변리사 이용 전반에 얼마나 만족하시나요?
+          </h2>
+
+          <div class="options">
+            <label class="option">
+              <input type="radio" name="common_satisfaction" value="매우 만족">
+              ① 매우 만족
+            </label>
+
+            <label class="option">
+              <input type="radio" name="common_satisfaction" value="만족">
+              ② 만족
+            </label>
+
+            <label class="option">
+              <input type="radio" name="common_satisfaction" value="보통">
+              ③ 보통
+            </label>
+
+            <label class="option">
+              <input type="radio" name="common_satisfaction" value="불만족">
+              ④ 불만족
+            </label>
+
+            <label class="option">
+              <input type="radio" name="common_satisfaction" value="매우 불만족">
+              ⑤ 매우 불만족
+            </label>
+          </div>
+        </section>
+
+
+        <section class="card">
+          <h2 class="question">
+            <span class="num">공통 4.</span>
+            주변 수험생에게 메가변리사를 추천할 의향이 어느 정도인가요?
+          </h2>
+
+          <div class="options">
+            <label class="option">
+              <input type="radio" name="common_recommend" value="매우 높음">
+              ① 매우 높음
+            </label>
+
+            <label class="option">
+              <input type="radio" name="common_recommend" value="높음">
+              ② 높음
+            </label>
+
+            <label class="option">
+              <input type="radio" name="common_recommend" value="보통">
+              ③ 보통
+            </label>
+
+            <label class="option">
+              <input type="radio" name="common_recommend" value="낮음">
+              ④ 낮음
+            </label>
+
+            <label class="option">
+              <input type="radio" name="common_recommend" value="매우 낮음">
+              ⑤ 매우 낮음
+            </label>
+          </div>
+        </section>
+
+
+        <section class="card full">
+          <h2 class="question">
+            <span class="num">공통 5.</span>
+            수강한 강사·강좌 중 좋았던 점 또는 아쉬웠던 점이 있다면 자유롭게 적어 주세요.
+          </h2>
+
+          <textarea
+            class="text-area js-count"
+            name="common_teacher_feedback"
+            maxlength="500"
+            placeholder="강사명 또는 강좌명과 함께 구체적으로 작성해 주세요."
+          ></textarea>
+
+          <div class="char-count">
+            <span>0</span>/500
+          </div>
+        </section>
+
+
+        <section class="card full">
+          <h2 class="question">
+            <span class="num">공통 6.</span>
+            앞으로 메가변리사에서 개선되거나 새롭게 제공되었으면 하는 강의·상품·서비스가 있다면 자유롭게 적어 주세요.
+          </h2>
+
+          <textarea
+            class="text-area js-count"
+            name="common_improvement"
+            maxlength="500"
+            placeholder="자유롭게 의견을 남겨 주세요."
+          ></textarea>
+
+          <div class="char-count">
+            <span>0</span>/500
+          </div>
+        </section>
 
       </div>
 
-    </form>
+    </div>
 
-  </main>
 
+    <div class="submit-area">
+      <button type="submit" class="submit-btn">
+        설문 제출하기
+      </button>
+    </div>
 
+  </form>
 
-  <script>
+</main>
 
-    /* =========================
-       63회 응시 여부 분기
-    ========================== */
 
-    const q63Radios =
-      document.querySelectorAll(
-        'input[name="q63_exam"]'
-      );
+<script>
 
-    const branch63 =
-      document.getElementById(
-        'branch63'
-      );
+  /* =============================
+     메인 분기
+  ============================== */
 
-    const branchNon63 =
-      document.getElementById(
-        'branchNon63'
-      );
+  const branch63 =
+    document.getElementById('branch63');
 
+  const branchNon63 =
+    document.getElementById('branchNon63');
 
-    q63Radios.forEach(
-      radio => {
+  const commonQuestions =
+    document.getElementById('commonQuestions');
 
-        radio.addEventListener(
-          'change',
-          () => {
+  const trackFirst =
+    document.getElementById('trackFirst');
 
-            const value =
-              document.querySelector(
-                'input[name="q63_exam"]:checked'
-              )?.value;
+  const trackSecond =
+    document.getElementById('trackSecond');
 
+  const trackNone =
+    document.getElementById('trackNone');
 
-            branch63.classList.remove(
-              'active'
-            );
 
-            branchNon63.classList.remove(
-              'active'
-            );
+  document
+    .querySelectorAll('input[name="q63_exam"]')
+    .forEach(radio => {
 
+      radio.addEventListener('change', () => {
 
-            if (
-              value === 'yes'
-            ) {
+        const value =
+          document.querySelector(
+            'input[name="q63_exam"]:checked'
+          )?.value;
 
-              branch63.classList.add(
-                'active'
-              );
 
-            }
+        branch63.classList.remove('active');
 
+        branchNon63.classList.remove('active');
 
-            if (
-              value === 'no'
-            ) {
+        commonQuestions.classList.remove('active');
 
-              branchNon63.classList.add(
-                'active'
-              );
+        trackFirst.classList.remove('active');
 
-            }
+        trackSecond.classList.remove('active');
 
-          }
-        );
+        trackNone.classList.remove('active');
 
-      }
-    );
 
+        if (value === 'yes') {
 
+          branch63.classList.add('active');
 
-    /* =========================
-       Q5 학습기간 선택
-    ========================== */
-
-    document
-      .querySelectorAll(
-        '.range-row'
-      )
-      .forEach(
-        row => {
-
-          const months =
-            [...row.querySelectorAll('.month')];
-
-
-          const noneBtn =
-            row.querySelector(
-              '.none-btn'
-            );
-
-
-          const field =
-            row.dataset.field;
-
-
-          const startInput =
-            row.querySelector(
-              `input[name="${field}_start"]`
-            );
-
-
-          const endInput =
-            row.querySelector(
-              `input[name="${field}_end"]`
-            );
-
-
-          let startIndex = null;
-
-          let endIndex = null;
-
-
-
-          function paint() {
-
-            months.forEach(
-              (btn, idx) => {
-
-                btn.classList.remove(
-                  'pending',
-                  'in-range',
-                  'endpoint'
-                );
-
-
-                if (
-                  startIndex !== null &&
-                  endIndex === null &&
-                  idx === startIndex
-                ) {
-
-                  btn.classList.add(
-                    'pending'
-                  );
-
-                }
-
-
-                if (
-                  startIndex !== null &&
-                  endIndex !== null
-                ) {
-
-                  const from =
-                    Math.min(
-                      startIndex,
-                      endIndex
-                    );
-
-
-                  const to =
-                    Math.max(
-                      startIndex,
-                      endIndex
-                    );
-
-
-                  if (
-                    idx >= from &&
-                    idx <= to
-                  ) {
-
-                    btn.classList.add(
-                      'in-range'
-                    );
-
-                  }
-
-
-                  if (
-                    idx === from ||
-                    idx === to
-                  ) {
-
-                    btn.classList.add(
-                      'endpoint'
-                    );
-
-                  }
-
-                }
-
-              }
-            );
-
-          }
-
-
-
-          function clearNone() {
-
-            row.classList.remove(
-              'is-none'
-            );
-
-            noneBtn.classList.remove(
-              'active'
-            );
-
-            noneBtn.textContent =
-              '선택';
-
-          }
-
-
-
-          months.forEach(
-            btn => {
-
-              btn.addEventListener(
-                'click',
-                () => {
-
-                  clearNone();
-
-
-                  const idx =
-                    Number(
-                      btn.dataset.index
-                    );
-
-
-                  /* 이미 선택이 끝난 뒤
-                     다시 클릭하면 새 기간 선택 */
-
-                  if (
-                    startIndex !== null &&
-                    endIndex !== null
-                  ) {
-
-                    startIndex = idx;
-
-                    endIndex = null;
-
-
-                    startInput.value =
-                      btn.dataset.label;
-
-
-                    endInput.value = '';
-
-
-                    paint();
-
-                    return;
-
-                  }
-
-
-
-                  /* 첫 번째 클릭 */
-
-                  if (
-                    startIndex === null
-                  ) {
-
-                    startIndex = idx;
-
-
-                    startInput.value =
-                      btn.dataset.label;
-
-
-                    endInput.value = '';
-
-
-                    paint();
-
-                    return;
-
-                  }
-
-
-
-                  /* 두 번째 클릭 */
-
-                  endIndex = idx;
-
-
-                  const from =
-                    Math.min(
-                      startIndex,
-                      endIndex
-                    );
-
-
-                  const to =
-                    Math.max(
-                      startIndex,
-                      endIndex
-                    );
-
-
-                  startIndex = from;
-
-                  endIndex = to;
-
-
-                  startInput.value =
-                    months[from]
-                      .dataset.label;
-
-
-                  endInput.value =
-                    months[to]
-                      .dataset.label;
-
-
-                  paint();
-
-                }
-              );
-
-            }
-          );
-
-
-
-          /* 학습하지 않음 */
-
-          noneBtn.addEventListener(
-            'click',
-            () => {
-
-              startIndex = null;
-
-              endIndex = null;
-
-
-              startInput.value =
-                '학습하지 않음';
-
-
-              endInput.value =
-                '학습하지 않음';
-
-
-              months.forEach(
-                btn => {
-
-                  btn.classList.remove(
-                    'pending',
-                    'in-range',
-                    'endpoint'
-                  );
-
-                }
-              );
-
-
-              row.classList.add(
-                'is-none'
-              );
-
-
-              noneBtn.classList.add(
-                'active'
-              );
-
-
-              noneBtn.textContent =
-                '선택됨';
-
-            }
-          );
+          commonQuestions.classList.add('active');
 
         }
-      );
 
 
+        if (value === 'no') {
 
-    /* =========================
-       테스트 제출
-    ========================== */
+          branchNon63.classList.add('active');
 
-    document
-      .getElementById(
-        'surveyForm'
-      )
-      .addEventListener(
-        'submit',
-        function(e) {
+          commonQuestions.classList.add('active');
 
-          e.preventDefault();
+        }
+
+      });
+
+    });
 
 
-          const exam =
-            document.querySelector(
-              'input[name="q63_exam"]:checked'
-            );
+  /* =============================
+     비응시자 세부 분기
+  ============================== */
+
+  document
+    .querySelectorAll('input[name="current_track"]')
+    .forEach(radio => {
+
+      radio.addEventListener('change', () => {
+
+        trackFirst.classList.remove('active');
+
+        trackSecond.classList.remove('active');
+
+        trackNone.classList.remove('active');
 
 
-          if (!exam) {
+        const value =
+          document.querySelector(
+            'input[name="current_track"]:checked'
+          )?.value;
 
-            alert(
-              '제63회 2차 시험 응시 여부를 선택해 주세요.'
-            );
+
+        if (value === 'first') {
+          trackFirst.classList.add('active');
+        }
+
+        if (value === 'second') {
+          trackSecond.classList.add('active');
+        }
+
+        if (value === 'none') {
+          trackNone.classList.add('active');
+        }
+
+      });
+
+    });
+
+
+  /* =============================
+     Q5 기간 선택
+  ============================== */
+
+  document
+    .querySelectorAll('.range-row')
+    .forEach(row => {
+
+      const months =
+        [...row.querySelectorAll('.month')];
+
+      const noneCheck =
+        row.querySelector('.none-check');
+
+      const field =
+        row.dataset.field;
+
+      const startInput =
+        row.querySelector(
+          `input[name="${field}_start"]`
+        );
+
+      const endInput =
+        row.querySelector(
+          `input[name="${field}_end"]`
+        );
+
+
+      let startIndex = null;
+
+      let endIndex = null;
+
+
+      function paint() {
+
+        months.forEach((btn, idx) => {
+
+          btn.classList.remove(
+            'pending',
+            'in-range',
+            'endpoint'
+          );
+
+
+          if (
+            startIndex !== null &&
+            endIndex === null &&
+            idx === startIndex
+          ) {
+
+            btn.classList.add('pending');
+
+          }
+
+
+          if (
+            startIndex !== null &&
+            endIndex !== null
+          ) {
+
+            const from =
+              Math.min(startIndex, endIndex);
+
+            const to =
+              Math.max(startIndex, endIndex);
+
+
+            if (
+              idx >= from &&
+              idx <= to
+            ) {
+
+              btn.classList.add('in-range');
+
+            }
+
+
+            if (
+              idx === from ||
+              idx === to
+            ) {
+
+              btn.classList.add('endpoint');
+
+            }
+
+          }
+
+        });
+
+      }
+
+
+      function clearNone() {
+
+        noneCheck.checked = false;
+
+        row.classList.remove('is-none');
+
+
+        if (
+          startInput.value === '학습하지 않음'
+        ) {
+
+          startInput.value = '';
+
+        }
+
+
+        if (
+          endInput.value === '학습하지 않음'
+        ) {
+
+          endInput.value = '';
+
+        }
+
+      }
+
+
+      months.forEach(btn => {
+
+        btn.addEventListener('click', () => {
+
+          clearNone();
+
+
+          const idx =
+            Number(btn.dataset.index);
+
+
+          /* 이미 기간 선택 완료 상태면
+             새 기간 선택 시작 */
+
+          if (
+            startIndex !== null &&
+            endIndex !== null
+          ) {
+
+            startIndex = idx;
+
+            endIndex = null;
+
+            startInput.value =
+              btn.dataset.label;
+
+            endInput.value = '';
+
+            paint();
 
             return;
 
           }
 
 
-          if (
-            exam.value === 'yes'
-          ) {
+          /* 첫 번째 클릭 */
 
-            const result =
-              document.querySelector(
-                'input[name="q63_result"]:checked'
-              );
+          if (startIndex === null) {
 
+            startIndex = idx;
 
-            if (!result) {
+            startInput.value =
+              btn.dataset.label;
 
-              alert(
-                '제63회 2차 시험 결과를 선택해 주세요.'
-              );
+            endInput.value = '';
 
-              return;
+            paint();
 
-            }
+            return;
 
           }
 
 
-          alert(
-            '테스트용 설문입니다.'
-          );
+          /* 두 번째 클릭 */
+
+          endIndex = idx;
+
+
+          const from =
+            Math.min(startIndex, endIndex);
+
+          const to =
+            Math.max(startIndex, endIndex);
+
+
+          startIndex = from;
+
+          endIndex = to;
+
+
+          startInput.value =
+            months[from].dataset.label;
+
+          endInput.value =
+            months[to].dataset.label;
+
+
+          paint();
+
+        });
+
+      });
+
+
+      /* 학습하지 않음 체크 */
+
+      noneCheck.addEventListener('change', () => {
+
+        if (noneCheck.checked) {
+
+          startIndex = null;
+
+          endIndex = null;
+
+
+          startInput.value =
+            '학습하지 않음';
+
+          endInput.value =
+            '학습하지 않음';
+
+
+          months.forEach(btn => {
+
+            btn.classList.remove(
+              'pending',
+              'in-range',
+              'endpoint'
+            );
+
+          });
+
+
+          row.classList.add('is-none');
+
+        } else {
+
+          startInput.value = '';
+
+          endInput.value = '';
+
+          row.classList.remove('is-none');
 
         }
+
+      });
+
+    });
+
+
+  /* =============================
+     GS 세부 문항
+  ============================== */
+
+  const gsDetailCards = [
+    document.getElementById('gsModeCard'),
+    document.getElementById('gsTypeCard'),
+    document.getElementById('gsFactorCard')
+  ];
+
+
+  document
+    .querySelectorAll('input[name="q63_gs_count"]')
+    .forEach(radio => {
+
+      radio.addEventListener('change', () => {
+
+        const value =
+          document.querySelector(
+            'input[name="q63_gs_count"]:checked'
+          )?.value;
+
+
+        gsDetailCards.forEach(card => {
+
+          card.classList.toggle(
+            'active',
+            value && value !== '미수강'
+          );
+
+        });
+
+      });
+
+    });
+
+
+  /* =============================
+     타학원 상세
+  ============================== */
+
+  const otherAcademyDetail =
+    document.getElementById(
+      'otherAcademyDetail'
+    );
+
+
+  document
+    .querySelectorAll(
+      'input[name="common_other_academy"]'
+    )
+    .forEach(radio => {
+
+      radio.addEventListener('change', () => {
+
+        const value =
+          document.querySelector(
+            'input[name="common_other_academy"]:checked'
+          )?.value;
+
+
+        otherAcademyDetail.classList.toggle(
+          'active',
+          value === 'yes'
+        );
+
+      });
+
+    });
+
+
+  /* =============================
+     이용하지 않음 단독 선택
+  ============================== */
+
+  function makeExclusiveNone(
+    groupName,
+    noneValue = '이용하지 않음'
+  ) {
+
+    const inputs =
+      [...document.querySelectorAll(
+        `input[name="${groupName}"]`
+      )];
+
+
+    inputs.forEach(input => {
+
+      input.addEventListener('change', () => {
+
+        if (
+          input.value === noneValue &&
+          input.checked
+        ) {
+
+          inputs.forEach(other => {
+
+            if (other !== input) {
+              other.checked = false;
+            }
+
+          });
+
+        }
+
+        else if (input.checked) {
+
+          const none =
+            inputs.find(
+              item => item.value === noneValue
+            );
+
+
+          if (none) {
+            none.checked = false;
+          }
+
+        }
+
+      });
+
+    });
+
+  }
+
+
+  makeExclusiveNone('q63_mega');
+
+  makeExclusiveNone('q64_first_mega');
+
+  makeExclusiveNone('q64_second_mega');
+
+
+  /* =============================
+     글자 수
+  ============================== */
+
+  document
+    .querySelectorAll('.js-count')
+    .forEach(textarea => {
+
+      const count =
+        textarea.parentElement.querySelector(
+          '.char-count span'
+        );
+
+
+      textarea.addEventListener('input', () => {
+
+        count.textContent =
+          textarea.value.length;
+
+      });
+
+    });
+
+
+  /* =============================
+     테스트 제출
+  ============================== */
+
+  document
+    .getElementById('surveyForm')
+    .addEventListener('submit', function(e) {
+
+      e.preventDefault();
+
+
+      const exam =
+        document.querySelector(
+          'input[name="q63_exam"]:checked'
+        );
+
+
+      if (!exam) {
+
+        alert(
+          '제63회 2차 시험 응시 여부를 선택해 주세요.'
+        );
+
+        return;
+
+      }
+
+
+      if (exam.value === 'yes') {
+
+        const result =
+          document.querySelector(
+            'input[name="q63_result"]:checked'
+          );
+
+
+        if (!result) {
+
+          alert(
+            '제63회 2차 시험 결과를 선택해 주세요.'
+          );
+
+          return;
+
+        }
+
+      }
+
+
+      if (exam.value === 'no') {
+
+        const track =
+          document.querySelector(
+            'input[name="current_track"]:checked'
+          );
+
+
+        if (!track) {
+
+          alert(
+            '현재 준비 중이거나 가장 최근 준비한 시험 단계를 선택해 주세요.'
+          );
+
+          return;
+
+        }
+
+      }
+
+
+      alert(
+        '테스트용 설문입니다. 실제 저장 기능은 연결되어 있지 않습니다.'
       );
 
-  </script>
+    });
+
+</script>
 
 </body>
 </html>
