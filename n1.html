@@ -181,14 +181,15 @@
       display: none;
     }
 
-.branch.active,
-.sub-branch.active {
-  display: contents;
-}
+    .branch.active,
+    .sub-branch.active {
+      display: contents;
+    }
 
-.conditional.active {
-  display: block;
-}
+    .conditional.active {
+      display: block;
+    }
+
     .divider {
       grid-column: 1 / -1;
       margin: 3px 0 -2px;
@@ -204,9 +205,33 @@
     ============================== */
 
     .range-guide {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
       margin: -2px 0 12px;
       font-size: 11px;
       color: #777;
+    }
+
+    .range-guide span {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .range-guide .dot {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .start-dot {
+      background: #315fd3;
+    }
+
+    .range-dot {
+      background: #dfe7ff;
     }
 
     .range-scroll {
@@ -416,10 +441,7 @@
 
     <div class="grid">
 
-      <!-- =============================
-           Q1
-      ============================== -->
-
+      <!-- Q1 -->
       <section class="card full">
         <h2 class="question">
           <span class="num">1.</span>
@@ -440,11 +462,7 @@
         </div>
       </section>
 
-
-      <!-- =============================
-           63회 2차 응시자
-      ============================== -->
-
+      <!-- 63회 2차 응시자 -->
       <div id="branch63" class="branch">
 
         <div class="divider">
@@ -452,7 +470,6 @@
         </div>
 
         <!-- Q2 -->
-
         <section class="card full">
           <h2 class="question">
             <span class="num">2.</span>
@@ -480,9 +497,7 @@
           </div>
         </section>
 
-
         <!-- Q3 -->
-
         <section class="card">
           <h2 class="question">
             <span class="num">3.</span>
@@ -512,9 +527,7 @@
           </div>
         </section>
 
-
         <!-- Q4 -->
-
         <section class="card">
           <h2 class="question">
             <span class="num">4.</span>
@@ -549,9 +562,7 @@
           </div>
         </section>
 
-
         <!-- Q5 -->
-
         <section class="card full">
           <h2 class="question">
             <span class="num">5.</span>
@@ -565,11 +576,18 @@
           </h2>
 
           <div class="range-guide">
-            월을 두 번 선택하면 해당 기간이 표시됩니다.
+            <span>
+              <i class="dot start-dot"></i>
+              시작·종료 월
+            </span>
+
+            <span>
+              <i class="dot range-dot"></i>
+              선택된 학습기간
+            </span>
           </div>
 
           <div class="range-scroll">
-
             <table class="range-table">
 
               <thead>
@@ -593,21 +611,14 @@
 
               <tbody>
 
-                <!-- 기본이론 -->
-
                 <tr class="range-row" data-field="q63_basic">
-
                   <td class="stage-name">
                     2차 기본이론<br>
                     <small>(구 이론완성)</small>
                   </td>
 
                   <td class="none-cell">
-                    <input
-                      type="checkbox"
-                      class="none-check"
-                      aria-label="2차 기본이론 학습하지 않음"
-                    >
+                    <input type="checkbox" class="none-check" aria-label="2차 기본이론 학습하지 않음">
                   </td>
 
                   <td colspan="12" class="months-cell">
@@ -629,25 +640,16 @@
                     <input type="hidden" name="q63_basic_start">
                     <input type="hidden" name="q63_basic_end">
                   </td>
-
                 </tr>
 
-
-                <!-- 사례 판례 기출 -->
-
                 <tr class="range-row" data-field="q63_case">
-
                   <td class="stage-name">
                     사례·판례·기출<br>
                     <small>(구 답안작성)</small>
                   </td>
 
                   <td class="none-cell">
-                    <input
-                      type="checkbox"
-                      class="none-check"
-                      aria-label="사례 판례 기출 학습하지 않음"
-                    >
+                    <input type="checkbox" class="none-check" aria-label="사례 판례 기출 학습하지 않음">
                   </td>
 
                   <td colspan="12" class="months-cell">
@@ -669,24 +671,15 @@
                     <input type="hidden" name="q63_case_start">
                     <input type="hidden" name="q63_case_end">
                   </td>
-
                 </tr>
 
-
-                <!-- GS -->
-
                 <tr class="range-row" data-field="q63_gs">
-
                   <td class="stage-name">
                     GS
                   </td>
 
                   <td class="none-cell">
-                    <input
-                      type="checkbox"
-                      class="none-check"
-                      aria-label="GS 학습하지 않음"
-                    >
+                    <input type="checkbox" class="none-check" aria-label="GS 학습하지 않음">
                   </td>
 
                   <td colspan="12" class="months-cell">
@@ -708,24 +701,15 @@
                     <input type="hidden" name="q63_gs_start">
                     <input type="hidden" name="q63_gs_end">
                   </td>
-
                 </tr>
 
-
-                <!-- 파이널 -->
-
                 <tr class="range-row" data-field="q63_final">
-
                   <td class="stage-name">
                     2차 파이널
                   </td>
 
                   <td class="none-cell">
-                    <input
-                      type="checkbox"
-                      class="none-check"
-                      aria-label="2차 파이널 학습하지 않음"
-                    >
+                    <input type="checkbox" class="none-check" aria-label="2차 파이널 학습하지 않음">
                   </td>
 
                   <td colspan="12" class="months-cell">
@@ -747,19 +731,14 @@
                     <input type="hidden" name="q63_final_start">
                     <input type="hidden" name="q63_final_end">
                   </td>
-
                 </tr>
 
               </tbody>
-
             </table>
-
           </div>
         </section>
 
-
         <!-- Q6 -->
-
         <section class="card full">
           <h2 class="question">
             <span class="num">6.</span>
@@ -805,9 +784,7 @@
           </div>
         </section>
 
-
         <!-- Q7 -->
-
         <section class="card">
           <h2 class="question">
             <span class="num">7.</span>
@@ -837,9 +814,7 @@
           </div>
         </section>
 
-
         <!-- Q8 -->
-
         <section id="gsModeCard" class="card conditional">
           <h2 class="question">
             <span class="num">8.</span>
@@ -864,9 +839,7 @@
           </div>
         </section>
 
-
         <!-- Q9 -->
-
         <section id="gsTypeCard" class="card conditional">
           <h2 class="question">
             <span class="num">9.</span>
@@ -892,9 +865,7 @@
           </div>
         </section>
 
-
         <!-- Q10 -->
-
         <section id="gsFactorCard" class="card full conditional">
           <h2 class="question">
             <span class="num">10.</span>
@@ -935,9 +906,7 @@
           </div>
         </section>
 
-
         <!-- Q11 -->
-
         <section class="card full">
           <h2 class="question">
             <span class="num">11.</span>
@@ -978,9 +947,7 @@
           </div>
         </section>
 
-
         <!-- Q12 -->
-
         <section class="card full">
           <h2 class="question">
             <span class="num">12.</span>
@@ -1023,9 +990,7 @@
           </div>
         </section>
 
-
         <!-- Q13 -->
-
         <section class="card">
           <h2 class="question">
             <span class="num">13.</span>
@@ -1055,9 +1020,7 @@
           </div>
         </section>
 
-
         <!-- Q14 -->
-
         <section class="card">
           <h2 class="question">
             <span class="num">14.</span>
@@ -1100,11 +1063,7 @@
 
       </div>
 
-
-      <!-- =============================
-           63회 2차 비응시자
-      ============================== -->
-
+      <!-- 63회 2차 비응시자 -->
       <div id="branchNon63" class="branch">
 
         <div class="divider">
@@ -1135,9 +1094,7 @@
           </div>
         </section>
 
-
         <!-- 64회 1차 -->
-
         <div id="trackFirst" class="sub-branch">
 
           <section class="card">
@@ -1163,7 +1120,6 @@
               </label>
             </div>
           </section>
-
 
           <section class="card">
             <h2 class="question">
@@ -1199,7 +1155,6 @@
             </div>
           </section>
 
-
           <section class="card full">
             <h2 class="question">
               <span class="num">5.</span>
@@ -1234,7 +1189,6 @@
               </label>
             </div>
           </section>
-
 
           <section class="card full">
             <h2 class="question">
@@ -1276,7 +1230,6 @@
             </div>
           </section>
 
-
           <section class="card full">
             <h2 class="question">
               <span class="num">7.</span>
@@ -1317,7 +1270,6 @@
             </div>
           </section>
 
-
           <section class="card full">
             <h2 class="question">
               <span class="num">8.</span>
@@ -1349,9 +1301,7 @@
 
         </div>
 
-
         <!-- 64회 2차 -->
-
         <div id="trackSecond" class="sub-branch">
 
           <section class="card">
@@ -1377,7 +1327,6 @@
               </label>
             </div>
           </section>
-
 
           <section class="card">
             <h2 class="question">
@@ -1413,7 +1362,6 @@
             </div>
           </section>
 
-
           <section class="card full">
             <h2 class="question">
               <span class="num">5.</span>
@@ -1443,7 +1391,6 @@
               </label>
             </div>
           </section>
-
 
           <section class="card full">
             <h2 class="question">
@@ -1490,7 +1437,6 @@
             </div>
           </section>
 
-
           <section class="card full">
             <h2 class="question">
               <span class="num">7.</span>
@@ -1531,7 +1477,6 @@
             </div>
           </section>
 
-
           <section class="card full">
             <h2 class="question">
               <span class="num">8.</span>
@@ -1568,9 +1513,7 @@
 
         </div>
 
-
         <!-- 현재 준비 안 함 -->
-
         <div id="trackNone" class="sub-branch">
 
           <section class="card full">
@@ -1606,17 +1549,12 @@
 
       </div>
 
-
-      <!-- =============================
-           공통 문항
-      ============================== -->
-
+      <!-- 공통 문항 -->
       <div id="commonQuestions" class="branch">
 
         <div class="divider">
           공통 문항
         </div>
-
 
         <section class="card">
           <h2 class="question">
@@ -1637,7 +1575,6 @@
           </div>
         </section>
 
-
         <section id="otherAcademyDetail" class="card conditional">
           <h2 class="question">
             <span class="num">공통 1-1.</span>
@@ -1651,7 +1588,6 @@
             placeholder="예: ○○학원 / ○○강사 / 민법 기본이론"
           >
         </section>
-
 
         <section class="card full">
           <h2 class="question">
@@ -1698,7 +1634,6 @@
           </div>
         </section>
 
-
         <section class="card">
           <h2 class="question">
             <span class="num">공통 3.</span>
@@ -1732,7 +1667,6 @@
             </label>
           </div>
         </section>
-
 
         <section class="card">
           <h2 class="question">
@@ -1768,7 +1702,6 @@
           </div>
         </section>
 
-
         <section class="card full">
           <h2 class="question">
             <span class="num">공통 5.</span>
@@ -1786,7 +1719,6 @@
             <span>0</span>/500
           </div>
         </section>
-
 
         <section class="card full">
           <h2 class="question">
@@ -1810,7 +1742,6 @@
 
     </div>
 
-
     <div class="submit-area">
       <button type="submit" class="submit-btn">
         설문 제출하기
@@ -1821,31 +1752,19 @@
 
 </main>
 
-
 <script>
 
   /* =============================
      메인 분기
   ============================== */
 
-  const branch63 =
-    document.getElementById('branch63');
+  const branch63 = document.getElementById('branch63');
+  const branchNon63 = document.getElementById('branchNon63');
+  const commonQuestions = document.getElementById('commonQuestions');
 
-  const branchNon63 =
-    document.getElementById('branchNon63');
-
-  const commonQuestions =
-    document.getElementById('commonQuestions');
-
-  const trackFirst =
-    document.getElementById('trackFirst');
-
-  const trackSecond =
-    document.getElementById('trackSecond');
-
-  const trackNone =
-    document.getElementById('trackNone');
-
+  const trackFirst = document.getElementById('trackFirst');
+  const trackSecond = document.getElementById('trackSecond');
+  const trackNone = document.getElementById('trackNone');
 
   document
     .querySelectorAll('input[name="q63_exam"]')
@@ -1858,35 +1777,22 @@
             'input[name="q63_exam"]:checked'
           )?.value;
 
-
         branch63.classList.remove('active');
-
         branchNon63.classList.remove('active');
-
         commonQuestions.classList.remove('active');
 
         trackFirst.classList.remove('active');
-
         trackSecond.classList.remove('active');
-
         trackNone.classList.remove('active');
 
-
         if (value === 'yes') {
-
           branch63.classList.add('active');
-
           commonQuestions.classList.add('active');
-
         }
 
-
         if (value === 'no') {
-
           branchNon63.classList.add('active');
-
           commonQuestions.classList.add('active');
-
         }
 
       });
@@ -1905,17 +1811,13 @@
       radio.addEventListener('change', () => {
 
         trackFirst.classList.remove('active');
-
         trackSecond.classList.remove('active');
-
         trackNone.classList.remove('active');
-
 
         const value =
           document.querySelector(
             'input[name="current_track"]:checked'
           )?.value;
-
 
         if (value === 'first') {
           trackFirst.classList.add('active');
@@ -1961,11 +1863,8 @@
           `input[name="${field}_end"]`
         );
 
-
       let startIndex = null;
-
       let endIndex = null;
-
 
       function paint() {
 
@@ -1977,17 +1876,13 @@
             'endpoint'
           );
 
-
           if (
             startIndex !== null &&
             endIndex === null &&
             idx === startIndex
           ) {
-
             btn.classList.add('pending');
-
           }
-
 
           if (
             startIndex !== null &&
@@ -2000,24 +1895,18 @@
             const to =
               Math.max(startIndex, endIndex);
 
-
             if (
               idx >= from &&
               idx <= to
             ) {
-
               btn.classList.add('in-range');
-
             }
-
 
             if (
               idx === from ||
               idx === to
             ) {
-
               btn.classList.add('endpoint');
-
             }
 
           }
@@ -2026,33 +1915,24 @@
 
       }
 
-
       function clearNone() {
 
         noneCheck.checked = false;
-
         row.classList.remove('is-none');
-
 
         if (
           startInput.value === '학습하지 않음'
         ) {
-
           startInput.value = '';
-
         }
-
 
         if (
           endInput.value === '학습하지 않음'
         ) {
-
           endInput.value = '';
-
         }
 
       }
-
 
       months.forEach(btn => {
 
@@ -2060,13 +1940,8 @@
 
           clearNone();
 
-
           const idx =
             Number(btn.dataset.index);
-
-
-          /* 이미 기간 선택 완료 상태면
-             새 기간 선택 시작 */
 
           if (
             startIndex !== null &&
@@ -2074,7 +1949,6 @@
           ) {
 
             startIndex = idx;
-
             endIndex = null;
 
             startInput.value =
@@ -2085,11 +1959,7 @@
             paint();
 
             return;
-
           }
-
-
-          /* 첫 번째 클릭 */
 
           if (startIndex === null) {
 
@@ -2103,14 +1973,9 @@
             paint();
 
             return;
-
           }
 
-
-          /* 두 번째 클릭 */
-
           endIndex = idx;
-
 
           const from =
             Math.min(startIndex, endIndex);
@@ -2118,11 +1983,8 @@
           const to =
             Math.max(startIndex, endIndex);
 
-
           startIndex = from;
-
           endIndex = to;
-
 
           startInput.value =
             months[from].dataset.label;
@@ -2130,24 +1992,18 @@
           endInput.value =
             months[to].dataset.label;
 
-
           paint();
 
         });
 
       });
 
-
-      /* 학습하지 않음 체크 */
-
       noneCheck.addEventListener('change', () => {
 
         if (noneCheck.checked) {
 
           startIndex = null;
-
           endIndex = null;
-
 
           startInput.value =
             '학습하지 않음';
@@ -2155,26 +2011,20 @@
           endInput.value =
             '학습하지 않음';
 
-
           months.forEach(btn => {
-
             btn.classList.remove(
               'pending',
               'in-range',
               'endpoint'
             );
-
           });
-
 
           row.classList.add('is-none');
 
         } else {
 
           startInput.value = '';
-
           endInput.value = '';
-
           row.classList.remove('is-none');
 
         }
@@ -2194,7 +2044,6 @@
     document.getElementById('gsFactorCard')
   ];
 
-
   document
     .querySelectorAll('input[name="q63_gs_count"]')
     .forEach(radio => {
@@ -2205,7 +2054,6 @@
           document.querySelector(
             'input[name="q63_gs_count"]:checked'
           )?.value;
-
 
         gsDetailCards.forEach(card => {
 
@@ -2230,7 +2078,6 @@
       'otherAcademyDetail'
     );
 
-
   document
     .querySelectorAll(
       'input[name="common_other_academy"]'
@@ -2243,7 +2090,6 @@
           document.querySelector(
             'input[name="common_other_academy"]:checked'
           )?.value;
-
 
         otherAcademyDetail.classList.toggle(
           'active',
@@ -2269,7 +2115,6 @@
         `input[name="${groupName}"]`
       )];
 
-
     inputs.forEach(input => {
 
       input.addEventListener('change', () => {
@@ -2280,11 +2125,9 @@
         ) {
 
           inputs.forEach(other => {
-
             if (other !== input) {
               other.checked = false;
             }
-
           });
 
         }
@@ -2295,7 +2138,6 @@
             inputs.find(
               item => item.value === noneValue
             );
-
 
           if (none) {
             none.checked = false;
@@ -2309,11 +2151,8 @@
 
   }
 
-
   makeExclusiveNone('q63_mega');
-
   makeExclusiveNone('q64_first_mega');
-
   makeExclusiveNone('q64_second_mega');
 
 
@@ -2330,12 +2169,9 @@
           '.char-count span'
         );
 
-
       textarea.addEventListener('input', () => {
-
         count.textContent =
           textarea.value.length;
-
       });
 
     });
@@ -2351,12 +2187,10 @@
 
       e.preventDefault();
 
-
       const exam =
         document.querySelector(
           'input[name="q63_exam"]:checked'
         );
-
 
       if (!exam) {
 
@@ -2365,9 +2199,7 @@
         );
 
         return;
-
       }
-
 
       if (exam.value === 'yes') {
 
@@ -2376,7 +2208,6 @@
             'input[name="q63_result"]:checked'
           );
 
-
         if (!result) {
 
           alert(
@@ -2384,11 +2215,9 @@
           );
 
           return;
-
         }
 
       }
-
 
       if (exam.value === 'no') {
 
@@ -2397,7 +2226,6 @@
             'input[name="current_track"]:checked'
           );
 
-
         if (!track) {
 
           alert(
@@ -2405,11 +2233,9 @@
           );
 
           return;
-
         }
 
       }
-
 
       alert(
         '테스트용 설문입니다. 실제 저장 기능은 연결되어 있지 않습니다.'
