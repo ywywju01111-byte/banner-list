@@ -181,12 +181,14 @@
       display: none;
     }
 
-    .branch.active,
-    .sub-branch.active,
-    .conditional.active {
-      display: contents;
-    }
+.branch.active,
+.sub-branch.active {
+  display: contents;
+}
 
+.conditional.active {
+  display: block;
+}
     .divider {
       grid-column: 1 / -1;
       margin: 3px 0 -2px;
