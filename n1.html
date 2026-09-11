@@ -416,7 +416,22 @@
       .divider {
         grid-column: auto;
       }
-    }
+    }.select-box {
+  width: 100%;
+  height: 42px;
+  padding: 0 38px 0 12px;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  background: #fff;
+  color: #333;
+  font-size: 12px;
+  outline: none;
+  cursor: pointer;
+}
+
+.select-box:focus {
+  border-color: #315fd3;
+}
   </style>
 </head>
 
@@ -783,7 +798,27 @@
             </label>
           </div>
         </section>
+<!-- Q6-1 -->
+<section class="card full">
+  <h2 class="question">
+    <span class="num">6-1.</span>
+    이용한 상품·강좌 중 가장 만족도가 높았던 상품·강좌 1개를 선택해 주세요.
+    <span class="sub">
+      제63회 2차 시험을 준비하며 이용한 상품·강좌를 기준으로 선택해 주세요.
+    </span>
+  </h2>
 
+  <select class="select-box" name="q63_best_product">
+    <option value="">상품·강좌를 선택해 주세요.</option>
+    <option value="선택안함">선택안함</option>
+    <option value="예시1">[온라인GS] 특허법 실전 GS</option>
+    <option value="예시2">[현장GS] 상표법 리얼타임 GS</option>
+    <option value="예시3">[단강좌] 민사소송법 2차 기본이론</option>
+    <option value="예시4">[단강좌] 특허법 사례·판례·기출</option>
+    <option value="예시5">[PASS] 2차 선택형 T-PASS</option>
+    <option value="예시6">[파이널] 2차 파이널 모의고사</option>
+  </select>
+</section>
         <!-- Q7 -->
         <section class="card">
           <h2 class="question">
