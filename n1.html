@@ -1587,37 +1587,52 @@
 
         </div>
 
-        <!-- 현재 준비 안 함 -->
-        <div id="trackNone" class="sub-branch">
+<!-- 현재 준비 안 함 -->
+<div id="trackNone" class="sub-branch">
 
-          <section class="card full">
-            <h2 class="question">
-              <span class="num">3.</span>
-              현재 시험을 준비하고 있지 않은 가장 큰 이유는 무엇인가요?
-            </h2>
+  <section class="card full">
+    <h2 class="question">
+      <span class="num">3.</span>
+      현재 시험을 준비하고 있지 않은 가장 큰 이유는 무엇인가요?
+    </h2>
 
-            <div class="options">
-              <label class="option">
-                <input type="radio" name="q_none_reason" value="시험 합격">
-                ① 시험 합격
-              </label>
+    <div class="options">
+      <label class="option">
+        <input type="radio" name="q_none_reason" value="시험 고민중"
+               onclick="toggleNoneEtc(false)">
+        ① 시험 준비를 아직 고민 중이라서
+      </label>
 
-              <label class="option">
-                <input type="radio" name="q_none_reason" value="잠시 중단">
-                ② 잠시 수험을 중단함
-              </label>
+      <label class="option">
+        <input type="radio" name="q_none_reason" value="잠시 중단"
+               onclick="toggleNoneEtc(false)">
+        ② 잠시 학습을 중단하고 휴식 중이라서
+      </label>
 
-              <label class="option">
-                <input type="radio" name="q_none_reason" value="진로 변경">
-                ③ 진로를 변경함
-              </label>
+      <label class="option">
+        <input type="radio" name="q_none_reason" value="진로 변경"
+               onclick="toggleNoneEtc(false)">
+        ③ 취업 등 다른 진로를 선택해서
+      </label>
 
-              <label class="option">
-                <input type="radio" name="q_none_reason" value="기타">
-                ④ 기타
-              </label>
-            </div>
-          </section>
+      <label class="option">
+        <input type="radio" name="q_none_reason" value="기타"
+               onclick="toggleNoneEtc(true)">
+        ④ 기타
+      </label>
+
+      <div id="noneEtcBox" style="display:none; margin-top:12px;">
+        <input
+          type="text"
+          name="q_none_reason_etc"
+          placeholder="기타 사유를 입력해 주세요."
+          style="width:100%; padding:12px 14px; box-sizing:border-box; border:1px solid #ddd; border-radius:6px;"
+        >
+      </div>
+    </div>
+  </section>
+
+</div>
 
         </div>
 
@@ -2316,7 +2331,17 @@
       );
 
     });
+function toggleNoneEtc(show) {
+  const box = document.getElementById('noneEtcBox');
+  const input = document.querySelector('input[name="q_none_reason_etc"]');
 
+  if (show) {
+    box.style.display = 'block';
+  } else {
+    box.style.display = 'none';
+    input.value = '';
+  }
+}
 </script>
 
 </body>
