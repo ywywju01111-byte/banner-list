@@ -2163,6 +2163,7 @@
 
   const q64SecondPlanCard = document.getElementById('q64SecondPlanCard');
   const q63FutureNeedCard = document.getElementById('q63FutureNeedCard');
+  const q63FutureNeedNum = q63FutureNeedCard.querySelector('.num');
 
   document
     .querySelectorAll('input[name="q63_result"]')
@@ -2179,6 +2180,7 @@
 
         q64SecondPlanCard.hidden = isPassed;
         q63FutureNeedCard.classList.toggle('full', isPassed);
+        q63FutureNeedNum.textContent = isPassed ? '13.' : '14.';
 
         if (isPassed) {
           document
