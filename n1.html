@@ -432,6 +432,81 @@
 .select-box:focus {
   border-color: #315fd3;
 }
+
+
+    /* =============================
+       기획안용 회원 유형 분기
+    ============================== */
+    .member-preview {
+      margin-bottom: 14px;
+      padding: 16px 18px;
+      border: 1px solid #dfe6fb;
+      border-radius: 6px;
+      background: #f7f9ff;
+    }
+
+    .member-preview-title {
+      margin: 0 0 6px;
+      font-size: 13px;
+      line-height: 1.5;
+      font-weight: 800;
+      color: #315fd3;
+    }
+
+    .member-preview-desc {
+      margin: 0;
+      font-size: 11.5px;
+      line-height: 1.6;
+      color: #666;
+    }
+
+    .member-preview-buttons {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .member-preview-btn {
+      height: 40px;
+      border: 1px solid #cbd6f5;
+      border-radius: 4px;
+      background: #fff;
+      color: #315fd3;
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .member-preview-btn.active {
+      border-color: #315fd3;
+      background: #315fd3;
+      color: #fff;
+    }
+
+    .member-survey-panel {
+      display: none;
+    }
+
+    .member-survey-panel.active {
+      display: block;
+    }
+
+    .free-inline-input {
+      width: 170px;
+      height: 30px;
+      margin-left: 4px;
+      padding: 0 8px;
+      border: 1px solid #d9d9d9;
+      border-radius: 4px;
+      font-size: 11px;
+      outline: none;
+    }
+
+    .free-inline-input:focus {
+      border-color: #315fd3;
+    }
+
   </style>
 </head>
 
@@ -447,7 +522,20 @@
 
   <h1 class="page-title">메가변리사 설문조사</h1>
 
-  <form id="surveyForm" class="survey-wrap">
+
+  <section class="member-preview" aria-label="기획안 확인용 회원 유형 분기">
+    <p class="member-preview-title">기획안 확인용 회원 유형 선택</p>
+    <p class="member-preview-desc">
+      ※ 실제 메가변리사 페이지에서는 회원의 유료/무료 여부를 자동 분류하여 서로 다른 설문 페이지로 진입합니다.<br>
+      아래 선택 영역은 기획안 내 설문 분기 확인을 위한 임시 영역입니다.
+    </p>
+    <div class="member-preview-buttons">
+      <button type="button" class="member-preview-btn" data-member-type="paid">유료회원 설문 확인</button>
+      <button type="button" class="member-preview-btn" data-member-type="free">무료회원 설문 확인</button>
+    </div>
+  </section>
+
+  <form id="surveyForm" class="survey-wrap member-survey-panel" data-member-panel="paid">
 
     <div class="intro-box">
       <strong>더 나은 강의와 학습 서비스를 위해 여러분의 의견을 들려주세요.</strong><br>
@@ -1092,7 +1180,7 @@
 
             <label class="option">
               <input type="checkbox" name="q63_future_need" value="해당 없음">
-              ⑥ 해당 없음
+              ⑤ 해당 없음
             </label>
           </div>
         </section>
@@ -1527,12 +1615,12 @@
               </label>
 
               <label class="option">
-                <input type="checkbox" name="q64_second_need" value="답안작성">
+                <input type="checkbox" name="q64_second_need" value="GS">
                 ③ GS
               </label>
 
               <label class="option">
-                <input type="checkbox" name="q64_second_need" value="GS">
+                <input type="checkbox" name="q64_second_need" value="파이널">
                 ④ 파이널
               </label>
 
@@ -1826,9 +1914,168 @@
 
   </form>
 
+  <form id="freeSurveyForm" class="survey-wrap member-survey-panel" data-member-panel="free">
+
+    <div class="intro-box">
+      <strong>메가변리사를 이용하며 느낀 의견을 들려주세요.</strong><br>
+      응답 내용은 강의, 상품, 학습 서비스 개선을 위한 자료로 활용됩니다.
+    </div>
+
+    <div class="grid">
+
+      <section class="card">
+        <h2 class="question"><span class="num">1.</span>현재 준비 중인 시험 단계를 선택해 주세요.</h2>
+        <div class="options">
+          <label class="option"><input type="radio" name="free_stage" value="1차 초시">① 1차 초시</label>
+          <label class="option"><input type="radio" name="free_stage" value="1차 재시">② 1차 재시</label>
+          <label class="option"><input type="radio" name="free_stage" value="1차 삼시 이상">③ 1차 삼시 이상</label>
+          <label class="option"><input type="radio" name="free_stage" value="2차 초시">④ 2차 초시</label>
+          <label class="option"><input type="radio" name="free_stage" value="2차 재시">⑤ 2차 재시</label>
+          <label class="option"><input type="radio" name="free_stage" value="2차 삼시 이상">⑥ 2차 삼시 이상</label>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2 class="question"><span class="num">2.</span>변리사 시험 준비 기간은 어느 정도인가요?</h2>
+        <div class="options">
+          <label class="option"><input type="radio" name="free_period" value="6개월 이내">① 입문 6개월 이내</label>
+          <label class="option"><input type="radio" name="free_period" value="6개월~1년">② 6개월~1년</label>
+          <label class="option"><input type="radio" name="free_period" value="1~2년">③ 1~2년</label>
+          <label class="option"><input type="radio" name="free_period" value="2~3년">④ 2~3년</label>
+          <label class="option"><input type="radio" name="free_period" value="3년 이상">⑤ 3년 이상</label>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2 class="question"><span class="num">3.</span>현재 학습 방식은 어떻게 진행하고 계신가요?</h2>
+        <div class="options">
+          <label class="option"><input type="radio" name="free_study_mode" value="전업 수험">① 전업 수험</label>
+          <label class="option"><input type="radio" name="free_study_mode" value="직장 병행">② 직장 병행</label>
+          <label class="option"><input type="radio" name="free_study_mode" value="학업 병행">③ 학업 병행</label>
+          <label class="option"><input type="radio" name="free_study_mode" value="군복무 병행">④ 군복무 병행</label>
+          <label class="option"><input type="radio" name="free_study_mode" value="육아 병행">⑤ 육아 병행</label>
+          <label class="option">
+            <input type="radio" name="free_study_mode" value="기타">⑥ 기타
+            <input type="text" class="free-inline-input" name="free_study_mode_etc" placeholder="직접 입력해 주세요.">
+          </label>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2 class="question"><span class="num">4.</span>주로 활용하는 학습 방법은 무엇인가요?</h2>
+        <div class="options">
+          <label class="option"><input type="radio" name="free_learning_method" value="온라인 강의">① 온라인 강의</label>
+          <label class="option"><input type="radio" name="free_learning_method" value="오프라인 강의">② 오프라인 강의</label>
+          <label class="option"><input type="radio" name="free_learning_method" value="스터디그룹 학습">③ 스터디그룹 학습</label>
+          <label class="option"><input type="radio" name="free_learning_method" value="독학">④ 독학 (교재 위주)</label>
+          <label class="option"><input type="radio" name="free_learning_method" value="온라인+스터디">⑤ 온라인 강의+스터디 병행</label>
+          <label class="option"><input type="radio" name="free_learning_method" value="오프라인+스터디">⑥ 오프라인 강의+스터디 병행</label>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2 class="question"><span class="num">5.</span>다른 학원(강의 또는 교재)을 이용하고 계신가요?</h2>
+        <div class="options">
+          <label class="option"><input type="radio" name="free_other_academy" value="1차 온라인">① 예, 타 학원 1차 온라인 강의 수강 중</label>
+          <label class="option"><input type="radio" name="free_other_academy" value="1차 오프라인">② 예, 타 학원 1차 오프라인 강의 수강 중</label>
+          <label class="option"><input type="radio" name="free_other_academy" value="2차 온라인">③ 예, 타 학원 2차 온라인 강의를 수강 중</label>
+          <label class="option"><input type="radio" name="free_other_academy" value="2차 오프라인">④ 예, 타 학원 2차 오프라인 강의를 수강 중</label>
+          <label class="option"><input type="radio" name="free_other_academy" value="교재">⑤ 예, 타 학원 교재만 활용 중</label>
+          <label class="option"><input type="radio" name="free_other_academy" value="없음">⑥ 아니오, 이용하지 않음</label>
+        </div>
+      </section>
+
+      <section id="freeOtherAcademyDetail" class="card conditional">
+        <h2 class="question"><span class="num">5-1.</span>5번에서 '예'라고 답하신 경우, 타 학원에서 수강 중인 강사 또는 강좌를 작성해 주세요.</h2>
+        <textarea class="text-area" name="free_other_academy_detail" maxlength="500" placeholder="답변을 입력해 주세요."></textarea>
+      </section>
+
+      <section class="card">
+        <h2 class="question"><span class="num">6.</span>아직 메가변리사를 선택하지 않은 이유는 무엇인가요?</h2>
+        <div class="options">
+          <label class="option"><input type="radio" name="free_not_choose_reason" value="가격 부담">① 가격 부담 때문에</label>
+          <label class="option"><input type="radio" name="free_not_choose_reason" value="강사 선택 어려움">② 어떤 강사를 선택해야 할지 몰라서</label>
+          <label class="option"><input type="radio" name="free_not_choose_reason" value="타학원 이용">③ 다른 학원 이용 중이라서</label>
+          <label class="option"><input type="radio" name="free_not_choose_reason" value="준비 전">④ 아직 본격적으로 시험 준비를 시작하지 않아서</label>
+          <label class="option">
+            <input type="radio" name="free_not_choose_reason" value="기타">⑤ 기타
+            <input type="text" class="free-inline-input" name="free_not_choose_reason_etc" placeholder="직접 입력해 주세요.">
+          </label>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2 class="question"><span class="num">7.</span>메가변리사 올패스에 대한 의견을 선택해 주세요.</h2>
+        <div class="options">
+          <label class="option"><input type="radio" name="free_allpass_opinion" value="잘 알지 못함">① 잘 알지 못한다.</label>
+          <label class="option"><input type="radio" name="free_allpass_opinion" value="알고 있으나 구매 계획 없음">② 알고 있지만 현재는 구매 계획이 없다.</label>
+          <label class="option"><input type="radio" name="free_allpass_opinion" value="구매 고려">③ 구매를 고려하고 있다.</label>
+          <label class="option"><input type="radio" name="free_allpass_opinion" value="타강좌 비교">④ 타강좌와 비교하며 검토 중이다.</label>
+          <label class="option"><input type="radio" name="free_allpass_opinion" value="가격조건으로 구매하지 않음">⑤ 필요성은 느꼈지만 가격/조건 등으로 구매하지 않기로 했다.</label>
+          <label class="option">
+            <input type="radio" name="free_allpass_opinion" value="기타">⑥ 기타
+            <input type="text" class="free-inline-input" name="free_allpass_opinion_etc" placeholder="직접 입력해 주세요.">
+          </label>
+        </div>
+      </section>
+
+      <section class="card full">
+        <h2 class="question"><span class="num">7-1.</span>7번에서 선택하신 응답의 이유를 작성해 주세요.</h2>
+        <textarea class="text-area js-count" name="free_allpass_reason" maxlength="500" placeholder="답변을 입력해 주세요."></textarea>
+        <div class="char-count"><span>0</span>/500</div>
+      </section>
+
+      <section class="card full">
+        <h2 class="question"><span class="num">8.</span>메가변리사에 바라는 점이나 개선이 필요한 사항이 있다면 자유롭게 작성해 주세요.</h2>
+        <textarea class="text-area js-count" name="free_improvement" maxlength="500" placeholder="답변을 입력해 주세요."></textarea>
+        <div class="char-count"><span>0</span>/500</div>
+      </section>
+
+    </div>
+
+    <div class="submit-area">
+      <button type="submit" class="submit-btn">설문 제출하기</button>
+    </div>
+
+  </form>
+
+
 </main>
 
 <script>
+
+
+  /* =============================
+     기획안용 회원 유형 분기
+  ============================== */
+  const memberPreviewButtons = document.querySelectorAll('.member-preview-btn');
+  const memberSurveyPanels = document.querySelectorAll('.member-survey-panel');
+
+  memberPreviewButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const type = button.dataset.memberType;
+
+      memberPreviewButtons.forEach(item => {
+        item.classList.toggle('active', item === button);
+      });
+
+      memberSurveyPanels.forEach(panel => {
+        panel.classList.toggle('active', panel.dataset.memberPanel === type);
+      });
+    });
+  });
+
+  /* =============================
+     무료회원 타학원 상세 분기
+  ============================== */
+  const freeOtherAcademyDetail = document.getElementById('freeOtherAcademyDetail');
+
+  document.querySelectorAll('input[name="free_other_academy"]').forEach(radio => {
+    radio.addEventListener('change', () => {
+      const value = document.querySelector('input[name="free_other_academy"]:checked')?.value;
+      freeOtherAcademyDetail.classList.toggle('active', value && value !== '없음');
+    });
+  });
 
   /* =============================
      메인 분기
@@ -2256,6 +2503,19 @@
   /* =============================
      테스트 제출
   ============================== */
+
+
+  document.getElementById('freeSurveyForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const stage = document.querySelector('input[name="free_stage"]:checked');
+    if (!stage) {
+      alert('현재 준비 중인 시험 단계를 선택해 주세요.');
+      return;
+    }
+
+    alert('테스트용 설문입니다. 실제 저장 기능은 연결되어 있지 않습니다.');
+  });
 
   document
     .getElementById('surveyForm')
