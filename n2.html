@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>제63회 2차 적중 - 메가변리사</title>
+<style>
+:root{--lime:#cfff00;--dark:#111;--black:#050505;--gray:#222;--line:#3a3a3a}
+*{box-sizing:border-box} body{margin:0;background:#050505;color:#fff;font-family:Pretendard,"Noto Sans KR",Arial,sans-serif;word-break:keep-all}
+button{font:inherit}.inner{width:1200px;max-width:calc(100% - 40px);margin:auto}
+.hero{min-height:720px;position:relative;overflow:hidden;background:radial-gradient(circle at 72% 45%,#313131 0,#151515 25%,#050505 57%);border-bottom:1px solid #282828}
+.hero:before,.hero:after{content:"";position:absolute;border:1px solid rgba(207,255,0,.25);border-radius:50%}
+.hero:before{width:620px;height:620px;right:4%;top:45px}.hero:after{width:420px;height:420px;right:11%;top:145px}
+.hero .inner{position:relative;min-height:720px;padding-top:112px}
+.cross{color:var(--lime);font-size:15px;font-weight:900;letter-spacing:4px}.hero h1{font-size:70px;line-height:1.08;letter-spacing:-4px;margin:20px 0}.hero h1 em{font-style:normal;color:var(--lime)}
+.hero p{font-size:21px;line-height:1.7;color:#c9c9c9}.scope{position:absolute;right:75px;top:120px;width:430px;height:430px;border:1px solid rgba(207,255,0,.45);border-radius:50%}
+.scope:before,.scope:after{content:"";position:absolute;background:rgba(207,255,0,.45)}.scope:before{width:1px;height:520px;left:50%;top:-45px}.scope:after{height:1px;width:520px;top:50%;left:-45px}
+.scope b{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:110px;height:110px;border:2px solid var(--lime);border-radius:50%;display:grid;place-items:center;color:var(--lime);font-size:18px}
+.quiz{background:var(--lime);color:#111;padding:60px 0}.quiz .inner{display:flex;justify-content:space-between;align-items:center}.quiz .label{font-size:14px;font-weight:1000;letter-spacing:2px}.quiz h2{font-size:42px;letter-spacing:-2px;margin:10px 0}.quiz p{font-size:17px;line-height:1.65;margin:0}.quiz .q{font-size:94px;font-weight:1000;line-height:1}
+.hits{padding:95px 0;background:#111}.head{text-align:center}.head small{color:var(--lime);font-weight:900;letter-spacing:3px}.head h2{font-size:48px;letter-spacing:-2.5px;margin:15px 0 10px}.head p{color:#aaa;font-size:18px}
+.tabs{display:flex;justify-content:center;gap:8px;margin:45px 0 32px}.tab{padding:14px 31px;border:1px solid #555;background:#1c1c1c;color:#bbb;cursor:pointer;font-weight:900}.tab.active{background:var(--lime);border-color:var(--lime);color:#111}
+.panel{display:none}.panel.active{display:block}.slide{display:none}.slide.active{display:block}
+.case-head{display:flex;justify-content:space-between;align-items:end;padding:0 3px 18px}.case-head .no{color:var(--lime);font-weight:1000;letter-spacing:1px}.case-head h3{font-size:29px;margin:6px 0 0}.teacher{font-size:18px;font-weight:900}
+.compare{display:grid;grid-template-columns:1fr 68px 1fr;align-items:stretch}.paper-wrap{background:#1b1b1b;border:1px solid #3a3a3a;padding:0 0 18px}.paper-title{height:76px;display:flex;align-items:center;padding:0 22px;font-weight:900;font-size:18px;background:#292929}.paper-title b{color:var(--lime);margin-left:auto;border:1px solid var(--lime);border-radius:50%;width:45px;height:45px;display:grid;place-items:center;font-size:13px}
+.paper{background:#f8f8f5;color:#202020;min-height:430px;margin:0 18px;padding:32px 30px;font-family:"Noto Serif KR",serif;font-size:14px;line-height:1.8}.paper h4{text-align:center;font-size:17px;margin:0 0 25px}.match{display:block;position:relative;border:4px solid #ff3131;padding:8px 10px;margin:13px 0;background:#fff}.match:after{content:"적중 구간";position:absolute;right:-4px;top:-29px;background:#ff3131;color:#fff;font-family:Pretendard,sans-serif;font-size:11px;padding:4px 8px}
+.arrow{display:grid;place-items:center;color:var(--lime);font-size:38px;font-weight:1000}.pointbox{border-top:1px solid #3b3b3b;background:#171717;padding:24px 28px;line-height:1.7;color:#d0d0d0}.pointbox strong{color:var(--lime);margin-right:12px}
+.controls{display:flex;justify-content:center;align-items:center;gap:18px;margin-top:24px}.nav{width:50px;height:50px;border:1px solid #666;background:#191919;color:#fff;font-size:27px;cursor:pointer}.nav:hover{background:var(--lime);color:#111;border-color:var(--lime)}.count{color:#aaa;font-weight:800;min-width:75px;text-align:center}
+.proof{background:var(--lime);color:#111;padding:78px 0;text-align:center}.proof h2{font-size:48px;margin:0 0 15px;letter-spacing:-2.5px}.proof p{font-size:19px;line-height:1.7;margin:0}
+.event{padding:90px 0;background:#080808}.eventbox{border:1px solid #444;background:#151515;padding:55px}.eventbox .label{color:var(--lime);font-weight:1000}.eventbox h2{font-size:43px;margin:12px 0 15px}.eventbox>p{color:#bbb;line-height:1.7;font-size:18px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#444;margin:30px 0}.step{background:#1b1b1b;padding:23px}.step b{display:block;color:var(--lime);font-size:13px;margin-bottom:8px}.example{border:1px solid #4b4b4b;padding:20px 23px;color:#ddd}.example b{color:var(--lime)}
+.form{display:flex;gap:8px;margin-top:14px}.form textarea{flex:1;height:90px;padding:16px;background:#fff;border:0;resize:none}.form button{width:150px;border:0;background:var(--lime);font-weight:1000;cursor:pointer}.note{color:#777;font-size:12px;margin-top:10px}
+@media(max-width:800px){.hero,.hero .inner{min-height:570px}.hero h1{font-size:43px}.scope{opacity:.28;right:-180px}.quiz .q{display:none}.head h2,.proof h2,.eventbox h2{font-size:32px}.tabs{overflow:auto;justify-content:flex-start}.compare{grid-template-columns:1fr}.arrow{height:65px;transform:rotate(90deg)}.steps{grid-template-columns:1fr}.eventbox{padding:30px 20px}.form{display:block}.form button{width:100%;height:52px;margin-top:8px}}
+</style>
+</head>
+<body>
+<section class="hero">
+ <div class="inner">
+  <div class="cross">MEGA PATENT ATTORNEY · 2ND EXAM</div>
+  <h1>시험에 나올 문제를<br><em>먼저 겨냥했습니다.</em></h1>
+  <p>제63회 변리사 2차 시험<br>메가변리사가 짚은 쟁점, 실제 시험에서 다시 만났습니다.</p>
+  <div class="scope"><b>HIT<br>POINT</b></div>
+ </div>
+</section>
+
+<section class="quiz">
+ <div class="inner">
+  <div><div class="label">QUIZ EVENT</div><h2>메가변리사는 총 몇 건을 적중했을까요?</h2><p>과목별 적중 사례를 직접 확인하고 정답을 찾아보세요.<br>가장 인상 깊었던 적중 사례도 함께 기억해 주세요.</p></div>
+  <div class="q">?</div>
+ </div>
+</section>
+
+<section class="hits"><div class="inner">
+ <div class="head"><small>63rd EXAM · HIT ARCHIVE</small><h2>어디서 짚었고, 어디에 나왔는지<br>직접 확인하세요.</h2><p>과목 선택 → 같은 과목의 적중 사례는 좌우 버튼으로 확인</p></div>
+ <div class="tabs">
+  <button class="tab active" data-tab="patent">특허법</button>
+  <button class="tab" data-tab="trademark">상표법</button>
+  <button class="tab" data-tab="design">디자인보호법</button>
+ </div>
+
+ <div class="panel active" id="patent"><div class="slider">
+  <div class="slide active">
+   <div class="case-head"><div><div class="no">CASE 01</div><h3>무효심판절차에서의 정정 범위</h3></div><div class="teacher">특허법 박지환</div></div>
+   <div class="compare">
+    <div class="paper-wrap"><div class="paper-title">2026 실전 GS A 출제 <b>적중</b></div><div class="paper"><h4>[ 문제-1 ]</h4>甲은 특허권자이고 乙은 이해관계인이다. 다음 사실관계를 기초로 답하시오.<span class="match">정정은 청구범위의 감축, 잘못 기재된 사항의 정정 등 허용 범위 내에서 이루어져야 하며, 정정 전후의 기술적 사항을 함께 검토하여야 한다.</span>각 당사자의 주장과 심판절차상 쟁점을 검토하시오.</div></div>
+    <div class="arrow">→</div>
+    <div class="paper-wrap"><div class="paper-title">제63회 변리사 2차 시험 <b>출제</b></div><div class="paper"><h4>[ 문제-3 ]</h4>특허권자 X와 이해관계인 Y 사이에 다음과 같은 분쟁이 발생하였다.<span class="match">특허무효심판절차에서 이루어진 정정의 허용 여부와 그 판단 기준을 설명하고, 사안에서 정정이 허용될 수 있는지를 검토하시오.</span>관련 법리에 따라 당사자의 주장을 논하시오.</div></div>
+   </div>
+   <div class="pointbox"><strong>적중 POINT</strong> 강의에서 다룬 ‘정정의 허용 범위 및 판단 기준’이 실제 시험 문제의 핵심 쟁점으로 연결된 예시입니다.</div>
+  </div>
+  <div class="slide">
+   <div class="case-head"><div><div class="no">CASE 02</div><h3>권리범위 판단과 균등론</h3></div><div class="teacher">특허법 박지환</div></div>
+   <div class="compare">
+    <div class="paper-wrap"><div class="paper-title">판례심화강의 <b>적중</b></div><div class="paper"><h4>[ 판례 사례 ]</h4>특허발명의 보호범위와 확인대상발명의 관계를 검토하시오.<span class="match">문언침해가 인정되지 않는 경우 과제해결원리, 작용효과 및 치환의 용이성 등을 검토하여 균등관계 성립 여부를 판단한다.</span>관련 판례 법리를 논하시오.</div></div>
+    <div class="arrow">→</div>
+    <div class="paper-wrap"><div class="paper-title">제63회 변리사 2차 시험 <b>출제</b></div><div class="paper"><h4>[ 문제-2 ]</h4>甲의 특허발명과 乙의 실시제품 사이에는 일부 구성상 차이가 존재한다.<span class="match">양자의 차이에도 불구하고 균등침해가 성립할 수 있는지 그 판단요건을 제시하고 사안에 적용하시오.</span>결론과 근거를 함께 제시하시오.</div></div>
+   </div>
+   <div class="pointbox"><strong>적중 POINT</strong> 균등론의 핵심 판단요건을 강의와 본시험에서 양쪽 빨간 박스로 바로 대조하도록 구성했습니다.</div>
+  </div>
+  <div class="controls"><button class="nav prev">‹</button><div class="count"></div><button class="nav next">›</button></div>
+ </div></div>
+
+ <div class="panel" id="trademark"><div class="slider">
+  <div class="slide active">
+   <div class="case-head"><div><div class="no">CASE 03</div><h3>상표의 유사 판단과 혼동 가능성</h3></div><div class="teacher">상표법 최지환</div></div>
+   <div class="compare">
+    <div class="paper-wrap"><div class="paper-title">판례 집중 강의 <b>적중</b></div><div class="paper"><h4>[ 사례 문제 ]</h4>상표의 유사 여부는 외관·호칭·관념을 전체적으로 관찰한다.<span class="match">거래의 실정과 지정상품의 성질, 수요자층 등을 함께 고려하여 출처의 오인·혼동 가능성이 있는지 검토한다.</span>사례에 위 법리를 적용하시오.</div></div>
+    <div class="arrow">→</div>
+    <div class="paper-wrap"><div class="paper-title">제63회 변리사 2차 시험 <b>출제</b></div><div class="paper"><h4>[ 문제-1 ]</h4>甲과 乙은 각각 표장을 사용하여 상품을 판매하고 있다.<span class="match">두 표장의 외관·호칭·관념 및 구체적인 거래 실정을 고려하여 상표의 유사 여부와 수요자의 출처 혼동 가능성을 검토하시오.</span>관련 법리를 근거로 결론을 제시하시오.</div></div>
+   </div>
+   <div class="pointbox"><strong>적중 POINT</strong> 유사 판단 요소와 거래 실정을 결합한 핵심 쟁점이 대응되는 예시입니다.</div>
+  </div>
+  <div class="slide">
+   <div class="case-head"><div><div class="no">CASE 04</div><h3>상표적 사용의 판단</h3></div><div class="teacher">상표법 김수영</div></div>
+   <div class="compare">
+    <div class="paper-wrap"><div class="paper-title">상표법 답안연습 <b>적중</b></div><div class="paper"><h4>[ 사례 문제 ]</h4>표장의 사용이 상표권 침해를 구성하는지 검토하시오.<span class="match">구체적인 사용 태양을 기준으로 표장이 상품의 출처를 표시하는 기능으로 사용되었는지 판단하여 상표적 사용 여부를 검토한다.</span>사안 포섭을 포함하여 답하시오.</div></div>
+    <div class="arrow">→</div>
+    <div class="paper-wrap"><div class="paper-title">제63회 변리사 2차 시험 <b>출제</b></div><div class="paper"><h4>[ 문제-2 ]</h4>乙은 등록상표와 동일한 문구를 상품 포장에 표시하였다.<span class="match">乙의 표시행위가 상품의 출처표시로서 이루어진 상표적 사용에 해당하는지 검토하고, 상표권 침해 성립 여부를 논하시오.</span>필요한 요건을 제시하시오.</div></div>
+   </div>
+   <div class="pointbox"><strong>적중 POINT</strong> 동일 과목의 다른 강사 사례는 좌우 버튼으로 넘겨 확인할 수 있습니다.</div>
+  </div>
+  <div class="controls"><button class="nav prev">‹</button><div class="count"></div><button class="nav next">›</button></div>
+ </div></div>
+
+ <div class="panel" id="design"><div class="slider">
+  <div class="slide active">
+   <div class="case-head"><div><div class="no">CASE 05</div><h3>디자인 유사 여부의 판단</h3></div><div class="teacher">디자인보호법 유시훈</div></div>
+   <div class="compare">
+    <div class="paper-wrap"><div class="paper-title">디자인보호법 사례연습 <b>적중</b></div><div class="paper"><h4>[ 사례 문제 ]</h4>두 디자인의 유사 여부는 전체적인 심미감을 기준으로 판단한다.<span class="match">공통점과 차이점 중 수요자의 주의를 끄는 부분이 어디인지 살펴 전체적인 심미감이 유사한지 판단하여야 한다.</span>각 요소의 중요도를 구분하여 검토하시오.</div></div>
+    <div class="arrow">→</div>
+    <div class="paper-wrap"><div class="paper-title">제63회 변리사 2차 시험 <b>출제</b></div><div class="paper"><h4>[ 문제-3 ]</h4>甲과 乙의 등록디자인은 일부 형상에서 차이를 보인다.<span class="match">양 디자인의 공통점과 차이점이 전체적인 심미감에 미치는 영향을 검토하여 유사 여부를 판단하시오.</span>주요 관찰 부분을 함께 설명하시오.</div></div>
+   </div>
+   <div class="pointbox"><strong>적중 POINT</strong> 실제 강사 자료 수령 후 양쪽 문서 이미지를 이 위치에 교체하면 됩니다.</div>
+  </div>
+  <div class="controls"><button class="nav prev">‹</button><div class="count"></div><button class="nav next">›</button></div>
+ </div></div>
+</div></section>
+
+<section class="proof"><div class="inner"><h2>적중은 우연이 아니라,<br>시험을 향해 준비한 결과입니다.</h2><p>제63회 2차 시험에서 확인된 메가변리사의 적중.<br><b>다가오는 제64회 2차 시험도 메가변리사와 함께 준비하세요.</b></p></div></section>
+
+<section class="event"><div class="inner"><div class="eventbox">
+ <div class="label">QUIZ EVENT</div><h2>적중 사례, 모두 확인하셨나요?</h2>
+ <p>제63회 변리사 2차 시험에서 확인된 <b>메가변리사의 적중 사례는 총 몇 건이었을까요?</b><br>정답과 함께 <b>가장 인상 깊었던 적중 사례와 그 이유</b>를 댓글로 남겨주세요.</p>
+ <div class="steps"><div class="step"><b>STEP 01</b>과목별 적중 사례 확인</div><div class="step"><b>STEP 02</b>가장 인상 깊었던 사례 PICK</div><div class="step"><b>STEP 03</b>정답 + 강사명 + 이유 작성</div></div>
+ <div class="example"><b>댓글 예시</b><br>정답 5건! 박지환 변리사님의 정정 범위 적중이 가장 인상 깊었습니다. 강의에서 짚은 부분과 실제 시험의 출제 부분을 바로 비교할 수 있어 더 와닿았습니다.</div>
+ <div class="form"><textarea placeholder="정답 + 가장 인상 깊었던 적중 사례와 이유를 입력해 주세요."></textarea><button onclick="alert('시안용 버튼입니다.')">댓글 등록</button></div>
+ <div class="note">※ 적중 문제·시험 문제 문구는 레이아웃 확인을 위한 임의 예시입니다.</div>
+</div></div></section>
+
+<script>
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{
+ document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+ document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));
+ b.classList.add('active');document.getElementById(b.dataset.tab).classList.add('active');
+});
+document.querySelectorAll('.slider').forEach(s=>{
+ let i=0, slides=[...s.querySelectorAll('.slide')], c=s.querySelector('.count');
+ const show=n=>{i=(n+slides.length)%slides.length;slides.forEach((x,j)=>x.classList.toggle('active',j===i));if(c)c.textContent=`${i+1} / ${slides.length}`};
+ s.querySelector('.prev')?.addEventListener('click',()=>show(i-1));s.querySelector('.next')?.addEventListener('click',()=>show(i+1));show(0);
+});
+</script>
+</body></html>
