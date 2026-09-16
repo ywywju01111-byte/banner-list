@@ -24,46 +24,13 @@ button{font:inherit}.inner{width:1200px;max-width:calc(100% - 40px);margin:auto}
 .compare{display:grid;grid-template-columns:1fr 68px 1fr;align-items:stretch}.paper-wrap{background:#1b1b1b;border:1px solid #3a3a3a;padding:0 0 18px}.paper-title{height:76px;display:flex;align-items:center;padding:0 22px;font-weight:900;font-size:18px;background:#292929}.paper-title b{color:var(--lime);margin-left:auto;border:1px solid var(--lime);border-radius:50%;width:45px;height:45px;display:grid;place-items:center;font-size:13px}
 .paper{background:#f8f8f5;color:#202020;min-height:430px;margin:0 18px;padding:32px 30px;font-family:"Noto Serif KR",serif;font-size:14px;line-height:1.8}.paper h4{text-align:center;font-size:17px;margin:0 0 25px}.match{display:block;position:relative;border:4px solid #ff3131;padding:8px 10px;margin:13px 0;background:#fff}.match:after{content:"적중 구간";position:absolute;right:-4px;top:-29px;background:#ff3131;color:#fff;font-family:Pretendard,sans-serif;font-size:11px;padding:4px 8px}
 .arrow{display:grid;place-items:center;color:var(--lime);font-size:38px;font-weight:1000}.pointbox{border-top:1px solid #3b3b3b;background:#171717;padding:24px 28px;line-height:1.7;color:#d0d0d0}.pointbox strong{color:var(--lime);margin-right:12px}
-.controls{display:flex;justify-content:center;align-items:center;gap:18px;margin-top:24px}.nav{width:50px;height:50px;border:1px solid #666;background:#191919;color:#fff;font-size:27px;cursor:pointer}.nav:hover{background:var(--lime);color:#111;border-color:var(--lime)}.count{color:#aaa;font-weight:800;min-width:75px;text-align:center}
+.slider{position:relative;padding:0 78px}.slide{position:relative}.case-head{position:relative}.count{position:absolute;right:82px;top:4px;color:#aaa;font-weight:800;z-index:5}.side-nav{position:absolute;top:50%;transform:translateY(-50%);width:56px;height:82px;border:1px solid #666;background:#191919;color:#fff;cursor:pointer;z-index:20;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;transition:.2s}.side-nav.prev{left:5px}.side-nav.next{right:5px}.side-nav .arr{font-size:29px;line-height:1}.side-nav small{font-size:11px;color:#888;font-weight:800}.side-nav:hover{background:var(--lime);color:#111;border-color:var(--lime)}.side-nav:hover small{color:#111}.side-nav:disabled{opacity:.22;cursor:default;background:#191919;color:#fff;border-color:#555}.side-nav:disabled small{color:#777}
 .proof{background:var(--lime);color:#111;padding:78px 0;text-align:center}.proof h2{font-size:48px;margin:0 0 15px;letter-spacing:-2.5px}.proof p{font-size:19px;line-height:1.7;margin:0}
 .event{padding:90px 0;background:#080808}.eventbox{border:1px solid #444;background:#151515;padding:55px}.eventbox .label{color:var(--lime);font-weight:1000}.eventbox h2{font-size:43px;margin:12px 0 15px}.eventbox>p{color:#bbb;line-height:1.7;font-size:18px}
 .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#444;margin:30px 0}.step{background:#1b1b1b;padding:23px}.step b{display:block;color:var(--lime);font-size:13px;margin-bottom:8px}.example{border:1px solid #4b4b4b;padding:20px 23px;color:#ddd}.example b{color:var(--lime)}
 .form{display:flex;gap:8px;margin-top:14px}.form textarea{flex:1;height:90px;padding:16px;background:#fff;border:0;resize:none}.form button{width:150px;border:0;background:var(--lime);font-weight:1000;cursor:pointer}.note{color:#777;font-size:12px;margin-top:10px}
-@media(max-width:800px){.hero,.hero .inner{min-height:570px}.hero h1{font-size:43px}.scope{opacity:.28;right:-180px}.quiz .q{display:none}.head h2,.proof h2,.eventbox h2{font-size:32px}.tabs{overflow:auto;justify-content:flex-start}.compare{grid-template-columns:1fr}.arrow{height:65px;transform:rotate(90deg)}.steps{grid-template-columns:1fr}.eventbox{padding:30px 20px}.form{display:block}.form button{width:100%;height:52px;margin-top:8px}}
-.teacher {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.teacher img {
-    width: 64px;
-    height: 64px;
-    object-fit: contain;
-    object-position: center bottom;
-    border-radius: 50%;
-    background: #2b2b2b;
-    border: 1px solid #444;
-}
-
-.teacher_info {
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
-    text-align: left;
-}
-
-.teacher_info span {
-    color: #cfff00;
-    font-size: 13px;
-    font-weight: 800;
-}
-
-.teacher_info strong {
-    color: #fff;
-    font-size: 17px;
-    font-weight: 900;
-}</style>
+@media(max-width:800px){.hero,.hero .inner{min-height:570px}.hero h1{font-size:43px}.scope{opacity:.28;right:-180px}.quiz .q{display:none}.head h2,.proof h2,.eventbox h2{font-size:32px}.tabs{overflow:auto;justify-content:flex-start}.slider{padding:0 42px}.count{right:45px;top:4px}.side-nav{width:36px;height:64px}.side-nav.prev{left:0}.side-nav.next{right:0}.side-nav small{display:none}.compare{grid-template-columns:1fr}.arrow{height:65px;transform:rotate(90deg)}.steps{grid-template-columns:1fr}.eventbox{padding:30px 20px}.form{display:block}.form button{width:100%;height:52px;margin-top:8px}}
+</style>
 </head>
 <body>
 <section class="hero">
@@ -92,13 +59,7 @@ button{font:inherit}.inner{width:1200px;max-width:calc(100% - 40px);margin:auto}
 
  <div class="panel active" id="patent"><div class="slider">
   <div class="slide active">
-   <div class="case-head"><div><div class="no">CASE 01</div><h3>무효심판절차에서의 정정 범위</h3></div><div class="teacher">
-    <img src="https://img.megaexpert.co.kr/2026/0720_xpass/cont03_prof2.png" alt="박지환">
-    <div class="teacher_info">
-        <span>특허법</span>
-        <strong>박지환 변리사</strong>
-    </div>
-</div></div>
+   <div class="case-head"><div><div class="no">CASE 01</div><h3>무효심판절차에서의 정정 범위</h3></div><div class="teacher">특허법 박지환</div></div>
    <div class="compare">
     <div class="paper-wrap"><div class="paper-title">2026 실전 GS A 출제 <b>적중</b></div><div class="paper"><h4>[ 문제-1 ]</h4>甲은 특허권자이고 乙은 이해관계인이다. 다음 사실관계를 기초로 답하시오.<span class="match">정정은 청구범위의 감축, 잘못 기재된 사항의 정정 등 허용 범위 내에서 이루어져야 하며, 정정 전후의 기술적 사항을 함께 검토하여야 한다.</span>각 당사자의 주장과 심판절차상 쟁점을 검토하시오.</div></div>
     <div class="arrow">→</div>
@@ -115,18 +76,12 @@ button{font:inherit}.inner{width:1200px;max-width:calc(100% - 40px);margin:auto}
    </div>
    <div class="pointbox"><strong>적중 POINT</strong> 균등론의 핵심 판단요건을 강의와 본시험에서 양쪽 빨간 박스로 바로 대조하도록 구성했습니다.</div>
   </div>
-  <div class="controls"><button class="nav prev">‹</button><div class="count"></div><button class="nav next">›</button></div>
+  <button class="side-nav prev" aria-label="이전 적중 사례"><span class="arr">‹</span><small>이전</small></button><div class="count"></div><button class="side-nav next" aria-label="다음 적중 사례"><span class="arr">›</span><small>다음</small></button>
  </div></div>
 
  <div class="panel" id="trademark"><div class="slider">
   <div class="slide active">
-   <div class="case-head"><div><div class="no">CASE 03</div><h3>상표의 유사 판단과 혼동 가능성</h3></div><div class="teacher">
-    <img src="https://img.megaexpert.co.kr/2026/0720_xpass/cont03_prof9.png" alt="김수영">
-    <div class="teacher_info">
-        <span>상표법</span>
-        <strong>김수영 변리사</strong>
-    </div>
-</div></div>
+   <div class="case-head"><div><div class="no">CASE 03</div><h3>상표의 유사 판단과 혼동 가능성</h3></div><div class="teacher">상표법 최지환</div></div>
    <div class="compare">
     <div class="paper-wrap"><div class="paper-title">판례 집중 강의 <b>적중</b></div><div class="paper"><h4>[ 사례 문제 ]</h4>상표의 유사 여부는 외관·호칭·관념을 전체적으로 관찰한다.<span class="match">거래의 실정과 지정상품의 성질, 수요자층 등을 함께 고려하여 출처의 오인·혼동 가능성이 있는지 검토한다.</span>사례에 위 법리를 적용하시오.</div></div>
     <div class="arrow">→</div>
@@ -135,13 +90,7 @@ button{font:inherit}.inner{width:1200px;max-width:calc(100% - 40px);margin:auto}
    <div class="pointbox"><strong>적중 POINT</strong> 유사 판단 요소와 거래 실정을 결합한 핵심 쟁점이 대응되는 예시입니다.</div>
   </div>
   <div class="slide">
-   <div class="case-head"><div><div class="no">CASE 04</div><h3>상표적 사용의 판단</h3></div><div class="teacher">
-    <img src="https://img.megaexpert.co.kr/2026/0720_xpass/cont03_prof9.png" alt="김수영">
-    <div class="teacher_info">
-        <span>상표법</span>
-        <strong>김수영 변리사</strong>
-    </div>
-</div></div>
+   <div class="case-head"><div><div class="no">CASE 04</div><h3>상표적 사용의 판단</h3></div><div class="teacher">상표법 김수영</div></div>
    <div class="compare">
     <div class="paper-wrap"><div class="paper-title">상표법 답안연습 <b>적중</b></div><div class="paper"><h4>[ 사례 문제 ]</h4>표장의 사용이 상표권 침해를 구성하는지 검토하시오.<span class="match">구체적인 사용 태양을 기준으로 표장이 상품의 출처를 표시하는 기능으로 사용되었는지 판단하여 상표적 사용 여부를 검토한다.</span>사안 포섭을 포함하여 답하시오.</div></div>
     <div class="arrow">→</div>
@@ -149,18 +98,12 @@ button{font:inherit}.inner{width:1200px;max-width:calc(100% - 40px);margin:auto}
    </div>
    <div class="pointbox"><strong>적중 POINT</strong> 동일 과목의 다른 강사 사례는 좌우 버튼으로 넘겨 확인할 수 있습니다.</div>
   </div>
-  <div class="controls"><button class="nav prev">‹</button><div class="count"></div><button class="nav next">›</button></div>
+  <button class="side-nav prev" aria-label="이전 적중 사례"><span class="arr">‹</span><small>이전</small></button><div class="count"></div><button class="side-nav next" aria-label="다음 적중 사례"><span class="arr">›</span><small>다음</small></button>
  </div></div>
 
  <div class="panel" id="design"><div class="slider">
   <div class="slide active">
-   <div class="case-head"><div><div class="no">CASE 05</div><h3>디자인 유사 여부의 판단</h3></div><div class="teacher">
-    <img src="https://img.megaexpert.co.kr/2026/0720_xpass/cont03_prof4.png" alt="유시훈">
-    <div class="teacher_info">
-        <span>디자인보호법</span>
-        <strong>유시훈 변리사</strong>
-    </div>
-</div></div>
+   <div class="case-head"><div><div class="no">CASE 05</div><h3>디자인 유사 여부의 판단</h3></div><div class="teacher">디자인보호법 유시훈</div></div>
    <div class="compare">
     <div class="paper-wrap"><div class="paper-title">디자인보호법 사례연습 <b>적중</b></div><div class="paper"><h4>[ 사례 문제 ]</h4>두 디자인의 유사 여부는 전체적인 심미감을 기준으로 판단한다.<span class="match">공통점과 차이점 중 수요자의 주의를 끄는 부분이 어디인지 살펴 전체적인 심미감이 유사한지 판단하여야 한다.</span>각 요소의 중요도를 구분하여 검토하시오.</div></div>
     <div class="arrow">→</div>
@@ -168,7 +111,7 @@ button{font:inherit}.inner{width:1200px;max-width:calc(100% - 40px);margin:auto}
    </div>
    <div class="pointbox"><strong>적중 POINT</strong> 실제 강사 자료 수령 후 양쪽 문서 이미지를 이 위치에 교체하면 됩니다.</div>
   </div>
-  <div class="controls"><button class="nav prev">‹</button><div class="count"></div><button class="nav next">›</button></div>
+  <button class="side-nav prev" aria-label="이전 적중 사례"><span class="arr">‹</span><small>이전</small></button><div class="count"></div><button class="side-nav next" aria-label="다음 적중 사례"><span class="arr">›</span><small>다음</small></button>
  </div></div>
 </div></section>
 
@@ -191,8 +134,9 @@ document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{
 });
 document.querySelectorAll('.slider').forEach(s=>{
  let i=0, slides=[...s.querySelectorAll('.slide')], c=s.querySelector('.count');
- const show=n=>{i=(n+slides.length)%slides.length;slides.forEach((x,j)=>x.classList.toggle('active',j===i));if(c)c.textContent=`${i+1} / ${slides.length}`};
- s.querySelector('.prev')?.addEventListener('click',()=>show(i-1));s.querySelector('.next')?.addEventListener('click',()=>show(i+1));show(0);
+ const prev=s.querySelector('.prev'), next=s.querySelector('.next');
+ const show=n=>{i=Math.max(0,Math.min(n,slides.length-1));slides.forEach((x,j)=>x.classList.toggle('active',j===i));if(c)c.textContent=`${i+1} / ${slides.length}`;if(prev)prev.disabled=i===0;if(next)next.disabled=i===slides.length-1};
+ prev?.addEventListener('click',()=>show(i-1));next?.addEventListener('click',()=>show(i+1));show(0);
 });
 </script>
 </body></html>
