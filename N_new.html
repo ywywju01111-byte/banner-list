@@ -192,7 +192,24 @@ img{display:block;max-width:100%}
 .voice-close{
   margin-top:20px;padding:24px 30px;background:#f3eee5;font-size:27px;font-weight:800;text-align: center;
 }
+.principle {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;   /* 위쪽부터 배치 */
+  gap: 12px;                     /* 요소 사이 간격, 여기만 조절하면 돼요 */
+  padding-top: 40px;             /* 위로 올리고 싶으면 이 값을 줄이세요 */
+  padding-bottom: 40px;
+}
 
+.principle .num,
+.principle h3,
+.principle p {
+  margin: 0;                     /* 기본 margin 제거 */
+}
+
+.principle p {
+  line-height: 1.6;
+}
 /* FINDER */
 .finder{background:var(--paper)}
 .find-block{margin-top:34px}
@@ -492,11 +509,23 @@ img{display:block;max-width:100%}
       <strong>“처음부터 전부 다”가 아닌,<br><em>“필요한 것만 골라서”</em></strong>
       <p>이미 학습 경험이 있는 N시생에게 중요한 건, 더 많은 강의가 아닌 지금 나에게 필요한 만큼의 학습입니다.</p>
     </div>
-    <div class="three">
-      <article class="principle reveal"><span class="num">01</span><h3>내 실력에 맞게</h3><br>이미 알고 있는 내용은 반복할 필요 없이<br>현재 부족한 부분을 기준으로 학습하세요.</article>
-      <article class="principle reveal"><span class="num">02</span><h3>내 진도에 맞게</h3></article>
-      <article class="principle reveal"><span class="num">03</span><h3>내게 필요한 만큼</h3></article>
-    </div>
+ <div class="three">
+  <article class="principle reveal">
+    <span class="num">01</span>
+    <h3>내 실력에 맞게</h3>
+    <p>이미 알고 있는 내용은 반복할 필요 없이<br>현재 부족한 부분을 기준으로 학습하세요.</p>
+  </article>
+  <article class="principle reveal">
+    <span class="num">02</span>
+    <h3>내 진도에 맞게</h3>
+       <p>이미 학습한 경험이 있다면<br>지금 필요한 학습단계부터 시작하세요.</p>
+  </article>
+  <article class="principle reveal">
+    <span class="num">03</span>
+    <h3>내게 필요한 만큼</h3>
+           <p>N시생 전용 할인쿠폰으로<br>필요한 단계,강좌만 선택해 수강하세요.</p>
+  </article>
+</div>
   </div>
 </section>
 
