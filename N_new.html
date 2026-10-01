@@ -81,6 +81,191 @@ img{max-width:100%}
 .btn-dark{background:var(--navy);color:#fff}
 .btn-dark:hover{transform:translateY(-2px);background:#0d2237}
 
+
+/* EDITORIAL DETAILS */
+.editorial-line{
+  width:74px;height:1px;background:var(--gold);
+  margin:0 auto 18px;
+  opacity:.85;
+}
+.chapter{
+  display:inline-flex;align-items:center;gap:12px;
+  margin-bottom:14px;
+  font-size:11px;font-weight:800;letter-spacing:.18em;
+  color:#9a7b48;text-transform:uppercase;
+}
+.chapter:before{
+  content:"";width:38px;height:1px;background:#bba06e;
+}
+.section-head.left{
+  text-align:left;
+  max-width:820px;
+}
+.section-head.left .section-desc{
+  margin-left:0;
+}
+.hero-side-label{
+  position:absolute;
+  left:26px;top:50%;
+  transform:translateY(-50%) rotate(-90deg);
+  transform-origin:center;
+  z-index:3;
+  color:rgba(255,255,255,.34);
+  font-size:10px;
+  letter-spacing:.32em;
+  font-weight:700;
+  white-space:nowrap;
+}
+.hero-edition{
+  position:absolute;
+  right:34px;top:34px;
+  z-index:3;
+  color:rgba(255,255,255,.44);
+  font-size:11px;
+  letter-spacing:.16em;
+  text-align:right;
+  line-height:1.7;
+}
+.hero-edition b{display:block;color:var(--gold-light);font-size:12px}
+.hero-rule{
+  width:100%;height:1px;
+  background:linear-gradient(90deg,rgba(229,208,162,.8),rgba(229,208,162,0));
+  margin:22px 0 0;
+  max-width:420px;
+}
+.monogram-ring{
+  position:absolute;
+  inset:46px;
+  border:1px solid rgba(229,208,162,.18);
+  border-radius:50%;
+}
+.monogram-ring:before,
+.monogram-ring:after{
+  content:"";position:absolute;border-radius:50%;
+  border:1px solid rgba(229,208,162,.1);
+}
+.monogram-ring:before{inset:34px}
+.monogram-ring:after{inset:74px}
+.monogram-mark{
+  position:absolute;right:28px;top:26px;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:64px;font-style:italic;
+  color:rgba(229,208,162,.32);
+}
+.decor-cross{
+  position:absolute;width:18px;height:18px;
+}
+.decor-cross:before,.decor-cross:after{
+  content:"";position:absolute;background:rgba(229,208,162,.45);
+}
+.decor-cross:before{left:8px;top:0;width:1px;height:18px}
+.decor-cross:after{top:8px;left:0;width:18px;height:1px}
+.decor-cross.one{left:26px;top:26px}
+.decor-cross.two{right:30px;bottom:32px}
+
+/* Editorial section dividers */
+.why,.path,.products{position:relative}
+.why:before,.path:before,.products:before{
+  content:"";
+  position:absolute;left:50%;top:0;transform:translateX(-50%);
+  width:min(1180px,calc(100% - 40px));height:1px;
+  background:linear-gradient(90deg,transparent,#cfc7b7 20%,#cfc7b7 80%,transparent);
+}
+.feature{
+  position:relative;
+  overflow:hidden;
+}
+.feature:after{
+  content:attr(data-no);
+  position:absolute;right:16px;bottom:-18px;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:110px;line-height:1;
+  color:#f0ece4;
+  font-weight:700;
+  pointer-events:none;
+}
+.feature > *{position:relative;z-index:1}
+.quote{
+  background:linear-gradient(180deg,#fbfbfa,#f6f4ef);
+}
+.quote:nth-child(2),.quote:nth-child(3){
+  background:#f0ede6;
+}
+.voice-bottom{
+  border-left:3px solid var(--gold);
+  text-align:left;
+}
+.path-card{
+  overflow:hidden;
+}
+.path-card:before{
+  content:"";
+  position:absolute;right:-26px;top:-26px;
+  width:88px;height:88px;border-radius:50%;
+  border:1px solid #e4dfd5;
+}
+.path-card:after{
+  content:"";
+  position:absolute;right:18px;top:18px;
+  width:7px;height:7px;border-radius:50%;
+  background:var(--gold);
+}
+.benefit-summary{
+  position:relative;overflow:hidden;
+}
+.benefit-summary:before{
+  content:"MEMBER";
+  position:absolute;left:20px;top:-8px;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:72px;
+  color:rgba(255,255,255,.035);
+  letter-spacing:.08em;
+}
+.product{
+  position:relative;
+}
+.product:before{
+  content:"";
+  position:absolute;left:0;top:0;width:3px;height:100%;
+  background:linear-gradient(var(--gold),transparent 85%);
+}
+.product-tag{
+  display:inline-flex;align-items:center;gap:8px;
+}
+.product-tag:before{
+  content:"";width:22px;height:1px;background:var(--gold);
+}
+.sticky{
+  background:rgba(7,20,33,.88);
+}
+.sticky-inner{
+  min-height:58px;
+}
+.sticky .btn{
+  min-height:38px;
+}
+
+/* Decorative emblem between intro and data */
+.emblem{
+  width:84px;height:84px;border-radius:50%;
+  margin:0 auto 34px;
+  position:relative;
+  border:1px solid #c9b48a;
+}
+.emblem:before{
+  content:"N";
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:30px;
+  color:#8f6d35;
+}
+.emblem:after{
+  content:"";
+  position:absolute;inset:10px;border-radius:50%;
+  border:1px solid #ded0b3;
+}
+
 /* HERO */
 .hero{
   position:relative;
@@ -131,8 +316,8 @@ img{max-width:100%}
 }
 .hero h1{
   margin:24px 0 0;
-  font-size:clamp(52px,6vw,84px);
-  line-height:1.03;
+  font-size:clamp(44px,5vw,68px);
+  line-height:1.08;
   letter-spacing:-.067em;
   font-weight:850;
 }
@@ -420,7 +605,8 @@ img{max-width:100%}
   .section{padding:78px 0}
   .hero{min-height:auto}
   .hero-inner{min-height:auto;padding:94px 0 110px}
-  .hero h1{font-size:45px}
+  .hero h1{font-size:40px}
+  .hero-side-label,.hero-edition{display:none}
   .hero-copy{font-size:16px}
   .period{min-width:100%}
   .feature-grid,.path-grid,.coupon-grid,.steps,.quote-grid{grid-template-columns:1fr}
@@ -438,9 +624,12 @@ img{max-width:100%}
 <body>
 
 <header class="hero" id="top">
+  <div class="hero-side-label">MEGA PATENT · N-TH EXAMINEE COLLECTION</div>
+  <div class="hero-edition"><b>2027 EDITION</b>THE 64TH EXAM<br>N-TH EXAMINEE ONLY</div>
   <div class="wrap hero-inner">
     <div>
       <span class="hero-badge">2027 제64회 1차 대비 · N시생 전용관</span>
+      <div class="hero-rule"></div>
       <h1>다시 시작하는 공부는<br><em>처음과 달라야 하니까.</em></h1>
       <p class="hero-copy">
         이미 공부한 것까지 처음부터 다시 듣지 마세요.<br>
@@ -452,12 +641,16 @@ img{max-width:100%}
       </div>
       <div class="btns">
         <!-- 실제 인증 URL로 교체 -->
-        <a class="btn btn-primary" href="#benefit">N시생 인증하고 혜택받기</a>
-        <a class="btn btn-line" href="#products">N시생 전용 상품 보기</a>
+        <a class="btn btn-primary" href="#benefit">N시생 인증 혜택 보기</a>
+        <a class="btn btn-line" href="#products">전용 구성 살펴보기</a>
       </div>
     </div>
     <div class="hero-art" aria-hidden="true">
       <div class="monogram-card">
+        <div class="monogram-ring"></div>
+        <div class="monogram-mark">N.</div>
+        <div class="decor-cross one"></div>
+        <div class="decor-cross two"></div>
         <div class="card-copy">
           <small>FOR N-TH EXAMINEE</small>
           <strong>필요한 만큼,<br>정확하게 다시.</strong>
@@ -471,22 +664,23 @@ img{max-width:100%}
 <section class="section why">
   <div class="wrap">
     <div class="section-head reveal">
+      <div class="emblem" aria-hidden="true"></div>
       <span class="eyebrow">For N-th Examinee</span>
       <h2 class="section-title">처음부터 다시가 아니라,<br>필요한 곳부터 다시.</h2>
       <p class="section-desc">이미 학습한 경험이 있는 N시생에게 필요한 것은 더 많은 강의가 아니라 지금 필요한 학습입니다.</p>
     </div>
     <div class="feature-grid">
-      <article class="feature reveal">
+      <article class="feature reveal" data-no="01">
         <span class="feature-no">01</span>
         <h3>필요한 이론만 다시</h3>
         <p>전과목을 처음부터 다시 수강하기보다 기억이 흐려진 과목과 필요한 이론만 골라 보완합니다.</p>
       </article>
-      <article class="feature reveal">
+      <article class="feature reveal" data-no="02">
         <span class="feature-no">02</span>
         <h3>문제풀이부터 집중</h3>
         <p>이미 이론 학습 경험이 있다면 객관식 문제풀이 단계부터 바로 시작할 수 있습니다.</p>
       </article>
-      <article class="feature reveal">
+      <article class="feature reveal" data-no="03">
         <span class="feature-no">03</span>
         <h3>필요한 강좌만 추가</h3>
         <p>PASS까지 필요하지 않다면 단강좌 할인쿠폰으로 필요한 과목과 강좌만 추가합니다.</p>
@@ -498,7 +692,7 @@ img{max-width:100%}
 <section class="section voice">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="eyebrow">N시생 Voice</span>
+      <span class="chapter">Chapter 01</span><br><span class="eyebrow">N시생 Voice</span>
       <h2 class="section-title">다시 시작할 때 원하는 공부는<br>처음과 달랐습니다.</h2>
       <p class="section-desc">실제 수강생의 선택과 의견을 바탕으로 N시생에게 필요한 학습 방식을 다시 생각했습니다.</p>
     </div>
@@ -532,7 +726,7 @@ img{max-width:100%}
 <section class="section path">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="eyebrow">N시생 맞춤 커리큘럼</span>
+      <span class="chapter">Chapter 02</span><br><span class="eyebrow">N시생 맞춤 커리큘럼</span>
       <h2 class="section-title">지금 나의 학습 상태는<br>어디에 가까운가요?</h2>
       <p class="section-desc">다시 시작하는 지점은 사람마다 다릅니다. 현재 상태에 맞는 학습 범위부터 선택해보세요.</p>
     </div>
@@ -568,7 +762,7 @@ img{max-width:100%}
 <section class="section benefit" id="benefit">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="eyebrow">N시생 인증 Event</span>
+      <span class="chapter">Chapter 03</span><br><span class="eyebrow">N시생 인증 Event</span>
       <h2 class="section-title">한 번만 인증하세요.<br>N시생 혜택은 전부 드립니다.</h2>
       <p class="section-desc">과거 변리사 시험 응시 이력을 인증하면 N시생 전용 쿠폰이 지급됩니다.</p>
     </div>
@@ -639,7 +833,7 @@ img{max-width:100%}
 <section class="section products" id="products">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="eyebrow">N시생 전용 상품</span>
+      <span class="chapter">Chapter 04</span><br><span class="eyebrow">N시생 전용 상품</span>
       <h2 class="section-title">전부 다시 듣지 말고,<br>필요한 학습만 선택하세요.</h2>
       <p class="section-desc">현재 학습 상태에 맞는 상품을 선택하고 인증 후 지급된 전용 쿠폰을 적용해보세요.</p>
     </div>
