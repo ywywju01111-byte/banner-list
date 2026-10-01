@@ -184,12 +184,9 @@ img{display:block;max-width:100%}
 .quotes{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .quote{
   min-height:205px;padding:36px 28px 30px;position:relative;
-  /*display:flex;align-items:center;*/
+  display:flex;align-items:center;justify-content: center;
   border:1px solid var(--line);background:linear-gradient(180deg,#fbfaf7,#f4f1ea);
   font-size:16px;font-weight:720;line-height:1.8;word-break:keep-all;
-}
-.quote-txt{
-  display:flex;align-items:center;
 }
 .quote:before{content:"“";position:absolute;top:6px;left:20px;font:54px Georgia,serif;color:#ddd3c1}
 .voice-close{
@@ -529,9 +526,9 @@ img{display:block;max-width:100%}
 
       <div class="quotes">
         <div class="quote reveal"><p class="quote-txt">재시라서 강의는 <span class="q-em">1~2개 정도만</span> 필요합니다.</p></div>
-        <div class="quote reveal"><span class="q-em">기초 강의까지 들을 필요는 없어서</span> 올패스의 필요성을 못 느꼈습니다.</div>
-        <div class="quote reveal"><span class="q-em">1차 N시생들을 위한 패키지</span>도 생기면 좋겠습니다.</div>
-        <div class="quote reveal"><span class="q-em">필요한 강좌만 선택해서</span> 들을 수 있었으면 좋겠습니다.</div>
+        <div class="quote reveal"><p class="quote-txt"><span class="q-em">기초 강의까지 들을 필요는 없어서</span> 올패스의 필요성을 못 느꼈습니다.</p></div>
+        <div class="quote reveal"><p class="quote-txt"><span class="q-em">1차 N시생들을 위한 패키지</span>도 생기면 좋겠습니다.</p></div>
+        <div class="quote reveal"><p class="quote-txt"><span class="q-em">필요한 강좌만 선택해서</span> 들을 수 있었으면 좋겠습니다.</p></div>
       </div>
     </div>
     <div class="voice-close reveal">그래서 N시생 전용관은 <strong>“더 많이”가 아닌, “필요한 만큼”에 집중했습니다.</strong></div>
