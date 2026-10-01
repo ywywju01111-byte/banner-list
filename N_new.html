@@ -183,11 +183,11 @@ img{display:block;max-width:100%}
 .stat-card .source{margin-top:10px;color:rgba(255,255,255,.37);font-size:10px;text-align:right}
 .quotes{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .quote{
-  min-height:205px;padding:28px;position:relative;display:flex;align-items:flex-end;
+  min-height:205px;padding:36px 28px 30px;position:relative;display:flex;align-items:center;
   border:1px solid var(--line);background:linear-gradient(180deg,#fbfaf7,#f4f1ea);
-  font-size:17px;font-weight:720;line-height:1.65;
+  font-size:16px;font-weight:720;line-height:1.8;word-break:keep-all;
 }
-.quote:before{content:"“";position:absolute;top:5px;left:22px;font:64px Georgia,serif;color:#ddd3c1}
+.quote:before{content:"“";position:absolute;top:6px;left:20px;font:54px Georgia,serif;color:#ddd3c1}
 .voice-close{
   margin-top:20px;padding:24px 30px;border-left:3px solid var(--gold);background:#f3eee5;font-size:17px;font-weight:800;
 }
@@ -324,6 +324,84 @@ img{display:block;max-width:100%}
 .sticky-copy b{color:#fff;margin-right:8px}
 .sticky .btn{min-height:38px;padding:0 16px;font-size:12px}
 
+
+.q-em{color:var(--teal);font-weight:820}
+
+/* SIDE NAVIGATOR */
+.page-nav{
+  position:fixed;
+  left:20px;
+  top:50%;
+  transform:translateY(-50%);
+  width:220px;
+  z-index:30;
+  background:rgba(240,242,246,.96);
+  box-shadow:0 16px 38px rgba(7,21,34,.16);
+  overflow:hidden;
+}
+.page-nav-head{
+  padding:28px 22px 20px;
+  background:linear-gradient(180deg,#1586ee,#2f53b6);
+  color:#fff;
+}
+.page-nav-head small{
+  display:block;
+  font-size:12px;
+  opacity:.75;
+  font-weight:700;
+  margin-bottom:8px;
+}
+.page-nav-head strong{
+  display:block;
+  font-size:18px;
+  line-height:1.28;
+  letter-spacing:-.04em;
+}
+.page-nav-list{
+  padding:12px 14px 14px;
+  background:#eceff5;
+}
+.page-nav-link{
+  display:block;
+  padding:14px 12px;
+  border-top:1px solid #d8deea;
+  color:#4c5561;
+  font-size:14px;
+  font-weight:700;
+  line-height:1.35;
+  transition:.2s ease;
+}
+.page-nav-link:first-child{border-top:0}
+.page-nav-link:hover{
+  background:#e2e8f4;
+  color:#1f2d3b;
+}
+.page-nav-link.active{
+  background:#d6deee;
+  color:#111820;
+}
+.page-nav-link.active b{color:#235fe0}
+.page-nav-link b{
+  display:block;
+  font-size:11px;
+  color:#7b8796;
+  margin-bottom:4px;
+  transition:.2s ease;
+}
+.page-nav-link.active b{color:#235fe0}
+@media(max-width:1400px){
+  .page-nav{
+    left:auto;
+    right:16px;
+    width:200px;
+  }
+}
+@media(max-width:1180px){
+  .page-nav{
+    display:none;
+  }
+}
+
 /* reveal */
 .reveal{opacity:0;transform:translateY(16px);transition:.55s ease}
 .reveal.on{opacity:1;transform:none}
@@ -355,7 +433,26 @@ img{display:block;max-width:100%}
 </head>
 <body>
 
-<header class="hero" id="top">
+<nav class="page-nav" aria-label="페이지 네비게이터">
+  <div class="page-nav-head">
+    <small>메가변리사</small>
+    <strong>N시생<br>전용관</strong>
+  </div>
+  <div class="page-nav-list">
+    <a class="page-nav-link active" href="#top"><b>01</b>메인</a>
+    <a class="page-nav-link" href="#intro"><b>02</b>전용관 소개</a>
+    <a class="page-nav-link" href="#voice"><b>03</b>N시생 VOICE</a>
+    <a class="page-nav-link" href="#finder"><b>04</b>학습 찾기</a>
+    <a class="page-nav-link" href="#benefits"><b>05</b>전용 혜택</a>
+    <a class="page-nav-link" href="#verify"><b>06</b>인증 방법</a>
+    <a class="page-nav-link" href="#products"><b>07</b>PICK & PASS</a>
+    <a class="page-nav-link" href="#contents"><b>08</b>콘텐츠</a>
+    <a class="page-nav-link" href="#notice"><b>09</b>유의사항</a>
+  </div>
+</nav>
+
+
+<header class="hero" id="top" data-nav-label="메인">
   <div class="hero-side">MEGA PATENT · N-TH EXAMINEE COLLECTION</div>
   <div class="hero-edition"><strong>2027 EDITION</strong>THE 64TH EXAM<br>N-TH EXAMINEE ONLY</div>
   <div class="wrap hero-inner">
@@ -386,7 +483,7 @@ img{display:block;max-width:100%}
   </div>
 </header>
 
-<section class="section intro">
+<section class="section intro" id="intro" data-nav-label="전용관 소개">
   <div class="wrap">
     <div class="intro-quote reveal">
       <div class="chapter">N-th Examinee</div>
@@ -401,7 +498,7 @@ img{display:block;max-width:100%}
   </div>
 </section>
 
-<section class="section voice">
+<section class="section voice" id="voice" data-nav-label="N시생 VOICE">
   <div class="wrap">
     <div class="head reveal">
       <div class="chapter">Chapter 01</div>
@@ -427,17 +524,17 @@ img{display:block;max-width:100%}
       </article>
 
       <div class="quotes">
-        <div class="quote reveal">재시라서 강의는 <span style="color:var(--teal)">1~2개 정도만</span> 필요합니다.</div>
-        <div class="quote reveal"><span style="color:var(--teal)">기초 강의까지 들을 필요는 없어서</span> 올패스의 필요성을 못 느꼈습니다.</div>
-        <div class="quote reveal"><span style="color:var(--teal)">1차 N시생들을 위한 패키지</span>도 생기면 좋겠습니다.</div>
-        <div class="quote reveal"><span style="color:var(--teal)">필요한 강좌만 선택해서</span> 들을 수 있었으면 좋겠습니다.</div>
+        <div class="quote reveal">재시라서 강의는 <span class="q-em">1~2개 정도만</span> 필요합니다.</div>
+        <div class="quote reveal"><span class="q-em">기초 강의까지 들을 필요는 없어서</span> 올패스의 필요성을 못 느꼈습니다.</div>
+        <div class="quote reveal"><span class="q-em">1차 N시생들을 위한 패키지</span>도 생기면 좋겠습니다.</div>
+        <div class="quote reveal"><span class="q-em">필요한 강좌만 선택해서</span> 들을 수 있었으면 좋겠습니다.</div>
       </div>
     </div>
     <div class="voice-close reveal">그래서 N시생 전용관은 <strong>“더 많이”가 아닌, “필요한 만큼”에 집중했습니다.</strong></div>
   </div>
 </section>
 
-<section class="section finder" id="finder">
+<section class="section finder" id="finder" data-nav-label="학습 찾기">
   <div class="wrap">
     <div class="head reveal">
       <div class="chapter">Chapter 02</div>
@@ -471,7 +568,7 @@ img{display:block;max-width:100%}
   </div>
 </section>
 
-<section class="section benefits" id="benefits">
+<section class="section benefits" id="benefits" data-nav-label="전용 혜택">
   <div class="wrap">
     <div class="head reveal">
       <div class="chapter">Chapter 03</div>
@@ -524,7 +621,7 @@ img{display:block;max-width:100%}
   </div>
 </section>
 
-<section class="section verify" id="verify">
+<section class="section verify" id="verify" data-nav-label="인증 방법">
   <div class="wrap">
     <div class="head reveal">
       <div class="chapter">Chapter 04</div>
@@ -574,7 +671,7 @@ img{display:block;max-width:100%}
   </div>
 </section>
 
-<section class="section products" id="products">
+<section class="section products" id="products" data-nav-label="PICK & PASS">
   <div class="wrap">
     <div class="head reveal">
       <div class="chapter">Chapter 05</div>
@@ -669,7 +766,7 @@ img{display:block;max-width:100%}
   </div>
 </section>
 
-<section class="section contents">
+<section class="section contents" id="contents" data-nav-label="콘텐츠">
   <div class="wrap">
     <div class="head reveal">
       <div class="chapter">Chapter 06</div>
@@ -722,7 +819,7 @@ img{display:block;max-width:100%}
   </div>
 </section>
 
-<section class="notice">
+<section class="notice" id="notice" data-nav-label="유의사항">
   <div class="wrap notice-grid">
     <div>
       <h3>인증 유의사항</h3>
@@ -777,6 +874,27 @@ const io = new IntersectionObserver((entries)=>{
   });
 },{threshold:.10});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+const navLinks = [...document.querySelectorAll('.page-nav-link')];
+const navSections = navLinks
+  .map(link => document.querySelector(link.getAttribute('href')))
+  .filter(Boolean);
+
+const sectionObserver = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      const id = '#' + entry.target.id;
+      navLinks.forEach(link=>{
+        link.classList.toggle('active', link.getAttribute('href') === id);
+      });
+    }
+  });
+},{
+  rootMargin:'-35% 0px -45% 0px',
+  threshold:0
+});
+
+navSections.forEach(section => sectionObserver.observe(section));
 </script>
 </body>
 </html>
