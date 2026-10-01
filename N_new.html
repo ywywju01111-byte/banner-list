@@ -163,11 +163,14 @@ img{display:block;max-width:100%}
 .principle{
   min-height:250px;background:#fff;border:1px solid #e5ded0;padding:32px;position:relative;overflow:hidden;
 }
+.principle > *{position:relative;z-index:1}
 .principle .num{font:italic 36px Georgia,serif;color:#c3a976}
-.principle h3{margin:48px 0 0;font-size:23px;letter-spacing:-.04em}
+.principle h3{margin:20px 0 0;font-size:23px;letter-spacing:-.04em}
+.principle p{margin:10px 0 0;line-height:1.6}
 .principle:after{
-  content:"";position:absolute;right:-36px;bottom:-36px;width:130px;height:130px;border-radius:50%;
+  content:"";position:absolute;right:-60px;bottom:-60px;width:130px;height:130px;border-radius:50%;
   border:1px solid #ece5d9;box-shadow:0 0 0 24px #faf8f3;
+}
 }
 
 /* VOICE */
