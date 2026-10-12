@@ -1,0 +1,1796 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>메가변리사 메인 시안</title>
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Arial,"Noto Sans KR",sans-serif;background:#f6f7f9;color:#111827}
+  a{text-decoration:none;color:inherit}
+  .top-promo{height:46px;background:#0f274a;color:#fff;display:flex;align-items:center;justify-content:center;gap:28px;font-weight:700;letter-spacing:-.2px}
+  .top-promo .btn{border:1px solid rgba(255,255,255,.65);padding:7px 15px;border-radius:18px;font-size:13px}
+  .utility{height:34px;background:#fff;border-bottom:1px solid #e7e9ee;display:flex;align-items:center;justify-content:flex-end;padding:0 6vw;font-size:12px;color:#6b7280;gap:18px}
+  .gnb{
+    height:76px;background:#fff;border-bottom:1px solid #e5e7eb;
+    display:flex;align-items:center;padding:0 6vw;position:relative;z-index:3;
+  }
+  .logo{font-size:24px;font-weight:800;color:#152a4f;min-width:150px;flex:0 0 auto}
+  .nav{
+    display:flex;align-items:center;justify-content:flex-end;
+    gap:30px;font-weight:700;font-size:15px;
+    margin-left:auto;flex:0 0 auto;width:auto;
+  }
+
+  .quick{position:fixed;left:0;top:46px;width:92px;background:#fff;border-right:1px solid #e5e7eb;box-shadow:2px 0 10px rgba(15,39,74,.06);z-index:10;transition:transform .22s ease}
+  .quick.is-closed{transform:translateX(-92px)}
+  .quick-head{height:74px;background:#0d4ea6;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;line-height:1.2;position:relative}
+  .quick-toggle{position:absolute;right:-30px;top:0;width:30px;height:74px;border:0;background:#083c82;color:#fff;writing-mode:vertical-rl;display:flex;align-items:center;justify-content:center;font-size:11px;border-radius:0 0 7px 0;cursor:pointer;font-weight:800}
+  .quick.is-closed .quick-toggle{right:-42px;width:42px;border-radius:0 8px 8px 0;background:#0d4ea6}
+  .quick-item{height:90px;border-bottom:1px solid #edf0f4;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;font-size:13px;font-weight:700;text-align:center}
+  .quick-item .ico{font-size:22px;color:#0d5ecf}
+  .quick-custom{border:0;width:100%;padding:14px 8px;background:#eef4ff;color:#184fa5;cursor:pointer;font-size:12px;font-weight:900;line-height:1.35;border-bottom:1px solid #dce6f5}
+  .quick-custom .gear{display:block;font-size:18px;margin-bottom:4px}
+
+  .page{max-width:1320px;margin:0 auto;padding:18px 26px 80px 180px;position:relative}
+  .sky{position:absolute;left:108px;top:24px;width:118px;height:420px;border-radius:10px;background:linear-gradient(180deg,#142e66,#0e4aa4);color:#fff;padding:24px 16px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 8px 24px rgba(18,54,105,.18)}
+  .sky h3{margin:0;font-size:22px;line-height:1.3}
+  .sky .big{font-size:26px;font-weight:900;color:#ffd676;margin-top:16px}
+  .sky p{font-size:13px;line-height:1.5;color:#dbe8ff}
+  .sky .sbtn{border:1px solid rgba(255,255,255,.6);border-radius:4px;padding:10px 8px;text-align:center;font-size:12px}
+
+  .content{margin-left:74px}
+  /* 5번: 하나의 배너처럼 보이되 좌/우 링크만 각각 다르게 */
+  .map-banner{position:relative;height:82px;margin:8px 0 14px;border-radius:10px;overflow:hidden;border:1px solid #dbe3ef;box-shadow:0 3px 12px rgba(15,39,74,.04);background:linear-gradient(100deg,#172431 0%,#173b54 45%,#176d9d 70%,#243f8f 100%)}
+  .map-banner:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.34),rgba(0,0,0,.05) 50%,rgba(0,0,0,.12));pointer-events:none}
+  .map-visual{position:absolute;inset:0;display:flex;align-items:center;justify-content:space-between;padding:0 34px;color:#fff;pointer-events:none;z-index:1}
+  .map-side{width:48%;display:flex;align-items:center;gap:16px}
+  .map-side.right{justify-content:flex-end;text-align:right}
+  .map-kicker{font-size:11px;color:#aee8ff;font-weight:800;margin-bottom:3px}
+  .map-title{font-size:19px;font-weight:900;letter-spacing:-.5px}
+  .map-title em{font-style:normal;color:#35e3ff}
+  .map-badge{padding:8px 13px;border-radius:18px;background:#16e0e8;color:#07315d;font-size:11px;font-weight:900}
+  .map-hotspot{position:absolute;top:0;bottom:0;z-index:2;display:block}
+  .map-hotspot.left{left:0;width:50%}
+  .map-hotspot.right{right:0;width:50%}
+  .map-hotspot:hover{background:rgba(255,255,255,.04)}
+
+  .hero-grid{display:grid;grid-template-columns:2fr 1fr;gap:14px}
+  .hero{height:330px;border-radius:14px;background:linear-gradient(135deg,#edf5ff,#dcecff);padding:42px 46px;position:relative;overflow:hidden;border:1px solid #dde6f0}
+  .hero:after{content:"";position:absolute;right:50px;bottom:-35px;width:210px;height:290px;border-radius:105px 105px 0 0;background:linear-gradient(#1e3a5f,#0e203c);opacity:.92}
+  .hero .small{font-size:16px;font-weight:700;color:#334155;line-height:1.55}
+  .hero h1{font-size:39px;line-height:1.15;margin:14px 0 12px;letter-spacing:-1.5px;color:#13284c}
+  .hero h1 em{font-style:normal;color:#0e65d8}
+  .hero p{font-size:15px;color:#526074;line-height:1.55}
+  .hero .hbtn{display:inline-block;margin-top:16px;background:#13284c;color:#fff;padding:12px 20px;border-radius:24px;font-weight:700;font-size:13px}
+  .side-banner{height:330px;border-radius:14px;background:linear-gradient(135deg,#fff8ea,#f2e0bd);padding:30px 28px;border:1px solid #ecdcb8;position:relative;overflow:hidden}
+  .side-banner h2{font-size:30px;margin:6px 0 10px;color:#152a4f}
+  .side-banner p{font-size:14px;line-height:1.6;color:#4b5563}
+  .side-banner ul{padding-left:18px;line-height:1.9;font-size:14px}
+  .side-banner .sbtn2{display:inline-block;margin-top:8px;background:#152a4f;color:white;padding:11px 18px;border-radius:24px;font-size:13px;font-weight:700}
+
+  section{margin-top:28px}
+  .section-head{display:flex;align-items:end;justify-content:space-between;margin-bottom:12px}
+  .section-head h2{font-size:24px;margin:0;color:#152a4f}
+  .section-head p{font-size:13px;color:#8993a4;margin:0 0 2px 8px;display:inline}
+  .section-head .more{font-size:13px;border:1px solid #bdc7d4;border-radius:18px;padding:8px 14px;background:#fff}
+  .tabs{display:flex;border:1px solid #e4e8ee;background:#fff;border-radius:8px;overflow:hidden;margin-bottom:12px}
+  .tab{padding:11px 20px;font-size:13px;border-right:1px solid #edf0f4;min-width:88px;text-align:center}
+  .tab.active{background:#15366f;color:#fff;font-weight:700}
+
+  .teacher-grid{display:grid;grid-template-columns:1.7fr .9fr .9fr .9fr;gap:12px}
+  .teacher-card{background:#fff;border:1px solid #e5e9ef;border-radius:12px;min-height:210px;padding:18px;position:relative;overflow:hidden}
+  .teacher-card.main{background:linear-gradient(135deg,#edf5ff,#f9fcff)}
+  .avatar{position:absolute;bottom:-10px;right:15px;width:105px;height:150px;background:linear-gradient(#3e587c,#182b49);border-radius:58px 58px 14px 14px}
+  .teacher-card.main .avatar{width:145px;height:190px;right:28px}
+  .badge{display:inline-block;padding:4px 8px;border-radius:12px;background:#e8f2ff;color:#0e65d8;font-size:11px;font-weight:700}
+  .teacher-card h3{font-size:18px;line-height:1.4;margin:12px 0 8px;max-width:65%}
+  .teacher-card p{font-size:12px;color:#667085;line-height:1.5;max-width:62%}
+  .teacher-card .name{font-weight:700;margin-top:14px;font-size:13px}
+  .teacher-card .mini-btn{display:inline-block;margin-top:9px;border:1px solid #b7c3d1;border-radius:16px;padding:6px 10px;font-size:11px;background:#fff}
+
+  .schedule-wrap{background:#fff;border:1px solid #dfe4ea;border-radius:16px;overflow:hidden}
+  .schedule-summary{height:92px;display:grid;grid-template-columns:150px 1fr 1fr 46px;align-items:center;padding:0 20px;gap:18px;cursor:pointer}
+  .summary-title{font-weight:800;line-height:1.4;text-align:center}
+  .summary-card{display:grid;grid-template-columns:50px 1fr;gap:12px;align-items:center;border-left:1px solid #edf0f3;padding-left:20px}
+  .date-chip{background:#e7f4ff;color:#1270b8;border-radius:10px;padding:8px 6px;text-align:center;font-weight:700;font-size:12px;line-height:1.25}
+  .date-chip.book{background:#ffe8f3;color:#e83a8d}
+  .sum-text b{display:block;font-size:13px;margin-bottom:3px}
+  .sum-text span{font-size:11px;color:#98a1ad}
+  .arrow{font-size:28px;text-align:center;transition:.2s}
+  .schedule-wrap.open .arrow{transform:rotate(180deg)}
+  .schedule-detail{display:none;border-top:1px solid #e6e9ee;background:#fafbfc;padding:22px}
+  .schedule-wrap.open .schedule-detail{display:block}
+  .detail-head{text-align:center;margin-bottom:18px}
+  .detail-head b{color:#1268ba;font-size:17px}
+  .detail-head p{margin:5px 0 0;color:#98a1ad;font-size:12px}
+  .filters{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+  .month-btn{background:#2f89cc;color:#fff;border-radius:6px;padding:8px 18px;font-size:13px;font-weight:700}
+  .legend{font-size:12px;color:#667085;margin-left:auto}
+  select{border:1px solid #d5dae1;padding:7px 28px 7px 10px;background:#fff}
+  .detail-grid{display:grid;grid-template-columns:1.25fr .95fr .95fr;gap:20px}
+  .calendar,.list-panel{background:#fff;border-radius:14px;padding:18px}
+  .cal-head{display:grid;grid-template-columns:repeat(7,1fr);background:#f2f2f3;padding:12px 8px;border-radius:5px;font-size:12px;text-align:center}
+  .cal-body{display:grid;grid-template-columns:repeat(7,1fr);gap:16px 0;padding:16px 6px;font-size:12px;color:#7c8794;text-align:center}
+  .cal-day.has{color:#111827;font-weight:800;position:relative}
+  .cal-day.has:after{content:"1";position:absolute;left:50%;transform:translateX(-50%);bottom:-13px;background:#38bdf8;color:#fff;border-radius:3px;padding:1px 4px;font-size:9px}
+  .list-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-weight:800}
+  .list-head span{font-size:11px;font-weight:400}
+  .list-item{margin-bottom:12px}
+  .list-item .date{background:#f1f1f1;border-radius:4px;padding:10px;font-size:13px;font-weight:700}
+  .list-item .title{padding:10px 0 4px;font-size:13px;font-weight:700;line-height:1.4}
+  .list-item .meta{font-size:11px;color:#a2a7b0}
+
+  .footer-placeholder{height:170px;margin-top:28px;border-radius:14px;background:linear-gradient(180deg,#f1f3f6,#e9ecf1);display:flex;align-items:center;justify-content:center;color:#9aa3af;font-weight:700}
+
+  
+
+  /* 나만의 퀵메뉴 설정 모달 */
+  .quick-modal-backdrop{
+    position:fixed;inset:0;background:rgba(0,0,0,.68);z-index:1000;
+    display:none;align-items:center;justify-content:center;padding:24px;
+  }
+  .quick-modal-backdrop.is-open{display:flex}
+  .quick-modal{
+    width:min(1000px,calc(100vw - 48px));max-height:calc(100vh - 48px);overflow:auto;
+    background:#fff;border-radius:22px;padding:28px 38px 30px;box-shadow:0 18px 60px rgba(0,0,0,.28);
+    position:relative;
+  }
+  .quick-modal-close{
+    position:absolute;left:50%;top:-52px;transform:translateX(-50%);
+    width:36px;height:36px;border-radius:50%;border:0;background:#fff;color:#222;
+    font-size:27px;line-height:1;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.18);
+  }
+  .quick-modal h3{margin:2px 0 4px;text-align:center;font-size:21px;color:#111}
+  .quick-modal-desc{text-align:center;font-size:13px;color:#555;margin-bottom:24px}
+  .quick-selected-preview{
+    display:grid;grid-template-columns:repeat(8,1fr);gap:14px;margin:0 auto 26px;max-width:850px
+  }
+  .quick-selected-slot{text-align:center;min-width:0}
+  .quick-selected-icon{
+    width:68px;height:68px;border-radius:18px;background:#f5f7fa;margin:0 auto 8px;
+    display:flex;align-items:center;justify-content:center;font-size:26px;color:#0d63ce;
+    position:relative;border:1px solid #eef1f5
+  }
+  .quick-remove{
+    position:absolute;right:-8px;top:-10px;width:22px;height:22px;border:0;background:#fff;
+    color:#222;font-size:17px;cursor:pointer;border-radius:50%;
+  }
+  .quick-selected-name{font-size:11px;color:#333;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .quick-options{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:10px;max-width:850px;margin:0 auto;
+  }
+  .quick-option{
+    min-height:44px;background:#fff;border:1px solid #c8c8c8;border-radius:10px;
+    display:flex;align-items:center;gap:12px;padding:8px 14px;cursor:pointer;text-align:left;
+    color:#222;font-size:13px;
+  }
+  .quick-option.is-selected{border:1.5px solid #1460d2;color:#0e4cb4}
+  .quick-order{
+    width:24px;height:24px;border-radius:50%;border:1px solid #c7c7c7;display:flex;
+    align-items:center;justify-content:center;font-size:12px;flex:0 0 auto;color:#777;
+  }
+  .quick-option.is-selected .quick-order{background:#1d58bf;color:#fff;border-color:#1d58bf;font-weight:800}
+  .quick-modal-actions{display:flex;justify-content:center;gap:18px;margin-top:30px}
+  .quick-modal-actions button{min-width:120px;height:42px;border-radius:7px;font-weight:700;cursor:pointer}
+  .quick-cancel{background:#fff;border:1px solid #b9b9b9;color:#777}
+  .quick-save{background:#aaa;border:1px solid #aaa;color:#fff}
+  .quick-save.is-active{background:#174fae;border-color:#174fae}
+  
+
+
+  /* 6번/7번 독립 롤링 배너 */
+  .hero-carousel{position:relative;overflow:hidden;border-radius:16px}
+  .hero-track{display:flex;width:100%;transition:transform .45s ease}
+  .hero-slide{min-width:100%;box-sizing:border-box}
+  .carousel-controls{
+    position:absolute;right:16px;bottom:14px;display:flex;align-items:center;gap:8px;z-index:5;
+    background:rgba(8,25,54,.72);color:#fff;padding:6px 9px;border-radius:18px;font-size:12px
+  }
+  .carousel-controls button{
+    width:26px;height:26px;border:0;border-radius:50%;background:rgba(255,255,255,.12);
+    color:#fff;cursor:pointer;font-size:14px;line-height:1
+  }
+  .carousel-controls button:hover{background:rgba(255,255,255,.22)}
+  .carousel-count{min-width:34px;text-align:center}
+  .carousel-controls.is-hidden{display:none}
+
+
+  /* 배너별 색상 구분 */
+  #mainHeroCarousel .hero-slide:nth-child(1){
+    background:linear-gradient(135deg,#dcecff 0%,#eaf3ff 58%,#cfe1fb 100%);
+  }
+  #mainHeroCarousel .hero-slide:nth-child(2){
+    background:linear-gradient(135deg,#e5f6ef 0%,#f2fbf6 58%,#d6efe3 100%);
+  }
+  #mainHeroCarousel .hero-slide:nth-child(3){
+    background:linear-gradient(135deg,#f4eaff 0%,#fbf7ff 58%,#eadcff 100%);
+  }
+  #mainHeroCarousel .hero-slide:nth-child(4){
+    background:linear-gradient(135deg,#fff1db 0%,#fff9ee 58%,#fbe7c6 100%);
+  }
+  #mainHeroCarousel .hero-slide:nth-child(5){
+    background:linear-gradient(135deg,#e8edf8 0%,#f5f7fb 58%,#dbe3f1 100%);
+  }
+
+  #subHeroCarousel .hero-slide:nth-child(1){
+    background:linear-gradient(135deg,#fff0d4,#f9dfad);
+  }
+  #subHeroCarousel .hero-slide:nth-child(2){
+    background:linear-gradient(135deg,#e5f7ff,#ccecf9);
+  }
+  #subHeroCarousel .hero-slide:nth-child(3){
+    background:linear-gradient(135deg,#f7e9ff,#ead8f7);
+  }
+  #subHeroCarousel .hero-slide:nth-child(4){
+    background:linear-gradient(135deg,#eaf7e6,#d7edcf);
+  }
+  #subHeroCarousel .hero-slide:nth-child(5){
+    background:linear-gradient(135deg,#ffe9ec,#f7d4dc);
+  }
+
+  #mainHeroCarousel .hero-slide,
+  #subHeroCarousel .hero-slide{
+    border:1px solid rgba(20,45,85,.08);
+  }
+  #mainHeroCarousel .hero-slide strong{color:#145fd7}
+  #subHeroCarousel .hero-slide h3{color:#17396f}
+
+
+  /* 고정형 데스크톱 레이아웃: 반응형 미사용 */
+  html,body{min-width:1600px}
+  .page{width:1440px;min-width:1440px;max-width:1440px;margin:0 auto}
+  .wrap{width:1440px;min-width:1440px;max-width:1440px;margin:0 auto}
+  .content{width:1200px;min-width:1200px;max-width:1200px}
+  .gnb{min-width:1600px}
+  .utility{min-width:1600px}
+  .promo-top{min-width:1600px}
+  .hero-grid{grid-template-columns:2fr 1fr}
+  .quick-modal{width:1000px;max-width:1000px}
+
+
+  .schedule-helper{
+    width:100%;
+    text-align:center;
+    margin-top:8px;
+    font-size:12px;
+    line-height:1.4;
+    color:#8c96a5;
+    font-weight:500;
+    white-space:nowrap;
+  }
+
+  .schedule-summary{
+    display:flex;
+    align-items:center;
+    flex-wrap:wrap;
+  }
+  .schedule-summary > .schedule-helper{
+    flex:0 0 100%;
+    order:99;
+  }
+
+
+  /* 닫힌 일정 영역 정렬 보정 */
+  .schedule-summary{
+    height:108px;
+    display:grid !important;
+    grid-template-columns:160px minmax(0,1fr) minmax(0,1fr) 46px;
+    grid-template-rows:68px 22px;
+    align-items:center;
+    column-gap:0;
+    row-gap:4px;
+    padding:8px 20px 6px;
+    box-sizing:border-box;
+  }
+  .summary-title{
+    grid-column:1;
+    grid-row:1;
+    align-self:center;
+    justify-self:stretch;
+    text-align:center;
+    padding:0 16px;
+    font-weight:800;
+    line-height:1.35;
+  }
+  .summary-card{
+    height:52px;
+    display:grid;
+    grid-template-columns:54px minmax(0,1fr);
+    gap:16px;
+    align-items:center;
+    border-left:1px solid #edf0f3;
+    padding:0 24px;
+    box-sizing:border-box;
+    min-width:0;
+  }
+  .summary-card:nth-of-type(2){grid-column:2;grid-row:1}
+  .summary-card:nth-of-type(3){grid-column:3;grid-row:1}
+  .date-chip{
+    width:50px;
+    box-sizing:border-box;
+    justify-self:center;
+  }
+  .sum-text{
+    min-width:0;
+    text-align:left;
+  }
+  .sum-text b{
+    display:block;
+    margin:0 0 5px;
+    font-size:13px;
+    line-height:1.35;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+  .sum-text span{
+    display:block;
+    font-size:11px;
+    line-height:1.35;
+    color:#98a1ad;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+  .schedule-summary .arrow{
+    grid-column:4;
+    grid-row:1;
+    align-self:center;
+    justify-self:center;
+    width:34px;
+    height:34px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:24px;
+    cursor:pointer;
+  }
+  .schedule-summary > .schedule-helper{
+    grid-column:1 / -1;
+    grid-row:2;
+    width:auto;
+    margin:0;
+    align-self:center;
+    justify-self:center;
+    text-align:center;
+    font-size:12px;
+    line-height:1.2;
+    color:#8c96a5;
+    white-space:nowrap;
+  }
+
+
+  /* 월간 일정 캘린더 */
+  .filters{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+  .month-nav{display:flex;align-items:center;gap:8px;margin-right:4px}
+  .month-arrow{
+    width:34px;height:34px;border:1px solid #d5dae1;border-radius:6px;background:#fff;color:#344054;
+    cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center
+  }
+  .year-select,.month-select{
+    height:34px;border:1px solid #d5dae1;border-radius:6px;background:#fff;
+    padding:0 30px 0 10px;font-size:13px;font-weight:700;color:#344054
+  }
+  .legend{font-size:12px;color:#667085;margin-left:auto;display:flex;align-items:center;gap:12px}
+  .legend-item{display:inline-flex;align-items:center;gap:5px}
+  .legend-dot{width:10px;height:10px;border-radius:3px;display:inline-block}
+  .legend-dot.course{background:#36b9e7}
+  .legend-dot.book{background:#f07fbd}
+
+  .cal-body{
+    display:grid;grid-template-columns:repeat(7,1fr);
+    gap:4px 0;padding:12px 6px 8px;font-size:12px;color:#7c8794;text-align:center
+  }
+  .cal-day{
+    min-height:48px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
+    padding-top:4px;box-sizing:border-box
+  }
+  .cal-day.empty{visibility:hidden}
+  .cal-day.has-event .day-num{color:#111827;font-weight:800}
+  .day-markers{display:flex;align-items:center;justify-content:center;gap:3px;margin-top:5px;min-height:15px}
+  .day-marker{
+    min-width:15px;height:15px;border-radius:4px;padding:0 4px;color:#fff;font-size:9px;font-weight:800;
+    display:inline-flex;align-items:center;justify-content:center;line-height:1
+  }
+  .day-marker.course{background:#36b9e7}
+  .day-marker.book{background:#f07fbd}
+
+
+  /* 과목별 강사진 탭 + 대표카드 자동 롤링 */
+  #teacher-section{position:relative}
+  #teacher-section .tabs{
+    display:flex;
+    align-items:center;
+    border:1px solid #dfe5ee;
+    border-radius:8px;
+    overflow:hidden;
+    background:#fff;
+  }
+  #teacher-section .tab{
+    flex:1;
+    min-width:0;
+    height:42px;
+    padding:0 10px;
+    border:0;
+    border-right:1px solid #e6eaf0;
+    background:#fff;
+    color:#27364a;
+    font-size:13px;
+    font-weight:600;
+    cursor:pointer;
+    transition:background .15s ease,color .15s ease;
+  }
+  #teacher-section .tab:last-child{border-right:0}
+  #teacher-section .tab.active{
+    background:#173b7a;
+    color:#fff;
+    font-weight:800;
+  }
+
+  .teacher-carousel-wrap{position:relative;margin-top:12px}
+  .teacher-grid{
+    display:grid;
+    grid-template-columns:1.7fr .9fr .9fr .9fr;
+    gap:12px;
+    min-height:242px;
+  }
+  .teacher-card{
+    background:#fff;
+    border:1px solid #e5e9ef;
+    border-radius:12px;
+    min-height:210px;
+    padding:18px;
+    position:relative;
+    overflow:hidden;
+    box-sizing:border-box;
+  }
+  .teacher-card.main{background:linear-gradient(135deg,#edf5ff,#f9fcff)}
+  .teacher-card.main h3{max-width:55%;font-size:19px;line-height:1.45;margin:16px 0 10px}
+  .teacher-card.main p{max-width:58%;font-size:12px;line-height:1.6;color:#667085}
+  .teacher-card h3{font-size:16px;line-height:1.45;margin:16px 0 10px;max-width:60%}
+  .teacher-card .name{font-size:13px;font-weight:800;max-width:55%}
+  .teacher-card .badge{
+    display:inline-flex;
+    padding:5px 8px;
+    border-radius:13px;
+    background:#eaf3ff;
+    color:#1766cc;
+    font-size:10px;
+    font-weight:800;
+  }
+  .teacher-card .avatar{
+    position:absolute;
+    bottom:-10px;
+    right:15px;
+    width:105px;
+    height:150px;
+    background:linear-gradient(#3e587c,#182b49);
+    border-radius:58px 58px 14px 14px;
+  }
+  .teacher-card.main .avatar{
+    width:145px;
+    height:190px;
+    right:28px;
+    border-radius:78px 78px 16px 16px;
+  }
+
+  /* 자동 롤링 상태 표시만 유지 */
+  .teacher-roll-status{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:8px;
+    margin-top:10px;
+    font-size:11px;
+    color:#8b95a5;
+  }
+  .teacher-roll-dots{display:flex;gap:5px}
+  .teacher-roll-dot{width:6px;height:6px;border-radius:50%;background:#d5dbe5}
+  .teacher-roll-dot.active{background:#173b7a}
+
+
+  /* 우측 스카이배너 : 100 x 200, 3개 고정 배치 */
+  .right-sky{
+    position:fixed; right:28px; top:270px; width:100px; z-index:20;
+    display:flex; flex-direction:column; gap:12px;
+  }
+  .right-sky a{
+    width:100px; height:200px; box-sizing:border-box; border-radius:10px;
+    border:1px solid #dfe5ee; background:#fff; box-shadow:0 4px 14px rgba(18,44,82,.08);
+    overflow:hidden; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; text-decoration:none; color:#26364d; padding:12px 8px;
+    font-size:11px; line-height:1.45;
+  }
+  .right-sky a:nth-child(1){background:linear-gradient(180deg,#edf5ff,#dce9fb)}
+  .right-sky a:nth-child(2){background:linear-gradient(180deg,#fff4e7,#f7e2c7)}
+  .right-sky a:nth-child(3){background:linear-gradient(180deg,#f2ecff,#e5dcfa)}
+  .right-sky .sky-label{font-size:10px;color:#6f7c8e;margin-bottom:8px}
+  .right-sky .sky-title{font-size:13px;font-weight:800;color:#173b7a;margin-bottom:8px}
+  .right-sky .sky-meta{font-size:10px;color:#7b8798}
+
+
+  /* ===== 고정형 PC 전용 레이아웃 / 반응형 미사용 ===== */
+  html, body{
+    min-width:1600px !important;
+  }
+  body{
+    overflow-x:auto;
+  }
+
+  .promo-top,
+  .utility,
+  .gnb{
+    min-width:1600px !important;
+  }
+
+  .page,
+  .wrap{
+    width:1440px !important;
+    min-width:1440px !important;
+    max-width:1440px !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+  }
+
+  .content{
+    width:1200px !important;
+    min-width:1200px !important;
+    max-width:1200px !important;
+    flex:none !important;
+  }
+
+  .gnb{
+    padding-left:96px !important;
+    padding-right:96px !important;
+    box-sizing:border-box;
+  }
+
+  .nav{
+    flex-wrap:nowrap !important;
+    white-space:nowrap !important;
+  }
+
+  .hero-grid{
+    grid-template-columns:2fr 1fr !important;
+  }
+
+  #teacher-section .tabs{
+    flex-wrap:nowrap !important;
+  }
+
+  .teacher-grid{
+    grid-template-columns:1.7fr .9fr .9fr .9fr;
+  }
+
+  .detail-grid{
+    grid-template-columns:1.15fr 1fr 1fr !important;
+  }
+
+  .quick-modal{
+    width:1000px !important;
+    max-width:1000px !important;
+  }
+
+  .quick-options{
+    grid-template-columns:repeat(4,1fr) !important;
+  }
+
+  .quick-selected-preview{
+    grid-template-columns:repeat(8,1fr) !important;
+  }
+
+  /* 화면이 좁아져도 축소/재배치하지 않고 고정 폭 유지 */
+  *{
+    -webkit-text-size-adjust:100%;
+  }
+
+
+  /* 일정 요약 영역 전체 클릭 가능 */
+  .schedule-summary{
+    cursor:pointer;
+    transition:background .15s ease,border-color .15s ease;
+  }
+  .schedule-summary:hover{
+    background:#fbfcfe;
+    border-color:#cfd8e6;
+  }
+  .schedule-summary:focus-visible{
+    outline:2px solid #2f6fcb;
+    outline-offset:2px;
+  }
+
+
+  .schedule-item-btn{
+    width:100%;
+    border:0;
+    background:transparent;
+    text-align:left;
+    cursor:pointer;
+    border-radius:8px;
+    padding:0;
+    transition:background .15s ease;
+  }
+  .schedule-item-btn:hover{
+    background:#f7f9fc;
+  }
+
+
+  /* 빅배너 / 이벤트배너 세로값 통일 */
+  #mainHeroCarousel,
+  #subHeroCarousel{
+    height:330px !important;
+  }
+
+  #mainHeroCarousel .hero-track,
+  #subHeroCarousel .hero-track{
+    height:100% !important;
+  }
+
+  #mainHeroCarousel .hero-slide,
+  #subHeroCarousel .hero-slide{
+    height:330px !important;
+    min-height:330px !important;
+    box-sizing:border-box;
+  }
+
+  #mainHeroCarousel .hero-card,
+  #subHeroCarousel .hero-card{
+    height:330px !important;
+    min-height:330px !important;
+  }
+
+
+  /* 좌측 스카이배너 : 우측과 동일하게 100 x 200, 3개 */
+  .left-sky{
+    position:fixed;
+    left:118px;
+    top:270px;
+    width:100px;
+    z-index:20;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+  }
+  .left-sky a{
+    width:100px;
+    height:200px;
+    box-sizing:border-box;
+    border-radius:10px;
+    border:1px solid #dfe5ee;
+    background:#fff;
+    box-shadow:0 4px 14px rgba(18,44,82,.08);
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    text-decoration:none;
+    color:#26364d;
+    padding:12px 8px;
+    font-size:11px;
+    line-height:1.45;
+  }
+  .left-sky a:nth-child(1){background:linear-gradient(180deg,#edf5ff,#dce9fb)}
+  .left-sky a:nth-child(2){background:linear-gradient(180deg,#fff4e7,#f7e2c7)}
+  .left-sky a:nth-child(3){background:linear-gradient(180deg,#f2ecff,#e5dcfa)}
+  .left-sky .sky-label{font-size:10px;color:#6f7c8e;margin-bottom:8px}
+  .left-sky .sky-title{font-size:13px;font-weight:800;color:#173b7a;margin-bottom:8px}
+  .left-sky .sky-meta{font-size:10px;color:#7b8798}
+
+
+  /* ===== 메가변리사 현행 메인 비율 참고 / PC 고정형 정렬 보정 =====
+     중앙 콘텐츠 1200px 기준, 화면 100%에서 가운데 정렬
+     좌/우 스카이는 중앙 콘텐츠 바깥에 배치
+  */
+  html,body{
+    min-width:1600px !important;
+  }
+
+  /* 중앙 메인 콘텐츠 */
+  .page{
+    width:1200px !important;
+    min-width:1200px !important;
+    max-width:1200px !important;
+    margin:0 auto !important;
+    padding:18px 0 80px !important;
+    position:relative;
+  }
+  .content{
+    width:1200px !important;
+    min-width:1200px !important;
+    max-width:1200px !important;
+    margin-left:0 !important;
+  }
+
+  /* 헤더도 메인 콘텐츠와 동일한 1200px 중심축에 맞춤 */
+  .utility{
+    width:1200px !important;
+    min-width:1200px !important;
+    max-width:1200px !important;
+    margin:0 auto !important;
+    padding:0 !important;
+    box-sizing:border-box;
+  }
+  .gnb{
+    width:1200px !important;
+    min-width:1200px !important;
+    max-width:1200px !important;
+    margin:0 auto !important;
+    padding:0 !important;
+    box-sizing:border-box;
+  }
+  .logo{
+    min-width:170px !important;
+    margin-left:0 !important;
+    padding-left:0 !important;
+  }
+  .nav{
+    margin-left:auto !important;
+    justify-content:flex-end !important;
+  }
+
+  /* 상단 띠배너는 전체 폭, 내부 텍스트만 중앙 기준 */
+  .promo-top{
+    width:100% !important;
+    min-width:1600px !important;
+    box-sizing:border-box;
+  }
+
+  /* 메인 연결배너 */
+  .map-banner{
+    width:1200px !important;
+    height:72px !important;
+    margin:14px 0 16px !important;
+  }
+
+  /* 빅배너 + 이벤트배너 : 2:1 비율 */
+  .hero-grid{
+    width:1200px !important;
+    grid-template-columns:2fr 1fr !important;
+    gap:14px !important;
+  }
+  #mainHeroCarousel{
+    width:auto !important;
+    height:320px !important;
+  }
+  #subHeroCarousel{
+    width:auto !important;
+    height:320px !important;
+  }
+  #mainHeroCarousel .hero-slide,
+  #subHeroCarousel .hero-slide,
+  #mainHeroCarousel .hero-card,
+  #subHeroCarousel .hero-card{
+    height:320px !important;
+    min-height:320px !important;
+  }
+
+  /* 강사진 / 일정 등 하단 주요 영역 모두 같은 1200px 축 유지 */
+  #teacher-section,
+  #schedule-section{
+    width:1200px !important;
+    box-sizing:border-box;
+  }
+
+  /* 좌/우 스카이 : 중앙 1200px 콘텐츠 기준 바깥쪽 배치
+     1600px 화면 기준 좌우 약 80px 지점 */
+  .left-sky{
+    left:calc(50% - 720px) !important;
+    right:auto !important;
+    top:270px !important;
+  }
+  .right-sky{
+    right:calc(50% - 720px) !important;
+    left:auto !important;
+    top:270px !important;
+  }
+
+
+  /* 이전 좌측 스카이 구조 미사용 */
+  .page > .sky{display:none !important;}
+
+</style>
+</head>
+<body>
+  <div class="top-promo">제64회 2차 대비 전과목 T패스 <span>합격까지, 필요한 모든 강의를 하나로!</span><a class="btn" href="#">바로가기 →</a></div>
+  <div class="utility">로그인 <span>회원가입</span><span>장바구니</span><span>고객센터</span><span>사이트맵</span></div>
+  <header class="gnb">
+    <div class="logo">메가변리사</div>
+    <nav class="nav"><a href="#">마이페이지</a><a href="#">강사소개</a><a href="#">강좌</a><a href="#">교재</a><a href="#">모의고사/GS</a><a href="#">학습자료실</a><a href="#">온라인 서점</a><a href="#">직영학원</a></nav>
+  </header>
+
+  <!-- 9번 좌측 고정 퀵메뉴 -->
+  <aside class="quick" id="quickMenu">
+    <div class="quick-head">
+      빠른<br>메뉴
+      <button type="button" class="quick-toggle" id="quickToggle">CLOSE</button>
+    </div>
+    <div id="quickItems"></div>
+    <button type="button" class="quick-custom" id="openQuickCustom">
+      <span class="gear">⚙</span>나만의 퀵메뉴<br>만들기
+    </button>
+  </aside>
+
+  <!-- 좌측 스카이배너 100x200 x 3 -->
+  <aside class="left-sky" aria-label="좌측 스카이 배너">
+    <a href="#" title="좌측 스카이배너 1">
+      <div class="sky-label">좌측 스카이배너 01</div>
+      <div class="sky-title">상품/이벤트/공지 홍보<br>%아이콘% · %홍보문구%</div>
+      <div class="sky-meta">%노출기간%</div>
+    </a>
+    <a href="#" title="좌측 스카이배너 2">
+      <div class="sky-label">좌측 스카이배너 02</div>
+      <div class="sky-title">상품/이벤트/공지 홍보<br>%아이콘% · %홍보문구%</div>
+      <div class="sky-meta">%노출기간%</div>
+    </a>
+    <a href="#" title="좌측 스카이배너 3">
+      <div class="sky-label">좌측 스카이배너 03</div>
+      <div class="sky-title">상품/이벤트/공지 홍보<br>%아이콘% · %홍보문구%</div>
+      <div class="sky-meta">%노출기간%</div>
+    </a>
+  </aside>
+
+
+  <!-- 우측 스카이배너 100x200 x 3 -->
+  <aside class="right-sky" aria-label="우측 스카이 배너">
+    <a href="#" title="우측 스카이배너 1">
+      <div class="sky-label">우측 스카이배너 01</div>
+      <div class="sky-title">상품/이벤트/공지 홍보<br>%아이콘% · %홍보문구%</div>
+      <div class="sky-meta">%노출기간%</div>
+    </a>
+    <a href="#" title="우측 스카이배너 2">
+      <div class="sky-label">우측 스카이배너 02</div>
+      <div class="sky-title">상품/이벤트/공지 홍보<br>%아이콘% · %홍보문구%</div>
+      <div class="sky-meta">%노출기간%</div>
+    </a>
+    <a href="#" title="우측 스카이배너 3">
+      <div class="sky-label">우측 스카이배너 03</div>
+      <div class="sky-title">상품/이벤트/공지 홍보<br>%아이콘% · %홍보문구%</div>
+      <div class="sky-meta">%노출기간%</div>
+    </a>
+  </aside>
+
+
+  <main class="page">
+<div class="content">
+      <!-- 5번: 시각적으로는 한 장의 배너, 좌/우는 각각 다른 링크 -->
+      <div class="map-banner" aria-label="메인 콘텐츠 배너">
+        <div class="map-visual" aria-hidden="true">
+          <div class="map-side">
+            <div>
+              <div class="map-kicker">좌측 맵</div>
+              <div class="map-title">%아이콘% &nbsp; %홍보문구%</div>
+            </div>
+          </div>
+          <div class="map-side right">
+            <div>
+              <div class="map-kicker">우측 맵</div>
+              <div class="map-title">%아이콘% &nbsp; %홍보문구%</div>
+            </div>
+            <span class="map-badge">%노출기간%</span>
+          </div>
+        </div>
+        <a class="map-hotspot left" href="#teacher-section" aria-label="좌측 배너 링크"></a>
+        <a class="map-hotspot right" href="#schedule-section" aria-label="우측 배너 링크"></a>
+      </div>
+
+      
+<div class="hero-grid">
+  <div class="hero-carousel" id="mainHeroCarousel">
+    <div class="hero-track">
+      <article class="hero-card hero-slide main">
+        <div class="hero-copy">
+          <div class="eyebrow">빅배너 1</div>
+          <h2>패스 상품 등<br><strong>전략 상품 홍보</strong></h2>
+          <p>%아이콘% &nbsp; %홍보문구% &nbsp; %판매시기%</p>
+        </div>
+        <div class="hero-visual placeholder"></div>
+      </article>
+      <article class="hero-card hero-slide main">
+        <div class="hero-copy">
+          <div class="eyebrow">빅배너 2</div>
+          <h2>패스 상품 등<br><strong>전략 상품 홍보</strong></h2>
+          <p>%아이콘% &nbsp; %홍보문구% &nbsp; %판매시기%</p>
+        </div>
+        <div class="hero-visual placeholder"></div>
+      </article>
+      <article class="hero-card hero-slide main">
+        <div class="hero-copy">
+          <div class="eyebrow">빅배너 3</div>
+          <h2>패스 상품 등<br><strong>전략 상품 홍보</strong></h2>
+          <p>%아이콘% &nbsp; %홍보문구% &nbsp; %판매시기%</p>
+        </div>
+        <div class="hero-visual placeholder"></div>
+      </article>
+      <article class="hero-card hero-slide main">
+        <div class="hero-copy">
+          <div class="eyebrow">빅배너 4</div>
+          <h2>패스 상품 등<br><strong>전략 상품 홍보</strong></h2>
+          <p>%아이콘% &nbsp; %홍보문구% &nbsp; %판매시기%</p>
+        </div>
+        <div class="hero-visual placeholder"></div>
+      </article>
+      <article class="hero-card hero-slide main">
+        <div class="hero-copy">
+          <div class="eyebrow">빅배너 5</div>
+          <h2>패스 상품 등<br><strong>전략 상품 홍보</strong></h2>
+          <p>%아이콘% &nbsp; %홍보문구% &nbsp; %판매시기%</p>
+        </div>
+        <div class="hero-visual placeholder"></div>
+      </article>
+    </div>
+    <div class="carousel-controls">
+      <button type="button" class="carousel-prev" aria-label="이전 메인 배너">‹</button>
+      <span class="carousel-count">1 / 5</span>
+      <button type="button" class="carousel-next" aria-label="다음 메인 배너">›</button>
+    </div>
+  </div>
+
+  <div class="hero-carousel" id="subHeroCarousel">
+    <div class="hero-track">
+      <article class="hero-card hero-slide side">
+        <div class="eyebrow">이벤트배너 1</div>
+        <h3>강사 및 커리큘럼,<br>마케팅 이벤트 홍보</h3>
+        <p>%아이콘%<br>%홍보문구%<br>%이벤트기간%</p>
+      </article>
+      <article class="hero-card hero-slide side">
+        <div class="eyebrow">이벤트배너 2</div>
+        <h3>강사 및 커리큘럼,<br>마케팅 이벤트 홍보</h3>
+        <p>%아이콘%<br>%홍보문구%<br>%이벤트기간%</p>
+      </article>
+      <article class="hero-card hero-slide side">
+        <div class="eyebrow">이벤트배너 3</div>
+        <h3>강사 및 커리큘럼,<br>마케팅 이벤트 홍보</h3>
+        <p>%아이콘%<br>%홍보문구%<br>%이벤트기간%</p>
+      </article>
+      <article class="hero-card hero-slide side">
+        <div class="eyebrow">이벤트배너 4</div>
+        <h3>강사 및 커리큘럼,<br>마케팅 이벤트 홍보</h3>
+        <p>%아이콘%<br>%홍보문구%<br>%이벤트기간%</p>
+      </article>
+      <article class="hero-card hero-slide side">
+        <div class="eyebrow">이벤트배너 5</div>
+        <h3>강사 및 커리큘럼,<br>마케팅 이벤트 홍보</h3>
+        <p>%아이콘%<br>%홍보문구%<br>%이벤트기간%</p>
+      </article>
+    </div>
+    <div class="carousel-controls">
+      <button type="button" class="carousel-prev" aria-label="이전 서브 배너">‹</button>
+      <span class="carousel-count">1 / 5</span>
+      <button type="button" class="carousel-next" aria-label="다음 서브 배너">›</button>
+    </div>
+  </div>
+</div>
+
+
+<section id="teacher-section">
+  <div class="section-head">
+    <div>
+      <h2>과목별 강사진 / 추천 강좌 <p>변리사 시험, 각 과목의 전문가와 함께하세요.</p></h2>
+    </div>
+    <a class="more" href="#">전체 강사진 보기 →</a>
+  </div>
+
+  <div class="tabs" id="teacherTabs" role="tablist" aria-label="과목별 강사진">
+    <button type="button" class="tab active" data-subject="민법">민법</button>
+    <button type="button" class="tab" data-subject="특허법">특허법</button>
+    <button type="button" class="tab" data-subject="상표법">상표법</button>
+    <button type="button" class="tab" data-subject="디자인보호법">디자인보호법</button>
+    <button type="button" class="tab" data-subject="민사소송법">민사소송법</button>
+    <button type="button" class="tab" data-subject="자연과학">자연과학</button>
+    <button type="button" class="tab" data-subject="2차 선택과목">2차 선택과목</button>
+  </div>
+
+  <div class="teacher-carousel-wrap" id="teacherCarousel">
+    <div class="teacher-grid" id="teacherGrid"></div>
+
+    <div class="teacher-roll-status">
+      <span id="teacherCounter">1 / 1</span>
+      <div class="teacher-roll-dots" id="teacherDots"></div>
+    </div>
+  </div>
+</section>
+
+
+      <section id="schedule-section">
+        <div class="schedule-wrap" id="schedule">
+          <div class="schedule-summary" id="scheduleSummary" role="button" tabindex="0" aria-expanded="false" aria-controls="scheduleDetail">
+            <div class="summary-title">신규 강좌/교재<br>업데이트</div>
+            <div class="summary-card"><div class="date-chip">10.8<br>목요일</div><div class="sum-text"><b>[상표법] 강좌 A</b><span>상표법 · 강사 A · 기본이론</span></div></div>
+            <div class="summary-card"><div class="date-chip book">10.7<br>수요일</div><div class="sum-text"><b>[교재] 상표법 교재 A</b><span>상표법 · 교재 A</span></div></div>
+            <div class="arrow schedule-toggle">⌄</div>
+          
+    <div class="schedule-helper">펼쳐서 월별 강좌·교재 일정을 확인해보세요.</div></div>
+          <div class="schedule-detail" id="scheduleDetail">
+            <div class="detail-head">
+              <b>강좌/교재 업데이트 일정</b>
+              <p>등록된 일정은 판매 예정일로 상황에 따라 변경될 수 있습니다.</p>
+            </div>
+
+            <div class="filters">
+              <div class="month-nav">
+                <button type="button" class="month-arrow" id="prevMonthBtn" aria-label="이전 월">‹</button>
+                <select class="year-select" id="yearSelect" aria-label="연도 선택"></select>
+                <select class="month-select" id="monthSelect" aria-label="월 선택"></select>
+                <button type="button" class="month-arrow" id="nextMonthBtn" aria-label="다음 월">›</button>
+              </div>
+
+              <span>과목</span>
+              <select><option>전체</option><option>특허법</option><option>상표법</option></select>
+              <span>선생님</span>
+              <select><option>전체</option></select>
+
+              <div class="legend">
+                <span class="legend-item"><i class="legend-dot course"></i>강좌</span>
+                <span class="legend-item"><i class="legend-dot book"></i>교재</span>
+              </div>
+            </div>
+
+            <div class="detail-grid">
+              <div class="calendar">
+                <div class="cal-head">
+                  <span>일</span><span>월</span><span>화</span><span>수</span><span>목</span><span>금</span><span>토</span>
+                </div>
+                <div class="cal-body" id="calendarBody"></div>
+              </div>
+
+              <div class="list-panel">
+                <div class="list-head">강좌 <span id="courseCount">총 0개</span></div>
+                <div id="courseList"></div>
+              </div>
+
+              <div class="list-panel">
+                <div class="list-head">교재 <span id="bookCount">총 0개</span></div>
+                <div id="bookList"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="footer-placeholder">화제의 수강후기 영역부터 기존영역</div>
+    </div>
+  </main>
+
+
+
+  <div class="quick-modal-backdrop" id="quickModalBackdrop" aria-hidden="true">
+    <section class="quick-modal" role="dialog" aria-modal="true" aria-labelledby="quickModalTitle">
+      <button type="button" class="quick-modal-close" id="quickModalClose" aria-label="닫기">×</button>
+      <h3 id="quickModalTitle">메뉴 순서를 변경해 보세요.</h3>
+      <div class="quick-modal-desc">원하는 순서대로 아래 메뉴 버튼을 클릭하세요. 최대 8개까지 선택할 수 있습니다.</div>
+
+      <div class="quick-selected-preview" id="quickSelectedPreview"></div>
+      <div class="quick-options" id="quickOptions"></div>
+
+      <div class="quick-modal-actions">
+        <button type="button" class="quick-cancel" id="quickCancel">취소</button>
+        <button type="button" class="quick-save" id="quickSave">저장하기</button>
+      </div>
+    </section>
+  </div>
+
+<script>
+(function(){
+  const quickMenuData = [
+    {id:'mypage', name:'마이페이지', icon:'👤'},
+    {id:'info', name:'정보실', icon:'▤'},
+    {id:'bookstore', name:'온라인서점', icon:'📖'},
+    {id:'academy', name:'직영학원', icon:'🏫'},
+    {id:'cart', name:'장바구니', icon:'🛒'},
+    {id:'center', name:'고객센터', icon:'🎧'},
+    {id:'order', name:'주문/배송 조회', icon:'🚚'},
+    {id:'wallet', name:'내통장', icon:'▱'},
+    {id:'myclass', name:'수강중인 강좌', icon:'▣'},
+    {id:'free', name:'무료특강존', icon:'▶'},
+    {id:'notice', name:'공지사항', icon:'📣'}
+  ];
+
+  const defaultQuickSelection = ['mypage','info','bookstore','academy','cart','center','order','myclass'];
+
+  const quickMenu = document.getElementById('quickMenu');
+  const quickToggle = document.getElementById('quickToggle');
+  const quickItems = document.getElementById('quickItems');
+  const openQuickCustom = document.getElementById('openQuickCustom');
+  const backdrop = document.getElementById('quickModalBackdrop');
+  const modalClose = document.getElementById('quickModalClose');
+  const cancelBtn = document.getElementById('quickCancel');
+  const saveBtn = document.getElementById('quickSave');
+  const optionsWrap = document.getElementById('quickOptions');
+  const previewWrap = document.getElementById('quickSelectedPreview');
+
+  if(!quickMenu || !quickToggle || !quickItems || !openQuickCustom || !backdrop || !modalClose || !cancelBtn || !saveBtn || !optionsWrap || !previewWrap){
+    console.error('Quick menu UI elements are missing.');
+    return;
+  }
+
+  function itemById(id){
+    return quickMenuData.find(item => item.id === id);
+  }
+
+  function loadSaved(){
+    try{
+      const raw = localStorage.getItem('megaQuickMenuV2');
+      const parsed = raw ? JSON.parse(raw) : null;
+      if(Array.isArray(parsed)){
+        const valid = parsed.filter(id => itemById(id)).slice(0,8);
+        if(valid.length) return valid;
+      }
+    }catch(e){}
+    return [...defaultQuickSelection];
+  }
+
+  let quickSelection = loadSaved();
+  let quickDraft = [...quickSelection];
+
+  function renderQuickBar(){
+    quickItems.innerHTML = '';
+    quickSelection.forEach(id => {
+      const item = itemById(id);
+      if(!item) return;
+
+      const el = document.createElement('button');
+      el.type = 'button';
+      el.className = 'quick-item';
+      el.style.width = '100%';
+      el.style.borderLeft = '0';
+      el.style.borderRight = '0';
+      el.style.borderTop = '0';
+      el.style.background = '#fff';
+      el.style.cursor = 'pointer';
+
+      const icon = document.createElement('div');
+      icon.className = 'ico';
+      icon.textContent = item.icon;
+
+      const label = document.createElement('div');
+      label.textContent = item.name;
+
+      el.appendChild(icon);
+      el.appendChild(label);
+      quickItems.appendChild(el);
+    });
+  }
+
+  function renderModal(){
+    previewWrap.innerHTML = '';
+    optionsWrap.innerHTML = '';
+
+    quickDraft.forEach((id, idx) => {
+      const item = itemById(id);
+      if(!item) return;
+
+      const slot = document.createElement('div');
+      slot.className = 'quick-selected-slot';
+
+      const iconBox = document.createElement('div');
+      iconBox.className = 'quick-selected-icon';
+      iconBox.textContent = item.icon;
+
+      const remove = document.createElement('button');
+      remove.type = 'button';
+      remove.className = 'quick-remove';
+      remove.dataset.remove = item.id;
+      remove.setAttribute('aria-label', item.name + ' 삭제');
+      remove.textContent = '×';
+      iconBox.appendChild(remove);
+
+      const name = document.createElement('div');
+      name.className = 'quick-selected-name';
+      name.textContent = (idx + 1) + '. ' + item.name;
+
+      slot.appendChild(iconBox);
+      slot.appendChild(name);
+      previewWrap.appendChild(slot);
+    });
+
+    quickMenuData.forEach(item => {
+      const idx = quickDraft.indexOf(item.id);
+
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'quick-option' + (idx > -1 ? ' is-selected' : '');
+      btn.dataset.id = item.id;
+
+      const order = document.createElement('span');
+      order.className = 'quick-order';
+      order.textContent = idx > -1 ? String(idx + 1) : '';
+
+      const label = document.createElement('span');
+      label.textContent = item.name;
+
+      btn.appendChild(order);
+      btn.appendChild(label);
+      optionsWrap.appendChild(btn);
+    });
+
+    saveBtn.disabled = quickDraft.length === 0;
+    saveBtn.classList.toggle('is-active', quickDraft.length > 0);
+  }
+
+  function openModal(){
+    quickDraft = [...quickSelection];
+    renderModal();
+    backdrop.classList.add('is-open');
+    backdrop.setAttribute('aria-hidden','false');
+  }
+
+  function closeModal(){
+    backdrop.classList.remove('is-open');
+    backdrop.setAttribute('aria-hidden','true');
+  }
+
+  function saveModal(){
+    if(!quickDraft.length) return;
+    quickSelection = [...quickDraft];
+    try{
+      localStorage.setItem('megaQuickMenuV2', JSON.stringify(quickSelection));
+    }catch(e){}
+    renderQuickBar();   // 저장 즉시 좌측 퀵메뉴에 반영
+    closeModal();
+  }
+
+  quickToggle.addEventListener('click', function(){
+    const closed = quickMenu.classList.toggle('is-closed');
+    quickToggle.textContent = closed ? 'OPEN' : 'CLOSE';
+    quickToggle.setAttribute('aria-label', closed ? '퀵메뉴 열기' : '퀵메뉴 닫기');
+  });
+
+  openQuickCustom.addEventListener('click', openModal);
+  modalClose.addEventListener('click', closeModal);
+  cancelBtn.addEventListener('click', closeModal);
+  saveBtn.addEventListener('click', saveModal);
+
+  optionsWrap.addEventListener('click', function(e){
+    const btn = e.target.closest('.quick-option');
+    if(!btn) return;
+
+    const id = btn.dataset.id;
+    const idx = quickDraft.indexOf(id);
+
+    if(idx > -1){
+      quickDraft.splice(idx,1);
+    }else{
+      if(quickDraft.length >= 8){
+        alert('퀵메뉴는 최대 8개까지 선택할 수 있습니다.');
+        return;
+      }
+      quickDraft.push(id);
+    }
+    renderModal();
+  });
+
+  previewWrap.addEventListener('click', function(e){
+    const remove = e.target.closest('[data-remove]');
+    if(!remove) return;
+    quickDraft = quickDraft.filter(id => id !== remove.dataset.remove);
+    renderModal();
+  });
+
+  backdrop.addEventListener('click', function(e){
+    if(e.target === backdrop) closeModal();
+  });
+
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && backdrop.classList.contains('is-open')){
+      closeModal();
+    }
+  });
+
+
+
+  // 월간 강좌/교재 일정
+  const scheduleData = [
+    {type:'course', date:'2026-10-08', title:'[상표법] 강좌 A 개강', meta:'상표법 · 강사 A · 기본이론', status:'open', link:'#course-a'},
+    {type:'course', date:'2026-10-15', title:'[특허법] 강좌 B 개강', meta:'특허법 · 강사 B · 사례/판례', status:'preopen', link:'#'},
+    {type:'course', date:'2026-10-29', title:'[민사소송법] 강좌 C 업데이트', meta:'민사소송법 · 강사 C · 답안연습', status:'open', link:'#course-c'},
+    {type:'book', date:'2026-10-07', title:'[교재] 상표법 교재 A 출간', meta:'상표법 · 교재 A', status:'published', link:'#book-a'},
+    {type:'book', date:'2026-10-15', title:'[교재] 특허법 교재 B 출간', meta:'특허법 · 교재 B', status:'prepublish', link:'#'},
+    {type:'book', date:'2026-10-29', title:'[교재] 민사소송법 교재 C 출간', meta:'민사소송법 · 교재 C', status:'published', link:'#book-c'},
+    {type:'course', date:'2026-09-15', title:'[디자인보호법] 강좌 A 개강', meta:'디자인보호법 · 강사 A', status:'open', link:'#design-a'},
+    {type:'book', date:'2026-11-03', title:'[교재] 자연과학 교재 A 출간', meta:'자연과학 · 교재 A', status:'prepublish', link:'#'}
+  ];
+
+  const calendarBody = document.getElementById('calendarBody');
+  const courseList = document.getElementById('courseList');
+  const bookList = document.getElementById('bookList');
+  const courseCount = document.getElementById('courseCount');
+  const bookCount = document.getElementById('bookCount');
+  const yearSelect = document.getElementById('yearSelect');
+  const monthSelect = document.getElementById('monthSelect');
+  const prevMonthBtn = document.getElementById('prevMonthBtn');
+  const nextMonthBtn = document.getElementById('nextMonthBtn');
+
+  let calendarYear = 2026;
+  let calendarMonth = 10;
+
+  function parseYmd(str){
+    const p = str.split('-').map(Number);
+    return {y:p[0], m:p[1], d:p[2]};
+  }
+
+  function initYearMonthSelects(){
+    if(!yearSelect || !monthSelect) return;
+
+    yearSelect.innerHTML='';
+    monthSelect.innerHTML='';
+
+    for(let y=2020; y<=2035; y++){
+      const opt=document.createElement('option');
+      opt.value=String(y);
+      opt.textContent=y+'년';
+      yearSelect.appendChild(opt);
+    }
+
+    for(let m=1; m<=12; m++){
+      const opt=document.createElement('option');
+      opt.value=String(m);
+      opt.textContent=m+'월';
+      monthSelect.appendChild(opt);
+    }
+
+    yearSelect.value=String(calendarYear);
+    monthSelect.value=String(calendarMonth);
+  }
+
+  function getMonthItems(type){
+    return scheduleData
+      .filter(function(item){
+        const d=parseYmd(item.date);
+        return item.type===type && d.y===calendarYear && d.m===calendarMonth;
+      })
+      .sort(function(a,b){ return a.date.localeCompare(b.date); });
+  }
+
+  function renderList(target, items, counter){
+    if(!target || !counter) return;
+
+    target.innerHTML='';
+    counter.textContent='총 '+items.length+'개';
+
+    if(items.length===0){
+      const empty=document.createElement('div');
+      empty.style.padding='34px 8px';
+      empty.style.textAlign='center';
+      empty.style.color='#a2a7b0';
+      empty.style.fontSize='12px';
+      empty.textContent='등록된 일정이 없습니다.';
+      target.appendChild(empty);
+      return;
+    }
+
+    const weekday=['일요일','월요일','화요일','수요일','목요일','금요일','토요일'];
+
+    items.forEach(function(item){
+      const d=parseYmd(item.date);
+      const jsDate=new Date(d.y,d.m-1,d.d);
+
+      const wrap=document.createElement('button');
+      wrap.type='button';
+      wrap.className='list-item schedule-item-btn';
+
+      const date=document.createElement('div');
+      date.className='date';
+      date.textContent=d.m+'.'+d.d+' '+weekday[jsDate.getDay()];
+
+      const title=document.createElement('div');
+      title.className='title';
+      title.textContent=item.title;
+
+      const meta=document.createElement('div');
+      meta.className='meta';
+      meta.textContent=item.meta;
+
+      wrap.appendChild(date);
+      wrap.appendChild(title);
+      wrap.appendChild(meta);
+
+      wrap.addEventListener('click', function(){
+        if(item.type==='course' && item.status==='preopen'){
+          alert('개강 전입니다.');
+          return;
+        }
+        if(item.type==='book' && item.status==='prepublish'){
+          alert('발간 전입니다.');
+          return;
+        }
+
+        if(item.link && item.link !== '#'){
+          window.location.href = item.link;
+        }
+      });
+
+      target.appendChild(wrap);
+    });
+  }
+
+  function renderCalendar(){
+    if(!calendarBody) return;
+
+    calendarBody.innerHTML='';
+
+    const firstDay=new Date(calendarYear,calendarMonth-1,1).getDay();
+    const lastDate=new Date(calendarYear,calendarMonth,0).getDate();
+
+    const eventsByDay={};
+
+    scheduleData.forEach(function(item){
+      const d=parseYmd(item.date);
+      if(d.y!==calendarYear || d.m!==calendarMonth) return;
+
+      if(!eventsByDay[d.d]){
+        eventsByDay[d.d]={course:0,book:0};
+      }
+      eventsByDay[d.d][item.type] += 1;
+    });
+
+    for(let i=0;i<firstDay;i++){
+      const blank=document.createElement('div');
+      blank.className='cal-day empty';
+      blank.textContent='-';
+      calendarBody.appendChild(blank);
+    }
+
+    for(let day=1;day<=lastDate;day++){
+      const cell=document.createElement('div');
+      cell.className='cal-day';
+
+      const num=document.createElement('div');
+      num.className='day-num';
+      num.textContent=String(day);
+      cell.appendChild(num);
+
+      const info=eventsByDay[day];
+
+      if(info){
+        cell.classList.add('has-event');
+
+        const markers=document.createElement('div');
+        markers.className='day-markers';
+
+        if(info.course>0){
+          const course=document.createElement('span');
+          course.className='day-marker course';
+          course.textContent=String(info.course);
+          course.title='강좌 '+info.course+'건';
+          markers.appendChild(course);
+        }
+
+        if(info.book>0){
+          const book=document.createElement('span');
+          book.className='day-marker book';
+          book.textContent=String(info.book);
+          book.title='교재 '+info.book+'건';
+          markers.appendChild(book);
+        }
+
+        cell.appendChild(markers);
+      }
+
+      calendarBody.appendChild(cell);
+    }
+
+    renderList(courseList,getMonthItems('course'),courseCount);
+    renderList(bookList,getMonthItems('book'),bookCount);
+
+    yearSelect.value=String(calendarYear);
+    monthSelect.value=String(calendarMonth);
+  }
+
+  function ensureYearOption(year){
+    const exists=Array.from(yearSelect.options).some(function(o){
+      return Number(o.value)===year;
+    });
+
+    if(!exists){
+      const opt=document.createElement('option');
+      opt.value=String(year);
+      opt.textContent=year+'년';
+      yearSelect.appendChild(opt);
+
+      const options=Array.from(yearSelect.options).sort(function(a,b){
+        return Number(a.value)-Number(b.value);
+      });
+
+      yearSelect.innerHTML='';
+      options.forEach(function(o){ yearSelect.appendChild(o); });
+    }
+  }
+
+  function changeMonth(delta){
+    calendarMonth += delta;
+
+    if(calendarMonth<1){
+      calendarMonth=12;
+      calendarYear -= 1;
+    }
+
+    if(calendarMonth>12){
+      calendarMonth=1;
+      calendarYear += 1;
+    }
+
+    ensureYearOption(calendarYear);
+    renderCalendar();
+  }
+
+  if(yearSelect && monthSelect && prevMonthBtn && nextMonthBtn){
+    initYearMonthSelects();
+
+    yearSelect.addEventListener('change',function(){
+      calendarYear=Number(this.value);
+      renderCalendar();
+    });
+
+    monthSelect.addEventListener('change',function(){
+      calendarMonth=Number(this.value);
+      renderCalendar();
+    });
+
+    prevMonthBtn.addEventListener('click',function(){ changeMonth(-1); });
+    nextMonthBtn.addEventListener('click',function(){ changeMonth(1); });
+
+    renderCalendar();
+  }
+
+
+
+  /* 과목별 강사진 탭 및 대표카드 순환 롤링 */
+  const teacherData = {
+    '민법': [
+      {name:'민법 강사 A', badge:'민법', title:'기본부터 판례까지 흔들림 없이', desc:'민법의 핵심을 구조적으로 정리하는 커리큘럼입니다.'},
+      {name:'민법 강사 B', badge:'민법', title:'쟁점을 읽는 힘을 만드는 민법', desc:'이론과 문제를 연결해 실전 감각을 높입니다.'},
+      {name:'민법 강사 C', badge:'민법', title:'회독이 쌓이는 민법 정리', desc:'반복 학습에 최적화된 단계별 강좌입니다.'},
+      {name:'민법 강사 D', badge:'민법', title:'객관식까지 이어지는 기본기', desc:'기본 이론부터 문제 적용까지 연결합니다.'}
+    ],
+    '특허법': [
+      {name:'특허법 강사 A', badge:'특허법', title:'특허법 핵심을 구조적으로 정리', desc:'핵심 쟁점부터 사례 적용까지 단계적으로 학습합니다.'},
+      {name:'특허법 강사 B', badge:'특허법', title:'판례와 사례를 한 흐름으로', desc:'출제 쟁점을 중심으로 빠르게 정리합니다.'},
+      {name:'특허법 강사 C', badge:'특허법', title:'실전에 강한 특허법', desc:'답안과 문제풀이까지 이어지는 학습을 제공합니다.'},
+      {name:'특허법 강사 D', badge:'특허법', title:'특허법의 기준을 세우다', desc:'기본 개념부터 주요 판례까지 체계적으로 학습합니다.'},
+      {name:'특허법 강사 E', badge:'특허법', title:'최종 회독을 위한 핵심 정리', desc:'시험 직전까지 반복할 핵심 내용을 정리합니다.'}
+    ],
+    '상표법': [
+      {name:'이준호 변리사', badge:'상표법', title:'기본이 다른 합격의 시작', desc:'상표법의 구조를 이해하고 실전에 적용합니다.'},
+      {name:'상표법 강사 B', badge:'상표법', title:'판례 중심 상표법 완성', desc:'빈출 판례와 쟁점을 중심으로 정리합니다.'},
+      {name:'상표법 강사 C', badge:'상표법', title:'상표법 답안의 기준', desc:'이론에서 답안 작성까지 단계적으로 연결합니다.'}
+    ],
+    '디자인보호법': [
+      {name:'디자인보호법 강사 A', badge:'디자인보호법', title:'디자인보호법 핵심을 한 번에', desc:'조문과 판례를 연결해 빠르게 이해합니다.'},
+      {name:'디자인보호법 강사 B', badge:'디자인보호법', title:'문제로 완성하는 디자인보호법', desc:'기출과 객관식 문제를 통해 핵심을 점검합니다.'},
+      {name:'디자인보호법 강사 C', badge:'디자인보호법', title:'빈출 쟁점 집중 정리', desc:'시험에 필요한 쟁점만 선별해 반복합니다.'}
+    ],
+    '민사소송법': [
+      {name:'박진우 변리사', badge:'민사소송법', title:'실전형 사례로 완성하는 민사소송법', desc:'사례형 쟁점을 답안으로 연결하는 실전형 커리큘럼입니다.'},
+      {name:'민사소송법 강사 B', badge:'민사소송법', title:'쟁점이 보이는 민사소송법', desc:'복잡한 절차와 쟁점을 구조적으로 정리합니다.'},
+      {name:'민사소송법 강사 C', badge:'민사소송법', title:'답안 작성까지 한 번에', desc:'이론 학습 후 답안 작성으로 자연스럽게 연결합니다.'},
+      {name:'민사소송법 강사 D', badge:'민사소송법', title:'사례형 집중 훈련', desc:'빈출 사례를 반복하며 실전력을 높입니다.'}
+    ],
+    '자연과학': [
+      {name:'최서연 강사', badge:'화학', title:'이해가 합격을 만듭니다', desc:'개념 이해를 중심으로 문제 해결력을 높입니다.'},
+      {name:'자연과학 강사 B', badge:'물리', title:'원리부터 문제까지 연결되는 물리', desc:'핵심 원리를 이해하고 객관식 문제에 적용합니다.'},
+      {name:'자연과학 강사 C', badge:'생물', title:'암기보다 이해로 정리하는 생물', desc:'개념 간 연결을 통해 효율적으로 학습합니다.'},
+      {name:'자연과학 강사 D', badge:'지구과학', title:'빈출 개념을 빠르게 정리', desc:'출제 빈도가 높은 개념과 문제를 집중 학습합니다.'},
+      {name:'자연과학 강사 E', badge:'화학', title:'객관식 실전 완성', desc:'문제풀이를 통해 실전 감각을 완성합니다.'}
+    ],
+    '2차 선택과목': [
+      {name:'선택과목 강사 A', badge:'선택과목', title:'선택과목도 전략적으로', desc:'과목별 핵심 쟁점과 답안 작성 포인트를 정리합니다.'},
+      {name:'선택과목 강사 B', badge:'선택과목', title:'점수로 연결되는 답안 구성', desc:'실전에서 활용할 수 있는 답안 구성법을 훈련합니다.'},
+      {name:'선택과목 강사 C', badge:'선택과목', title:'핵심 논점 집중 정리', desc:'빈출 논점을 중심으로 효율적으로 대비합니다.'}
+    ]
+  };
+
+  const teacherTabs = document.getElementById('teacherTabs');
+  const teacherGrid = document.getElementById('teacherGrid');
+  const teacherCounter = document.getElementById('teacherCounter');
+  const teacherDots = document.getElementById('teacherDots');
+  const teacherCarousel = document.getElementById('teacherCarousel');
+
+  let activeTeacherSubject = '민법';
+  let activeTeacherIndex = 0;
+  let teacherTimer = null;
+
+  function renderTeachers(){
+    if(!teacherGrid) return;
+
+    const list = teacherData[activeTeacherSubject] || [];
+    teacherGrid.innerHTML = '';
+
+    if(!list.length){
+      teacherGrid.innerHTML = '<div style="grid-column:1/-1;padding:50px;text-align:center;color:#98a1ad">등록된 강사가 없습니다.</div>';
+      return;
+    }
+
+    /* 현재 강사가 항상 첫 번째(큰 카드) 자리에 오도록 배열 순환 */
+    const ordered = list.map((_, offset) => list[(activeTeacherIndex + offset) % list.length]);
+    const visible = ordered.slice(0, Math.min(4, ordered.length));
+
+    visible.forEach(function(item, idx){
+      const card = document.createElement('article');
+      card.className = 'teacher-card' + (idx === 0 ? ' main' : '');
+
+      const badge = document.createElement('span');
+      badge.className = 'badge';
+      badge.textContent = item.badge;
+
+      const title = document.createElement('h3');
+      title.textContent = item.title;
+
+      card.appendChild(badge);
+      card.appendChild(title);
+
+      if(idx === 0){
+        const desc = document.createElement('p');
+        desc.textContent = item.desc;
+        card.appendChild(desc);
+      }
+
+      const name = document.createElement('div');
+      name.className = 'name';
+      name.textContent = item.name;
+      card.appendChild(name);
+
+      const btn = document.createElement('span');
+      btn.className = 'mini-btn';
+      btn.textContent = '강좌보기 →';
+      card.appendChild(btn);
+
+      const avatar = document.createElement('div');
+      avatar.className = 'avatar';
+      card.appendChild(avatar);
+
+      teacherGrid.appendChild(card);
+    });
+
+    /* 4명 미만인 경우 빈 칸 대신 자연스럽게 남은 카드 폭 사용 */
+    teacherGrid.style.gridTemplateColumns =
+      visible.length >= 4 ? '1.7fr .9fr .9fr .9fr' :
+      visible.length === 3 ? '1.7fr .9fr .9fr' :
+      visible.length === 2 ? '1.7fr .9fr' : '1fr';
+
+    teacherCounter.textContent = (activeTeacherIndex + 1) + ' / ' + list.length;
+
+    teacherDots.innerHTML = '';
+    list.forEach(function(_, idx){
+      const dot = document.createElement('span');
+      dot.className = 'teacher-roll-dot' + (idx === activeTeacherIndex ? ' active' : '');
+      teacherDots.appendChild(dot);
+    });
+
+  }
+
+  function changeTeacher(delta){
+    const list = teacherData[activeTeacherSubject] || [];
+    if(!list.length) return;
+    activeTeacherIndex = (activeTeacherIndex + delta + list.length) % list.length;
+    renderTeachers();
+  }
+
+  function stopTeacherAuto(){
+    if(teacherTimer){
+      clearInterval(teacherTimer);
+      teacherTimer = null;
+    }
+  }
+
+  function startTeacherAuto(){
+    stopTeacherAuto();
+    const list = teacherData[activeTeacherSubject] || [];
+    if(list.length > 1){
+      teacherTimer = setInterval(function(){
+        changeTeacher(1);
+      }, 3000);
+    }
+  }
+
+  if(teacherTabs && teacherGrid){
+    teacherTabs.addEventListener('click', function(e){
+      const tab = e.target.closest('.tab');
+      if(!tab) return;
+
+      teacherTabs.querySelectorAll('.tab').forEach(function(el){
+        el.classList.remove('active');
+      });
+      tab.classList.add('active');
+
+      activeTeacherSubject = tab.dataset.subject;
+      activeTeacherIndex = 0;
+      renderTeachers();
+      startTeacherAuto();
+    });
+
+
+    teacherCarousel.addEventListener('mouseenter', stopTeacherAuto);
+    teacherCarousel.addEventListener('mouseleave', startTeacherAuto);
+    teacherCarousel.addEventListener('focusin', stopTeacherAuto);
+    teacherCarousel.addEventListener('focusout', startTeacherAuto);
+
+    renderTeachers();
+    startTeacherAuto();
+  }
+
+
+
+  // 일정 요약 영역 전체 클릭 시 캘린더 열기/닫기
+  const schedule = document.getElementById('schedule');
+  const scheduleSummary = document.getElementById('scheduleSummary');
+
+  function toggleScheduleArea(){
+    if(!schedule || !scheduleSummary) return;
+    const opened = schedule.classList.toggle('open');
+    scheduleSummary.setAttribute('aria-expanded', opened ? 'true' : 'false');
+  }
+
+  if(scheduleSummary){
+    scheduleSummary.addEventListener('click', function(e){
+      // 내부에 추후 링크/버튼이 추가되더라도 해당 컨트롤 클릭은 방해하지 않음
+      if(e.target.closest('a, button, select, input, textarea')) {
+        if(e.target.closest('.schedule-toggle')) toggleScheduleArea();
+        return;
+      }
+      toggleScheduleArea();
+    });
+
+    scheduleSummary.addEventListener('keydown', function(e){
+      if(e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        toggleScheduleArea();
+      }
+    });
+  }
+
+
+  renderQuickBar();
+
+  function initCarousel(rootId, intervalMs){
+    const root = document.getElementById(rootId);
+    if(!root) return;
+    const track = root.querySelector('.hero-track');
+    const slides = Array.from(root.querySelectorAll('.hero-slide'));
+    const prev = root.querySelector('.carousel-prev');
+    const next = root.querySelector('.carousel-next');
+    const count = root.querySelector('.carousel-count');
+    const controls = root.querySelector('.carousel-controls');
+    if(!track || !slides.length || !prev || !next || !count || !controls) return;
+
+    let index = 0;
+    let timer = null;
+
+    function render(){
+      track.style.transform = 'translateX(-' + (index * 100) + '%)';
+      count.textContent = (index + 1) + ' / ' + slides.length;
+      controls.classList.toggle('is-hidden', slides.length <= 1);
+    }
+    function go(delta){
+      index = (index + delta + slides.length) % slides.length;
+      render();
+    }
+    function stop(){
+      if(timer){ clearInterval(timer); timer = null; }
+    }
+    function start(){
+      stop();
+      if(slides.length > 1) timer = setInterval(function(){ go(1); }, intervalMs);
+    }
+
+    prev.addEventListener('click', function(){ go(-1); start(); });
+    next.addEventListener('click', function(){ go(1); start(); });
+    root.addEventListener('mouseenter', stop);
+    root.addEventListener('mouseleave', start);
+    root.addEventListener('focusin', stop);
+    root.addEventListener('focusout', start);
+
+    render();
+    start();
+  }
+
+  initCarousel('mainHeroCarousel', 5000);
+  initCarousel('subHeroCarousel', 6000);
+
+})();
+</script>
+
+</body>
+</html>
