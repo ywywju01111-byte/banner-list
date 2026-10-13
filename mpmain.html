@@ -791,6 +791,420 @@
   /* 이전 좌측 스카이 구조 미사용 */
   .page > .sky{display:none !important;}
 
+
+  /* 1차/2차 상위탭 + 과목 하위탭 */
+  .exam-tabs{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    width:100%;
+    border:1px solid #dfe5ee;
+    border-radius:8px;
+    overflow:hidden;
+    background:#fff;
+    margin-bottom:10px;
+  }
+  .exam-tab{
+    height:44px;
+    border:0;
+    background:#fff;
+    color:#27364a;
+    font-size:14px;
+    font-weight:800;
+    cursor:pointer;
+  }
+  .exam-tab + .exam-tab{border-left:1px solid #e6eaf0}
+  .exam-tab.active{background:#173b7a;color:#fff}
+  #teacher-section .tabs{
+    display:flex;
+    align-items:center;
+    border:1px solid #dfe5ee;
+    border-radius:8px;
+    overflow:hidden;
+    background:#fff;
+    margin-bottom:12px;
+  }
+  #teacher-section .tab{
+    flex:1;
+    min-width:0;
+    height:42px;
+    padding:0 10px;
+    border:0;
+    border-right:1px solid #e6eaf0;
+    background:#fff;
+    color:#27364a;
+    font-size:13px;
+    font-weight:600;
+    cursor:pointer;
+  }
+  #teacher-section .tab:last-child{border-right:0}
+  #teacher-section .tab.active{background:#173b7a;color:#fff;font-weight:800}
+
+
+  /* 시기별 추천 강좌 TOP3 */
+  .recommend-section{
+    width:1200px;
+    margin:34px 0 24px;
+    padding:26px 26px 28px;
+    background:#fff;
+    border:1px solid #e6eaf0;
+    border-radius:16px;
+    box-sizing:border-box;
+  }
+  .recommend-head{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    margin-bottom:20px;
+  }
+  .recommend-head > div{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+  }
+  .recommend-head h2{
+    margin:0;
+    color:#0f2f61;
+    font-size:25px;
+    line-height:1.2;
+    letter-spacing:-0.8px;
+  }
+  .recommend-head p{
+    margin:0;
+    color:#8a96a8;
+    font-size:13px;
+  }
+  .recommend-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:28px;
+  }
+  .recommend-title{
+    margin-bottom:12px;
+    font-size:18px;
+    color:#101828;
+  }
+  .recommend-title span{color:#1f6fe5}
+  .recommend-item{
+    display:grid;
+    grid-template-columns:34px 1fr 24px;
+    align-items:center;
+    min-height:54px;
+    margin-top:8px;
+    padding:0 18px 0 12px;
+    border:1px solid #e1e5ea;
+    border-radius:10px;
+    background:#fff;
+    color:#202b3c;
+    text-decoration:none;
+    box-sizing:border-box;
+    transition:.15s ease;
+  }
+  .recommend-item:hover{
+    border-color:#b9c7dc;
+    background:#f8fbff;
+    transform:translateY(-1px);
+  }
+  .recommend-rank{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:24px;
+    height:24px;
+    border-radius:50%;
+    background:#eef4ff;
+    color:#1f5fbf;
+    font-size:12px;
+    font-weight:800;
+  }
+  .recommend-name{
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    font-size:14px;
+    font-weight:650;
+  }
+  .recommend-arrow{
+    justify-self:end;
+    color:#8a95a5;
+    font-size:28px;
+    font-weight:300;
+    line-height:1;
+  }
+
+
+  /* 화제의 수강후기 */
+  .review-section{
+    width:1200px;
+    margin:34px 0 26px;
+    padding:0;
+    box-sizing:border-box;
+  }
+  .review-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:16px;
+  }
+  .review-title-wrap{
+    display:flex;
+    align-items:center;
+    gap:22px;
+    min-width:0;
+  }
+  .review-title-wrap h2{
+    margin:0;
+    color:#17233a;
+    font-size:25px;
+    letter-spacing:-.8px;
+    white-space:nowrap;
+  }
+  .review-tabs{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    min-width:0;
+  }
+  .review-tab{
+    padding:0;
+    border:0;
+    background:transparent;
+    color:#8a929e;
+    font-size:13px;
+    font-weight:600;
+    cursor:pointer;
+    white-space:nowrap;
+  }
+  .review-tab.active{
+    color:#1477ff;
+    font-weight:800;
+  }
+  .review-more{
+    border:0;
+    background:transparent;
+    color:#222;
+    font-size:13px;
+    font-weight:800;
+    cursor:pointer;
+    white-space:nowrap;
+  }
+  .review-card-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:14px;
+  }
+  .review-card{
+    min-height:238px;
+    padding:22px 22px 18px;
+    border:1px solid #e2e6ec;
+    border-radius:14px;
+    background:#fff;
+    box-sizing:border-box;
+    cursor:pointer;
+    transition:.15s ease;
+  }
+  .review-card:hover{
+    border-color:#9dc1ff;
+    box-shadow:0 7px 18px rgba(23,70,130,.07);
+    transform:translateY(-2px);
+  }
+  .review-card-top{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom:13px;
+  }
+  .review-badge{
+    display:inline-flex;
+    align-items:center;
+    height:24px;
+    padding:0 10px;
+    border-radius:999px;
+    background:#eaf3ff;
+    color:#1477ff;
+    font-size:11px;
+    font-weight:800;
+  }
+  .review-card-title{
+    margin:0 0 10px;
+    color:#1d2635;
+    font-size:17px;
+    line-height:1.45;
+    letter-spacing:-.4px;
+  }
+  .review-card-body{
+    display:-webkit-box;
+    -webkit-line-clamp:3;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
+    min-height:62px;
+    margin:0 0 20px;
+    color:#7a8492;
+    font-size:13px;
+    line-height:1.65;
+  }
+  .review-card-foot{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    padding-top:14px;
+    border-top:1px solid #edf0f4;
+  }
+  .review-course{
+    min-width:0;
+  }
+  .review-course strong{
+    display:block;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    color:#394557;
+    font-size:12px;
+  }
+  .review-course span{
+    display:block;
+    margin-top:4px;
+    color:#98a1ad;
+    font-size:11px;
+  }
+  .review-avatar{
+    flex:0 0 auto;
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    background:linear-gradient(180deg,#dce6f3,#aebdce);
+    position:relative;
+    overflow:hidden;
+  }
+  .review-avatar:before{
+    content:"";
+    position:absolute;
+    width:19px;
+    height:19px;
+    border-radius:50%;
+    background:#6d7f96;
+    left:50%;
+    top:7px;
+    transform:translateX(-50%);
+  }
+  .review-avatar:after{
+    content:"";
+    position:absolute;
+    width:31px;
+    height:20px;
+    border-radius:50% 50% 0 0;
+    background:#6d7f96;
+    left:50%;
+    bottom:0;
+    transform:translateX(-50%);
+  }
+
+  /* 후기 전체보기 팝업 */
+  .review-modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:9999;
+  }
+  .review-modal.open{display:block}
+  .review-modal-backdrop{
+    position:absolute;
+    inset:0;
+    background:rgba(15,24,38,.48);
+  }
+  .review-modal-panel{
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    width:1040px;
+    max-height:78vh;
+    padding:28px;
+    border-radius:18px;
+    background:#fff;
+    box-shadow:0 24px 70px rgba(0,0,0,.22);
+    box-sizing:border-box;
+    overflow:auto;
+  }
+  .review-modal-head{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    margin-bottom:18px;
+  }
+  .review-modal-head h3{
+    margin:0;
+    color:#17233a;
+    font-size:25px;
+  }
+  .review-modal-head p{
+    margin:7px 0 0;
+    color:#8b95a4;
+    font-size:13px;
+  }
+  .review-modal-close{
+    width:36px;
+    height:36px;
+    border:1px solid #dce1e8;
+    border-radius:50%;
+    background:#fff;
+    color:#465164;
+    font-size:25px;
+    line-height:1;
+    cursor:pointer;
+  }
+  .review-modal-tabs{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-bottom:18px;
+  }
+  .review-modal-tab{
+    height:34px;
+    padding:0 14px;
+    border:1px solid #dfe5ec;
+    border-radius:999px;
+    background:#fff;
+    color:#667085;
+    font-size:12px;
+    font-weight:700;
+    cursor:pointer;
+  }
+  .review-modal-tab.active{
+    border-color:#173b7a;
+    background:#173b7a;
+    color:#fff;
+  }
+  .review-modal-list{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+  }
+  .review-modal-item{
+    padding:18px;
+    border:1px solid #e4e8ee;
+    border-radius:12px;
+    background:#fff;
+  }
+  .review-modal-item h4{
+    margin:9px 0 9px;
+    color:#1d2635;
+    font-size:15px;
+  }
+  .review-modal-item p{
+    margin:0;
+    color:#7a8492;
+    font-size:12px;
+    line-height:1.65;
+  }
+  .review-modal-meta{
+    margin-top:13px;
+    padding-top:12px;
+    border-top:1px solid #edf0f4;
+    color:#9099a7;
+    font-size:11px;
+  }
+
 </style>
 </head>
 <body>
@@ -965,36 +1379,83 @@
 </div>
 
 
+
 <section id="teacher-section">
   <div class="section-head">
     <div>
-      <h2>과목별 강사진 / 추천 강좌 <p>변리사 시험, 각 과목의 전문가와 함께하세요.</p></h2>
+      <h2>1·2차 강사진 <p>변리사 시험, 각 과목의 전문가와 함께하세요.</p></h2>
     </div>
     <a class="more" href="#">전체 강사진 보기 →</a>
   </div>
 
-  <div class="tabs" id="teacherTabs" role="tablist" aria-label="과목별 강사진">
-    <button type="button" class="tab active" data-subject="민법">민법</button>
-    <button type="button" class="tab" data-subject="특허법">특허법</button>
-    <button type="button" class="tab" data-subject="상표법">상표법</button>
-    <button type="button" class="tab" data-subject="디자인보호법">디자인보호법</button>
-    <button type="button" class="tab" data-subject="민사소송법">민사소송법</button>
-    <button type="button" class="tab" data-subject="자연과학">자연과학</button>
-    <button type="button" class="tab" data-subject="2차 선택과목">2차 선택과목</button>
+  <div class="exam-tabs" id="examTabs" role="tablist" aria-label="시험 구분">
+    <button type="button" class="exam-tab active" data-exam="1차">1차 대비</button>
+    <button type="button" class="exam-tab" data-exam="2차">2차 대비</button>
   </div>
+
+  <div class="tabs" id="teacherTabs" role="tablist" aria-label="과목별 강사진"></div>
 
   <div class="teacher-carousel-wrap" id="teacherCarousel">
-    <div class="teacher-grid" id="teacherGrid"></div>
-
-    <div class="teacher-roll-status">
-      <span id="teacherCounter">1 / 1</span>
-      <div class="teacher-roll-dots" id="teacherDots"></div>
-    </div>
-  </div>
+    <div class="teacher-grid" id="teacherGrid"></div>  </div>
 </section>
 
 
-      <section id="schedule-section">
+
+      
+      <section id="recommend-section" class="recommend-section">
+        <div class="recommend-head">
+          <div>
+            <h2>지금 이 시기 추천 강좌</h2>
+            <p>현재 학습 시기에 맞춰 확인해보세요.</p>
+          </div>
+        </div>
+
+        <div class="recommend-columns">
+          <div class="recommend-column">
+            <div class="recommend-title">
+              <strong><span>1차 대비</span> Pick TOP3</strong>
+            </div>
+            <a class="recommend-item" href="#">
+              <span class="recommend-rank">1</span>
+              <span class="recommend-name">[1차] 민법 객관식 핵심정리</span>
+              <span class="recommend-arrow">›</span>
+            </a>
+            <a class="recommend-item" href="#">
+              <span class="recommend-rank">2</span>
+              <span class="recommend-name">[1차] 특허법 객관식 문제풀이</span>
+              <span class="recommend-arrow">›</span>
+            </a>
+            <a class="recommend-item" href="#">
+              <span class="recommend-rank">3</span>
+              <span class="recommend-name">[1차] 자연과학 핵심 문제풀이</span>
+              <span class="recommend-arrow">›</span>
+            </a>
+          </div>
+
+          <div class="recommend-column">
+            <div class="recommend-title">
+              <strong><span>2차 대비</span> Pick TOP3</strong>
+            </div>
+            <a class="recommend-item" href="#">
+              <span class="recommend-rank">1</span>
+              <span class="recommend-name">[2차] 민사소송법 답안작성 집중</span>
+              <span class="recommend-arrow">›</span>
+            </a>
+            <a class="recommend-item" href="#">
+              <span class="recommend-rank">2</span>
+              <span class="recommend-name">[2차] 특허법 사례·판례 정리</span>
+              <span class="recommend-arrow">›</span>
+            </a>
+            <a class="recommend-item" href="#">
+              <span class="recommend-rank">3</span>
+              <span class="recommend-name">[2차] 상표법 실전 GS</span>
+              <span class="recommend-arrow">›</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+<section id="schedule-section">
         <div class="schedule-wrap" id="schedule">
           <div class="schedule-summary" id="scheduleSummary" role="button" tabindex="0" aria-expanded="false" aria-controls="scheduleDetail">
             <div class="summary-title">신규 강좌/교재<br>업데이트</div>
@@ -1050,7 +1511,45 @@
         </div>
       </section>
 
-      <div class="footer-placeholder">화제의 수강후기 영역부터 기존영역</div>
+      
+      <section id="review-section" class="review-section">
+        <div class="review-head">
+          <div class="review-title-wrap">
+            <h2>화제의 수강후기</h2>
+            <div class="review-tabs" id="reviewTabs" role="tablist" aria-label="수강후기 과목">
+              <button type="button" class="review-tab active" data-subject="전체">전체</button>
+              <button type="button" class="review-tab" data-subject="민법">민법</button>
+              <button type="button" class="review-tab" data-subject="특허법">특허법</button>
+              <button type="button" class="review-tab" data-subject="상표법">상표법</button>
+              <button type="button" class="review-tab" data-subject="디자인보호법">디자인보호법</button>
+              <button type="button" class="review-tab" data-subject="민사소송법">민사소송법</button>
+              <button type="button" class="review-tab" data-subject="자연과학">자연과학</button>
+              <button type="button" class="review-tab" data-subject="2차 선택과목">2차 선택과목</button>
+            </div>
+          </div>
+          <button type="button" class="review-more" id="reviewMoreBtn">더보기 +</button>
+        </div>
+
+        <div class="review-card-grid" id="reviewCardGrid"></div>
+      </section>
+
+      <div class="review-modal" id="reviewModal" aria-hidden="true">
+        <div class="review-modal-backdrop" data-review-close></div>
+        <div class="review-modal-panel" role="dialog" aria-modal="true" aria-labelledby="reviewModalTitle">
+          <div class="review-modal-head">
+            <div>
+              <h3 id="reviewModalTitle">전체 수강후기</h3>
+              <p>과목별 수강후기를 확인해보세요.</p>
+            </div>
+            <button type="button" class="review-modal-close" data-review-close aria-label="닫기">×</button>
+          </div>
+
+          <div class="review-modal-tabs" id="reviewModalTabs"></div>
+          <div class="review-modal-list" id="reviewModalList"></div>
+        </div>
+      </div>
+
+<div class="footer-placeholder">핫클립 영역부터 기존영역</div>
     </div>
   </main>
 
@@ -1302,6 +1801,24 @@
   const monthSelect = document.getElementById('monthSelect');
   const prevMonthBtn = document.getElementById('prevMonthBtn');
   const nextMonthBtn = document.getElementById('nextMonthBtn');
+  const scheduleWrap = document.getElementById('schedule');
+  const scheduleSummary = document.getElementById('scheduleSummary');
+
+  function toggleSchedule(){
+    if(!scheduleWrap || !scheduleSummary) return;
+    const isOpen = scheduleWrap.classList.toggle('open');
+    scheduleSummary.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  }
+
+  if(scheduleSummary){
+    scheduleSummary.addEventListener('click', toggleSchedule);
+    scheduleSummary.addEventListener('keydown', function(e){
+      if(e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        toggleSchedule();
+      }
+    });
+  }
 
   let calendarYear = 2026;
   let calendarMonth = 10;
@@ -1537,209 +2054,274 @@
 
 
 
-  /* 과목별 강사진 탭 및 대표카드 순환 롤링 */
+
+  /* 1차/2차 및 과목 탭 순서는 고정 + 최초 노출 1·2차 랜덤 + 과목 내 강사 롤링 후 다음 과목/시험으로 자동 이동 */
   const teacherData = {
-    '민법': [
-      {name:'민법 강사 A', badge:'민법', title:'기본부터 판례까지 흔들림 없이', desc:'민법의 핵심을 구조적으로 정리하는 커리큘럼입니다.'},
-      {name:'민법 강사 B', badge:'민법', title:'쟁점을 읽는 힘을 만드는 민법', desc:'이론과 문제를 연결해 실전 감각을 높입니다.'},
-      {name:'민법 강사 C', badge:'민법', title:'회독이 쌓이는 민법 정리', desc:'반복 학습에 최적화된 단계별 강좌입니다.'},
-      {name:'민법 강사 D', badge:'민법', title:'객관식까지 이어지는 기본기', desc:'기본 이론부터 문제 적용까지 연결합니다.'}
-    ],
-    '특허법': [
-      {name:'특허법 강사 A', badge:'특허법', title:'특허법 핵심을 구조적으로 정리', desc:'핵심 쟁점부터 사례 적용까지 단계적으로 학습합니다.'},
-      {name:'특허법 강사 B', badge:'특허법', title:'판례와 사례를 한 흐름으로', desc:'출제 쟁점을 중심으로 빠르게 정리합니다.'},
-      {name:'특허법 강사 C', badge:'특허법', title:'실전에 강한 특허법', desc:'답안과 문제풀이까지 이어지는 학습을 제공합니다.'},
-      {name:'특허법 강사 D', badge:'특허법', title:'특허법의 기준을 세우다', desc:'기본 개념부터 주요 판례까지 체계적으로 학습합니다.'},
-      {name:'특허법 강사 E', badge:'특허법', title:'최종 회독을 위한 핵심 정리', desc:'시험 직전까지 반복할 핵심 내용을 정리합니다.'}
-    ],
-    '상표법': [
-      {name:'이준호 변리사', badge:'상표법', title:'기본이 다른 합격의 시작', desc:'상표법의 구조를 이해하고 실전에 적용합니다.'},
-      {name:'상표법 강사 B', badge:'상표법', title:'판례 중심 상표법 완성', desc:'빈출 판례와 쟁점을 중심으로 정리합니다.'},
-      {name:'상표법 강사 C', badge:'상표법', title:'상표법 답안의 기준', desc:'이론에서 답안 작성까지 단계적으로 연결합니다.'}
-    ],
-    '디자인보호법': [
-      {name:'디자인보호법 강사 A', badge:'디자인보호법', title:'디자인보호법 핵심을 한 번에', desc:'조문과 판례를 연결해 빠르게 이해합니다.'},
-      {name:'디자인보호법 강사 B', badge:'디자인보호법', title:'문제로 완성하는 디자인보호법', desc:'기출과 객관식 문제를 통해 핵심을 점검합니다.'},
-      {name:'디자인보호법 강사 C', badge:'디자인보호법', title:'빈출 쟁점 집중 정리', desc:'시험에 필요한 쟁점만 선별해 반복합니다.'}
-    ],
-    '민사소송법': [
-      {name:'박진우 변리사', badge:'민사소송법', title:'실전형 사례로 완성하는 민사소송법', desc:'사례형 쟁점을 답안으로 연결하는 실전형 커리큘럼입니다.'},
-      {name:'민사소송법 강사 B', badge:'민사소송법', title:'쟁점이 보이는 민사소송법', desc:'복잡한 절차와 쟁점을 구조적으로 정리합니다.'},
-      {name:'민사소송법 강사 C', badge:'민사소송법', title:'답안 작성까지 한 번에', desc:'이론 학습 후 답안 작성으로 자연스럽게 연결합니다.'},
-      {name:'민사소송법 강사 D', badge:'민사소송법', title:'사례형 집중 훈련', desc:'빈출 사례를 반복하며 실전력을 높입니다.'}
-    ],
-    '자연과학': [
-      {name:'최서연 강사', badge:'화학', title:'이해가 합격을 만듭니다', desc:'개념 이해를 중심으로 문제 해결력을 높입니다.'},
-      {name:'자연과학 강사 B', badge:'물리', title:'원리부터 문제까지 연결되는 물리', desc:'핵심 원리를 이해하고 객관식 문제에 적용합니다.'},
-      {name:'자연과학 강사 C', badge:'생물', title:'암기보다 이해로 정리하는 생물', desc:'개념 간 연결을 통해 효율적으로 학습합니다.'},
-      {name:'자연과학 강사 D', badge:'지구과학', title:'빈출 개념을 빠르게 정리', desc:'출제 빈도가 높은 개념과 문제를 집중 학습합니다.'},
-      {name:'자연과학 강사 E', badge:'화학', title:'객관식 실전 완성', desc:'문제풀이를 통해 실전 감각을 완성합니다.'}
-    ],
-    '2차 선택과목': [
-      {name:'선택과목 강사 A', badge:'선택과목', title:'선택과목도 전략적으로', desc:'과목별 핵심 쟁점과 답안 작성 포인트를 정리합니다.'},
-      {name:'선택과목 강사 B', badge:'선택과목', title:'점수로 연결되는 답안 구성', desc:'실전에서 활용할 수 있는 답안 구성법을 훈련합니다.'},
-      {name:'선택과목 강사 C', badge:'선택과목', title:'핵심 논점 집중 정리', desc:'빈출 논점을 중심으로 효율적으로 대비합니다.'}
-    ]
+    '1차': {
+      '민법': [
+        {name:'민법 강사 A', badge:'민법', title:'기본부터 판례까지 흔들림 없이', desc:'민법의 핵심을 구조적으로 정리하는 커리큘럼입니다.'},
+        {name:'민법 강사 B', badge:'민법', title:'쟁점을 읽는 힘을 만드는 민법', desc:'이론과 문제를 연결해 실전 감각을 높입니다.'},
+        {name:'민법 강사 C', badge:'민법', title:'회독이 쌓이는 민법 정리', desc:'반복 학습에 최적화된 단계별 강좌입니다.'},
+        {name:'민법 강사 D', badge:'민법', title:'객관식까지 이어지는 기본기', desc:'기본 이론부터 문제 적용까지 연결합니다.'}
+      ],
+      '특허법': [
+        {name:'특허법 강사 A', badge:'특허법', title:'특허법 핵심을 구조적으로 정리', desc:'핵심 쟁점부터 사례 적용까지 단계적으로 학습합니다.'},
+        {name:'특허법 강사 B', badge:'특허법', title:'판례와 사례를 한 흐름으로', desc:'출제 쟁점을 중심으로 빠르게 정리합니다.'},
+        {name:'특허법 강사 C', badge:'특허법', title:'실전에 강한 특허법', desc:'답안과 문제풀이까지 이어지는 학습을 제공합니다.'}
+      ],
+      '상표법': [
+        {name:'상표법 강사 A', badge:'상표법', title:'기본이 다른 합격의 시작', desc:'상표법의 구조를 이해하고 실전에 적용합니다.'},
+        {name:'상표법 강사 B', badge:'상표법', title:'판례 중심 상표법 완성', desc:'빈출 판례와 쟁점을 중심으로 정리합니다.'},
+        {name:'상표법 강사 C', badge:'상표법', title:'상표법 답안의 기준', desc:'이론에서 답안 작성까지 단계적으로 연결합니다.'}
+      ],
+      '디자인보호법': [
+        {name:'디자인보호법 강사 A', badge:'디자인보호법', title:'디자인보호법 핵심을 한 번에', desc:'조문과 판례를 연결해 빠르게 이해합니다.'},
+        {name:'디자인보호법 강사 B', badge:'디자인보호법', title:'문제로 완성하는 디자인보호법', desc:'기출과 객관식 문제를 통해 핵심을 점검합니다.'}
+      ],
+      '자연과학': [
+        {name:'자연과학 강사 A', badge:'화학', title:'이해가 합격을 만듭니다', desc:'개념 이해를 중심으로 문제 해결력을 높입니다.'},
+        {name:'자연과학 강사 B', badge:'물리', title:'원리부터 문제까지 연결되는 물리', desc:'핵심 원리를 이해하고 객관식 문제에 적용합니다.'},
+        {name:'자연과학 강사 C', badge:'생물', title:'암기보다 이해로 정리하는 생물', desc:'개념 간 연결을 통해 효율적으로 학습합니다.'}
+      ]
+    },
+    '2차': {
+      '민사소송법': [
+        {name:'민사소송법 강사 A', badge:'민사소송법', title:'실전 답안까지 이어지는 체계적인 민사소송법', desc:'핵심 이론과 실전 사례를 연결하는 커리큘럼입니다.'},
+        {name:'민사소송법 강사 B', badge:'민사소송법', title:'쟁점 중심으로 정리하는 민사소송법', desc:'복잡한 절차와 쟁점을 구조적으로 정리합니다.'},
+        {name:'민사소송법 강사 C', badge:'민사소송법', title:'사례로 완성하는 민사소송법', desc:'답안 작성까지 자연스럽게 연결합니다.'}
+      ],
+      '특허법': [
+        {name:'2차 특허법 강사 A', badge:'특허법', title:'사례형 특허법을 완성하다', desc:'2차 답안에 필요한 핵심 쟁점을 정리합니다.'},
+        {name:'2차 특허법 강사 B', badge:'특허법', title:'쟁점과 답안을 연결하는 특허법', desc:'사례형 대비를 중심으로 학습합니다.'}
+      ],
+      '상표법': [
+        {name:'2차 상표법 강사 A', badge:'상표법', title:'답안형 상표법의 기준', desc:'판례와 쟁점을 답안 구조로 연결합니다.'},
+        {name:'2차 상표법 강사 B', badge:'상표법', title:'실전 중심 상표법 정리', desc:'기출과 사례를 중심으로 정리합니다.'}
+      ],
+      '디자인보호법': [
+        {name:'2차 디자인보호법 강사 A', badge:'디자인보호법', title:'2차 디자인보호법 실전 완성', desc:'답안에 필요한 핵심 쟁점을 집중 정리합니다.'}
+      ],
+      '저작권법': [
+        {name:'저작권법 강사 A', badge:'저작권법', title:'핵심 논점부터 답안까지', desc:'저작권법의 빈출 논점을 집중적으로 정리합니다.'}
+      ],
+      '유기화학': [
+        {name:'유기화학 강사 A', badge:'유기화학', title:'유기화학 핵심 개념 정리', desc:'선택과목 대비에 필요한 내용을 효율적으로 정리합니다.'}
+      ],
+      '분자생물학': [
+        {name:'분자생물학 강사 A', badge:'분자생물학', title:'분자생물학 핵심을 빠르게', desc:'빈출 개념과 논점을 중심으로 학습합니다.'}
+      ]
+    }
   };
 
+  const examTabs = document.getElementById('examTabs');
   const teacherTabs = document.getElementById('teacherTabs');
   const teacherGrid = document.getElementById('teacherGrid');
-  const teacherCounter = document.getElementById('teacherCounter');
-  const teacherDots = document.getElementById('teacherDots');
   const teacherCarousel = document.getElementById('teacherCarousel');
 
-  let activeTeacherSubject = '민법';
-  let activeTeacherIndex = 0;
-  let teacherTimer = null;
+  let activeExam='1차';
+  let activeTeacherSubject='';
+  let subjectOrder=[];
+  let teacherOrder=[];
+  let activeTeacherIndex=0;
+  let teacherTimer=null;
+
+  function shuffleArray(arr){
+    const copy=[...arr];
+    for(let i=copy.length-1;i>0;i--){
+      const j=Math.floor(Math.random()*(i+1));
+      [copy[i],copy[j]]=[copy[j],copy[i]];
+    }
+    return copy;
+  }
+
+  function renderSubjectTabs(){
+    const subjects=Object.keys(teacherData[activeExam] || {});
+    subjectOrder=[...subjects]; // 탭 순서는 고정
+    activeTeacherSubject=subjects.length
+      ? subjects[Math.floor(Math.random()*subjects.length)] // 최초 노출 과목만 랜덤
+      : '';
+    teacherTabs.innerHTML='';
+
+    subjects.forEach(function(subject){
+      const btn=document.createElement('button');
+      btn.type='button';
+      btn.className='tab'+(subject===activeTeacherSubject?' active':'');
+      btn.dataset.subject=subject;
+      btn.textContent=subject;
+      teacherTabs.appendChild(btn);
+    });
+  }
+
+  function resetTeacherOrder(){
+    const list=(teacherData[activeExam] && teacherData[activeExam][activeTeacherSubject]) || [];
+    teacherOrder=shuffleArray(list);
+    activeTeacherIndex=0;
+  }
 
   function renderTeachers(){
-    if(!teacherGrid) return;
+    teacherGrid.innerHTML='';
 
-    const list = teacherData[activeTeacherSubject] || [];
-    teacherGrid.innerHTML = '';
-
-    if(!list.length){
-      teacherGrid.innerHTML = '<div style="grid-column:1/-1;padding:50px;text-align:center;color:#98a1ad">등록된 강사가 없습니다.</div>';
+    if(!teacherOrder.length){
+      teacherGrid.innerHTML='<div style="grid-column:1/-1;padding:50px;text-align:center;color:#98a1ad">등록된 강사가 없습니다.</div>';
       return;
     }
 
-    /* 현재 강사가 항상 첫 번째(큰 카드) 자리에 오도록 배열 순환 */
-    const ordered = list.map((_, offset) => list[(activeTeacherIndex + offset) % list.length]);
-    const visible = ordered.slice(0, Math.min(4, ordered.length));
+    const ordered=teacherOrder.map((_,offset)=>teacherOrder[(activeTeacherIndex+offset)%teacherOrder.length]);
+    const visible=ordered.slice(0,Math.min(4,ordered.length));
 
-    visible.forEach(function(item, idx){
-      const card = document.createElement('article');
-      card.className = 'teacher-card' + (idx === 0 ? ' main' : '');
+    visible.forEach(function(item,idx){
+      const card=document.createElement('article');
+      card.className='teacher-card'+(idx===0?' main':'');
 
-      const badge = document.createElement('span');
-      badge.className = 'badge';
-      badge.textContent = item.badge;
+      const badge=document.createElement('span');
+      badge.className='badge';
+      badge.textContent=item.badge;
 
-      const title = document.createElement('h3');
-      title.textContent = item.title;
+      const title=document.createElement('h3');
+      title.textContent=item.title;
 
       card.appendChild(badge);
       card.appendChild(title);
 
-      if(idx === 0){
-        const desc = document.createElement('p');
-        desc.textContent = item.desc;
+      if(idx===0){
+        const desc=document.createElement('p');
+        desc.textContent=item.desc;
         card.appendChild(desc);
       }
 
-      const name = document.createElement('div');
-      name.className = 'name';
-      name.textContent = item.name;
+      const name=document.createElement('div');
+      name.className='name';
+      name.textContent=item.name;
       card.appendChild(name);
 
-      const btn = document.createElement('span');
-      btn.className = 'mini-btn';
-      btn.textContent = '강좌보기 →';
+      const btn=document.createElement('span');
+      btn.className='mini-btn';
+      btn.textContent='강좌보기 →';
       card.appendChild(btn);
 
-      const avatar = document.createElement('div');
-      avatar.className = 'avatar';
+      const avatar=document.createElement('div');
+      avatar.className='avatar';
       card.appendChild(avatar);
 
       teacherGrid.appendChild(card);
     });
 
-    /* 4명 미만인 경우 빈 칸 대신 자연스럽게 남은 카드 폭 사용 */
     teacherGrid.style.gridTemplateColumns =
-      visible.length >= 4 ? '1.7fr .9fr .9fr .9fr' :
-      visible.length === 3 ? '1.7fr .9fr .9fr' :
-      visible.length === 2 ? '1.7fr .9fr' : '1fr';
-
-    teacherCounter.textContent = (activeTeacherIndex + 1) + ' / ' + list.length;
-
-    teacherDots.innerHTML = '';
-    list.forEach(function(_, idx){
-      const dot = document.createElement('span');
-      dot.className = 'teacher-roll-dot' + (idx === activeTeacherIndex ? ' active' : '');
-      teacherDots.appendChild(dot);
-    });
+      visible.length>=4 ? '1.7fr .9fr .9fr .9fr' :
+      visible.length===3 ? '1.7fr .9fr .9fr' :
+      visible.length===2 ? '1.7fr .9fr' : '1fr';
 
   }
 
-  function changeTeacher(delta){
-    const list = teacherData[activeTeacherSubject] || [];
-    if(!list.length) return;
-    activeTeacherIndex = (activeTeacherIndex + delta + list.length) % list.length;
+  function nextTeacher(){
+    if(!teacherOrder.length) return;
+
+    // 현재 과목의 강사를 모두 노출하기 전이면 다음 강사로 이동
+    if(activeTeacherIndex < teacherOrder.length - 1){
+      activeTeacherIndex += 1;
+      renderTeachers();
+      return;
+    }
+
+    const currentSubjectIndex = subjectOrder.indexOf(activeTeacherSubject);
+
+    // 현재 시험의 마지막 과목까지 끝나면 1차 ↔ 2차 자동 전환
+    if(currentSubjectIndex === subjectOrder.length - 1){
+      const nextExam = activeExam === '1차' ? '2차' : '1차';
+      activeExam = nextExam;
+
+      examTabs.querySelectorAll('.exam-tab').forEach(function(el){
+        el.classList.toggle('active', el.dataset.exam === activeExam);
+      });
+
+      // 시험 전환 시 과목 탭은 고정 순서로 다시 구성하고 첫 과목부터 시작
+      const subjects = Object.keys(teacherData[activeExam] || {});
+      subjectOrder = [...subjects];
+      activeTeacherSubject = subjects[0] || '';
+      teacherTabs.innerHTML = '';
+
+      subjects.forEach(function(subject){
+        const btn=document.createElement('button');
+        btn.type='button';
+        btn.className='tab'+(subject===activeTeacherSubject?' active':'');
+        btn.dataset.subject=subject;
+        btn.textContent=subject;
+        teacherTabs.appendChild(btn);
+      });
+
+      resetTeacherOrder();
+      renderTeachers();
+      return;
+    }
+
+    // 같은 시험 안에서는 다음 과목으로 순차 이동
+    activeTeacherSubject = subjectOrder[currentSubjectIndex + 1];
+
+    teacherTabs.querySelectorAll('.tab').forEach(function(el){
+      el.classList.toggle('active', el.dataset.subject === activeTeacherSubject);
+    });
+
+    // 새 과목의 강사 노출 순서는 랜덤
+    resetTeacherOrder();
     renderTeachers();
   }
 
   function stopTeacherAuto(){
     if(teacherTimer){
       clearInterval(teacherTimer);
-      teacherTimer = null;
+      teacherTimer=null;
     }
   }
 
   function startTeacherAuto(){
     stopTeacherAuto();
-    const list = teacherData[activeTeacherSubject] || [];
-    if(list.length > 1){
-      teacherTimer = setInterval(function(){
-        changeTeacher(1);
-      }, 3000);
+    if(teacherOrder.length>0){
+      teacherTimer=setInterval(nextTeacher,3000);
     }
   }
 
-  if(teacherTabs && teacherGrid){
-    teacherTabs.addEventListener('click', function(e){
-      const tab = e.target.closest('.tab');
-      if(!tab) return;
-
-      teacherTabs.querySelectorAll('.tab').forEach(function(el){
-        el.classList.remove('active');
-      });
-      tab.classList.add('active');
-
-      activeTeacherSubject = tab.dataset.subject;
-      activeTeacherIndex = 0;
-      renderTeachers();
-      startTeacherAuto();
+  function activateSubject(subject){
+    activeTeacherSubject=subject;
+    teacherTabs.querySelectorAll('.tab').forEach(function(el){
+      el.classList.toggle('active',el.dataset.subject===subject);
     });
-
-
-    teacherCarousel.addEventListener('mouseenter', stopTeacherAuto);
-    teacherCarousel.addEventListener('mouseleave', startTeacherAuto);
-    teacherCarousel.addEventListener('focusin', stopTeacherAuto);
-    teacherCarousel.addEventListener('focusout', startTeacherAuto);
-
+    resetTeacherOrder();
     renderTeachers();
     startTeacherAuto();
   }
 
-
-
-  // 일정 요약 영역 전체 클릭 시 캘린더 열기/닫기
-  const schedule = document.getElementById('schedule');
-  const scheduleSummary = document.getElementById('scheduleSummary');
-
-  function toggleScheduleArea(){
-    if(!schedule || !scheduleSummary) return;
-    const opened = schedule.classList.toggle('open');
-    scheduleSummary.setAttribute('aria-expanded', opened ? 'true' : 'false');
+  function activateExam(exam){
+    activeExam=exam;
+    examTabs.querySelectorAll('.exam-tab').forEach(function(el){
+      el.classList.toggle('active',el.dataset.exam===exam);
+    });
+    renderSubjectTabs();
+    resetTeacherOrder();
+    renderTeachers();
+    startTeacherAuto();
   }
 
-  if(scheduleSummary){
-    scheduleSummary.addEventListener('click', function(e){
-      // 내부에 추후 링크/버튼이 추가되더라도 해당 컨트롤 클릭은 방해하지 않음
-      if(e.target.closest('a, button, select, input, textarea')) {
-        if(e.target.closest('.schedule-toggle')) toggleScheduleArea();
-        return;
-      }
-      toggleScheduleArea();
+  if(examTabs && teacherTabs && teacherGrid){
+    examTabs.addEventListener('click',function(e){
+      const tab=e.target.closest('.exam-tab');
+      if(!tab) return;
+      activateExam(tab.dataset.exam);
     });
 
-    scheduleSummary.addEventListener('keydown', function(e){
-      if(e.key === 'Enter' || e.key === ' '){
-        e.preventDefault();
-        toggleScheduleArea();
-      }
+    teacherTabs.addEventListener('click',function(e){
+      const tab=e.target.closest('.tab');
+      if(!tab) return;
+      activateSubject(tab.dataset.subject);
     });
+
+    teacherCarousel.addEventListener('mouseenter',stopTeacherAuto);
+    teacherCarousel.addEventListener('mouseleave',startTeacherAuto);
+    teacherCarousel.addEventListener('focusin',stopTeacherAuto);
+    teacherCarousel.addEventListener('focusout',startTeacherAuto);
+
+    activateExam(Math.random() < 0.5 ? '1차' : '2차');
   }
+
 
 
   renderQuickBar();
@@ -1790,6 +2372,224 @@
   initCarousel('subHeroCarousel', 6000);
 
 })();
+
+
+
+  /* 화제의 수강후기: 과목 탭은 고정 / 과목별 후기 3개 노출 / 과목 자동 롤링 */
+  const reviewData = [
+    {subject:'민법', title:'복잡했던 민법 흐름이 한 번에 정리됐어요.', body:'단순 암기보다 구조를 잡아주셔서 문제를 볼 때 어디서 출발해야 하는지 알게 됐습니다.', course:'[1차] 민법 핵심정리', teacher:'민법 강사 A'},
+    {subject:'민법', title:'객관식 들어가기 전에 듣기 좋았습니다.', body:'기본이론에서 놓쳤던 부분을 짧게 다시 정리할 수 있어서 문제풀이 진입에 도움이 됐습니다.', course:'[1차] 민법 객관식 대비', teacher:'민법 강사 B'},
+    {subject:'민법', title:'회독할수록 정리가 더 잘됐습니다.', body:'중요한 부분을 반복해서 짚어줘서 마지막 정리용으로 활용하기 좋았습니다.', course:'[1차] 민법 마무리 특강', teacher:'민법 강사 C'},
+
+    {subject:'특허법', title:'판례가 연결되기 시작한 강의였습니다.', body:'개별 판례를 외우는 방식이 아니라 쟁점별로 묶어서 설명해주셔서 정리가 훨씬 쉬웠습니다.', course:'[2차] 특허법 판례정리', teacher:'특허법 강사 A'},
+    {subject:'특허법', title:'문제에서 무엇을 묻는지 보이기 시작했어요.', body:'출제 포인트를 중심으로 설명해주셔서 객관식 문제를 풀 때 판단 속도가 빨라졌습니다.', course:'[1차] 특허법 문제풀이', teacher:'특허법 강사 B'},
+    {subject:'특허법', title:'쟁점별로 정리되어 복습하기 좋았습니다.', body:'내용이 흩어지지 않고 기준이 잡혀서 시험 직전 복습에도 도움이 됐습니다.', course:'[2차] 특허법 사례연습', teacher:'특허법 강사 C'},
+
+    {subject:'상표법', title:'상표법을 처음 시작하기에 부담이 적었어요.', body:'큰 틀부터 차근차근 잡아줘서 생소했던 용어와 제도가 자연스럽게 연결됐습니다.', course:'[1차] 상표법 기본이론', teacher:'상표법 강사 A'},
+    {subject:'상표법', title:'답안 방향이 훨씬 명확해졌습니다.', body:'사례를 보고 어떤 논점을 써야 하는지 기준이 생겼고 답안 구성이 한결 안정됐습니다.', course:'[2차] 상표법 실전답안', teacher:'상표법 강사 B'},
+    {subject:'상표법', title:'판례를 중심으로 정리가 잘됐습니다.', body:'중요 판례와 논점을 연결해서 설명해주셔서 기억에 오래 남았습니다.', course:'[2차] 상표법 판례정리', teacher:'상표법 강사 C'},
+
+    {subject:'디자인보호법', title:'짧은 시간에 핵심을 정리하기 좋았습니다.', body:'시험에서 자주 묻는 내용 위주로 정리되어 있어서 회독용 강의로 활용하기 좋았습니다.', course:'[1차] 디자인보호법 핵심정리', teacher:'디자인보호법 강사 A'},
+    {subject:'디자인보호법', title:'객관식 대비에 딱 맞는 강의였습니다.', body:'선지에서 자주 헷갈리는 부분을 비교해서 설명해주셔서 실수가 줄었습니다.', course:'[1차] 디자인보호법 문제풀이', teacher:'디자인보호법 강사 B'},
+    {subject:'디자인보호법', title:'답안 작성 기준을 잡을 수 있었습니다.', body:'사례에서 어떤 논점을 뽑아야 하는지 반복해서 보여줘서 도움이 됐습니다.', course:'[2차] 디자인보호법 사례연습', teacher:'디자인보호법 강사 C'},
+
+    {subject:'민사소송법', title:'사례형 문제 접근 순서를 배울 수 있었습니다.', body:'쟁점 찾기부터 목차 구성까지 단계별로 보여주셔서 답안을 쓰는 과정이 덜 막막해졌습니다.', course:'[2차] 민사소송법 사례연습', teacher:'민사소송법 강사 A'},
+    {subject:'민사소송법', title:'기본부터 답안까지 연결되는 느낌이 좋았어요.', body:'이론 설명 후 바로 사례에 적용해주셔서 공부한 내용이 실제 답안에서 어떻게 쓰이는지 이해됐습니다.', course:'[2차] 민사소송법 답안입문', teacher:'민사소송법 강사 B'},
+    {subject:'민사소송법', title:'쟁점 정리가 훨씬 쉬워졌습니다.', body:'복잡한 절차와 쟁점을 순서대로 설명해주셔서 전체 구조가 잡혔습니다.', course:'[2차] 민사소송법 핵심정리', teacher:'민사소송법 강사 C'},
+
+    {subject:'자연과학', title:'완벽한 시험대비였습니다.', body:'최근 경향과 시험 난이도 등 여러 방면에서 꼼꼼하게 준비할 수 있도록 설명해주셔서 좋았습니다.', course:'[지구과학] 핵심 문제풀이', teacher:'자연과학 강사 A'},
+    {subject:'자연과학', title:'개념이 문제로 연결되는 과정이 좋았습니다.', body:'단순 암기보다 원리를 설명한 뒤 문제에 적용해주셔서 처음 보는 문제에도 접근하기 쉬웠습니다.', course:'[생물] 객관식 문제풀이', teacher:'자연과학 강사 B'},
+    {subject:'자연과학', title:'계산 문제에 자신감이 생겼습니다.', body:'풀이 순서를 반복적으로 정리해주셔서 계산 실수가 많이 줄었습니다.', course:'[화학] 객관식 문제풀이', teacher:'자연과학 강사 C'},
+
+    {subject:'2차 선택과목', title:'선택과목 공부 방향을 잡는 데 도움이 됐습니다.', body:'공부 범위와 우선순위를 명확히 짚어줘서 한정된 시간 안에 효율적으로 준비할 수 있었습니다.', course:'[유기화학] 핵심정리', teacher:'선택과목 강사 A'},
+    {subject:'2차 선택과목', title:'핵심 논점을 빠르게 정리할 수 있었습니다.', body:'시험에 필요한 내용만 추려서 설명해주셔서 효율적으로 공부할 수 있었습니다.', course:'[분자생물학] 핵심정리', teacher:'선택과목 강사 B'},
+    {subject:'2차 선택과목', title:'실전 대비에 도움이 많이 됐습니다.', body:'기출과 예상문제를 함께 다뤄줘서 마지막 점검에 활용하기 좋았습니다.', course:'[유기화학] 실전문제', teacher:'선택과목 강사 C'}
+  ];
+
+  const reviewSubjects = ['민법','특허법','상표법','디자인보호법','민사소송법','자연과학','2차 선택과목'];
+
+  const reviewTabs = document.getElementById('reviewTabs');
+  const reviewCardGrid = document.getElementById('reviewCardGrid');
+  const reviewMoreBtn = document.getElementById('reviewMoreBtn');
+  const reviewModal = document.getElementById('reviewModal');
+  const reviewModalTabs = document.getElementById('reviewModalTabs');
+  const reviewModalList = document.getElementById('reviewModalList');
+
+  let activeReviewSubject='민법';
+  let activeModalSubject='전체';
+  let reviewTimer=null;
+
+  function getReviewList(subject){
+    return subject==='전체'
+      ? reviewData
+      : reviewData.filter(function(item){ return item.subject===subject; });
+  }
+
+  function renderReviewCards(){
+    if(!reviewCardGrid) return;
+    const list=getReviewList(activeReviewSubject).slice(0,3);
+    reviewCardGrid.innerHTML='';
+
+    list.forEach(function(item){
+      const card=document.createElement('article');
+      card.className='review-card';
+      card.innerHTML=
+        '<div class="review-card-top"><span class="review-badge">'+item.subject+'</span></div>'+
+        '<h3 class="review-card-title">'+item.title+'</h3>'+
+        '<p class="review-card-body">'+item.body+'</p>'+
+        '<div class="review-card-foot">'+
+          '<div class="review-course"><strong>'+item.course+'</strong><span>'+item.teacher+'</span></div>'+
+          '<div class="review-avatar" aria-hidden="true"></div>'+
+        '</div>';
+      reviewCardGrid.appendChild(card);
+    });
+  }
+
+  function setReviewSubject(subject){
+    activeReviewSubject=subject;
+    if(reviewTabs){
+      reviewTabs.querySelectorAll('.review-tab').forEach(function(el){
+        el.classList.toggle('active', el.dataset.subject===subject);
+      });
+    }
+    renderReviewCards();
+  }
+
+  function nextReviewSubject(){
+    const currentIndex=reviewSubjects.indexOf(activeReviewSubject);
+    const nextIndex=currentIndex>=0 ? (currentIndex+1)%reviewSubjects.length : 0;
+    setReviewSubject(reviewSubjects[nextIndex]);
+  }
+
+  function stopReviewAuto(){
+    if(reviewTimer){
+      clearInterval(reviewTimer);
+      reviewTimer=null;
+    }
+  }
+
+  function startReviewAuto(){
+    stopReviewAuto();
+    reviewTimer=setInterval(nextReviewSubject,3000);
+  }
+
+  if(reviewTabs){
+    reviewTabs.addEventListener('click',function(e){
+      const btn=e.target.closest('.review-tab');
+      if(!btn) return;
+      const subject=btn.dataset.subject;
+
+      if(subject==='전체'){
+        // 전체 탭을 수동 선택하면 전체 후기 중 앞 3개 노출
+        activeReviewSubject='전체';
+        reviewTabs.querySelectorAll('.review-tab').forEach(function(el){
+          el.classList.toggle('active', el.dataset.subject==='전체');
+        });
+        reviewCardGrid.innerHTML='';
+        getReviewList('전체').slice(0,3).forEach(function(item){
+          const card=document.createElement('article');
+          card.className='review-card';
+          card.innerHTML=
+            '<div class="review-card-top"><span class="review-badge">'+item.subject+'</span></div>'+
+            '<h3 class="review-card-title">'+item.title+'</h3>'+
+            '<p class="review-card-body">'+item.body+'</p>'+
+            '<div class="review-card-foot">'+
+              '<div class="review-course"><strong>'+item.course+'</strong><span>'+item.teacher+'</span></div>'+
+              '<div class="review-avatar" aria-hidden="true"></div>'+
+            '</div>';
+          reviewCardGrid.appendChild(card);
+        });
+      } else {
+        setReviewSubject(subject);
+      }
+      startReviewAuto();
+    });
+  }
+
+  if(reviewCardGrid){
+    reviewCardGrid.addEventListener('mouseenter', stopReviewAuto);
+    reviewCardGrid.addEventListener('mouseleave', startReviewAuto);
+    reviewCardGrid.addEventListener('focusin', stopReviewAuto);
+    reviewCardGrid.addEventListener('focusout', startReviewAuto);
+  }
+
+  function renderModalTabs(){
+    if(!reviewModalTabs) return;
+    const subjects=['전체','민법','특허법','상표법','디자인보호법','민사소송법','자연과학','2차 선택과목'];
+    reviewModalTabs.innerHTML='';
+    subjects.forEach(function(subject){
+      const btn=document.createElement('button');
+      btn.type='button';
+      btn.className='review-modal-tab'+(subject===activeModalSubject?' active':'');
+      btn.dataset.subject=subject;
+      btn.textContent=subject;
+      reviewModalTabs.appendChild(btn);
+    });
+  }
+
+  function renderModalReviews(){
+    if(!reviewModalList) return;
+    const list=getReviewList(activeModalSubject);
+    reviewModalList.innerHTML='';
+    list.forEach(function(item){
+      const el=document.createElement('article');
+      el.className='review-modal-item';
+      el.innerHTML=
+        '<span class="review-badge">'+item.subject+'</span>'+
+        '<h4>'+item.title+'</h4>'+
+        '<p>'+item.body+'</p>'+
+        '<div class="review-modal-meta">'+item.course+' · '+item.teacher+'</div>';
+      reviewModalList.appendChild(el);
+    });
+  }
+
+  function openReviewModal(){
+    if(!reviewModal) return;
+    stopReviewAuto();
+    activeModalSubject = activeReviewSubject==='전체' ? '전체' : activeReviewSubject;
+    renderModalTabs();
+    renderModalReviews();
+    reviewModal.classList.add('open');
+    reviewModal.setAttribute('aria-hidden','false');
+  }
+
+  function closeReviewModal(){
+    if(!reviewModal) return;
+    reviewModal.classList.remove('open');
+    reviewModal.setAttribute('aria-hidden','true');
+    if(activeReviewSubject==='전체'){
+      setReviewSubject('민법');
+    }
+    startReviewAuto();
+  }
+
+  if(reviewMoreBtn) reviewMoreBtn.addEventListener('click', openReviewModal);
+
+  if(reviewModal){
+    reviewModal.addEventListener('click',function(e){
+      if(e.target.closest('[data-review-close]')) closeReviewModal();
+    });
+  }
+
+  if(reviewModalTabs){
+    reviewModalTabs.addEventListener('click',function(e){
+      const btn=e.target.closest('.review-modal-tab');
+      if(!btn) return;
+      activeModalSubject=btn.dataset.subject;
+      renderModalTabs();
+      renderModalReviews();
+    });
+  }
+
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape' && reviewModal && reviewModal.classList.contains('open')){
+      closeReviewModal();
+    }
+  });
+
+  setReviewSubject('민법');
+  startReviewAuto();
+
 </script>
 
 </body>
