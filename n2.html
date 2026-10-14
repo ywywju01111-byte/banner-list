@@ -70,26 +70,6 @@ body.plan-hidden .plan-sticker{display:none!important}
 #planEditorV4 input,#planEditorV4 textarea{width:100%;padding:10px;border:1px solid #bbb;border-radius:5px;font:14px 'Malgun Gothic',sans-serif}
 #planEditorV4 textarea{height:140px;resize:vertical}
 #planEditorV4 button{padding:9px 13px;border:0;border-radius:5px;cursor:pointer}
-</style><style>
-#planLayerV4{position:absolute;left:0;top:0;width:0;height:0;z-index:2147483000;pointer-events:none}
-#planLayerV4 .plan-sticker{pointer-events:auto;position:absolute!important;display:flex;align-items:center;justify-content:center;transform:translate(-50%,-50%)!important;z-index:2147483001}
-#planLayerV4 .plan-sticker:hover{transform:translate(-50%,-50%) scale(1.1)!important}
-#planTipV4{position:fixed;display:none;max-width:min(370px,90vw);padding:13px 16px;background:#fffbe7;color:#222;border:2px solid #e1b928;border-radius:9px;z-index:2147483005;box-shadow:0 6px 22px #0006;white-space:pre-wrap;font:13px/1.6 'Malgun Gothic',sans-serif;pointer-events:none}
-#planStatusV4{position:fixed;display:none;top:18px;left:50%;transform:translateX(-50%);z-index:2147483500;background:#ffdf57;color:#111;padding:12px 20px;border-radius:8px;font:bold 15px sans-serif;pointer-events:none}
-#planEditorV4{display:none;position:fixed;z-index:2147483600;left:50%;top:50%;transform:translate(-50%,-50%);width:min(440px,94vw);background:white;color:#111;border:3px solid #ffdf57;padding:20px;border-radius:12px;box-shadow:0 0 0 9999px #0009;font:14px 'Malgun Gothic',sans-serif}
-#planEditorV4 input,#planEditorV4 textarea{width:100%;padding:10px;border:1px solid #bbb;border-radius:5px;font:14px 'Malgun Gothic',sans-serif}
-#planEditorV4 textarea{height:140px;resize:vertical}
-#planEditorV4 button{padding:9px 13px;border:0;border-radius:5px;cursor:pointer}
-</style><style>
-#planLayerV4{position:absolute;left:0;top:0;width:0;height:0;z-index:2147483000;pointer-events:none}
-#planLayerV4 .plan-sticker{pointer-events:auto;position:absolute!important;display:flex;align-items:center;justify-content:center;transform:translate(-50%,-50%)!important;z-index:2147483001}
-#planLayerV4 .plan-sticker:hover{transform:translate(-50%,-50%) scale(1.1)!important}
-#planTipV4{position:fixed;display:none;max-width:min(370px,90vw);padding:13px 16px;background:#fffbe7;color:#222;border:2px solid #e1b928;border-radius:9px;z-index:2147483005;box-shadow:0 6px 22px #0006;white-space:pre-wrap;font:13px/1.6 'Malgun Gothic',sans-serif;pointer-events:none}
-#planStatusV4{position:fixed;display:none;top:18px;left:50%;transform:translateX(-50%);z-index:2147483500;background:#ffdf57;color:#111;padding:12px 20px;border-radius:8px;font:bold 15px sans-serif;pointer-events:none}
-#planEditorV4{display:none;position:fixed;z-index:2147483600;left:50%;top:50%;transform:translate(-50%,-50%);width:min(440px,94vw);background:white;color:#111;border:3px solid #ffdf57;padding:20px;border-radius:12px;box-shadow:0 0 0 9999px #0009;font:14px 'Malgun Gothic',sans-serif}
-#planEditorV4 input,#planEditorV4 textarea{width:100%;padding:10px;border:1px solid #bbb;border-radius:5px;font:14px 'Malgun Gothic',sans-serif}
-#planEditorV4 textarea{height:140px;resize:vertical}
-#planEditorV4 button{padding:9px 13px;border:0;border-radius:5px;cursor:pointer}
 </style></head>
 <body style="">
 <section class="hero">
@@ -253,12 +233,15 @@ document.querySelectorAll('.slider').forEach(s=>{
 </script>
 
 <div class="plan-toolbar"><b>✱ 작업 메모</b><button id="planToggle">스티커 숨기기</button><button id="planAdd">+ 스티커 추가</button><button class="primary" id="planExport">메모 포함 HTML 저장</button></div>
+<script type="application/json" id="plan-embedded-notes">[{"x": 1134, "y": 1278, "title": "탭", "note": "민사소송법/ 특허법/상표법/디자인보호법/저작권법/유기화학\n\n\n각 영역 클릭 시 활성화됨\n디폴트: 민사소송법", "selector": ".tabs", "rx": 0.96, "ry": 0.28}, {"x": 408, "y": 1377, "title": "적중 문제 노출", "note": "별도 엑셀 파일 전달", "selector": "#patent .compare", "rx": 0.035, "ry": 0.05}, {"x": 1528, "y": 1666, "title": "페이지네이션", "note": "적중 문제가 많을 경우 Prev / Next 좌우 네비게이션 노출", "selector": "#patent .side-nav.next", "rx": 0.5, "ry": 0.5}, {"x": 1417, "y": 1387, "title": "페이지 인디케이터", "note": "적중 문제가 많을 경우 현재 페이지/전체 페이지 표시", "selector": "#patent .count", "rx": 0.5, "ry": 0.5}]</script>
 <script id="planning-notes-script">
 (function(){
 'use strict';
-const INITIAL_NOTES=[{"x": 1134, "y": 1278, "title": "탭", "note": "민사소송법/ 특허법/상표법/디자인보호법/저작권법/유기화학\n\n\n각 영역 클릭 시 활성화됨\n디폴트: 민사소송법", "selector": ".tabs", "rx": 0.96, "ry": 0.28}, {"x": 408, "y": 1377, "title": "적중 문제 노출", "note": "별도 엑셀 파일 전달", "selector": "#patent .compare", "rx": 0.035, "ry": 0.05}, {"x": 1528, "y": 1666, "title": "페이지네이션", "note": "적중 문제가 많을 경우 Prev / Next 좌우 네비게이션 노출", "selector": "#patent .side-nav.next", "rx": 0.5, "ry": 0.5}, {"x": 1417, "y": 1387, "title": "페이지 인디케이터", "note": "적중 문제가 많을 경우 현재 페이지/전체 페이지 표시", "selector": "#patent .count", "rx": 0.5, "ry": 0.5}];
+const INITIAL_NOTES=JSON.parse(document.getElementById('plan-embedded-notes').textContent);
 const STORAGE_KEY='mega63_anchor_stickers_v4';
 let notes=INITIAL_NOTES.map(n=>({...n}));
+try{const cached=localStorage.getItem(STORAGE_KEY);if(cached)notes=JSON.parse(cached)}catch(e){}
+function saveLocal(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(notes))}catch(e){}}
 const toolbar=document.querySelector('.plan-toolbar');
 if(!toolbar)return;
 const add=document.getElementById('planAdd'),toggle=document.getElementById('planToggle'),exportBtn=document.getElementById('planExport');
@@ -309,8 +292,8 @@ function render(){
 }
 function openEditor(i){current=i;document.getElementById('planTitleV4').value=notes[i].title;document.getElementById('planTextV4').value=notes[i].note;editor.style.display='block'}
 function closeEditor(){current=-1;editor.style.display='none'}
-document.getElementById('planSaveV4').onclick=()=>{if(current<0)return;notes[current].title=document.getElementById('planTitleV4').value;notes[current].note=document.getElementById('planTextV4').value;closeEditor();render()};
-document.getElementById('planDeleteV4').onclick=()=>{if(current<0)return;notes.splice(current,1);closeEditor();render()};
+document.getElementById('planSaveV4').onclick=()=>{if(current<0)return;notes[current].title=document.getElementById('planTitleV4').value;notes[current].note=document.getElementById('planTextV4').value;saveLocal();closeEditor();render()};
+document.getElementById('planDeleteV4').onclick=()=>{if(current<0)return;notes.splice(current,1);saveLocal();closeEditor();render()};
 document.getElementById('planCloseV4').onclick=closeEditor;
 function setPlacing(v){placing=v;add.textContent=v?'✕ 추가 취소':'+ 스티커 추가';status.style.display=v?'block':'none';document.body.style.cursor=v?'crosshair':''}
 add.onclick=e=>{e.stopPropagation();setPlacing(!placing)};
@@ -333,7 +316,7 @@ document.addEventListener('click',e=>{
  const r=candidate.getBoundingClientRect();
  if(r.width<1||r.height<1)return;
  notes.push({selector:selectorFor(candidate),rx:Math.max(0,Math.min(1,(e.clientX-r.left)/r.width)),ry:Math.max(0,Math.min(1,(e.clientY-r.top)/r.height)),title:'새 작업 요청',note:''});
- setPlacing(false);render();openEditor(notes.length-1);
+ saveLocal();setPlacing(false);render();openEditor(notes.length-1);
 },true);
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){setPlacing(false);closeEditor()}});
 window.addEventListener('resize',updatePositions);
@@ -342,12 +325,16 @@ document.querySelectorAll('.tab,.side-nav').forEach(b=>b.addEventListener('click
 const observer=new ResizeObserver(updatePositions);
 document.querySelectorAll('.hero,.quiz,.hits,.proof,.event,.tabs,.compare,.slider').forEach(el=>observer.observe(el));
 exportBtn.onclick=()=>{
+ // Save the live notes, not the originally embedded snapshot.
  const clone=document.documentElement.cloneNode(true);
  clone.querySelectorAll('#planLayerV4,#planTipV4,#planStatusV4,#planEditorV4').forEach(el=>el.remove());
- const sc=clone.querySelector('#planning-notes-script');
- sc.textContent=sc.textContent.replace('const INITIAL_NOTES=[{"x": 1134, "y": 1278, "title": "탭", "note": "민사소송법/ 특허법/상표법/디자인보호법/저작권법/유기화학\n\n\n각 영역 클릭 시 활성화됨\n디폴트: 민사소송법", "selector": ".tabs", "rx": 0.96, "ry": 0.28}, {"x": 408, "y": 1377, "title": "적중 문제 노출", "note": "별도 엑셀 파일 전달", "selector": "#patent .compare", "rx": 0.035, "ry": 0.05}, {"x": 1528, "y": 1666, "title": "페이지네이션", "note": "적중 문제가 많을 경우 Prev / Next 좌우 네비게이션 노출", "selector": "#patent .side-nav.next", "rx": 0.5, "ry": 0.5}, {"x": 1417, "y": 1387, "title": "페이지 인디케이터", "note": "적중 문제가 많을 경우 현재 페이지/전체 페이지 표시", "selector": "#patent .count", "rx": 0.5, "ry": 0.5}];','const INITIAL_NOTES='+JSON.stringify(notes).replace(/</g,'\\u003c')+';');
+ clone.querySelectorAll('whale-quicksearch').forEach(el=>el.remove());
+ const embedded=clone.querySelector('#plan-embedded-notes');
+ embedded.textContent=JSON.stringify(notes).replace(/</g,'\u003c');
  const blob=new Blob(['<!doctype html>\n'+clone.outerHTML],{type:'text/html;charset=utf-8'});
- const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='mega_63_hit_responsive_stickers.html';a.click();setTimeout(()=>URL.revokeObjectURL(url),1500);
+ const url=URL.createObjectURL(blob),link=document.createElement('a');
+ link.href=url;link.download='n2_notes_saved.html';document.body.appendChild(link);link.click();link.remove();
+ setTimeout(()=>URL.revokeObjectURL(url),1500);
 };
 render();
 })();
@@ -355,7 +342,5 @@ render();
 
 
 
-<whale-quicksearch translate="no" style="visibility: visible;"></whale-quicksearch>
-<whale-quicksearch translate="no" style="visibility: visible;"></whale-quicksearch>
 <whale-quicksearch translate="no" style="visibility: visible;"></whale-quicksearch>
 </body><whale-quicksearch translate="no" style="visibility: visible;"></whale-quicksearch></html>
