@@ -70,16 +70,40 @@ body.plan-hidden .plan-sticker{display:none!important}
 #planEditorV4 input,#planEditorV4 textarea{width:100%;padding:10px;border:1px solid #bbb;border-radius:5px;font:14px 'Malgun Gothic',sans-serif}
 #planEditorV4 textarea{height:140px;resize:vertical}
 #planEditorV4 button{padding:9px 13px;border:0;border-radius:5px;cursor:pointer}
-</style><style>
-#planLayerV4{position:absolute;left:0;top:0;width:0;height:0;z-index:2147483000;pointer-events:none}
-#planLayerV4 .plan-sticker{pointer-events:auto;position:absolute!important;display:flex;align-items:center;justify-content:center;transform:translate(-50%,-50%)!important;z-index:2147483001}
-#planLayerV4 .plan-sticker:hover{transform:translate(-50%,-50%) scale(1.1)!important}
-#planTipV4{position:fixed;display:none;max-width:min(370px,90vw);padding:13px 16px;background:#fffbe7;color:#222;border:2px solid #e1b928;border-radius:9px;z-index:2147483005;box-shadow:0 6px 22px #0006;white-space:pre-wrap;font:13px/1.6 'Malgun Gothic',sans-serif;pointer-events:none}
-#planStatusV4{position:fixed;display:none;top:18px;left:50%;transform:translateX(-50%);z-index:2147483500;background:#ffdf57;color:#111;padding:12px 20px;border-radius:8px;font:bold 15px sans-serif;pointer-events:none}
-#planEditorV4{display:none;position:fixed;z-index:2147483600;left:50%;top:50%;transform:translate(-50%,-50%);width:min(440px,94vw);background:white;color:#111;border:3px solid #ffdf57;padding:20px;border-radius:12px;box-shadow:0 0 0 9999px #0009;font:14px 'Malgun Gothic',sans-serif}
-#planEditorV4 input,#planEditorV4 textarea{width:100%;padding:10px;border:1px solid #bbb;border-radius:5px;font:14px 'Malgun Gothic',sans-serif}
-#planEditorV4 textarea{height:140px;resize:vertical}
-#planEditorV4 button{padding:9px 13px;border:0;border-radius:5px;cursor:pointer}
+</style><style id="theme-overrides">
+:root{--theme-accent:#cfff00;--theme-bg:#050505;--theme-section:#111111;--theme-card:#1b1b1b;--theme-text:#ffffff;--lime:var(--theme-accent);--dark:var(--theme-section);--black:var(--theme-bg)}
+body{background:var(--theme-bg);color:var(--theme-text)}
+.hero{background:radial-gradient(circle at 72% 45%,color-mix(in srgb,var(--theme-section) 75%,#888) 0%,var(--theme-section) 35%,var(--theme-bg) 75%)}
+.hits{background:var(--theme-section)}.event{background:var(--theme-bg)}
+.eventbox,.paper-wrap,.step,.example,.event-notice{background:var(--theme-card)}
+.paper-title{background:color-mix(in srgb,var(--theme-card) 80%,#777)}
+.tab{background:var(--theme-card);color:var(--theme-text)}
+.tab.active{background:var(--theme-accent);color:#111}
+.hero h1 em,.cross,.head small,.case-head .no,.arrow,.pointbox strong,.eventbox .label,.step b,.example b,.event-notice h3{color:var(--theme-accent)}
+.quiz,.proof,.form button{background:var(--theme-accent)}
+.event-notice strong{color:var(--theme-text)}
+/* Theme text color must override fixed colors in the original page. */
+.hero h1,.hero p,.head h2,.head p,.case-head h3,.teacher,
+.paper-wrap,.paper-title,.pointbox,.eventbox h2,.eventbox>p,
+.eventbox .steps .step,.example,.event-notice,.event-notice li,
+.count,.side-nav,.side-nav small,.note{color:var(--theme-text)}
+/* Keep readable contrast for light surfaces and accent-filled buttons. */
+.quiz,.quiz h2,.quiz p,.quiz .label,.quiz .q,
+.proof,.proof h2,.proof p,.proof b,.form button,.tab.active{color:#111}
+.paper,.paper h4{color:#202020}
+.match{color:#202020}
+.eventbox p span[style*="color"]{color:var(--theme-accent)!important}
+.side-nav{background:var(--theme-card)}
+.side-nav:hover,.side-nav:hover small{color:#111}
+
+.theme-toolbar{position:fixed;right:14px;top:65px;z-index:99999;font:13px Arial,sans-serif;color:#222}
+.theme-toolbar>button{background:#fff;border:1px solid #bbb;border-radius:8px;padding:10px 13px;cursor:pointer;font-weight:800;box-shadow:0 4px 18px #0005}
+.theme-panel{display:none;background:#fff;border:1px solid #ddd;border-radius:12px;padding:16px;width:300px;margin-top:7px;box-shadow:0 10px 28px #0008}
+.theme-panel.open{display:block}.theme-panel h4{margin:0 0 10px;font-size:15px}.theme-presets{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-bottom:14px}
+.theme-preset{height:45px;border:2px solid #ddd;border-radius:8px;cursor:pointer;position:relative}.theme-preset span{position:absolute;bottom:2px;left:3px;right:3px;text-align:center;font-size:10px;font-weight:700;background:#fff;color:#111;border-radius:3px}
+.theme-fields{display:grid;grid-template-columns:1fr 1fr;gap:9px}.theme-fields label{display:flex;align-items:center;gap:6px;font-size:12px}.theme-fields input{width:38px;height:31px;padding:0;border:0;background:none;cursor:pointer}
+.theme-hint{font-size:11px;color:#777;margin:12px 0 0;line-height:1.5}
+@media(max-width:800px){.theme-toolbar{top:auto;bottom:67px;right:10px}.theme-panel{max-height:65vh;overflow:auto}}
 </style></head>
 <body style="">
 <section class="hero">
@@ -242,16 +266,43 @@ document.querySelectorAll('.slider').forEach(s=>{
 });
 </script>
 
+<div class="theme-toolbar"><button id="themeToggle" type="button">🎨 컬러칩 · 테마</button><div class="theme-panel" id="themePanel"><h4>페이지 컬러 설정</h4><div class="theme-presets" id="themePresets"></div><div class="theme-fields" id="themeFields"></div><p class="theme-hint">색상 변경 즉시 적용 · 상단의 ‘메모 포함 HTML 저장’ 버튼으로 메모와 컬러를 함께 저장할 수 있어요.</p></div></div>
+<script type="application/json" id="theme-embedded-data">{"accent":"#cfff00","bg":"#050505","section":"#111111","card":"#1b1b1b","text":"#ffffff"}</script>
 <div class="plan-toolbar"><b>✱ 작업 메모</b><button id="planToggle">스티커 숨기기</button><button id="planAdd">+ 스티커 추가</button><button class="primary" id="planExport">메모 포함 HTML 저장</button></div>
-<script type="application/json" id="plan-embedded-notes">[{"x":1417,"y":1387,"title":"페이지 인디케이터","note":"적중 문제가 많을 경우 현재 페이지/전체 페이지 표시","selector":"#patent .count","rx":0.5,"ry":0.5},{"selector":"#patent > div:nth-of-type(1)","rx":0.95821416644143,"ry":0.43048846778117156,"title":"새 작업 요청","note":"적중 문제가 많을 경우 Prev / Next 좌우 네비게이션 노출"},{"selector":"section:nth-of-type(3) > div:nth-of-type(1)","rx":0.3573808942280178,"ry":0.1999056199148095,"title":"탭","note":"민사소송법/ 특허법/상표법/디자인보호법/저작권법/유기화학\n\n\n각 영역 클릭 시 활성화됨\n디폴트: 민사소송법"},{"selector":"#patent > div:nth-of-type(1)","rx":0.045714259265720696,"ry":0.02401379363380088,"title":"새 작업 요청","note":"별도 엑셀 파일 전달"},{"selector":"section:nth-of-type(5) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5)","rx":0.021063401840783647,"ry":0.11403930466071985,"title":"댓글 이벤트","note":"프로모션 댓글이벤트 영역"},{"selector":"section:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1)","rx":0.24847887681210593,"ry":0.2767883333370003,"title":"애니메이션","note":"적중하는 듯한 효과 ,이미지"}]</script>
+<script type="application/json" id="plan-embedded-notes">[{"x": 1134, "y": 1278, "title": "탭", "note": "민사소송법/ 특허법/상표법/디자인보호법/저작권법/유기화학\n\n\n각 영역 클릭 시 활성화됨\n디폴트: 민사소송법", "selector": ".tabs", "rx": 0.96, "ry": 0.28}, {"x": 408, "y": 1377, "title": "적중 문제 노출", "note": "별도 엑셀 파일 전달", "selector": "#patent .compare", "rx": 0.035, "ry": 0.05}, {"x": 1528, "y": 1666, "title": "페이지네이션", "note": "적중 문제가 많을 경우 Prev / Next 좌우 네비게이션 노출", "selector": "#patent .side-nav.next", "rx": 0.5, "ry": 0.5}, {"x": 1417, "y": 1387, "title": "페이지 인디케이터", "note": "적중 문제가 많을 경우 현재 페이지/전체 페이지 표시", "selector": "#patent .count", "rx": 0.5, "ry": 0.5}]</script>
 <script id="planning-notes-script">
 (function(){
 'use strict';
 const INITIAL_NOTES=JSON.parse(document.getElementById('plan-embedded-notes').textContent);
 const STORAGE_KEY='mega63_anchor_stickers_v4';
 let notes=INITIAL_NOTES.map(n=>({...n}));
-try{const cached=localStorage.getItem(STORAGE_KEY);if(cached)notes=JSON.parse(cached)}catch(e){}
+// Embedded notes are the source of truth; do not override them with stale browser cache.
 function saveLocal(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(notes))}catch(e){}}
+const THEMES={lime:{label:'라임',accent:'#cfff00',bg:'#050505',section:'#111111',card:'#1b1b1b',text:'#ffffff'},wine:{label:'와인',accent:'#d7a96b',bg:'#160c13',section:'#26151e',card:'#33212b',text:'#fff6ee'},navy:{label:'네이비',accent:'#bdd2ed',bg:'#08111f',section:'#122238',card:'#1b304a',text:'#f4f8ff'},cream:{label:'크림',accent:'#a67742',bg:'#f7f2e9',section:'#efe6d9',card:'#fffaf2',text:'#27211e'}};
+const THEME_KEY='mega63_theme_v1';
+let theme={...THEMES.lime};
+try{theme={...theme,...JSON.parse(document.getElementById('theme-embedded-data').textContent)}}catch(e){}
+// The embedded theme is authoritative when reopening a downloaded HTML file.
+const themeNames={accent:'포인트',bg:'전체 배경',section:'섹션 배경',card:'박스 배경',text:'글자 색상'};
+const themePanel=document.getElementById('themePanel');
+document.getElementById('themeToggle').onclick=()=>themePanel.classList.toggle('open');
+const presetRoot=document.getElementById('themePresets');
+const fieldRoot=document.getElementById('themeFields');
+function applyTheme(){
+ for(const key of Object.keys(themeNames))document.documentElement.style.setProperty('--theme-'+key,theme[key]);
+ fieldRoot.querySelectorAll('input').forEach(el=>el.value=theme[el.dataset.color]);
+}
+Object.entries(THEMES).forEach(([id,p])=>{
+ const b=document.createElement('button');b.type='button';b.className='theme-preset';b.title=p.label;
+ b.style.background='linear-gradient(135deg,'+p.bg+' 55%,'+p.accent+' 55%)';
+ const label=document.createElement('span');label.textContent=p.label;b.append(label);
+ b.onclick=()=>{theme={...p};applyTheme()};presetRoot.append(b);
+});
+Object.entries(themeNames).forEach(([key,label])=>{
+ const wrap=document.createElement('label');const input=document.createElement('input');input.type='color';input.dataset.color=key;
+ input.oninput=()=>{theme[key]=input.value;applyTheme()};wrap.append(input,document.createTextNode(label));fieldRoot.append(wrap);
+});
+applyTheme();
 const toolbar=document.querySelector('.plan-toolbar');
 if(!toolbar)return;
 const add=document.getElementById('planAdd'),toggle=document.getElementById('planToggle'),exportBtn=document.getElementById('planExport');
@@ -338,12 +389,15 @@ exportBtn.onclick=()=>{
  // Save the live notes, not the originally embedded snapshot.
  const clone=document.documentElement.cloneNode(true);
  clone.querySelectorAll('#planLayerV4,#planTipV4,#planStatusV4,#planEditorV4').forEach(el=>el.remove());
+ clone.removeAttribute('style');
+ const themeData=clone.querySelector('#theme-embedded-data');
+ themeData.textContent=JSON.stringify(Object.fromEntries(Object.keys(themeNames).map(k=>[k,theme[k]])));
  clone.querySelectorAll('whale-quicksearch').forEach(el=>el.remove());
  const embedded=clone.querySelector('#plan-embedded-notes');
  embedded.textContent=JSON.stringify(notes).replace(/</g,'\u003c');
  const blob=new Blob(['<!doctype html>\n'+clone.outerHTML],{type:'text/html;charset=utf-8'});
  const url=URL.createObjectURL(blob),link=document.createElement('a');
- link.href=url;link.download='n2_notes_saved.html';document.body.appendChild(link);link.click();link.remove();
+ link.href=url;link.download='n2_theme_notes_saved.html';document.body.appendChild(link);link.click();link.remove();
  setTimeout(()=>URL.revokeObjectURL(url),1500);
 };
 render();
@@ -352,6 +406,5 @@ render();
 
 
 
-
-
-</body></html>
+<whale-quicksearch translate="no" style="visibility: visible;"></whale-quicksearch>
+</body><whale-quicksearch translate="no" style="visibility: visible;"></whale-quicksearch></html>
