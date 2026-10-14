@@ -50,7 +50,17 @@ body.plan-hidden .plan-sticker{display:none!important}
 @media(max-width:800px){.plan-toolbar{top:auto;bottom:10px;right:10px;flex-wrap:wrap;max-width:95vw}.plan-toolbar button{padding:7px}}
 </style>
 
-</head>
+<style>
+#planLayerV4{position:absolute;left:0;top:0;width:0;height:0;z-index:2147483000;pointer-events:none}
+#planLayerV4 .plan-sticker{pointer-events:auto;position:absolute!important;display:flex;align-items:center;justify-content:center;transform:translate(-50%,-50%)!important;z-index:2147483001}
+#planLayerV4 .plan-sticker:hover{transform:translate(-50%,-50%) scale(1.1)!important}
+#planTipV4{position:fixed;display:none;max-width:min(370px,90vw);padding:13px 16px;background:#fffbe7;color:#222;border:2px solid #e1b928;border-radius:9px;z-index:2147483005;box-shadow:0 6px 22px #0006;white-space:pre-wrap;font:13px/1.6 'Malgun Gothic',sans-serif;pointer-events:none}
+#planStatusV4{position:fixed;display:none;top:18px;left:50%;transform:translateX(-50%);z-index:2147483500;background:#ffdf57;color:#111;padding:12px 20px;border-radius:8px;font:bold 15px sans-serif;pointer-events:none}
+#planEditorV4{display:none;position:fixed;z-index:2147483600;left:50%;top:50%;transform:translate(-50%,-50%);width:min(440px,94vw);background:white;color:#111;border:3px solid #ffdf57;padding:20px;border-radius:12px;box-shadow:0 0 0 9999px #0009;font:14px 'Malgun Gothic',sans-serif}
+#planEditorV4 input,#planEditorV4 textarea{width:100%;padding:10px;border:1px solid #bbb;border-radius:5px;font:14px 'Malgun Gothic',sans-serif}
+#planEditorV4 textarea{height:140px;resize:vertical}
+#planEditorV4 button{padding:9px 13px;border:0;border-radius:5px;cursor:pointer}
+</style></head>
 <body style="">
 <section class="hero">
  <div class="inner">
@@ -265,4 +275,5 @@ render();
 </script>
 
 
-</body></html>
+
+</body><whale-quicksearch translate="no" style="visibility: visible;"></whale-quicksearch></html>
