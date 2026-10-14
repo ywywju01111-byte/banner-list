@@ -1205,15 +1205,437 @@
     font-size:11px;
   }
 
+
+  /* GNB와 메인 콘텐츠 사이 안내 띠배너 */
+  .mid-notice{
+    width:100%;
+    min-width:1600px;
+    height:50px;
+    background:#eef2f7;
+    border-top:1px solid #e8edf3;
+    border-bottom:1px solid #e2e8f0;
+    box-sizing:border-box;
+  }
+  .mid-notice-inner{
+    position:relative;
+    width:1200px;
+    height:100%;
+    margin:0 auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-sizing:border-box;
+  }
+  .mid-notice-message{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    color:#253247;
+    font-size:14px;
+    font-weight:600;
+    letter-spacing:-.3px;
+    white-space:nowrap;
+  }
+  .mid-notice-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    height:26px;
+    padding:0 10px;
+    border-radius:999px;
+    background:#2488ff;
+    color:#fff;
+    font-size:11px;
+    font-weight:800;
+    text-decoration:none;
+  }
+  .mid-notice-close{
+    position:absolute;
+    right:0;
+    top:50%;
+    transform:translateY(-50%);
+    width:30px;
+    height:30px;
+    border:0;
+    background:transparent;
+    color:#b8c0ca;
+    font-size:22px;
+    font-weight:300;
+    line-height:1;
+    cursor:pointer;
+  }
+
+
+  /* ===== 현행 하단영역 참고: 핫클립 ~ 푸터 ===== */
+  .legacy-bottom{
+    width:1200px;
+    margin:42px 0 0;
+    padding:0 0 26px;
+    background:#fff;
+    box-sizing:border-box;
+  }
+  .hotclip-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:20px;
+  }
+  .hotclip-head h2{
+    margin:0;
+    font-size:24px;
+    letter-spacing:-.8px;
+    color:#191f2a;
+  }
+  .youtube-tools{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    font-size:12px;
+    font-weight:800;
+  }
+  .youtube-label{color:#222}
+  .youtube-subscribe{
+    display:inline-flex;
+    align-items:center;
+    height:22px;
+    padding:0 7px;
+    border-radius:3px;
+    background:#f02323;
+    color:#fff;
+  }
+
+  .hotclip-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+  }
+  .hotclip-item{
+    color:inherit;
+    text-decoration:none;
+  }
+  .hotclip-thumb{
+    position:relative;
+    height:150px;
+    border-radius:9px;
+    overflow:hidden;
+    display:flex;
+    align-items:flex-end;
+    padding:18px;
+    box-sizing:border-box;
+    color:#fff;
+    background:#384d6e;
+  }
+  .hotclip-thumb:before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(180deg,rgba(0,0,0,.04),rgba(0,0,0,.34));
+  }
+  .hotclip-thumb strong{
+    position:relative;
+    z-index:2;
+    font-size:20px;
+    line-height:1.25;
+    letter-spacing:-.7px;
+    text-shadow:0 1px 3px rgba(0,0,0,.25);
+  }
+  .hc1{background:linear-gradient(135deg,#b0a66f,#3a445d 52%,#111b33)}
+  .hc2{background:linear-gradient(135deg,#8c846c,#20252c 55%,#5b4f40)}
+  .hc3{background:linear-gradient(135deg,#68778d,#171e28 55%,#34445d)}
+  .hc4{background:linear-gradient(135deg,#ad867e,#474b58 54%,#222c38)}
+  .hotclip-play{
+    position:absolute;
+    z-index:3;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    width:48px;
+    height:34px;
+    border-radius:10px;
+    background:#ff1d25;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    font-size:18px;
+    box-shadow:0 3px 10px rgba(0,0,0,.18);
+  }
+  .hotclip-item p{
+    margin:10px 4px 0;
+    min-height:38px;
+    color:#6e7682;
+    font-size:12px;
+    line-height:1.5;
+  }
+
+  .bottom-notice-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:44px;
+    margin-top:92px;
+    padding-bottom:28px;
+  }
+  .bottom-notice-box h3{
+    margin:0 0 15px;
+    font-size:20px;
+    color:#20242c;
+    letter-spacing:-.6px;
+  }
+  .bottom-notice-titleline{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+  .bottom-notice-titleline > a{
+    color:#606976;
+    font-size:12px;
+    text-decoration:none;
+  }
+  .bottom-notice-box ul{
+    list-style:none;
+    padding:0;
+    margin:0;
+  }
+  .bottom-notice-box li{
+    display:grid;
+    grid-template-columns:110px 1fr;
+    gap:10px;
+    margin:0 0 10px;
+    font-size:12px;
+    line-height:1.35;
+  }
+  .bottom-notice-box li span{
+    color:#1680ff;
+  }
+  .bottom-notice-box li a{
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    color:#424a57;
+    text-decoration:none;
+  }
+  .customer-notice li{
+    grid-template-columns:1fr;
+  }
+
+  .support-row{
+    display:grid;
+    grid-template-columns:120px 180px 1fr auto;
+    align-items:center;
+    gap:12px;
+    min-height:58px;
+    border-top:1px solid #e6e9ed;
+    font-size:12px;
+  }
+  .support-row:last-of-type{
+    border-bottom:1px solid #e6e9ed;
+  }
+  .support-title{
+    font-size:15px;
+    font-weight:800;
+    color:#262c35;
+  }
+  .support-number{
+    font-size:27px;
+    font-weight:900;
+    color:#1680ff;
+    letter-spacing:-1px;
+  }
+  .support-hours{
+    color:#7a828d;
+  }
+  .support-links{
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  .support-links a{
+    color:#626a75;
+    text-decoration:none;
+    white-space:nowrap;
+  }
+
+  .brand-footer-banner{
+    width:100vw;
+    min-width:1600px;
+    margin-left:calc((1200px - 100vw)/2);
+    background:#0d2ca7;
+  }
+  .brand-footer-inner{
+    width:1200px;
+    height:150px;
+    margin:0 auto;
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    color:#fff;
+    box-sizing:border-box;
+  }
+  .brand-footer-copy-small{
+    font-size:17px;
+    font-weight:800;
+    letter-spacing:14px;
+    margin-bottom:8px;
+  }
+  .brand-footer-copy{
+    font-size:38px;
+    font-weight:900;
+    letter-spacing:-1.8px;
+  }
+  .brand-footer-mark{
+    position:absolute;
+    right:140px;
+    top:33px;
+    font-size:76px;
+    font-style:italic;
+    font-weight:900;
+    color:#0aa3ff;
+    transform:skew(-8deg);
+  }
+
+  .site-footer{
+    width:100vw;
+    min-width:1600px;
+    margin-left:calc((1200px - 100vw)/2);
+    background:#f7f8fa;
+    border-top:1px solid #e3e6eb;
+  }
+  .site-footer-inner{
+    width:1200px;
+    margin:0 auto;
+    padding:24px 0 38px;
+    box-sizing:border-box;
+  }
+  .family-links{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px 18px;
+    padding-bottom:18px;
+    border-bottom:1px solid #e2e5ea;
+  }
+  .family-links a{
+    color:#666f7c;
+    font-size:11px;
+    text-decoration:none;
+  }
+  .footer-info{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+    padding-top:18px;
+    color:#8a929d;
+    font-size:11px;
+  }
+  .footer-info strong{
+    color:#555e6a;
+    font-size:13px;
+  }
+
+
+  /* GNB 요청안 반영 */
+  .gnb{
+    height:76px;
+    background:#fff;
+    border-bottom:1px solid #e5e7eb;
+    position:relative;
+    z-index:3;
+    padding:0;
+    display:block;
+  }
+  .gnb-inner{
+    width:1200px;
+    height:76px;
+    margin:0 auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    box-sizing:border-box;
+  }
+  .logo{
+    min-width:180px;
+    flex:0 0 auto;
+    font-size:24px;
+    font-weight:900;
+    color:#152a4f;
+    letter-spacing:-.7px;
+  }
+  .nav{
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+    gap:34px;
+    margin-left:auto;
+    flex:0 0 auto;
+    width:auto;
+    font-weight:800;
+    font-size:15px;
+  }
+  .nav a{
+    position:relative;
+    color:#111827;
+    text-decoration:none;
+    white-space:nowrap;
+    letter-spacing:-.2px;
+  }
+  .nav a.nav-caret::after{
+    content:"";
+    display:inline-block;
+    width:6px;
+    height:6px;
+    margin-left:8px;
+    border-right:2px solid #111827;
+    border-bottom:2px solid #111827;
+    transform:rotate(45deg) translateY(-2px);
+    vertical-align:middle;
+    box-sizing:border-box;
+  }
+  .nav a.nav-menu::after{
+    content:"";
+    display:inline-block;
+    width:12px;
+    height:10px;
+    margin-left:7px;
+    vertical-align:middle;
+    background:
+      linear-gradient(#111827,#111827) 0 0/12px 2px no-repeat,
+      linear-gradient(#111827,#111827) 0 4px/12px 2px no-repeat,
+      linear-gradient(#111827,#111827) 0 8px/12px 2px no-repeat;
+  }
+
+
 </style>
 </head>
 <body>
   <div class="top-promo">제64회 2차 대비 전과목 T패스 <span>합격까지, 필요한 모든 강의를 하나로!</span><a class="btn" href="#">바로가기 →</a></div>
   <div class="utility">로그인 <span>회원가입</span><span>장바구니</span><span>고객센터</span><span>사이트맵</span></div>
   <header class="gnb">
-    <div class="logo">메가변리사</div>
-    <nav class="nav"><a href="#">마이페이지</a><a href="#">강사소개</a><a href="#">강좌</a><a href="#">교재</a><a href="#">모의고사/GS</a><a href="#">학습자료실</a><a href="#">온라인 서점</a><a href="#">직영학원</a></nav>
+    <div class="gnb-inner">
+      <div class="logo">메가변리사</div>
+      <nav class="nav">
+        <a href="#">마이페이지</a>
+        <a href="#" class="nav-caret">강사소개</a>
+        <a href="#">변리사 강좌</a>
+        <a href="#">정보실</a>
+        <a href="#" class="nav-menu">모의고사/GS</a>
+        <a href="#">온라인 서점</a>
+        <a href="#" class="nav-menu">직영학원</a>
+      </nav>
+    </div>
   </header>
+
+  <div class="mid-notice" id="midNotice">
+    <div class="mid-notice-inner">
+      <div class="mid-notice-message">
+        기본이론부터 GS까지, 최종합격에 필요한 모든 과정을 T-PASS로 한 번에 완성하세요!
+        <a href="#" class="mid-notice-btn">혜택보기</a>
+      </div>
+      <button type="button" class="mid-notice-close" id="midNoticeClose" aria-label="닫기">×</button>
+    </div>
+  </div>
+
 
   <!-- 9번 좌측 고정 퀵메뉴 -->
   <aside class="quick" id="quickMenu">
@@ -1549,7 +1971,129 @@
         </div>
       </div>
 
-<div class="footer-placeholder">핫클립 영역부터 기존영역</div>
+
+      <!-- 현행 메가변리사 하단 구조 참고: 핫클립 ~ 푸터 -->
+      <section class="legacy-bottom">
+        <div class="hotclip-head">
+          <h2>합격을 만드는 핫 클립</h2>
+          <div class="youtube-tools">
+            <span class="youtube-label">▶ YouTube</span>
+            <span class="youtube-subscribe">구독</span>
+          </div>
+        </div>
+
+        <div class="hotclip-grid">
+          <a href="#" class="hotclip-item">
+            <div class="hotclip-thumb hc1">
+              <span class="hotclip-play">▶</span>
+              <strong>살짝 바꾸면 끝일까?<br>디자인 카피의 경계</strong>
+            </div>
+            <p>발명포착! 세상에 이런 특상디가 EP12.</p>
+          </a>
+
+          <a href="#" class="hotclip-item">
+            <div class="hotclip-thumb hc2">
+              <span class="hotclip-play">▶</span>
+              <strong>10월 POINT 집중 공략<br>객관식 문제풀이</strong>
+            </div>
+            <p>10월, 헷갈리는 POINT 집중 공략</p>
+          </a>
+
+          <a href="#" class="hotclip-item">
+            <div class="hotclip-thumb hc3">
+              <span class="hotclip-play">▶</span>
+              <strong>이 효과음은<br>상표라서 주인 있어요</strong>
+            </div>
+            <p>발명포착! 세상에 이런 특상디가 EP11.</p>
+          </a>
+
+          <a href="#" class="hotclip-item">
+            <div class="hotclip-thumb hc4">
+              <span class="hotclip-play">▶</span>
+              <strong>제63회 2차 파이널<br>현장 스케치</strong>
+            </div>
+            <p>제63회 2차 파이널 모의고사 | 경기고 현장 스케치</p>
+          </a>
+        </div>
+
+        <div class="bottom-notice-grid">
+          <section class="bottom-notice-box">
+            <h3>강사 공지사항</h3>
+            <ul>
+              <li><span>메가변리사</span><a href="#">[2차 특허법] 2027 64회 2차 커리큘럼 안내</a></li>
+              <li><span>최지환</span><a href="#">[최지환 변리사] 2차 정규 커리큘럼 일정 등 안내</a></li>
+              <li><span>메가변리사</span><a href="#">[안내] 27대비 심화 강의 관련 안내</a></li>
+              <li><span>최진영</span><a href="#">[SAVE EARTH] 변리사 지구과학 강좌 OPEN</a></li>
+              <li><span>선혜민</span><a href="#">[추록] 디자인보호법 추록 자료</a></li>
+            </ul>
+          </section>
+
+          <section class="bottom-notice-box customer-notice">
+            <div class="bottom-notice-titleline">
+              <h3>고객센터 공지사항</h3>
+              <a href="#">더보기 +</a>
+            </div>
+            <ul>
+              <li><a href="#">개강 강좌 일정</a></li>
+              <li><a href="#">[안내] 플레이어 초기화 실패 오류 관련</a></li>
+            </ul>
+          </section>
+        </div>
+
+        <div class="support-row">
+          <div class="support-title">고객센터</div>
+          <div class="support-number">1661-2486</div>
+          <div class="support-hours">평일 09:00~18:00 · 점심시간 12:00~13:00 · 주말, 공휴일 휴무</div>
+          <div class="support-links">
+            <a href="#">FAQ</a>
+            <a href="#">1:1 게시판 상담</a>
+            <a href="#">PC 원격지원</a>
+            <a href="#">저작권 안내</a>
+          </div>
+        </div>
+
+        <div class="support-row expert24">
+          <div class="support-title">메가엑스퍼트24h</div>
+          <div class="support-number">031-322-5464</div>
+          <div class="support-hours">평일 09:00~18:00 · 식사시간 12:00~13:30, 18:00~19:00</div>
+          <div class="support-links">
+            <a href="#">오시는 길</a>
+            <a href="#">1:1 게시판 상담</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="brand-footer-banner">
+        <div class="brand-footer-inner">
+          <div class="brand-footer-copy-small">변리사 시험 시작부터 끝까지</div>
+          <div class="brand-footer-copy">메가가 만드는 새로운 변리사</div>
+          <div class="brand-footer-mark">M</div>
+        </div>
+      </section>
+
+      <footer class="site-footer">
+        <div class="site-footer-inner">
+          <div class="family-links">
+            <a href="#">엘리하이</a>
+            <a href="#">엠베스트</a>
+            <a href="#">메가스터디</a>
+            <a href="#">메가스터디학원</a>
+            <a href="#">러셀</a>
+            <a href="#">MEXX</a>
+            <a href="#">김영편입</a>
+            <a href="#">유니스터디</a>
+            <a href="#">더조은컴퓨터아카데미</a>
+            <a href="#">메가스터디아카데미</a>
+          </div>
+
+          <div class="footer-info">
+            <strong>메가엠디(주)</strong>
+            <span>메가변리사 홈페이지 하단 정보 영역</span>
+            <span>이용약관 · 개인정보처리방침 · 사업자정보 확인</span>
+          </div>
+        </div>
+      </footer>
+
     </div>
   </main>
 
@@ -2599,6 +3143,66 @@
 
   setReviewSubject('민법');
   startReviewAuto();
+
+
+  const midNotice = document.getElementById('midNotice');
+  const midNoticeClose = document.getElementById('midNoticeClose');
+  if(midNotice && midNoticeClose){
+    midNoticeClose.addEventListener('click', function(){
+      midNotice.style.display='none';
+    });
+  }
+
+
+
+  /* 좌/우 스카이배너: 스크롤을 따라오다가 핫클립 직전에서 '그 자리'에 멈춤 */
+  const leftSky = document.querySelector('.left-sky');
+  const rightSky = document.querySelector('.right-sky');
+  const hotclipHead = document.querySelector('.hotclip-head');
+
+  const SKY_START_TOP = 270;
+  const SKY_GAP_BEFORE_HOTCLIP = 18;
+
+  function prepareSky(sky){
+    if(!sky) return;
+    sky.style.position = 'absolute';
+    sky.style.top = SKY_START_TOP + 'px';
+    sky.style.opacity = '1';
+    sky.style.visibility = 'visible';
+    sky.style.pointerEvents = 'auto';
+    sky.style.transition = 'none';
+  }
+
+  prepareSky(leftSky);
+  prepareSky(rightSky);
+
+  function updateSkyFollow(){
+    if(!hotclipHead) return;
+
+    const hotclipTop = hotclipHead.getBoundingClientRect().top + window.scrollY;
+    const skyHeight = Math.max(
+      leftSky ? leftSky.offsetHeight : 0,
+      rightSky ? rightSky.offsetHeight : 0
+    );
+
+    // 시작 위치에서 핫클립 직전까지 이동할 수 있는 최대 거리
+    const maxTravel = Math.max(
+      0,
+      hotclipTop - SKY_GAP_BEFORE_HOTCLIP - skyHeight - SKY_START_TOP
+    );
+
+    // 스크롤만큼 따라오되, maxTravel 이상은 절대 내려가지 않음
+    const followY = Math.min(window.scrollY, maxTravel);
+
+    if(leftSky) leftSky.style.transform = 'translateY(' + followY + 'px)';
+    if(rightSky) rightSky.style.transform = 'translateY(' + followY + 'px)';
+  }
+
+  window.addEventListener('scroll', updateSkyFollow, {passive:true});
+  window.addEventListener('resize', updateSkyFollow);
+  window.addEventListener('load', updateSkyFollow);
+  updateSkyFollow();
+
 
 </script>
 
