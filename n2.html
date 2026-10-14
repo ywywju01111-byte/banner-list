@@ -221,13 +221,88 @@ body > section.original-hidden{display:none!important}
 #restoreOriginalSections{background:#444;color:#fff;border:0;border-radius:6px;padding:9px 10px;cursor:pointer;font-size:12px;font-weight:700}
 @media (hover:none){.original-section-tools{opacity:1;visibility:visible;transform:none;pointer-events:auto}}
 </style>
-</head>
+<style id="hero-editor-extra-style">
+.hero .inner{z-index:1}.hero .scope{pointer-events:none;overflow:hidden}.hero .scope.has-hero-image{border-color:transparent}.hero .scope.has-hero-image::before,.hero .scope.has-hero-image::after{display:none}
+.hero .scope.has-hero-image b{display:none}.hero .scope .hero-icon-image{display:none;width:100%;height:100%;object-fit:contain;border-radius:50%}.hero .scope.has-hero-image .hero-icon-image{display:block}
+#heroEditModal{display:none;position:fixed;inset:0;z-index:2147483700;background:#000b;align-items:center;justify-content:center;padding:16px}
+#heroEditModal.open{display:flex}#heroEditModal .hero-edit-card{width:min(560px,100%);max-height:90vh;overflow:auto;background:#fff;color:#222;padding:26px;border-radius:12px;font:14px/1.5 'Malgun Gothic',sans-serif;box-shadow:0 16px 50px #0008}
+#heroEditModal h3{margin:0 0 15px;font-size:21px}#heroEditModal label{display:block;font-weight:700;margin:13px 0}#heroEditModal input,#heroEditModal textarea,#heroEditModal select{display:block;width:100%;margin-top:6px;padding:10px;border:1px solid #bbb;border-radius:6px;font:14px 'Malgun Gothic',sans-serif}
+#heroEditModal textarea{min-height:78px;resize:vertical}#heroEditModal .hero-edit-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:16px}#heroEditModal button{padding:10px 17px;border:0;border-radius:6px;cursor:pointer;background:#ddd}#heroEditModal #heroEditSave{background:#cfff00;color:#111;font-weight:800}#heroEditModal .hero-hint{font-size:12px;color:#777;margin:4px 0}
+
+/* PNG image can be resized by dragging its bottom-right handle. */
+.hero .scope.has-hero-image{overflow:visible;border:0;border-radius:0;pointer-events:auto;touch-action:none}
+.hero .scope.has-hero-image .hero-icon-image{border-radius:0;pointer-events:none}
+.hero .scope .hero-resize-handle{display:none;position:absolute;right:-9px;bottom:-9px;width:23px;height:23px;background:#fff;border:3px solid var(--theme-accent,#cfff00);border-radius:6px;cursor:nwse-resize;z-index:15;box-shadow:0 2px 12px #0008}
+.hero .scope.has-hero-image:hover .hero-resize-handle,.hero .scope.has-hero-image.resizing .hero-resize-handle{display:block}
+.hero .scope.has-hero-image:hover{outline:1px dashed var(--theme-accent,#cfff00);outline-offset:4px}
+.hero .scope.has-hero-image::before,.hero .scope.has-hero-image::after{display:none}
+.hero .scope.has-hero-image{max-width:none;max-height:none}
+#heroIconFile{cursor:pointer}
+</style>
+
+<style id="toolbar-overflow-fix">
+/* Keep every editor action accessible at narrow browser widths. */
+.plan-toolbar{
+  box-sizing:border-box!important;
+  left:auto!important;
+  right:12px!important;
+  top:12px!important;
+  width:max-content!important;
+  max-width:calc(100vw - 24px)!important;
+  display:flex!important;
+  flex-wrap:wrap!important;
+  justify-content:flex-end!important;
+  align-content:center!important;
+  gap:6px!important;
+  padding:9px!important;
+  max-height:35vh!important;
+  overflow-x:hidden!important;
+  overflow-y:auto!important;
+}
+.plan-toolbar>b,.plan-toolbar>button{flex:0 0 auto!important;white-space:nowrap!important}
+.plan-toolbar button{padding:8px 10px!important;font-size:11px!important}
+.theme-toolbar{right:12px!important;top:var(--editor-toolbar-bottom,94px)!important}
+@media(max-width:800px){
+ .plan-toolbar{top:10px!important;bottom:auto!important;max-width:calc(100vw - 20px)!important}
+ .theme-toolbar{top:var(--editor-toolbar-bottom,140px)!important;bottom:auto!important}
+}
+</style>
+<style id="vertical-editor-sidebar">
+/* Editing controls live in a dedicated left rail, never over page copy. */
+html{scroll-padding-top:16px}
+body{padding-left:194px!important}
+.plan-toolbar{
+ position:fixed!important;left:0!important;right:auto!important;top:0!important;bottom:0!important;
+ width:182px!important;min-width:182px!important;max-width:182px!important;
+ height:100dvh!important;max-height:100dvh!important;
+ display:flex!important;flex-direction:column!important;flex-wrap:nowrap!important;
+ justify-content:flex-start!important;align-items:stretch!important;align-content:stretch!important;
+ gap:9px!important;padding:18px 12px!important;margin:0!important;
+ overflow-x:hidden!important;overflow-y:auto!important;
+ border-radius:0!important;box-shadow:3px 0 20px #0005!important;
+ background:#fff!important;color:#171717!important;z-index:2147483500!important;
+}
+.plan-toolbar>b{display:block!important;white-space:normal!important;line-height:1.5!important;margin:0 0 5px!important;text-align:center!important}
+.plan-toolbar>button{display:block!important;width:100%!important;min-height:38px!important;
+ flex:none!important;white-space:normal!important;word-break:keep-all!important;
+ padding:10px 7px!important;font-size:12px!important;line-height:1.4!important;text-align:center!important}
+.theme-toolbar{position:fixed!important;top:auto!important;bottom:15px!important;left:12px!important;right:auto!important;width:158px!important;z-index:2147483501!important}
+.theme-toolbar>button{width:100%!important;white-space:normal!important}
+.theme-panel{position:fixed!important;left:194px!important;right:auto!important;top:16px!important;bottom:auto!important;
+ width:min(300px,calc(100vw - 210px))!important;max-height:calc(100dvh - 32px)!important;overflow-y:auto!important}
+@media(max-width:800px){body{padding-left:150px!important}
+ .plan-toolbar{width:140px!important;min-width:140px!important;max-width:140px!important;padding:12px 7px!important;gap:6px!important}
+ .plan-toolbar>button{font-size:11px!important;padding:8px 4px!important}
+ .theme-toolbar{left:7px!important;width:126px!important;bottom:10px!important}
+ .theme-panel{left:150px!important;width:min(300px,calc(100vw - 160px))!important}
+}
+</style></head>
 <body style="">
 <section class="hero" id="page-section-0">
  <div class="inner">
   <h1>메가변리사가 겨냥한 핵심,<br><em>이번에도 적중했습니다.</em></h1>
   <p>제63회 변리사 2차 시험<br>메가변리사가 짚은 쟁점, 실제 시험에서 다시 만났습니다.</p>
-  <div class="scope"><b>HIT<br>POINT</b></div>
+  <div class="scope"><b>HIT<br>POINT</b><img class="hero-icon-image" alt="메인 아이콘"><span class="hero-resize-handle" title="드래그해서 이미지 크기 변경" aria-label="이미지 크기 변경"></span></div>
  </div>
 </section>
 
@@ -667,6 +742,74 @@ const toolbar=document.querySelector('.plan-toolbar');
 if(!toolbar||!originals.length)return;
 const restore=document.createElement('button');restore.id='restoreOriginalSections';restore.type='button';restore.textContent='숨긴 영역 복구';
 const exportButton=document.getElementById('planExport');toolbar.insertBefore(restore,exportButton);
+const heroModal=document.createElement('div');heroModal.id='heroEditModal';
+heroModal.innerHTML=`<div class="hero-edit-card" role="dialog" aria-modal="true" aria-label="상단 메인 편집"><h3>상단 메인 영역 수정</h3><label>메인 타이틀 (첫 번째 줄)<textarea id="heroLine1"></textarea></label><label>강조 타이틀 (두 번째 줄)<textarea id="heroLine2"></textarea></label><label>서브 타이틀 / 설명<textarea id="heroDescription"></textarea></label><label>아이콘 표시 방식<select id="heroIconMode"><option value="default">기존 HIT POINT 아이콘</option><option value="image">PNG 파일 / 이미지 링크 사용</option><option value="none">아이콘 숨기기</option></select></label><label>PNG 파일 선택<input id="heroIconFile" type="file" accept="image/png"></label><label>또는 이미지 URL<input id="heroIconUrl" type="text" placeholder="https://example.com/icon.png"></label><p class="hero-hint">PNG 파일을 선택하면 HTML에 이미지가 포함돼요. 저장 후 이미지의 오른쪽 아래 모서리를 드래그하면 크기를 조절할 수 있어요. (큰 PNG는 HTML 파일 용량이 커질 수 있어요.)</p><div class="hero-edit-actions"><button type="button" id="heroEditCancel">취소</button><button type="button" id="heroEditSave">저장</button></div></div>`;
+document.body.append(heroModal);
+const heroSection=originals.find(el=>el.classList.contains('hero'));
+let uploadedPng=null;
+const fileInput=heroModal.querySelector('#heroIconFile');
+fileInput.addEventListener('change',()=>{
+ const file=fileInput.files?.[0];if(!file)return;
+ if(file.type!=='image/png'){alert('PNG 파일만 선택해 주세요.');fileInput.value='';return;}
+ const reader=new FileReader();reader.onload=()=>{uploadedPng=String(reader.result);heroModal.querySelector('#heroIconMode').value='image';};reader.readAsDataURL(file);
+});
+// Entering a link automatically selects image mode.
+const heroUrlField=heroModal.querySelector('#heroIconUrl');
+heroUrlField.addEventListener('input',()=>{
+ if(heroUrlField.value.trim())heroModal.querySelector('#heroIconMode').value='image';
+});
+function normalizeHeroImageUrl(value){
+ let url=value.trim();
+ try{
+  const u=new URL(url);
+  if(u.hostname==='github.com'){
+   const m=u.pathname.match(/^\/([^/]+)\/([^/]+)\/blob\/([^/]+)\/(.+)$/);
+   if(m)url='https://raw.githubusercontent.com/'+m[1]+'/'+m[2]+'/'+m[3]+'/'+m[4];
+  }
+  if(u.hostname==='drive.google.com'){
+   const m=u.pathname.match(/\/file\/d\/([^/]+)/);
+   if(m)url='https://drive.google.com/uc?export=view&id='+encodeURIComponent(m[1]);
+  }
+ }catch(e){}
+ return url;
+}
+const resizeScope=heroSection?.querySelector('.scope');
+const resizeHandle=resizeScope?.querySelector('.hero-resize-handle');
+if(resizeHandle){
+ resizeHandle.addEventListener('pointerdown',e=>{
+  if(e.button!==0)return;e.preventDefault();e.stopPropagation();
+  const startX=e.clientX,startY=e.clientY,startW=resizeScope.getBoundingClientRect().width,startH=resizeScope.getBoundingClientRect().height;
+  resizeScope.classList.add('resizing');resizeHandle.setPointerCapture(e.pointerId);
+  const move=ev=>{const dx=ev.clientX-startX,dy=ev.clientY-startY;resizeScope.style.width=Math.max(60,Math.round(startW+dx))+'px';resizeScope.style.height=Math.max(60,Math.round(startH+dy))+'px'};
+  const end=()=>{resizeScope.classList.remove('resizing');resizeHandle.removeEventListener('pointermove',move);resizeHandle.removeEventListener('pointerup',end);resizeHandle.removeEventListener('pointercancel',end)};
+  resizeHandle.addEventListener('pointermove',move);resizeHandle.addEventListener('pointerup',end);resizeHandle.addEventListener('pointercancel',end);
+ });
+}
+function openHeroEditor(sec){
+ const h=sec.querySelector('h1'),p=sec.querySelector('.inner > p'),scope=sec.querySelector('.scope');
+ heroModal.querySelector('#heroLine1').value=h?.childNodes[0]?.textContent.trim()||'';
+ heroModal.querySelector('#heroLine2').value=h?.querySelector('em')?.textContent||'';
+ heroModal.querySelector('#heroDescription').value=(p?.innerText||'').replace(/\n{3,}/g,'\n\n');
+ heroModal.querySelector('#heroIconMode').value=scope?.dataset.iconMode||'default';
+ heroModal.querySelector('#heroIconUrl').value=(scope?.querySelector('.hero-icon-image')?.getAttribute('src')||'').startsWith('data:')?'':(scope?.querySelector('.hero-icon-image')?.getAttribute('src')||'');uploadedPng=null;fileInput.value='';
+ heroModal.classList.add('open');
+}
+heroModal.querySelector('#heroEditCancel').onclick=()=>heroModal.classList.remove('open');
+heroModal.addEventListener('click',e=>{if(e.target===heroModal)heroModal.classList.remove('open')});
+heroModal.querySelector('#heroEditSave').onclick=()=>{
+ const sec=heroSection,h=sec.querySelector('h1'),p=sec.querySelector('.inner > p'),scope=sec.querySelector('.scope');
+ const first=heroModal.querySelector('#heroLine1').value,second=heroModal.querySelector('#heroLine2').value,desc=heroModal.querySelector('#heroDescription').value;
+ h.replaceChildren(document.createTextNode(first),document.createElement('br'));
+ const em=document.createElement('em');em.textContent=second;h.append(em);
+ p.replaceChildren();desc.split('\n').forEach((line,i)=>{if(i)p.append(document.createElement('br'));p.append(document.createTextNode(line))});
+ const enteredUrl=heroModal.querySelector('#heroIconUrl').value.trim();const iconMode=(uploadedPng||enteredUrl)?'image':heroModal.querySelector('#heroIconMode').value,url=uploadedPng||normalizeHeroImageUrl(enteredUrl)||scope.querySelector('.hero-icon-image')?.getAttribute('src')||'';
+ if(iconMode==='image'&&!/^(https?:\/\/|data:image\/png;base64,)/i.test(url)){alert('PNG 파일을 선택하거나 이미지 URL을 입력해 주세요.');return}
+ scope.dataset.iconMode=iconMode;
+ scope.classList.toggle('has-hero-image',iconMode==='image');
+ scope.style.display=iconMode==='none'?'none':'';
+ const img=scope.querySelector('.hero-icon-image');if(iconMode==='image'){img.onerror=()=>{console.warn('아이콘 이미지 주소를 불러오지 못했습니다:',url);};img.src=url;}else img.removeAttribute('src');
+ heroModal.classList.remove('open');
+};
 const selectors={
  hero:'.hero h1,.hero p',
  quiz:'.quiz .label,.quiz h2,.quiz p',
@@ -691,6 +834,7 @@ function finish(){
  active=null;
 }
 function start(sec){
+ if(sec.classList.contains('hero')){finish();openHeroEditor(sec);return}
  if(active===sec){finish();return}
  finish();active=sec;sec.classList.add('original-editing');
  editTargets(sec).forEach(el=>{el.contentEditable='true';el.dataset.originalEditable='yes';el.spellcheck=false});
@@ -714,11 +858,11 @@ originals.forEach(sec=>{
  sec.prepend(controls);
 });
 restore.addEventListener('click',()=>{finish();originals.forEach(sec=>sec.classList.remove('original-hidden'));refreshRestore()});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')finish()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){finish();heroModal.classList.remove('open')}});
 // The exporter clones the live DOM, preserving edits, visibility and section order.
 // Remove editor-only buttons and transient contenteditable attributes from the exported copy.
 window.prepareOriginalSectionsExport=clone=>{
- clone.querySelectorAll('.original-section-tools,#restoreOriginalSections').forEach(el=>el.remove());
+ clone.querySelectorAll('.original-section-tools,#restoreOriginalSections,#heroEditModal').forEach(el=>el.remove());
  clone.querySelectorAll('section.original-editing').forEach(el=>el.classList.remove('original-editing'));
  clone.querySelectorAll('[data-original-editable]').forEach(el=>{el.removeAttribute('contenteditable');el.removeAttribute('data-original-editable');el.removeAttribute('spellcheck')});
 };
@@ -739,8 +883,9 @@ button.addEventListener('click',()=>{
  // The live document root already contains the currently selected theme variables.
  // Remove sections the author has hidden and every authoring control.
  clone.querySelectorAll('section.original-hidden').forEach(el=>el.remove());
- clone.querySelectorAll('.plan-toolbar,.theme-toolbar,#planLayerV4,#planTipV4,#planStatusV4,#planEditorV4,#customInsertHint,#customSectionModal,.section-tools,.table-tools,.original-section-tools,#restoreOriginalSections,.plan-sticker,.plan-pop,.plan-choose').forEach(el=>el.remove());
+ clone.querySelectorAll('.plan-toolbar,.theme-toolbar,#planLayerV4,#planTipV4,#planStatusV4,#planEditorV4,#customInsertHint,#customSectionModal,.section-tools,.table-tools,.original-section-tools,#restoreOriginalSections,#heroEditModal,.hero-resize-handle,.plan-sticker,.plan-pop,.plan-choose').forEach(el=>el.remove());
  // Remove editing-only scripts, metadata and styles. Keep the public tab/slider script.
+ clone.querySelectorAll('style#hero-editor-extra-style').forEach(el=>{el.textContent += '\n.hero .scope.has-hero-image:hover{outline:none!important}';});
  clone.querySelectorAll('script').forEach(el=>{
   if(el.textContent.includes("document.querySelectorAll('.tab').forEach"))return;
   el.remove();
@@ -767,6 +912,20 @@ button.addEventListener('click',()=>{
  a.href=url;a.download='n2_publish_only.txt';document.body.append(a);a.click();a.remove();
  setTimeout(()=>URL.revokeObjectURL(url),1500);
 });
+})();
+</script>
+
+<script id="toolbar-position-sync">
+(function(){
+ const bar=document.querySelector('.plan-toolbar');
+ if(!bar)return;
+ const sync=()=>{
+  const rect=bar.getBoundingClientRect();
+  document.documentElement.style.setProperty('--editor-toolbar-bottom',Math.ceil(rect.bottom+12)+'px');
+ };
+ sync();
+ if(typeof ResizeObserver!=='undefined')new ResizeObserver(sync).observe(bar);
+ window.addEventListener('resize',sync);
 })();
 </script>
 </body></html>
