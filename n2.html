@@ -54,6 +54,8 @@ body.plan-hidden .plan-sticker{display:none!important}
 #planLayerV4{position:absolute;left:0;top:0;width:0;height:0;z-index:2147483000;pointer-events:none}
 #planLayerV4 .plan-sticker{pointer-events:auto;position:absolute!important;display:flex;align-items:center;justify-content:center;transform:translate(-50%,-50%)!important;z-index:2147483001}
 #planLayerV4 .plan-sticker:hover{transform:translate(-50%,-50%) scale(1.1)!important}
+#planLayerV4 .plan-sticker{touch-action:none;cursor:grab;user-select:none}
+#planLayerV4 .plan-sticker.dragging{cursor:grabbing;opacity:.88;transform:translate(-50%,-50%) scale(1.18)!important;box-shadow:0 6px 22px #000a}
 #planTipV4{position:fixed;display:none;max-width:min(370px,90vw);padding:13px 16px;background:#fffbe7;color:#222;border:2px solid #e1b928;border-radius:9px;z-index:2147483005;box-shadow:0 6px 22px #0006;white-space:pre-wrap;font:13px/1.6 'Malgun Gothic',sans-serif;pointer-events:none}
 #planStatusV4{position:fixed;display:none;top:18px;left:50%;transform:translateX(-50%);z-index:2147483500;background:#ffdf57;color:#111;padding:12px 20px;border-radius:8px;font:bold 15px sans-serif;pointer-events:none}
 #planEditorV4{display:none;position:fixed;z-index:2147483600;left:50%;top:50%;transform:translate(-50%,-50%);width:min(440px,94vw);background:white;color:#111;border:3px solid #ffdf57;padding:20px;border-radius:12px;box-shadow:0 0 0 9999px #0009;font:14px 'Malgun Gothic',sans-serif}
@@ -64,6 +66,8 @@ body.plan-hidden .plan-sticker{display:none!important}
 #planLayerV4{position:absolute;left:0;top:0;width:0;height:0;z-index:2147483000;pointer-events:none}
 #planLayerV4 .plan-sticker{pointer-events:auto;position:absolute!important;display:flex;align-items:center;justify-content:center;transform:translate(-50%,-50%)!important;z-index:2147483001}
 #planLayerV4 .plan-sticker:hover{transform:translate(-50%,-50%) scale(1.1)!important}
+#planLayerV4 .plan-sticker{touch-action:none;cursor:grab;user-select:none}
+#planLayerV4 .plan-sticker.dragging{cursor:grabbing;opacity:.88;transform:translate(-50%,-50%) scale(1.18)!important;box-shadow:0 6px 22px #000a}
 #planTipV4{position:fixed;display:none;max-width:min(370px,90vw);padding:13px 16px;background:#fffbe7;color:#222;border:2px solid #e1b928;border-radius:9px;z-index:2147483005;box-shadow:0 6px 22px #0006;white-space:pre-wrap;font:13px/1.6 'Malgun Gothic',sans-serif;pointer-events:none}
 #planStatusV4{position:fixed;display:none;top:18px;left:50%;transform:translateX(-50%);z-index:2147483500;background:#ffdf57;color:#111;padding:12px 20px;border-radius:8px;font:bold 15px sans-serif;pointer-events:none}
 #planEditorV4{display:none;position:fixed;z-index:2147483600;left:50%;top:50%;transform:translate(-50%,-50%);width:min(440px,94vw);background:white;color:#111;border:3px solid #ffdf57;padding:20px;border-radius:12px;box-shadow:0 0 0 9999px #0009;font:14px 'Malgun Gothic',sans-serif}
@@ -164,6 +168,8 @@ body.custom-insert-mode .custom-insert-target{outline:3px dashed var(--theme-acc
 #planLayerV4{position:absolute;left:0;top:0;width:0;height:0;z-index:2147483000;pointer-events:none}
 #planLayerV4 .plan-sticker{pointer-events:auto;position:absolute!important;display:flex;align-items:center;justify-content:center;transform:translate(-50%,-50%)!important;z-index:2147483001}
 #planLayerV4 .plan-sticker:hover{transform:translate(-50%,-50%) scale(1.1)!important}
+#planLayerV4 .plan-sticker{touch-action:none;cursor:grab;user-select:none}
+#planLayerV4 .plan-sticker.dragging{cursor:grabbing;opacity:.88;transform:translate(-50%,-50%) scale(1.18)!important;box-shadow:0 6px 22px #000a}
 #planTipV4{position:fixed;display:none;max-width:min(370px,90vw);padding:13px 16px;background:#fffbe7;color:#222;border:2px solid #e1b928;border-radius:9px;z-index:2147483005;box-shadow:0 6px 22px #0006;white-space:pre-wrap;font:13px/1.6 'Malgun Gothic',sans-serif;pointer-events:none}
 #planStatusV4{position:fixed;display:none;top:18px;left:50%;transform:translateX(-50%);z-index:2147483500;background:#ffdf57;color:#111;padding:12px 20px;border-radius:8px;font:bold 15px sans-serif;pointer-events:none}
 #planEditorV4{display:none;position:fixed;z-index:2147483600;left:50%;top:50%;transform:translate(-50%,-50%);width:min(440px,94vw);background:white;color:#111;border:3px solid #ffdf57;padding:20px;border-radius:12px;box-shadow:0 0 0 9999px #0009;font:14px 'Malgun Gothic',sans-serif}
@@ -198,6 +204,22 @@ body.custom-insert-mode .custom-insert-target{outline:3px dashed var(--theme-acc
   .custom-section .section-tools,
   .custom-section .table-tools {opacity:1;visibility:visible;pointer-events:auto}
 }
+</style>
+
+<style id="original-section-editor-style">
+body > section:not(.custom-section){position:relative}
+.original-section-tools{position:absolute;top:14px;right:max(18px,calc((100% - 1200px)/2));z-index:900;display:flex;gap:6px;flex-wrap:wrap;opacity:0;visibility:hidden;transform:translateY(-5px);transition:opacity .15s,transform .15s,visibility .15s;pointer-events:none}
+body > section:not(.custom-section):hover > .original-section-tools,
+body > section:not(.custom-section):focus-within > .original-section-tools,
+body > section.original-editing > .original-section-tools{opacity:1;visibility:visible;transform:none;pointer-events:auto}
+.original-section-tools button{background:#282828!important;color:#fff!important;border:1px solid #777!important;border-radius:5px!important;padding:7px 10px!important;font:700 12px 'Malgun Gothic',sans-serif!important;cursor:pointer!important;box-shadow:0 2px 8px #0006}
+.original-section-tools button:hover{background:#505050!important}
+.original-section-tools .original-finish{background:#cfff00!important;color:#111!important;border-color:#cfff00!important}
+body > section.original-editing [data-original-editable="yes"]{outline:1px dashed #d7ff00;outline-offset:3px;cursor:text}
+body > section.original-editing [data-original-editable="yes"]:focus{outline:2px solid #cfff00;background:#8882}
+body > section.original-hidden{display:none!important}
+#restoreOriginalSections{background:#444;color:#fff;border:0;border-radius:6px;padding:9px 10px;cursor:pointer;font-size:12px;font-weight:700}
+@media (hover:none){.original-section-tools{opacity:1;visibility:visible;transform:none;pointer-events:auto}}
 </style>
 </head>
 <body style="">
@@ -361,11 +383,11 @@ document.querySelectorAll('.slider').forEach(s=>{
 });
 </script>
 
-<div class="theme-toolbar"><button id="themeToggle" type="button">🎨 컬러칩 · 테마</button><div class="theme-panel" id="themePanel"><h4>페이지 컬러 설정</h4><div class="theme-presets" id="themePresets"><button type="button" class="theme-preset" title="라임" style="background: linear-gradient(135deg, rgb(5, 5, 5) 55%, rgb(207, 255, 0) 55%);"><span>라임</span></button><button type="button" class="theme-preset" title="와인" style="background: linear-gradient(135deg, rgb(22, 12, 19) 55%, rgb(215, 169, 107) 55%);"><span>와인</span></button><button type="button" class="theme-preset" title="네이비" style="background: linear-gradient(135deg, rgb(8, 17, 31) 55%, rgb(189, 210, 237) 55%);"><span>네이비</span></button><button type="button" class="theme-preset" title="크림" style="background: linear-gradient(135deg, rgb(247, 242, 233) 55%, rgb(166, 119, 66) 55%);"><span>크림</span></button></div><div class="theme-fields" id="themeFields"><label><input type="color" data-color="accent">포인트</label><label><input type="color" data-color="bg">전체 배경</label><label><input type="color" data-color="section">섹션 배경</label><label><input type="color" data-color="card">박스 배경</label><label><input type="color" data-color="text">글자 색상</label></div><p class="theme-hint">색상 변경 즉시 적용 · 상단의 ‘메모 포함 HTML 저장’ 버튼으로 메모와 컬러를 함께 저장할 수 있어요.</p></div></div>
+<div class="theme-toolbar"><button id="themeToggle" type="button">🎨 컬러칩 · 테마</button><div class="theme-panel" id="themePanel"><h4>페이지 컬러 설정</h4><div class="theme-presets" id="themePresets"></div><div class="theme-fields" id="themeFields"></div><p class="theme-hint">색상 변경 즉시 적용 · 상단의 ‘메모 포함 HTML 저장’ 버튼으로 메모와 컬러를 함께 저장할 수 있어요.</p></div></div>
 <script type="application/json" id="theme-embedded-data">{"accent":"#cfff00","bg":"#050505","section":"#111111","card":"#1b1b1b","text":"#ffffff"}</script>
 <div class="plan-toolbar"><b>✱ 작업 메모</b><button id="planToggle">스티커 숨기기</button><button id="planAdd">+ 스티커 추가</button><button id="insertText">+ 텍스트 박스</button><button id="insertTable">+ 표</button><button class="primary" id="planExport">페이지 전체 HTML 저장</button></div>
 <script type="application/json" id="custom-sections-data">[]</script>
-<script type="application/json" id="plan-embedded-notes">[{"x":408,"y":1377,"title":"적중 문제 노출","note":"별도 엑셀 파일 전달","selector":"#patent .compare","rx":0.035,"ry":0.05},{"x":1528,"y":1666,"title":"페이지네이션","note":"적중 문제가 많을 경우 Prev / Next 좌우 네비게이션 노출","selector":"#patent .side-nav.next","rx":0.5,"ry":0.5},{"x":1417,"y":1387,"title":"페이지 인디케이터","note":"적중 문제가 많을 경우 현재 페이지/전체 페이지 표시","selector":"#patent .count","rx":0.5,"ry":0.5},{"selector":"#page-section-2 > div:nth-of-type(1)","rx":0.34404756225102107,"ry":0.20243944379287088,"title":"새 작업 요청","note":"민사소송법/ 특허법/상표법/디자인보호법/저작권법/유기화학\n\n\n각 영역 클릭 시 활성화됨\n디폴트: 민사소송법"}]</script>
+<script type="application/json" id="plan-embedded-notes">[{"x":408,"y":1377,"title":"적중 문제 노출","note":"별도 엑셀 파일 전달","selector":"#patent .compare","rx":0.035,"ry":0.05},{"x":1528,"y":1666,"title":"페이지네이션","note":"적중 문제가 많을 경우 Prev / Next 좌우 네비게이션 노출","selector":"#patent .side-nav.next","rx":0.5,"ry":0.5},{"x":1417,"y":1387,"title":"페이지 인디케이터","note":"적중 문제가 많을 경우 현재 페이지/전체 페이지 표시","selector":"#patent .count","rx":0.5,"ry":0.5},{"selector":"#page-section-2 > .inner","rx":0.34404756225102107,"ry":0.20243944379287088,"title":"새 작업 요청","note":"민사소송법/ 특허법/상표법/디자인보호법/저작권법/유기화학\n\n\n각 영역 클릭 시 활성화됨\n디폴트: 민사소송법"}]</script>
 <script id="planning-notes-script">
 (function(){
 'use strict';
@@ -384,15 +406,13 @@ const themePanel=document.getElementById('themePanel');
 document.getElementById('themeToggle').onclick=()=>themePanel.classList.toggle('open');
 const presetRoot=document.getElementById('themePresets');
 const fieldRoot=document.getElementById('themeFields');
+// Always rebuild once, including when reopening a downloaded HTML.
+presetRoot.replaceChildren();
+fieldRoot.replaceChildren();
 function applyTheme(){
  for(const key of Object.keys(themeNames))document.documentElement.style.setProperty('--theme-'+key,theme[key]);
  fieldRoot.querySelectorAll('input').forEach(el=>el.value=theme[el.dataset.color]);
 }
-  const presetRoot = document.getElementById('themePresets');
-const fieldRoot = document.getElementById('themeFields');
-
-presetRoot.replaceChildren();
-fieldRoot.replaceChildren();
 Object.entries(THEMES).forEach(([id,p])=>{
  const b=document.createElement('button');b.type='button';b.className='theme-preset';b.title=p.label;
  b.style.background='linear-gradient(135deg,'+p.bg+' 55%,'+p.accent+' 55%)';
@@ -408,11 +428,14 @@ const toolbar=document.querySelector('.plan-toolbar');
 if(!toolbar)return;
 const add=document.getElementById('planAdd'),toggle=document.getElementById('planToggle'),exportBtn=document.getElementById('planExport');
 let placing=false,hidden=false,current=-1;
+let dragState=null;
 const style=document.createElement('style');
 style.textContent=`
 #planLayerV4{position:absolute;left:0;top:0;width:0;height:0;z-index:2147483000;pointer-events:none}
 #planLayerV4 .plan-sticker{pointer-events:auto;position:absolute!important;display:flex;align-items:center;justify-content:center;transform:translate(-50%,-50%)!important;z-index:2147483001}
 #planLayerV4 .plan-sticker:hover{transform:translate(-50%,-50%) scale(1.1)!important}
+#planLayerV4 .plan-sticker{touch-action:none;cursor:grab;user-select:none}
+#planLayerV4 .plan-sticker.dragging{cursor:grabbing;opacity:.88;transform:translate(-50%,-50%) scale(1.18)!important;box-shadow:0 6px 22px #000a}
 #planTipV4{position:fixed;display:none;max-width:min(370px,90vw);padding:13px 16px;background:#fffbe7;color:#222;border:2px solid #e1b928;border-radius:9px;z-index:2147483005;box-shadow:0 6px 22px #0006;white-space:pre-wrap;font:13px/1.6 'Malgun Gothic',sans-serif;pointer-events:none}
 #planStatusV4{position:fixed;display:none;top:18px;left:50%;transform:translateX(-50%);z-index:2147483500;background:#ffdf57;color:#111;padding:12px 20px;border-radius:8px;font:bold 15px sans-serif;pointer-events:none}
 #planEditorV4{display:none;position:fixed;z-index:2147483600;left:50%;top:50%;transform:translate(-50%,-50%);width:min(440px,94vw);background:white;color:#111;border:3px solid #ffdf57;padding:20px;border-radius:12px;box-shadow:0 0 0 9999px #0009;font:14px 'Malgun Gothic',sans-serif}
@@ -422,13 +445,16 @@ style.textContent=`
 `;
 document.head.append(style);
 const layer=document.createElement('div');layer.id='planLayerV4';document.body.append(layer);
+ // Keep sticker overlay above dynamically added section edit controls.
+ layer.style.zIndex='2147483000';
 const tip=document.createElement('div');tip.id='planTipV4';document.body.append(tip);
 const status=document.createElement('div');status.id='planStatusV4';status.textContent='✱ 스티커를 붙일 위치를 클릭하세요 (ESC 취소)';document.body.append(status);
 const editor=document.createElement('div');editor.id='planEditorV4';
 editor.innerHTML='<b style="font-size:18px">✱ 작업 요청 메모</b><p style="margin:12px 0 5px">제목</p><input id="planTitleV4"><p style="margin:12px 0 5px">작업 요청사항</p><textarea id="planTextV4"></textarea><div style="display:flex;gap:8px;margin-top:12px"><button id="planSaveV4" style="background:#cfff00;color:#111">저장</button><button id="planDeleteV4">삭제</button><button id="planCloseV4">닫기</button></div>';
 document.body.append(editor);
 function locate(n){
- const el=document.querySelector(n.selector||'');
+ let el=null;try{el=document.querySelector(n.selector||'')}catch(e){}
+  if(!el && n.selector?.startsWith('#page-section-2 > div:nth-of-type(1)'))el=document.querySelector('#page-section-2 > .inner');
  if(!el)return null;
  const r=el.getBoundingClientRect();
  if(r.width<1||r.height<1||getComputedStyle(el).display==='none')return null;
@@ -445,8 +471,42 @@ function render(){
  layer.replaceChildren();
  notes.forEach((n,i)=>{
   const b=document.createElement('button');b.type='button';b.className='plan-sticker';b.textContent='✱';b.setAttribute('aria-label','작업 메모: '+n.title);
-  b.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();tip.style.display='none';openEditor(i)});
-  b.addEventListener('mouseenter',()=>{tip.innerHTML='';const strong=document.createElement('strong');strong.textContent='✱ '+n.title;tip.append(strong,document.createTextNode('\n'+n.note));tip.style.display='block';const r=b.getBoundingClientRect();tip.style.left=Math.max(8,Math.min(innerWidth-385,r.left+35))+'px';tip.style.top=Math.max(8,Math.min(innerHeight-170,r.top+20))+'px'});
+  b.addEventListener('pointerdown',e=>{
+   if(e.button!==0||placing)return;
+   dragState={index:i,id:e.pointerId,startX:e.clientX,startY:e.clientY,moved:false};
+   b.setPointerCapture(e.pointerId);tip.style.display='none';
+  });
+  b.addEventListener('pointermove',e=>{
+   if(!dragState||dragState.index!==i||dragState.id!==e.pointerId)return;
+   if(!dragState.moved&&Math.hypot(e.clientX-dragState.startX,e.clientY-dragState.startY)<5)return;
+   dragState.moved=true;b.classList.add('dragging');tip.style.display='none';
+   b.style.left=(window.scrollX+e.clientX)+'px';b.style.top=(window.scrollY+e.clientY)+'px';
+  });
+  b.addEventListener('pointerup',e=>{
+   if(!dragState||dragState.index!==i||dragState.id!==e.pointerId)return;
+   const moved=dragState.moved;dragState=null;b.classList.remove('dragging');
+   if(!moved)return;
+   b.dataset.suppressClick='yes';
+   // Hit-test the underlying page, not the sticker overlay.
+   b.style.pointerEvents='none';
+   let target=document.elementFromPoint(e.clientX,e.clientY);
+   b.style.pointerEvents='';
+   const section=target?.closest('section');
+   if(section){
+    const candidate=target.closest('.tabs,.tab,.count,.side-nav,.compare,.paper-wrap,.paper-title,.case-head,.pointbox,.head,.custom-heading,.custom-content,.custom-section,.hero h1,.hero p,.quiz h2,.quiz p,.proof h2,.proof p,.eventbox h2,.eventbox p,.steps,.step,.example,.form')||section;
+    const r=candidate.getBoundingClientRect();
+    if(r.width>0&&r.height>0){
+     notes[i].selector=selectorFor(candidate);
+     notes[i].rx=Math.max(0,Math.min(1,(e.clientX-r.left)/r.width));
+     notes[i].ry=Math.max(0,Math.min(1,(e.clientY-r.top)/r.height));
+     saveLocal();
+    }
+   }
+   updatePositions();
+  });
+  b.addEventListener('pointercancel',()=>{if(dragState?.index===i)dragState=null;b.classList.remove('dragging');updatePositions()});
+  b.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();if(b.dataset.suppressClick==='yes'){delete b.dataset.suppressClick;return;}tip.style.display='none';openEditor(i)});
+  b.addEventListener('mouseenter',()=>{if(dragState)return;tip.innerHTML='';const strong=document.createElement('strong');strong.textContent='✱ '+n.title;tip.append(strong,document.createTextNode('\n'+n.note));tip.style.display='block';const r=b.getBoundingClientRect();tip.style.left=Math.max(8,Math.min(innerWidth-385,r.left+35))+'px';tip.style.top=Math.max(8,Math.min(innerHeight-170,r.top+20))+'px'});
   b.addEventListener('mouseleave',()=>tip.style.display='none');
   layer.append(b);
  });
@@ -495,6 +555,7 @@ exportBtn.onclick=()=>{
  themeData.textContent=JSON.stringify(Object.fromEntries(Object.keys(themeNames).map(k=>[k,theme[k]])));
  clone.querySelectorAll('whale-quicksearch').forEach(el=>el.remove());
  window.prepareCustomSectionsExport?.(clone);
+  window.prepareOriginalSectionsExport?.(clone);
  const embedded=clone.querySelector('#plan-embedded-notes');
  embedded.textContent=JSON.stringify(notes).replace(/</g,'\u003c');
  const blob=new Blob(['<!doctype html>\n'+clone.outerHTML],{type:'text/html;charset=utf-8'});
@@ -597,4 +658,115 @@ try{
 })();
 </script>
 
+
+<script id="original-section-editor-script">
+(function(){
+'use strict';
+const originals=Array.from(document.querySelectorAll('body > section:not(.custom-section)'));
+const toolbar=document.querySelector('.plan-toolbar');
+if(!toolbar||!originals.length)return;
+const restore=document.createElement('button');restore.id='restoreOriginalSections';restore.type='button';restore.textContent='숨긴 영역 복구';
+const exportButton=document.getElementById('planExport');toolbar.insertBefore(restore,exportButton);
+const selectors={
+ hero:'.hero h1,.hero p',
+ quiz:'.quiz .label,.quiz h2,.quiz p',
+ hits:'.hits .head h2,.hits .head p,.hits .tab,.hits .case-head .no,.hits .case-head h3,.hits .teacher,.hits .paper-title,.hits .paper h4,.hits .paper,.hits .pointbox',
+ proof:'.proof h2,.proof p',
+ event:'.eventbox .label,.eventbox h2,.eventbox > p,.eventbox .step,.eventbox .example,.eventbox .event-notice h3,.eventbox .event-notice li'
+};
+let active=null;
+function editTargets(sec){
+ const key=['hero','quiz','hits','proof','event'].find(c=>sec.classList.contains(c));
+ if(!key)return [];
+ let els=Array.from(sec.querySelectorAll(selectors[key]));
+ // Prefer smaller independent edit regions. Keep existing rich highlights intact.
+ if(key==='event')els=els.filter(el=>!el.matches('.eventbox > p') || true);
+ return els;
+}
+function finish(){
+ if(!active)return;
+ active.classList.remove('original-editing');
+ active.querySelectorAll('[data-original-editable]').forEach(el=>{el.removeAttribute('contenteditable');el.removeAttribute('data-original-editable');el.removeAttribute('spellcheck')});
+ const b=active.querySelector('.original-edit-toggle');if(b){b.textContent='수정';b.classList.remove('original-finish')}
+ active=null;
+}
+function start(sec){
+ if(active===sec){finish();return}
+ finish();active=sec;sec.classList.add('original-editing');
+ editTargets(sec).forEach(el=>{el.contentEditable='true';el.dataset.originalEditable='yes';el.spellcheck=false});
+ const b=sec.querySelector('.original-edit-toggle');b.textContent='✓ 수정 완료';b.classList.add('original-finish');
+ const first=sec.querySelector('[data-original-editable]');if(first)first.focus({preventScroll:true});
+}
+function move(sec,dir){finish();const siblings=Array.from(document.querySelectorAll('body > section:not(.original-hidden)'));const i=siblings.indexOf(sec);const other=siblings[i+dir];if(!other)return;if(dir<0)other.before(sec);else other.after(sec);}
+function makeButton(text,fn,cls=''){
+ const b=document.createElement('button');b.type='button';b.textContent=text;if(cls)b.className=cls;
+ b.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();fn()});return b;
+}
+function refreshRestore(){const count=originals.filter(s=>s.classList.contains('original-hidden')).length;restore.textContent=count?'숨긴 영역 복구 ('+count+')':'숨긴 영역 복구';}
+originals.forEach(sec=>{
+ const controls=document.createElement('div');controls.className='original-section-tools';controls.setAttribute('aria-label','기존 영역 편집');
+ controls.append(
+  makeButton('수정',()=>start(sec),'original-edit-toggle'),
+  makeButton('↑ 위로',()=>move(sec,-1)),
+  makeButton('↓ 아래로',()=>move(sec,1)),
+  makeButton('영역 삭제',()=>{if(confirm('이 영역을 숨길까요? 상단의 숨긴 영역 복구에서 다시 표시할 수 있습니다.')){finish();sec.classList.add('original-hidden');refreshRestore()}})
+ );
+ sec.prepend(controls);
+});
+restore.addEventListener('click',()=>{finish();originals.forEach(sec=>sec.classList.remove('original-hidden'));refreshRestore()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')finish()});
+// The exporter clones the live DOM, preserving edits, visibility and section order.
+// Remove editor-only buttons and transient contenteditable attributes from the exported copy.
+window.prepareOriginalSectionsExport=clone=>{
+ clone.querySelectorAll('.original-section-tools,#restoreOriginalSections').forEach(el=>el.remove());
+ clone.querySelectorAll('section.original-editing').forEach(el=>el.classList.remove('original-editing'));
+ clone.querySelectorAll('[data-original-editable]').forEach(el=>{el.removeAttribute('contenteditable');el.removeAttribute('data-original-editable');el.removeAttribute('spellcheck')});
+};
+refreshRestore();
+})();
+</script>
+<script id="publish-export-script">
+(function(){
+'use strict';
+const toolbar=document.querySelector('.plan-toolbar');
+if(!toolbar)return;
+const button=document.createElement('button');
+button.type='button';button.id='publishTxtExport';button.textContent='배포용 TXT 저장';
+button.title='편집 도구 없이 현재 화면 그대로 노출되는 HTML 소스를 TXT로 저장';
+toolbar.append(button);
+button.addEventListener('click',()=>{
+ const clone=document.documentElement.cloneNode(true);
+ // The live document root already contains the currently selected theme variables.
+ // Remove sections the author has hidden and every authoring control.
+ clone.querySelectorAll('section.original-hidden').forEach(el=>el.remove());
+ clone.querySelectorAll('.plan-toolbar,.theme-toolbar,#planLayerV4,#planTipV4,#planStatusV4,#planEditorV4,#customInsertHint,#customSectionModal,.section-tools,.table-tools,.original-section-tools,#restoreOriginalSections,.plan-sticker,.plan-pop,.plan-choose').forEach(el=>el.remove());
+ // Remove editing-only scripts, metadata and styles. Keep the public tab/slider script.
+ clone.querySelectorAll('script').forEach(el=>{
+  if(el.textContent.includes("document.querySelectorAll('.tab').forEach"))return;
+  el.remove();
+ });
+ clone.querySelectorAll('#planning-notes-style,#custom-sections-css,#custom-section-redesign').forEach(el=>{
+  // Section layout styles are needed for user-created content, so retain both custom styles.
+  if(el.id==='planning-notes-style')el.remove();
+ });
+ clone.querySelectorAll('[contenteditable],[data-original-editable]').forEach(el=>{
+  el.removeAttribute('contenteditable');el.removeAttribute('data-original-editable');el.removeAttribute('spellcheck');
+ });
+ clone.querySelectorAll('.original-editing,.just-registered,.custom-insert-target').forEach(el=>el.classList.remove('original-editing','just-registered','custom-insert-target'));
+ clone.querySelectorAll('whale-quicksearch').forEach(el=>el.remove());
+ clone.querySelectorAll('section.custom-section').forEach(sec=>{
+  // Ensure no authoring buttons remain, even if the section was edited recently.
+  sec.querySelectorAll('button:not(.tab):not(.side-nav)').forEach(el=>el.remove());
+ });
+ const cleanStyle=clone.ownerDocument.createElement('style');
+ cleanStyle.textContent='.custom-section .section-tools,.custom-section .table-tools,.original-section-tools{display:none!important} .custom-section [contenteditable]{outline:none!important}';
+ clone.querySelector('head').append(cleanStyle);
+ const source='<!doctype html>\n'+clone.outerHTML;
+ const blob=new Blob([source],{type:'text/plain;charset=utf-8'});
+ const url=URL.createObjectURL(blob),a=document.createElement('a');
+ a.href=url;a.download='n2_publish_only.txt';document.body.append(a);a.click();a.remove();
+ setTimeout(()=>URL.revokeObjectURL(url),1500);
+});
+})();
+</script>
 </body></html>
