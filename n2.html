@@ -152,6 +152,13 @@ body.custom-insert-mode .custom-insert-target{outline:3px dashed var(--theme-acc
 .custom-modal-actions button{border:1px solid #bbb;background:#eee;padding:11px 19px;border-radius:7px;cursor:pointer;font-weight:bold}
 #customRegister{background:#cfff00;border-color:#cfff00;color:#111}
 @media(max-width:800px){.custom-section{padding:55px 0}.custom-section .custom-heading h2{font-size:32px}.custom-section .custom-heading p{font-size:16px}}
+/* Text-section body and per-section alignment */
+.custom-section .custom-text-body{max-width:1000px;margin:24px auto 0;font-size:18px;line-height:1.85;white-space:pre-wrap;overflow-wrap:anywhere;color:var(--theme-text,#fff)}
+.custom-section[data-align="left"] .custom-heading,.custom-section[data-align="left"] .custom-text-body{text-align:left}
+.custom-section[data-align="center"] .custom-heading,.custom-section[data-align="center"] .custom-text-body{text-align:center}
+.custom-section[data-align="right"] .custom-heading,.custom-section[data-align="right"] .custom-text-body{text-align:right}
+.custom-section .custom-heading{max-width:1000px}
+.custom-modal-card{max-height:90vh;overflow-y:auto}
 </style>
 <style>
 #planLayerV4{position:absolute;left:0;top:0;width:0;height:0;z-index:2147483000;pointer-events:none}
@@ -507,9 +514,10 @@ let mode=null,editing=null,pending=null;
 const uid=()=> 'section-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,7);
 const btn=(label,fn)=>{const b=document.createElement('button');b.type='button';b.textContent=label;b.onclick=fn;return b};
 const hint=document.createElement('div');hint.id='customInsertHint';hint.textContent='삽입할 기존 영역을 클릭하세요. 위쪽 절반은 앞에, 아래쪽 절반은 뒤에 추가됩니다. (ESC 취소)';document.body.append(hint);
-const modal=document.createElement('div');modal.id='customSectionModal';modal.innerHTML=`<div class="custom-modal-card" role="dialog" aria-modal="true" aria-label="영역 편집"><h3 id="customModalHeading">새 영역 등록</h3><label>메인 타이틀<input id="customMainTitle" placeholder="메인 타이틀을 입력하세요"></label><label>서브 타이틀<textarea id="customSubTitle" rows="3" placeholder="서브 타이틀을 입력하세요"></textarea></label><label>영역 배경색 <span style="font-weight:normal;color:#777">(전체 테마와 별개)</span><div style="display:flex;gap:10px;align-items:center"><select id="customBgMode" style="flex:1;padding:10px;border:1px solid #bbb;border-radius:7px;margin-top:7px"><option value="auto">자동 교차 배경</option><option value="base">기본 테마 배경</option><option value="alternate">대비 배경</option><option value="custom">직접 선택</option></select><input type="color" id="customBgColor" value="#282028" style="width:56px;height:42px;padding:3px;flex:none"></div></label><div id="customTableSettings"><label>표 열 수<input id="customCols" type="number" min="1" max="12" value="3"></label><label>표 데이터 행 수<input id="customRows" type="number" min="1" max="30" value="2"></label><p>등록 후 표 셀을 클릭해 직접 수정할 수 있어요.</p></div><div class="custom-modal-actions"><button type="button" id="customCancel">취소</button><button type="button" id="customRegister">등록</button></div></div>`;document.body.append(modal);
+const modal=document.createElement('div');modal.id='customSectionModal';modal.innerHTML=`<div class="custom-modal-card" role="dialog" aria-modal="true" aria-label="영역 편집"><h3 id="customModalHeading">새 영역 등록</h3><label>메인 타이틀<input id="customMainTitle" placeholder="메인 타이틀을 입력하세요"></label><label>서브 타이틀<textarea id="customSubTitle" rows="3" placeholder="서브 타이틀을 입력하세요"></textarea></label><label id="customBodyWrap">본문 내용<textarea id="customBodyText" rows="6" placeholder="이 영역에 표시할 내용을 입력하세요."></textarea></label><label>텍스트 정렬<select id="customAlign" style="width:100%;padding:11px;margin-top:7px;border:1px solid #bbb;border-radius:7px"><option value="left">왼쪽 정렬</option><option value="center" selected>가운데 정렬</option><option value="right">오른쪽 정렬</option></select></label><label>영역 배경색 <span style="font-weight:normal;color:#777">(전체 테마와 별개)</span><div style="display:flex;gap:10px;align-items:center"><select id="customBgMode" style="flex:1;padding:10px;border:1px solid #bbb;border-radius:7px;margin-top:7px"><option value="auto">자동 교차 배경</option><option value="base">기본 테마 배경</option><option value="alternate">대비 배경</option><option value="custom">직접 선택</option></select><input type="color" id="customBgColor" value="#282028" style="width:56px;height:42px;padding:3px;flex:none"></div></label><div id="customTableSettings"><label>표 열 수<input id="customCols" type="number" min="1" max="12" value="3"></label><label>표 데이터 행 수<input id="customRows" type="number" min="1" max="30" value="2"></label><p>등록 후 표 셀을 클릭해 직접 수정할 수 있어요.</p></div><div class="custom-modal-actions"><button type="button" id="customCancel">취소</button><button type="button" id="customRegister">등록</button></div></div>`;document.body.append(modal);
 const titleField=modal.querySelector('#customMainTitle'),subField=modal.querySelector('#customSubTitle'),colField=modal.querySelector('#customCols'),rowField=modal.querySelector('#customRows');
 const bgMode=modal.querySelector('#customBgMode'),bgColor=modal.querySelector('#customBgColor');
+const bodyField=modal.querySelector('#customBodyText'),alignField=modal.querySelector('#customAlign'),bodyWrap=modal.querySelector('#customBodyWrap');
 bgMode.onchange=()=>{bgColor.disabled=bgMode.value!=='custom';};
 function applyBg(sec,mode,color){sec.dataset.bgMode=mode==='auto'?(Array.from(document.querySelectorAll('section.custom-section')).filter(x=>x!==sec).length%2?'alternate':'base'):mode; if(sec.dataset.bgMode==='custom')sec.style.setProperty('--custom-bg',color);else sec.style.removeProperty('--custom-bg');}
 function setMode(type){mode=mode===type?null:type;document.body.classList.toggle('custom-insert-mode',!!mode);hint.style.display=mode?'block':'none';textBtn.textContent=mode==='text'?'✕ 추가 취소':'+ 텍스트 박스';tableBtn.textContent=mode==='table'?'✕ 추가 취소':'+ 표';}
@@ -518,16 +526,17 @@ function closeModal(){modal.classList.remove('open');editing=null;pending=null}
 modal.querySelector('#customCancel').onclick=closeModal;
 modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();setMode(null)}});
-function edit(sec){editing=sec;pending=null;titleField.value=sec.querySelector('.custom-heading h2')?.textContent||'';subField.value=sec.querySelector('.custom-heading p')?.textContent||'';bgMode.value=sec.dataset.bgMode||'base';bgColor.value=sec.style.getPropertyValue('--custom-bg').trim()||'#282028';bgColor.disabled=bgMode.value!=='custom';modal.querySelector('#customModalHeading').textContent='영역 수정';modal.querySelector('#customTableSettings').style.display='none';modal.querySelector('#customRegister').textContent='수정 완료';modal.classList.add('open');titleField.focus()}
-function begin(type,target,before){pending={type,target,before};editing=null;titleField.value='';subField.value='';colField.value=3;rowField.value=2;bgMode.value='auto';bgColor.value='#282028';bgColor.disabled=true;modal.querySelector('#customModalHeading').textContent=type==='table'?'새 표 영역 등록':'새 텍스트 영역 등록';modal.querySelector('#customTableSettings').style.display=type==='table'?'grid':'none';modal.querySelector('#customRegister').textContent='등록';modal.classList.add('open');titleField.focus()}
-function make(type,heading,sub,cols=3,rows=2){
- const sec=document.createElement('section');sec.className='custom-section';sec.dataset.customType=type;sec.id=uid();
+function edit(sec){editing=sec;pending=null;bodyWrap.style.display=sec.dataset.customType==='text'?'block':'none';bodyField.value=sec.querySelector('.custom-text-body')?.textContent||'';alignField.value=sec.dataset.align||'center';titleField.value=sec.querySelector('.custom-heading h2')?.textContent||'';subField.value=sec.querySelector('.custom-heading p')?.textContent||'';bgMode.value=sec.dataset.bgMode||'base';bgColor.value=sec.style.getPropertyValue('--custom-bg').trim()||'#282028';bgColor.disabled=bgMode.value!=='custom';modal.querySelector('#customModalHeading').textContent='영역 수정';modal.querySelector('#customTableSettings').style.display='none';modal.querySelector('#customRegister').textContent='수정 완료';modal.classList.add('open');titleField.focus()}
+function begin(type,target,before){pending={type,target,before};editing=null;bodyWrap.style.display=type==='text'?'block':'none';bodyField.value='';alignField.value='center';titleField.value='';subField.value='';colField.value=3;rowField.value=2;bgMode.value='auto';bgColor.value='#282028';bgColor.disabled=true;modal.querySelector('#customModalHeading').textContent=type==='table'?'새 표 영역 등록':'새 텍스트 영역 등록';modal.querySelector('#customTableSettings').style.display=type==='table'?'grid':'none';modal.querySelector('#customRegister').textContent='등록';modal.classList.add('open');titleField.focus()}
+function make(type,heading,sub,cols=3,rows=2,body='',align='center'){
+ const sec=document.createElement('section');sec.className='custom-section';sec.dataset.customType=type;sec.dataset.align=align;sec.id=uid();
  const inner=document.createElement('div');inner.className='custom-inner';sec.append(inner);
  const tools=document.createElement('div');tools.className='section-tools';inner.append(tools);
  const content=document.createElement('div');content.className='custom-content';inner.append(content);
  const head=document.createElement('div');head.className='custom-heading';
  const h=document.createElement('h2');h.textContent=heading||'메인 타이틀을 입력하세요.';
  const p=document.createElement('p');p.textContent=sub||'서브 타이틀을 입력하세요.';head.append(h,p);content.append(head);
+ if(type==='text'){const bodyEl=document.createElement('div');bodyEl.className='custom-text-body';bodyEl.textContent=body;content.append(bodyEl)}
  if(type==='table'){
   const bar=document.createElement('div');bar.className='table-tools';content.append(bar);
   const scroll=document.createElement('div');scroll.className='table-scroll';const table=document.createElement('table');const thead=table.createTHead(),tr=thead.insertRow();
@@ -552,11 +561,11 @@ function setup(sec){
 modal.querySelector('#customRegister').onclick=()=>{
  const heading=titleField.value.trim()||'메인 타이틀을 입력하세요.';
  const sub=subField.value.trim()||'서브 타이틀을 입력하세요.';
- if(editing){editing.querySelector('.custom-heading h2').textContent=heading;editing.querySelector('.custom-heading p').textContent=sub;applyBg(editing,bgMode.value,bgColor.value);closeModal();return}
+ if(editing){editing.querySelector('.custom-heading h2').textContent=heading;editing.querySelector('.custom-heading p').textContent=sub;editing.dataset.align=alignField.value;if(editing.dataset.customType==='text'){let b=editing.querySelector('.custom-text-body');if(!b){b=document.createElement('div');b.className='custom-text-body';editing.querySelector('.custom-content').append(b)}b.textContent=bodyField.value;}applyBg(editing,bgMode.value,bgColor.value);closeModal();return}
  if(!pending)return;
  const {type,target,before}=pending;
  const cols=Math.max(1,Math.min(12,Number(colField.value)||3)),rows=Math.max(1,Math.min(30,Number(rowField.value)||2));
- const sec=make(type,heading,sub,cols,rows);applyBg(sec,bgMode.value,bgColor.value);if(before)target.before(sec);else target.after(sec);
+ const sec=make(type,heading,sub,cols,rows,bodyField.value,alignField.value);applyBg(sec,bgMode.value,bgColor.value);if(before)target.before(sec);else target.after(sec);
  closeModal();
  sec.classList.add('just-registered');
  sec.addEventListener('mouseleave',()=>sec.classList.remove('just-registered'),{once:true});
@@ -567,7 +576,7 @@ document.addEventListener('click',e=>{
  const target=e.target.closest('section');if(!target||target.classList.contains('custom-section'))return;
  e.preventDefault();e.stopImmediatePropagation();const r=target.getBoundingClientRect();const type=mode;setMode(null);begin(type,target,e.clientY<r.top+r.height/2);
 },true);
-function exportData(){return [...document.querySelectorAll('section.custom-section')].map(sec=>({type:sec.dataset.customType,bgMode:sec.dataset.bgMode||'base',bgColor:sec.style.getPropertyValue('--custom-bg')||'',html:sec.querySelector('.custom-content').innerHTML,after:(()=>{let x=sec.previousElementSibling;while(x?.classList.contains('custom-section'))x=x.previousElementSibling;return x?.id||''})(),before:(()=>{let x=sec.nextElementSibling;while(x?.classList.contains('custom-section'))x=x.nextElementSibling;return x?.id||''})()}))}
+function exportData(){return [...document.querySelectorAll('section.custom-section')].map(sec=>({type:sec.dataset.customType,align:sec.dataset.align||'center',bgMode:sec.dataset.bgMode||'base',bgColor:sec.style.getPropertyValue('--custom-bg')||'',html:sec.querySelector('.custom-content').innerHTML,after:(()=>{let x=sec.previousElementSibling;while(x?.classList.contains('custom-section'))x=x.previousElementSibling;return x?.id||''})(),before:(()=>{let x=sec.nextElementSibling;while(x?.classList.contains('custom-section'))x=x.nextElementSibling;return x?.id||''})()}))}
 window.prepareCustomSectionsExport=clone=>{
  clone.querySelector('#custom-sections-data').textContent=JSON.stringify(exportData()).replace(/</g,'\\u003c');
  clone.querySelectorAll('section.custom-section,#customInsertHint,#customSectionModal').forEach(el=>el.remove());
@@ -575,7 +584,7 @@ window.prepareCustomSectionsExport=clone=>{
 try{
  const saved=JSON.parse(document.getElementById('custom-sections-data').textContent||'[]');
  saved.forEach(item=>{
-  const sec=make(item.type==='table'?'table':'text','','');sec.querySelector('.custom-content').innerHTML=item.html;setup(sec);applyBg(sec,item.bgMode||'base',item.bgColor||'#282028');
+  const sec=make(item.type==='table'?'table':'text','','');sec.dataset.align=item.align||'center';sec.querySelector('.custom-content').innerHTML=item.html;setup(sec);applyBg(sec,item.bgMode||'base',item.bgColor||'#282028');
   const before=item.before&&document.getElementById(item.before),after=item.after&&document.getElementById(item.after);
   if(before?.tagName==='SECTION')before.before(sec);else if(after?.tagName==='SECTION')after.after(sec);else document.querySelector('section.event')?.after(sec);
  });
