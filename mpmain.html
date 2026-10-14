@@ -2210,11 +2210,16 @@
       teacherGrid.appendChild(card);
     });
 
+    // 강사 수에 따라 카드 폭 균등 분할
+    // 1명: 강사 50% + 공백 50%
+    // 2명: 50% + 50%
+    // 3명: 1/3 + 1/3 + 1/3
+    // 4명 이상: 25%씩 4개 노출
     teacherGrid.style.gridTemplateColumns =
-      visible.length>=4 ? '1.7fr .9fr .9fr .9fr' :
-      visible.length===3 ? '1.7fr .9fr .9fr .9fr' :
-      visible.length===2 ? '1.7fr .9fr .9fr .9fr' :
-      '1.7fr .9fr .9fr .9fr';
+      visible.length>=4 ? 'repeat(4, 1fr)' :
+      visible.length===3 ? 'repeat(3, 1fr)' :
+      visible.length===2 ? 'repeat(2, 1fr)' :
+      '1fr 1fr';
 
   }
 
