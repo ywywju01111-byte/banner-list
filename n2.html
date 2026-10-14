@@ -153,9 +153,19 @@ body.custom-insert-mode .custom-insert-target{outline:3px dashed var(--theme-acc
 #customRegister{background:#cfff00;border-color:#cfff00;color:#111}
 @media(max-width:800px){.custom-section{padding:55px 0}.custom-section .custom-heading h2{font-size:32px}.custom-section .custom-heading p{font-size:16px}}
 </style>
-</head>
+<style>
+#planLayerV4{position:absolute;left:0;top:0;width:0;height:0;z-index:2147483000;pointer-events:none}
+#planLayerV4 .plan-sticker{pointer-events:auto;position:absolute!important;display:flex;align-items:center;justify-content:center;transform:translate(-50%,-50%)!important;z-index:2147483001}
+#planLayerV4 .plan-sticker:hover{transform:translate(-50%,-50%) scale(1.1)!important}
+#planTipV4{position:fixed;display:none;max-width:min(370px,90vw);padding:13px 16px;background:#fffbe7;color:#222;border:2px solid #e1b928;border-radius:9px;z-index:2147483005;box-shadow:0 6px 22px #0006;white-space:pre-wrap;font:13px/1.6 'Malgun Gothic',sans-serif;pointer-events:none}
+#planStatusV4{position:fixed;display:none;top:18px;left:50%;transform:translateX(-50%);z-index:2147483500;background:#ffdf57;color:#111;padding:12px 20px;border-radius:8px;font:bold 15px sans-serif;pointer-events:none}
+#planEditorV4{display:none;position:fixed;z-index:2147483600;left:50%;top:50%;transform:translate(-50%,-50%);width:min(440px,94vw);background:white;color:#111;border:3px solid #ffdf57;padding:20px;border-radius:12px;box-shadow:0 0 0 9999px #0009;font:14px 'Malgun Gothic',sans-serif}
+#planEditorV4 input,#planEditorV4 textarea{width:100%;padding:10px;border:1px solid #bbb;border-radius:5px;font:14px 'Malgun Gothic',sans-serif}
+#planEditorV4 textarea{height:140px;resize:vertical}
+#planEditorV4 button{padding:9px 13px;border:0;border-radius:5px;cursor:pointer}
+</style></head>
 <body style="">
-<section class="hero">
+<section class="hero" id="page-section-0">
  <div class="inner">
   <h1>메가변리사가 겨냥한 핵심,<br><em>이번에도 적중했습니다.</em></h1>
   <p>제63회 변리사 2차 시험<br>메가변리사가 짚은 쟁점, 실제 시험에서 다시 만났습니다.</p>
@@ -163,14 +173,14 @@ body.custom-insert-mode .custom-insert-target{outline:3px dashed var(--theme-acc
  </div>
 </section>
 
-<section class="quiz">
+<section class="quiz" id="page-section-1">
  <div class="inner">
   <div><div class="label">QUIZ EVENT</div><h2>제63회 2차 시험, 메가변리사는 총 몇 건을 적중했을까요?</h2><p>과목별 적중 사례를 직접 확인하고 정답을 찾아보세요.<br>가장 인상 깊었던 적중 사례도 함께 기억해 주세요.</p></div>
   <div class="q">?</div>
  </div>
 </section>
 
-<section class="hits"><div class="inner">
+<section class="hits" id="page-section-2"><div class="inner">
  <div class="head"><h2>어디서 짚었고, 어디에 나왔는지<br>직접 확인하세요.</h2><p>과목별 적중 사례를 좌우로 넘겨 확인해보세요.</p></div>
  <div class="tabs">
   <button class="tab active" data-tab="patent">특허법</button>
@@ -237,9 +247,9 @@ body.custom-insert-mode .custom-insert-target{outline:3px dashed var(--theme-acc
  </div></div>
 </div></section>
 
-<section class="proof"><div class="inner"><h2>적중은 우연이 아니라,<br>시험에 나올 핵심을 끊임없이 고민한 결과입니다.</h2><p>제63회 2차 시험에서 확인된 메가변리사의 적중.<br><b>다가오는 제64회 2차 시험도 메가변리사와 함께 준비하세요.</b></p></div></section>
+<section class="proof" id="page-section-3"><div class="inner"><h2>적중은 우연이 아니라,<br>시험에 나올 핵심을 끊임없이 고민한 결과입니다.</h2><p>제63회 2차 시험에서 확인된 메가변리사의 적중.<br><b>다가오는 제64회 2차 시험도 메가변리사와 함께 준비하세요.</b></p></div></section>
 
-<section class="event"><div class="inner"><div class="eventbox">
+<section class="event" id="page-section-4"><div class="inner"><div class="eventbox">
  <div class="label">QUIZ EVENT</div><h2>적중 사례, 모두 확인하셨나요?</h2>
 <p>
     제63회 변리사 2차 시험에서 확인된 <b>메가변리사의 적중 사례는 총 몇 건이었을까요?</b><br>
@@ -315,11 +325,11 @@ document.querySelectorAll('.slider').forEach(s=>{
 });
 </script>
 
-<div class="theme-toolbar"><button id="themeToggle" type="button">🎨 컬러칩 · 테마</button><div class="theme-panel" id="themePanel"><h4>페이지 컬러 설정</h4><div class="theme-presets" id="themePresets"></div><div class="theme-fields" id="themeFields"></div><p class="theme-hint">색상 변경 즉시 적용 · 상단의 ‘메모 포함 HTML 저장’ 버튼으로 메모와 컬러를 함께 저장할 수 있어요.</p></div></div>
+<div class="theme-toolbar"><button id="themeToggle" type="button">🎨 컬러칩 · 테마</button><div class="theme-panel" id="themePanel"><h4>페이지 컬러 설정</h4><div class="theme-presets" id="themePresets"><button type="button" class="theme-preset" title="라임" style="background: linear-gradient(135deg, rgb(5, 5, 5) 55%, rgb(207, 255, 0) 55%);"><span>라임</span></button><button type="button" class="theme-preset" title="와인" style="background: linear-gradient(135deg, rgb(22, 12, 19) 55%, rgb(215, 169, 107) 55%);"><span>와인</span></button><button type="button" class="theme-preset" title="네이비" style="background: linear-gradient(135deg, rgb(8, 17, 31) 55%, rgb(189, 210, 237) 55%);"><span>네이비</span></button><button type="button" class="theme-preset" title="크림" style="background: linear-gradient(135deg, rgb(247, 242, 233) 55%, rgb(166, 119, 66) 55%);"><span>크림</span></button></div><div class="theme-fields" id="themeFields"><label><input type="color" data-color="accent">포인트</label><label><input type="color" data-color="bg">전체 배경</label><label><input type="color" data-color="section">섹션 배경</label><label><input type="color" data-color="card">박스 배경</label><label><input type="color" data-color="text">글자 색상</label></div><p class="theme-hint">색상 변경 즉시 적용 · 상단의 ‘메모 포함 HTML 저장’ 버튼으로 메모와 컬러를 함께 저장할 수 있어요.</p></div></div>
 <script type="application/json" id="theme-embedded-data">{"accent":"#cfff00","bg":"#050505","section":"#111111","card":"#1b1b1b","text":"#ffffff"}</script>
 <div class="plan-toolbar"><b>✱ 작업 메모</b><button id="planToggle">스티커 숨기기</button><button id="planAdd">+ 스티커 추가</button><button id="insertText">+ 텍스트 박스</button><button id="insertTable">+ 표</button><button class="primary" id="planExport">페이지 전체 HTML 저장</button></div>
 <script type="application/json" id="custom-sections-data">[]</script>
-<script type="application/json" id="plan-embedded-notes">[{"x": 1134, "y": 1278, "title": "탭", "note": "민사소송법/ 특허법/상표법/디자인보호법/저작권법/유기화학\n\n\n각 영역 클릭 시 활성화됨\n디폴트: 민사소송법", "selector": ".tabs", "rx": 0.96, "ry": 0.28}, {"x": 408, "y": 1377, "title": "적중 문제 노출", "note": "별도 엑셀 파일 전달", "selector": "#patent .compare", "rx": 0.035, "ry": 0.05}, {"x": 1528, "y": 1666, "title": "페이지네이션", "note": "적중 문제가 많을 경우 Prev / Next 좌우 네비게이션 노출", "selector": "#patent .side-nav.next", "rx": 0.5, "ry": 0.5}, {"x": 1417, "y": 1387, "title": "페이지 인디케이터", "note": "적중 문제가 많을 경우 현재 페이지/전체 페이지 표시", "selector": "#patent .count", "rx": 0.5, "ry": 0.5}]</script>
+<script type="application/json" id="plan-embedded-notes">[{"x":408,"y":1377,"title":"적중 문제 노출","note":"별도 엑셀 파일 전달","selector":"#patent .compare","rx":0.035,"ry":0.05},{"x":1528,"y":1666,"title":"페이지네이션","note":"적중 문제가 많을 경우 Prev / Next 좌우 네비게이션 노출","selector":"#patent .side-nav.next","rx":0.5,"ry":0.5},{"x":1417,"y":1387,"title":"페이지 인디케이터","note":"적중 문제가 많을 경우 현재 페이지/전체 페이지 표시","selector":"#patent .count","rx":0.5,"ry":0.5},{"selector":"#page-section-2 > div:nth-of-type(1)","rx":0.34404756225102107,"ry":0.20243944379287088,"title":"새 작업 요청","note":"민사소송법/ 특허법/상표법/디자인보호법/저작권법/유기화학\n\n\n각 영역 클릭 시 활성화됨\n디폴트: 민사소송법"}]</script>
 <script id="planning-notes-script">
 (function(){
 'use strict';
@@ -457,7 +467,7 @@ render();
 
 
 
-<whale-quicksearch translate="no" style="visibility: visible;"></whale-quicksearch>
+
 
 <script id="custom-sections-script">
 (function(){
@@ -540,4 +550,5 @@ try{
 }catch(err){console.error('영역 불러오기 오류',err)}
 })();
 </script>
-</body><whale-quicksearch translate="no" style="visibility: visible;"></whale-quicksearch></html>
+
+</body></html>
