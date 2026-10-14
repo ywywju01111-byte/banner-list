@@ -388,6 +388,11 @@ function applyTheme(){
  for(const key of Object.keys(themeNames))document.documentElement.style.setProperty('--theme-'+key,theme[key]);
  fieldRoot.querySelectorAll('input').forEach(el=>el.value=theme[el.dataset.color]);
 }
+  const presetRoot = document.getElementById('themePresets');
+const fieldRoot = document.getElementById('themeFields');
+
+presetRoot.replaceChildren();
+fieldRoot.replaceChildren();
 Object.entries(THEMES).forEach(([id,p])=>{
  const b=document.createElement('button');b.type='button';b.className='theme-preset';b.title=p.label;
  b.style.background='linear-gradient(135deg,'+p.bg+' 55%,'+p.accent+' 55%)';
