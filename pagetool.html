@@ -2,7 +2,7 @@
 <html lang="ko"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>페이지 빌더 · 빈 템플릿</title>
+<title>기획안 작성용 템플릿</title>
 <style>
 :root{--lime:#cfff00;--dark:#111;--black:#050505;--gray:#222;--line:#3a3a3a}
 *{box-sizing:border-box} body{margin:0;background:#050505;color:#fff;font-family:Pretendard,"Noto Sans KR",Arial,sans-serif;word-break:keep-all}
@@ -345,7 +345,7 @@ document.querySelectorAll('.slider').forEach(s=>{
 
 <div class="theme-toolbar"><button id="themeToggle" type="button">🎨 컬러칩 · 테마</button><div class="theme-panel" id="themePanel"><h4>페이지 컬러 설정</h4><div class="theme-presets" id="themePresets"></div><div class="theme-fields" id="themeFields"></div><p class="theme-hint">색상 변경 즉시 적용 · 상단의 ‘메모 포함 HTML 저장’ 버튼으로 메모와 컬러를 함께 저장할 수 있어요.</p></div></div>
 <script type="application/json" id="theme-embedded-data">{"accent":"#cfff00","bg":"#050505","section":"#111111","card":"#1b1b1b","text":"#ffffff"}</script>
-<div class="plan-toolbar"><b>✱ 작업 메모</b><button id="planToggle">스티커 숨기기</button><button id="planAdd">+ 스티커 추가</button><button id="insertText">+ 텍스트 박스</button><button id="insertTable">+ 표</button><button id="insertImage">+ 이미지</button><button class="primary" id="planExport">페이지 전체 HTML 저장</button></div>
+<div class="plan-toolbar"><b>✱ 작업 메모</b><button id="planToggle">스티커 숨기기</button><button id="planAdd">+ 스티커 추가</button><button id="insertText">+ 텍스트 박스</button><button id="insertTable">+ 표</button><button id="insertImage">+ 메인상단</button><button id="insertFreeImage">+ 자유 이미지</button><button class="primary" id="planExport">페이지 전체 HTML 저장</button></div>
 <script type="application/json" id="custom-sections-data">[]</script>
 <script type="application/json" id="plan-embedded-notes">[]</script>
 <script id="planning-notes-script">
@@ -565,23 +565,23 @@ const imageUrlField=modal.querySelector('#customImageUrl'),imageFileField=modal.
 const bodyField=modal.querySelector('#customBodyText'),alignField=modal.querySelector('#customAlign'),bodyWrap=modal.querySelector('#customBodyWrap');
 bgMode.onchange=()=>{bgColor.disabled=bgMode.value!=='custom';};
 function applyBg(sec,mode,color){sec.dataset.bgMode=mode==='auto'?(Array.from(document.querySelectorAll('section.custom-section')).filter(x=>x!==sec).length%2?'alternate':'base'):mode; if(sec.dataset.bgMode==='custom')sec.style.setProperty('--custom-bg',color);else sec.style.removeProperty('--custom-bg');}
-function setMode(type){mode=mode===type?null:type;document.body.classList.toggle('custom-insert-mode',!!mode);hint.style.display=mode?'block':'none';textBtn.textContent=mode==='text'?'✕ 추가 취소':'+ 텍스트 박스';tableBtn.textContent=mode==='table'?'✕ 추가 취소':'+ 표';imageBtn.textContent=mode==='image'?'✕ 추가 취소':'+ 이미지';}
-textBtn.onclick=()=>setMode('text');tableBtn.onclick=()=>setMode('table');imageBtn.onclick=()=>setMode('image');
+function setMode(type){mode=mode===type?null:type;document.body.classList.toggle('custom-insert-mode',!!mode);hint.style.display=mode?'block':'none';textBtn.textContent=mode==='text'?'✕ 추가 취소':'+ 텍스트 박스';tableBtn.textContent=mode==='table'?'✕ 추가 취소':'+ 표';imageBtn.textContent=mode==='hero'?'✕ 추가 취소':'+ 메인상단';}
+textBtn.onclick=()=>setMode('text');tableBtn.onclick=()=>setMode('table');imageBtn.onclick=()=>setMode('hero');
 function closeModal(){modal.classList.remove('open');editing=null;pending=null}
 modal.querySelector('#customCancel').onclick=closeModal;
 modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();setMode(null)}});
-function edit(sec){editing=sec;uploadedImage='';imageUrlField.value=sec.querySelector('.custom-image')?.getAttribute('src')||'';imageFileField.value='';modal.querySelector('#customImageSettings').style.display=sec.dataset.customType==='image'?'block':'none';pending=null;bodyWrap.style.display=sec.dataset.customType==='text'?'block':'none';bodyField.value=sec.querySelector('.custom-text-body')?.textContent||'';alignField.value=sec.dataset.align||'center';titleField.value=sec.querySelector('.custom-heading h2')?.textContent||'';subField.value=sec.querySelector('.custom-heading p')?.textContent||'';bgMode.value=sec.dataset.bgMode||'base';bgColor.value=sec.style.getPropertyValue('--custom-bg').trim()||'#282028';bgColor.disabled=bgMode.value!=='custom';modal.querySelector('#customModalHeading').textContent='영역 수정';modal.querySelector('#customTableSettings').style.display='none';modal.querySelector('#customRegister').textContent='수정 완료';modal.classList.add('open');titleField.focus()}
-function begin(type,target,before){pending={type,target,before};uploadedImage='';imageUrlField.value='';imageFileField.value='';modal.querySelector('#customImageSettings').style.display=type==='image'?'block':'none';editing=null;bodyWrap.style.display=type==='text'?'block':'none';bodyField.value='';alignField.value='center';titleField.value='';subField.value='';colField.value=3;rowField.value=2;bgMode.value='auto';bgColor.value='#282028';bgColor.disabled=true;modal.querySelector('#customModalHeading').textContent=type==='table'?'새 표 영역 등록':type==='image'?'새 이미지 영역 등록':'새 텍스트 영역 등록';modal.querySelector('#customTableSettings').style.display=type==='table'?'grid':'none';modal.querySelector('#customRegister').textContent='등록';modal.classList.add('open');titleField.focus()}
+function edit(sec){editing=sec;uploadedImage='';imageUrlField.value=sec.querySelector('.custom-image')?.getAttribute('src')||'';imageFileField.value='';modal.querySelector('#customImageSettings').style.display=sec.dataset.customType==='image'?'block':'none';pending=null;bodyWrap.style.display=(sec.dataset.customType==='text'||sec.dataset.customType==='hero')?'block':'none';bodyField.value=sec.querySelector('.custom-text-body')?.textContent||'';alignField.value=sec.dataset.align||'center';titleField.value=sec.querySelector('.custom-heading h2')?.textContent||'';subField.value=sec.querySelector('.custom-heading p')?.textContent||'';bgMode.value=sec.dataset.bgMode||'base';bgColor.value=sec.style.getPropertyValue('--custom-bg').trim()||'#282028';bgColor.disabled=bgMode.value!=='custom';modal.querySelector('#customModalHeading').textContent='영역 수정';modal.querySelector('#customTableSettings').style.display='none';modal.querySelector('#customRegister').textContent='수정 완료';modal.classList.add('open');titleField.focus()}
+function begin(type,target,before){pending={type,target,before};uploadedImage='';imageUrlField.value='';imageFileField.value='';modal.querySelector('#customImageSettings').style.display=type==='image'?'block':'none';editing=null;bodyWrap.style.display=(type==='text'||type==='hero')?'block':'none';bodyField.value='';alignField.value='center';titleField.value='';subField.value='';colField.value=3;rowField.value=2;bgMode.value='auto';bgColor.value='#282028';bgColor.disabled=true;modal.querySelector('#customModalHeading').textContent=type==='table'?'새 표 영역 등록':type==='hero'?'새 메인상단 영역 등록':'새 텍스트 영역 등록';modal.querySelector('#customTableSettings').style.display=type==='table'?'grid':'none';modal.querySelector('#customRegister').textContent='등록';modal.classList.add('open');titleField.focus()}
 function make(type,heading,sub,cols=3,rows=2,body='',align='center'){
- const sec=document.createElement('section');sec.className='custom-section';sec.dataset.customType=type;sec.dataset.align=align;sec.id=uid();
+ const sec=document.createElement('section');sec.className='custom-section'+(type==='hero'?' custom-hero-section':'');sec.dataset.customType=type;sec.dataset.align=align;sec.id=uid();
  const inner=document.createElement('div');inner.className='custom-inner';sec.append(inner);
  const tools=document.createElement('div');tools.className='section-tools';inner.append(tools);
  const content=document.createElement('div');content.className='custom-content';inner.append(content);
  const head=document.createElement('div');head.className='custom-heading';
  const h=document.createElement('h2');h.textContent=heading||'메인 타이틀을 입력하세요.';
  const p=document.createElement('p');p.textContent=sub||'서브 타이틀을 입력하세요.';head.append(h,p);content.append(head);
- if(type==='text'){const bodyEl=document.createElement('div');bodyEl.className='custom-text-body';bodyEl.textContent=body;content.append(bodyEl)}
+ if(type==='text'||type==='hero'){const bodyEl=document.createElement('div');bodyEl.className='custom-text-body';bodyEl.textContent=body;content.append(bodyEl)}
  if(type==='image'){const wrap=document.createElement('div');wrap.className='custom-image-wrap';const img=document.createElement('img');img.className='custom-image';img.alt=heading||'이미지';const grip=document.createElement('span');grip.className='custom-image-grip';wrap.append(img,grip);content.append(wrap)}
  if(type==='table'){
   const bar=document.createElement('div');bar.className='table-tools';content.append(bar);
@@ -608,7 +608,7 @@ function setup(sec){
 modal.querySelector('#customRegister').onclick=()=>{
  const heading=titleField.value.trim()||'메인 타이틀을 입력하세요.';
  const sub=subField.value.trim()||'서브 타이틀을 입력하세요.';
- if(editing){editing.querySelector('.custom-heading h2').textContent=heading;editing.querySelector('.custom-heading p').textContent=sub;editing.dataset.align=alignField.value;if(editing.dataset.customType==='image'){const img=editing.querySelector('.custom-image');if(img&&(uploadedImage||imageUrlField.value.trim()))img.src=uploadedImage||imageUrlField.value.trim();}if(editing.dataset.customType==='text'){let b=editing.querySelector('.custom-text-body');if(!b){b=document.createElement('div');b.className='custom-text-body';editing.querySelector('.custom-content').append(b)}b.textContent=bodyField.value;}applyBg(editing,bgMode.value,bgColor.value);closeModal();return}
+ if(editing){editing.querySelector('.custom-heading h2').textContent=heading;editing.querySelector('.custom-heading p').textContent=sub;editing.dataset.align=alignField.value;if(editing.dataset.customType==='image'){const img=editing.querySelector('.custom-image');if(img&&(uploadedImage||imageUrlField.value.trim()))img.src=uploadedImage||imageUrlField.value.trim();}if(editing.dataset.customType==='text'||editing.dataset.customType==='hero'){let b=editing.querySelector('.custom-text-body');if(!b){b=document.createElement('div');b.className='custom-text-body';editing.querySelector('.custom-content').append(b)}b.textContent=bodyField.value;}applyBg(editing,bgMode.value,bgColor.value);closeModal();return}
  if(!pending)return;
  const {type,target,before}=pending;
  const cols=Math.max(1,Math.min(12,Number(colField.value)||3)),rows=Math.max(1,Math.min(30,Number(rowField.value)||2));
@@ -775,6 +775,100 @@ window.prepareOriginalSectionsExport=clone=>{
 refreshRestore();
 })();
 </script>
+
+<style id="free-image-style">
+.custom-section,.blank-canvas-anchor{position:relative;isolation:isolate}
+.custom-section>.custom-inner,.blank-canvas-anchor>.blank-canvas-inner{position:relative;z-index:2}
+.custom-hero-section{min-height:480px;display:flex;align-items:center}
+.custom-hero-section .custom-heading h2{font-size:clamp(42px,6vw,88px);line-height:1.1}
+.custom-hero-section .custom-text-body{font-size:20px}
+.free-image{position:absolute;left:20px;top:20px;width:240px;z-index:5;touch-action:none;cursor:move;user-select:none;box-sizing:border-box}
+.free-image>img{display:block;width:100%;height:auto;pointer-events:none;user-select:none}
+.free-image.is-background{z-index:1;opacity:1}
+.free-image.selected{outline:2px dashed var(--theme-accent,#cfff00);outline-offset:4px}
+.free-image .free-image-actions{position:absolute;left:0;bottom:calc(100% + 10px);display:none;flex-wrap:wrap;gap:4px;z-index:10;width:max-content;max-width:350px}
+.free-image.selected .free-image-actions{display:flex}
+.free-image-actions button{font-size:11px;border:1px solid #666;border-radius:5px;background:#191919;color:white;padding:6px 8px;cursor:pointer}
+.free-image .free-image-grip{position:absolute;right:-12px;bottom:-12px;width:24px;height:24px;background:var(--theme-accent,#cfff00);border:2px solid #111;border-radius:5px;cursor:nwse-resize;display:none;touch-action:none}
+.free-image.selected .free-image-grip{display:block}
+.free-image.is-background:not(.selected){pointer-events:none}
+body.free-image-place-mode section{cursor:crosshair!important;outline:2px dashed var(--theme-accent,#cfff00)}
+.free-image-dialog{position:fixed;inset:0;background:#0009;z-index:100000;display:none;align-items:center;justify-content:center;padding:20px}
+.free-image-dialog.open{display:flex}
+.free-image-dialog-card{width:min(440px,95vw);background:#fff;color:#222;border-radius:14px;padding:24px;box-shadow:0 10px 50px #0005}
+.free-image-dialog-card label{display:block;margin:12px 0;font-weight:700}
+.free-image-dialog-card input{display:block;width:100%;padding:10px;margin-top:7px;box-sizing:border-box}
+.free-image-dialog-card button{border:0;background:#202020;color:white;border-radius:7px;padding:10px 16px;cursor:pointer}
+.free-image-dialog-card .primary{background:#cfff00;color:#111}
+.free-image-dialog-card .actions{display:flex;justify-content:flex-end;gap:8px}
+</style>
+<div id="freeImageDialog" class="free-image-dialog"><div class="free-image-dialog-card"><h3>자유 이미지 추가</h3><label>이미지 URL<input id="freeImageUrl" placeholder="https://.../image.png"></label><label>또는 PNG·JPG 파일<input id="freeImageFile" type="file" accept="image/*"></label><p style="font-size:12px;color:#666">등록 후 원하는 영역을 클릭하면 배치돼요. 이미지 선택 후 드래그·크기 조절 가능해요.</p><div class="actions"><button id="freeImageCancel">취소</button><button class="primary" id="freeImageAccept">다음</button></div></div></div>
+<script id="free-image-engine">
+(function(){
+ const trigger=document.getElementById('insertFreeImage'),dialog=document.getElementById('freeImageDialog');
+ if(!trigger||!dialog)return;
+ const file=dialog.querySelector('#freeImageFile'),url=dialog.querySelector('#freeImageUrl');
+ let placing='',selected=null;
+ function select(el){document.querySelectorAll('.free-image.selected').forEach(n=>n.classList.remove('selected'));selected=el;if(el)el.classList.add('selected')}
+ function placeMode(v){placing=v;document.body.classList.toggle('free-image-place-mode',!!v);trigger.textContent=v?'✕ 배치 취소':'+ 자유 이미지'}
+ function setup(el){
+  const actions=el.querySelector('.free-image-actions'),grip=el.querySelector('.free-image-grip');
+  actions.replaceChildren();
+  function action(label,fn){const b=document.createElement('button');b.type='button';b.textContent=label;b.onclick=e=>{e.stopPropagation();fn()};actions.append(b)}
+  action('수정',()=>{const v=prompt('이미지 URL을 입력하세요 (업로드한 이미지는 그대로 두려면 취소)',el.querySelector('img').getAttribute('src'));if(v?.trim())el.querySelector('img').src=v.trim()});
+  action('복제',()=>{const c=el.cloneNode(true);c.style.left=(parseFloat(el.style.left||20)+30)+'px';c.style.top=(parseFloat(el.style.top||20)+30)+'px';el.parentElement.append(c);setup(c);select(c)});
+  action('문구 뒤 배경',()=>{el.classList.add('is-background');select(null)});
+  action('앞으로',()=>{el.classList.remove('is-background');select(el)});
+  action('삭제',()=>{if(confirm('이미지를 삭제할까요?')){el.remove();select(null)}});
+  el.addEventListener('pointerdown',e=>{
+   if(e.target.closest('button')||e.target===grip)return;
+   e.preventDefault();e.stopPropagation();select(el);
+   const startX=e.clientX,startY=e.clientY,left=parseFloat(el.style.left)||0,top=parseFloat(el.style.top)||0;
+   el.setPointerCapture(e.pointerId);
+   const move=ev=>{el.style.left=left+ev.clientX-startX+'px';el.style.top=top+ev.clientY-startY+'px'};
+   const end=ev=>{
+    el.removeEventListener('pointermove',move);el.removeEventListener('pointerup',end);el.removeEventListener('pointercancel',end);
+    // Reparent into the section under the dropped point, preserving visual position.
+    const oldRect=el.getBoundingClientRect();el.style.pointerEvents='none';
+    const target=document.elementFromPoint(ev.clientX,ev.clientY)?.closest('section');
+    el.style.pointerEvents='';
+    if(target&&target!==el.parentElement){const rect=target.getBoundingClientRect();target.append(el);el.style.left=oldRect.left-rect.left+'px';el.style.top=oldRect.top-rect.top+'px'}
+   };
+   el.addEventListener('pointermove',move);el.addEventListener('pointerup',end);el.addEventListener('pointercancel',end);
+  });
+  grip.addEventListener('pointerdown',e=>{
+   e.stopPropagation();e.preventDefault();grip.setPointerCapture(e.pointerId);
+   const start=e.clientX,width=el.getBoundingClientRect().width;
+   const move=ev=>{el.style.width=Math.max(40,Math.min(1800,width+ev.clientX-start))+'px'};
+   const end=()=>{grip.removeEventListener('pointermove',move);grip.removeEventListener('pointerup',end)};
+   grip.addEventListener('pointermove',move);grip.addEventListener('pointerup',end);grip.addEventListener('pointercancel',end);
+  });
+ }
+ document.querySelectorAll('.free-image').forEach(setup);
+ trigger.onclick=()=>{if(placing){placeMode('');return}dialog.classList.add('open')};
+ dialog.querySelector('#freeImageCancel').onclick=()=>dialog.classList.remove('open');
+ dialog.querySelector('#freeImageAccept').onclick=()=>{
+  const value=url.value.trim(),f=file.files?.[0];
+  if(!f&&!value){alert('이미지 파일 또는 URL을 입력해 주세요.');return}
+  const proceed=src=>{dialog.classList.remove('open');placeMode(src)};
+  if(f){const r=new FileReader();r.onload=()=>proceed(String(r.result));r.readAsDataURL(f)}else proceed(value);
+ };
+ document.addEventListener('click',e=>{
+  if(!placing)return;
+  if(e.target.closest('.plan-toolbar,.theme-toolbar,.free-image-dialog,#customSectionModal'))return;
+  const sec=e.target.closest('section');if(!sec)return;
+  e.preventDefault();e.stopImmediatePropagation();
+  const r=sec.getBoundingClientRect(),el=document.createElement('div');
+  el.className='free-image';el.style.left=Math.max(0,e.clientX-r.left-120)+'px';el.style.top=Math.max(0,e.clientY-r.top-70)+'px';
+  const img=document.createElement('img');img.src=placing;img.alt='자유 배치 이미지';
+  const actions=document.createElement('div');actions.className='free-image-actions';
+  const grip=document.createElement('span');grip.className='free-image-grip';
+  el.append(img,actions,grip);sec.append(el);setup(el);select(el);placeMode('');
+ },true);
+ document.addEventListener('pointerdown',e=>{if(!e.target.closest('.free-image,.free-image-dialog,.plan-toolbar'))select(null)});
+})();
+</script>
+
 <script id="publish-export-script">
 (function(){
 'use strict';
@@ -789,7 +883,7 @@ button.addEventListener('click',()=>{
  // The live document root already contains the currently selected theme variables.
  // Remove sections the author has hidden and every authoring control.
  clone.querySelectorAll('section.original-hidden,.blank-canvas-anchor').forEach(el=>el.remove());
- clone.querySelectorAll('.plan-toolbar,.theme-toolbar,#planLayerV4,#planTipV4,#planStatusV4,#planEditorV4,#customInsertHint,#customSectionModal,.section-tools,.table-tools,.original-section-tools,#restoreOriginalSections,#heroEditModal,.hero-resize-handle,.custom-image-grip,.plan-sticker,.plan-pop,.plan-choose').forEach(el=>el.remove());
+ clone.querySelectorAll('.plan-toolbar,.theme-toolbar,#planLayerV4,#planTipV4,#planStatusV4,#planEditorV4,#customInsertHint,#customSectionModal,.section-tools,.table-tools,.original-section-tools,#restoreOriginalSections,#heroEditModal,.hero-resize-handle,.custom-image-grip,.free-image-actions,.free-image-grip,#freeImageDialog,.plan-sticker,.plan-pop,.plan-choose').forEach(el=>el.remove());
  // Remove editing-only scripts, metadata and styles. Keep the public tab/slider script.
  clone.querySelectorAll('style#hero-editor-extra-style').forEach(el=>{el.textContent += '\n.hero .scope.has-hero-image:hover{outline:none!important}';});
  clone.querySelectorAll('script').forEach(el=>{
@@ -803,14 +897,14 @@ button.addEventListener('click',()=>{
  clone.querySelectorAll('[contenteditable],[data-original-editable]').forEach(el=>{
   el.removeAttribute('contenteditable');el.removeAttribute('data-original-editable');el.removeAttribute('spellcheck');
  });
- clone.querySelectorAll('.original-editing,.just-registered,.custom-insert-target').forEach(el=>el.classList.remove('original-editing','just-registered','custom-insert-target'));
+ clone.querySelectorAll('.original-editing,.just-registered,.custom-insert-target,.selected').forEach(el=>el.classList.remove('original-editing','just-registered','custom-insert-target'));
  clone.querySelectorAll('whale-quicksearch').forEach(el=>el.remove());
  clone.querySelectorAll('section.custom-section').forEach(sec=>{
   // Ensure no authoring buttons remain, even if the section was edited recently.
   sec.querySelectorAll('button:not(.tab):not(.side-nav)').forEach(el=>el.remove());
  });
  const cleanStyle=clone.ownerDocument.createElement('style');
- cleanStyle.textContent='.custom-section .section-tools,.custom-section .table-tools,.original-section-tools,.custom-image-grip{display:none!important} .custom-section [contenteditable]{outline:none!important}';
+ cleanStyle.textContent='.custom-section .section-tools,.custom-section .table-tools,.original-section-tools,.custom-image-grip,.free-image-actions,.free-image-grip{display:none!important} .custom-section [contenteditable]{outline:none!important}';
  clone.querySelector('head').append(cleanStyle);
  const source='<!doctype html>\n'+clone.outerHTML;
  const blob=new Blob([source],{type:'text/plain;charset=utf-8'});
