@@ -70,6 +70,16 @@ body.plan-hidden .plan-sticker{display:none!important}
 #planEditorV4 input,#planEditorV4 textarea{width:100%;padding:10px;border:1px solid #bbb;border-radius:5px;font:14px 'Malgun Gothic',sans-serif}
 #planEditorV4 textarea{height:140px;resize:vertical}
 #planEditorV4 button{padding:9px 13px;border:0;border-radius:5px;cursor:pointer}
+</style><style>
+#planLayerV4{position:absolute;left:0;top:0;width:0;height:0;z-index:2147483000;pointer-events:none}
+#planLayerV4 .plan-sticker{pointer-events:auto;position:absolute!important;display:flex;align-items:center;justify-content:center;transform:translate(-50%,-50%)!important;z-index:2147483001}
+#planLayerV4 .plan-sticker:hover{transform:translate(-50%,-50%) scale(1.1)!important}
+#planTipV4{position:fixed;display:none;max-width:min(370px,90vw);padding:13px 16px;background:#fffbe7;color:#222;border:2px solid #e1b928;border-radius:9px;z-index:2147483005;box-shadow:0 6px 22px #0006;white-space:pre-wrap;font:13px/1.6 'Malgun Gothic',sans-serif;pointer-events:none}
+#planStatusV4{position:fixed;display:none;top:18px;left:50%;transform:translateX(-50%);z-index:2147483500;background:#ffdf57;color:#111;padding:12px 20px;border-radius:8px;font:bold 15px sans-serif;pointer-events:none}
+#planEditorV4{display:none;position:fixed;z-index:2147483600;left:50%;top:50%;transform:translate(-50%,-50%);width:min(440px,94vw);background:white;color:#111;border:3px solid #ffdf57;padding:20px;border-radius:12px;box-shadow:0 0 0 9999px #0009;font:14px 'Malgun Gothic',sans-serif}
+#planEditorV4 input,#planEditorV4 textarea{width:100%;padding:10px;border:1px solid #bbb;border-radius:5px;font:14px 'Malgun Gothic',sans-serif}
+#planEditorV4 textarea{height:140px;resize:vertical}
+#planEditorV4 button{padding:9px 13px;border:0;border-radius:5px;cursor:pointer}
 </style></head>
 <body style="">
 <section class="hero">
@@ -96,7 +106,7 @@ body.plan-hidden .plan-sticker{display:none!important}
  </div>
 
  <div class="panel active" id="patent"><div class="slider">
-  <div class="slide active">
+  <div class="slide">
    <div class="case-head"><div><div class="no">CASE 01</div><h3>무효심판절차에서의 정정 범위</h3></div><div class="teacher">특허법 박지환</div></div>
    <div class="compare">
     <div class="paper-wrap"><div class="paper-title">2026 실전 GS A 출제 <b>적중</b></div><div class="paper"><h4>[ 문제-1 ]</h4>甲은 특허권자이고 乙은 이해관계인이다. 다음 사실관계를 기초로 답하시오.<span class="match">정정은 청구범위의 감축, 잘못 기재된 사항의 정정 등 허용 범위 내에서 이루어져야 하며, 정정 전후의 기술적 사항을 함께 검토하여야 한다.</span>각 당사자의 주장과 심판절차상 쟁점을 검토하시오.</div></div>
@@ -105,7 +115,7 @@ body.plan-hidden .plan-sticker{display:none!important}
    </div>
  
   </div>
-  <div class="slide">
+  <div class="slide active">
    <div class="case-head"><div><div class="no">CASE 02</div><h3>권리범위 판단과 균등론</h3></div><div class="teacher">특허법 박지환</div></div>
    <div class="compare">
     <div class="paper-wrap"><div class="paper-title">판례심화강의 <b>적중</b></div><div class="paper"><h4>[ 판례 사례 ]</h4>특허발명의 보호범위와 확인대상발명의 관계를 검토하시오.<span class="match">문언침해가 인정되지 않는 경우 과제해결원리, 작용효과 및 치환의 용이성 등을 검토하여 균등관계 성립 여부를 판단한다.</span>관련 판례 법리를 논하시오.</div></div>
@@ -114,7 +124,7 @@ body.plan-hidden .plan-sticker{display:none!important}
    </div>
    <div class="pointbox"><strong>적중 POINT</strong> 균등론의 핵심 판단요건 적중포인트 예시입니다.</div>
   </div>
-  <button class="side-nav prev" aria-label="이전 적중 사례" disabled=""><span class="arr">‹</span><small>이전</small></button><div class="count">1 / 2</div><button class="side-nav next" aria-label="다음 적중 사례"><span class="arr">›</span><small>다음</small></button>
+  <button class="side-nav prev" aria-label="이전 적중 사례"><span class="arr">‹</span><small>이전</small></button><div class="count">2 / 2</div><button class="side-nav next" aria-label="다음 적중 사례" disabled=""><span class="arr">›</span><small>다음</small></button>
  </div></div>
 
  <div class="panel" id="trademark"><div class="slider">
@@ -233,7 +243,7 @@ document.querySelectorAll('.slider').forEach(s=>{
 </script>
 
 <div class="plan-toolbar"><b>✱ 작업 메모</b><button id="planToggle">스티커 숨기기</button><button id="planAdd">+ 스티커 추가</button><button class="primary" id="planExport">메모 포함 HTML 저장</button></div>
-<script type="application/json" id="plan-embedded-notes">[{"x": 1134, "y": 1278, "title": "탭", "note": "민사소송법/ 특허법/상표법/디자인보호법/저작권법/유기화학\n\n\n각 영역 클릭 시 활성화됨\n디폴트: 민사소송법", "selector": ".tabs", "rx": 0.96, "ry": 0.28}, {"x": 408, "y": 1377, "title": "적중 문제 노출", "note": "별도 엑셀 파일 전달", "selector": "#patent .compare", "rx": 0.035, "ry": 0.05}, {"x": 1528, "y": 1666, "title": "페이지네이션", "note": "적중 문제가 많을 경우 Prev / Next 좌우 네비게이션 노출", "selector": "#patent .side-nav.next", "rx": 0.5, "ry": 0.5}, {"x": 1417, "y": 1387, "title": "페이지 인디케이터", "note": "적중 문제가 많을 경우 현재 페이지/전체 페이지 표시", "selector": "#patent .count", "rx": 0.5, "ry": 0.5}]</script>
+<script type="application/json" id="plan-embedded-notes">[{"x":1134,"y":1278,"title":"탭","note":"민사소송법/ 특허법/상표법/디자인보호법/저작권법/유기화학\n\n\n각 영역 클릭 시 활성화됨\n디폴트: 민사소송법","selector":".tabs","rx":0.96,"ry":0.28},{"x":408,"y":1377,"title":"적중 문제 노출","note":"별도 엑셀 파일 전달","selector":"#patent .compare","rx":0.035,"ry":0.05},{"x":1528,"y":1666,"title":"페이지네이션","note":"적중 문제가 많을 경우 Prev / Next 좌우 네비게이션 노출","selector":"#patent .side-nav.next","rx":0.5,"ry":0.5},{"x":1417,"y":1387,"title":"페이지 인디케이터","note":"적중 문제가 많을 경우 현재 페이지/전체 페이지 표시","selector":"#patent .count","rx":0.5,"ry":0.5},{"selector":"#patent > div:nth-of-type(1)","rx":0.95821416644143,"ry":0.43048846778117156,"title":"새 작업 요청","note":"적중 문제가 많을 경우 Prev / Next 좌우 네비게이션 노출"}]</script>
 <script id="planning-notes-script">
 (function(){
 'use strict';
@@ -342,5 +352,6 @@ render();
 
 
 
-<whale-quicksearch translate="no" style="visibility: visible;"></whale-quicksearch>
-</body><whale-quicksearch translate="no" style="visibility: visible;"></whale-quicksearch></html>
+
+
+</body></html>
