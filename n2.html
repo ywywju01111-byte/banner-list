@@ -163,7 +163,36 @@ body.custom-insert-mode .custom-insert-target{outline:3px dashed var(--theme-acc
 #planEditorV4 input,#planEditorV4 textarea{width:100%;padding:10px;border:1px solid #bbb;border-radius:5px;font:14px 'Malgun Gothic',sans-serif}
 #planEditorV4 textarea{height:140px;resize:vertical}
 #planEditorV4 button{padding:9px 13px;border:0;border-radius:5px;cursor:pointer}
-</style></head>
+</style><style id="custom-section-hover-tools">
+/* 등록된 영역의 편집 컨트롤은 해당 영역에 마우스를 올릴 때만 표시 */
+.custom-section .section-tools,
+.custom-section .table-tools {
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transition:opacity .16s ease, visibility .16s ease;
+}
+.custom-section:hover .section-tools,
+.custom-section:hover .table-tools,
+.custom-section:focus-within .section-tools,
+.custom-section:focus-within .table-tools {
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto;
+}
+/* 등록 직후에는 마우스가 섹션을 한 번 벗어날 때까지 버튼을 숨김 */
+.custom-section.just-registered .section-tools,
+.custom-section.just-registered .table-tools {
+  opacity:0!important;
+  visibility:hidden!important;
+  pointer-events:none!important;
+}
+@media (hover:none) {
+  .custom-section .section-tools,
+  .custom-section .table-tools {opacity:1;visibility:visible;pointer-events:auto}
+}
+</style>
+</head>
 <body style="">
 <section class="hero" id="page-section-0">
  <div class="inner">
@@ -528,7 +557,10 @@ modal.querySelector('#customRegister').onclick=()=>{
  const {type,target,before}=pending;
  const cols=Math.max(1,Math.min(12,Number(colField.value)||3)),rows=Math.max(1,Math.min(30,Number(rowField.value)||2));
  const sec=make(type,heading,sub,cols,rows);applyBg(sec,bgMode.value,bgColor.value);if(before)target.before(sec);else target.after(sec);
- closeModal();sec.scrollIntoView({behavior:'smooth',block:'center'});
+ closeModal();
+ sec.classList.add('just-registered');
+ sec.addEventListener('mouseleave',()=>sec.classList.remove('just-registered'),{once:true});
+ sec.scrollIntoView({behavior:'smooth',block:'center'});
 };
 document.addEventListener('click',e=>{
  if(!mode||e.target.closest('.plan-toolbar,.theme-toolbar,#customInsertHint,#customSectionModal,#planEditorV4'))return;
