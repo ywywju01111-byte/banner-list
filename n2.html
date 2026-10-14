@@ -1,6 +1,5 @@
 <!doctype html>
-<html lang="ko">
-<head>
+<html lang="ko"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>제63회 2차 적중 - 메가변리사</title>
@@ -31,8 +30,28 @@ button{font:inherit}.inner{width:1200px;max-width:calc(100% - 40px);margin:auto}
 .form{display:flex;gap:8px;margin-top:14px}.form textarea{flex:1;height:90px;padding:16px;background:#fff;border:0;resize:none}.form button{width:150px;border:0;background:var(--lime);font-weight:1000;cursor:pointer}.note{color:#777;font-size:12px;margin-top:10px}
 @media(max-width:800px){.hero,.hero .inner{min-height:570px}.hero h1{font-size:43px}.scope{opacity:.28;right:-180px}.quiz .q{display:none}.head h2,.proof h2,.eventbox h2{font-size:32px}.tabs{overflow:auto;justify-content:flex-start}.slider{padding:0 42px}.count{right:45px;top:4px}.side-nav{width:36px;height:64px}.side-nav.prev{left:0}.side-nav.next{right:0}.side-nav small{display:none}.compare{grid-template-columns:1fr}.arrow{height:65px;transform:rotate(90deg)}.steps{grid-template-columns:1fr}.eventbox{padding:30px 20px}.form{display:block}.form button{width:100%;height:52px;margin-top:8px}}
 </style>
+
+<style id="planning-notes-style">
+.plan-toolbar{position:fixed;top:14px;right:14px;z-index:99999;display:flex;gap:7px;align-items:center;background:#fff;color:#171717;padding:9px 11px;border-radius:12px;box-shadow:0 5px 25px #0008;font:13px Arial,sans-serif}
+.plan-toolbar button{background:#222;color:#fff;border:0;border-radius:6px;padding:9px 11px;cursor:pointer;font-size:12px;font-weight:bold}
+.plan-toolbar button.primary{background:#cfff00;color:#111}
+.plan-sticker{position:absolute;z-index:1500;width:29px;height:29px;border:2px solid #161616;border-radius:50%;background:#ffdf57;color:#111;font:900 20px Arial;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 2px 9px #0007;transform:translate(40%,-40%)}
+.plan-sticker:hover,.plan-sticker:focus{background:#fff2a0;transform:translate(40%,-40%) scale(1.12)}
+.plan-anchor{position:relative!important}
+.plan-pop{position:fixed;z-index:99998;width:min(370px,calc(100vw - 25px));background:#fff;color:#161616;border:2px solid #e3bc27;border-radius:12px;box-shadow:0 10px 30px #0008;padding:15px;font:14px/1.55 'Malgun Gothic',sans-serif;display:none}
+.plan-pop.show{display:block}
+.plan-pop strong{display:block;margin-bottom:8px}
+.plan-pop textarea{display:block;width:100%;min-height:125px;resize:vertical;border:1px solid #ccc;border-radius:7px;padding:9px;font:13px/1.6 'Malgun Gothic',sans-serif}
+.plan-pop .actions{display:flex;gap:7px;margin-top:10px}
+.plan-pop button{padding:7px 11px;border:0;border-radius:6px;background:#222;color:#fff;cursor:pointer}
+.plan-pop button.remove{background:#eee;color:#a11}
+.plan-choose{outline:3px dashed #ffdf57!important;outline-offset:-3px;cursor:crosshair!important}
+body.plan-hidden .plan-sticker{display:none!important}
+@media(max-width:800px){.plan-toolbar{top:auto;bottom:10px;right:10px;flex-wrap:wrap;max-width:95vw}.plan-toolbar button{padding:7px}}
+</style>
+
 </head>
-<body>
+<body style="">
 <section class="hero">
  <div class="inner">
   <h1>메가변리사가 겨냥한 핵심,<br><em>이번에도 적중했습니다.</em></h1>
@@ -75,7 +94,7 @@ button{font:inherit}.inner{width:1200px;max-width:calc(100% - 40px);margin:auto}
    </div>
    <div class="pointbox"><strong>적중 POINT</strong> 균등론의 핵심 판단요건 적중포인트 예시입니다.</div>
   </div>
-  <button class="side-nav prev" aria-label="이전 적중 사례"><span class="arr">‹</span><small>이전</small></button><div class="count"></div><button class="side-nav next" aria-label="다음 적중 사례"><span class="arr">›</span><small>다음</small></button>
+  <button class="side-nav prev" aria-label="이전 적중 사례" disabled=""><span class="arr">‹</span><small>이전</small></button><div class="count">1 / 2</div><button class="side-nav next" aria-label="다음 적중 사례"><span class="arr">›</span><small>다음</small></button>
  </div></div>
 
  <div class="panel" id="trademark"><div class="slider">
@@ -97,7 +116,7 @@ button{font:inherit}.inner{width:1200px;max-width:calc(100% - 40px);margin:auto}
    </div>
    <div class="pointbox"><strong>적중 POINT</strong> 상표법 표장 적중포인트 예시입니다.</div>
   </div>
-  <button class="side-nav prev" aria-label="이전 적중 사례"><span class="arr">‹</span><small>이전</small></button><div class="count"></div><button class="side-nav next" aria-label="다음 적중 사례"><span class="arr">›</span><small>다음</small></button>
+  <button class="side-nav prev" aria-label="이전 적중 사례" disabled=""><span class="arr">‹</span><small>이전</small></button><div class="count">1 / 2</div><button class="side-nav next" aria-label="다음 적중 사례"><span class="arr">›</span><small>다음</small></button>
  </div></div>
 
  <div class="panel" id="design"><div class="slider">
@@ -111,7 +130,7 @@ button{font:inherit}.inner{width:1200px;max-width:calc(100% - 40px);margin:auto}
    <div class="pointbox"><strong>적중 POINT</strong> 유사 디자인 적중포인트 예시입니다.
 </div>
   </div>
-  <button class="side-nav prev" aria-label="이전 적중 사례"><span class="arr">‹</span><small>이전</small></button><div class="count"></div><button class="side-nav next" aria-label="다음 적중 사례"><span class="arr">›</span><small>다음</small></button>
+  <button class="side-nav prev" aria-label="이전 적중 사례" disabled=""><span class="arr">‹</span><small>이전</small></button><div class="count">1 / 1</div><button class="side-nav next" aria-label="다음 적중 사례" disabled=""><span class="arr">›</span><small>다음</small></button>
  </div></div>
 </div></section>
 
@@ -143,4 +162,52 @@ document.querySelectorAll('.slider').forEach(s=>{
  prev?.addEventListener('click',()=>show(i-1));next?.addEventListener('click',()=>show(i+1));show(0);
 });
 </script>
+
+<div class="plan-toolbar"><b>✱ 작업 메모</b><button id="planToggle">스티커 숨기기</button><button id="planAdd">+ 스티커 추가</button><button class="primary" id="planExport">메모 포함 HTML 저장</button></div>
+<script id="planning-notes-script">
+(function(){
+const KEY='mega63_stickers_v3';
+const defaults=[{"x":1134,"y":1278,"title":"탭","note":"민사소송법/ 특허법/상표법/디자인보호법/저작권법/유기화학\n\n\n각 영역 클릭 시 활성화됨\n디폴트: 민사소송법"},{"x":408,"y":1377,"title":"적중 문제 노출","note":"별도 엑셀 파일 전달"},{"x":1528,"y":1666,"title":"페이지네이션","note":"적중 문제가 많을 경우 Prev / Next 좌우 네비게이션 노출"},{"x":1417,"y":1387,"title":"페이지 인디케이터","note":"적중 문제가 많을 경우 현재 페이지/전체 페이지 표시"}]; const unusedDefaults=[
+{x:850,y:160,title:'메인 타이틀',note:'메인 타이틀과 조준경 그래픽 디자인 유지.'},
+{x:1010,y:780,title:'퀴즈 안내',note:'과목별 적중 사례를 확인하도록 유도.'},
+{x:1020,y:1230,title:'과목 탭',note:'과목별 탭 전환 기능 적용.'},
+{x:1050,y:1570,title:'문제 비교',note:'강의자료와 실제 시험문제 좌우 비교 및 적중 구간 표시.'},
+{x:1000,y:2300,title:'이벤트',note:'이벤트 일정 및 쿠폰 조건 최종 확인 후 반영.'}
+];
+let notes=defaults;
+
+const toolbar=document.querySelector('.plan-toolbar');
+if(!toolbar)return;
+const add=document.getElementById('planAdd'),toggle=document.getElementById('planToggle'),exportBtn=document.getElementById('planExport');
+let placing=false,hidden=false,current=-1;
+let status=document.createElement('div');status.id='planStatus';status.style.cssText='display:none;position:fixed;left:50%;top:18px;transform:translateX(-50%);z-index:2147483647;background:#ffdf57;color:#111;padding:14px 25px;border:2px solid #222;border-radius:9px;font:bold 16px sans-serif;box-shadow:0 5px 20px #0008;pointer-events:none';
+status.textContent='✱ 스티커를 붙일 위치를 클릭하세요 (ESC 취소)';document.body.append(status);
+const layer=document.createElement('div');layer.id='planLayer';layer.style.cssText='position:absolute;top:0;left:0;width:0;height:0;z-index:2147483640;';document.body.append(layer);
+const editor=document.createElement('div');editor.id='planEditor';editor.style.cssText='display:none;position:fixed;z-index:2147483647;top:50%;left:50%;transform:translate(-50%,-50%);width:min(430px,94vw);padding:20px;background:white;color:#111;border:3px solid #ffdf57;border-radius:14px;box-shadow:0 0 0 9999px #0008;font:14px Malgun Gothic,sans-serif';
+editor.innerHTML='<b style="font-size:17px">✱ 작업 요청 메모</b><label style="display:block;margin:14px 0 5px">제목</label><input id="planEditTitle" style="width:100%;padding:9px;border:1px solid #aaa"><label style="display:block;margin:12px 0 5px">작업 요청사항</label><textarea id="planEditText" style="width:100%;height:150px;padding:10px;border:1px solid #aaa;resize:vertical"></textarea><div style="display:flex;gap:7px;margin-top:12px"><button id="planEditSave" style="padding:10px;background:#cfff00;color:#111;border:0">저장</button><button id="planEditDelete" style="padding:10px">삭제</button><button id="planEditCancel" style="padding:10px">닫기</button></div>';
+document.body.append(editor);
+function persist(){try{localStorage.setItem(KEY,JSON.stringify(notes))}catch(e){}}
+function render(){layer.innerHTML='';notes.forEach((n,i)=>{let b=document.createElement('button');b.type='button';b.className='plan-sticker';b.textContent='✱';b.title=n.title+' — '+n.note+' (클릭하여 수정)';b.style.cssText='position:absolute;left:'+n.x+'px;top:'+n.y+'px;transform:translate(-50%,-50%);z-index:2147483641;display:'+(hidden?'none':'flex')+';';b.onclick=e=>{e.preventDefault();e.stopPropagation();openEditor(i)};layer.append(b)})}
+function openEditor(i){current=i;editor.style.display='block';document.getElementById('planEditTitle').value=notes[i].title;document.getElementById('planEditText').value=notes[i].note;document.getElementById('planEditText').focus()}
+function closeEditor(){editor.style.display='none';current=-1}
+document.getElementById('planEditSave').onclick=()=>{if(current<0)return;notes[current].title=document.getElementById('planEditTitle').value;notes[current].note=document.getElementById('planEditText').value;persist();render();closeEditor()};
+document.getElementById('planEditDelete').onclick=()=>{if(current<0)return;notes.splice(current,1);persist();render();closeEditor()};
+document.getElementById('planEditCancel').onclick=closeEditor;
+function setPlacing(v){placing=v;add.textContent=v?'✕ 추가 취소':'+ 스티커 추가';status.style.display=v?'block':'none';document.body.style.cursor=v?'crosshair':''}
+add.onclick=e=>{e.preventDefault();e.stopPropagation();if(hidden){hidden=false;toggle.textContent='스티커 숨기기';render()}setPlacing(!placing)};
+document.addEventListener('click',e=>{if(!placing||e.target.closest('.plan-toolbar,#planEditor,.plan-sticker'))return;let x=e.pageX,y=e.pageY;notes.push({x,y,title:'새 작업 요청',note:''});persist();setPlacing(false);render();openEditor(notes.length-1)},true);
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){setPlacing(false);closeEditor()}});
+toggle.onclick=()=>{hidden=!hidden;toggle.textContent=hidden?'스티커 보이기':'스티커 숨기기';render()};
+exportBtn.onclick=()=>{
+ const clone=document.documentElement.cloneNode(true);
+ clone.querySelectorAll('#planLayer,#planEditor,#planStatus').forEach(x=>x.remove());
+ const sc=clone.querySelector('#planning-notes-script');
+ sc.textContent=sc.textContent.replace('const defaults=[','const defaults='+JSON.stringify(notes).replace(/</g,'\\u003c')+'; const unusedDefaults=[').replace("try{let saved=localStorage.getItem(KEY);if(saved)notes=JSON.parse(saved)}catch(e){}",'');
+ const blob=new Blob(['<!doctype html>\n'+clone.outerHTML],{type:'text/html;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='mega_63_hit_with_stickers.html';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)
+};
+render();
+})();
+</script>
+
+
 </body></html>
