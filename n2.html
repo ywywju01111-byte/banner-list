@@ -104,6 +104,19 @@ body{background:var(--theme-bg);color:var(--theme-text)}
 .theme-fields{display:grid;grid-template-columns:1fr 1fr;gap:9px}.theme-fields label{display:flex;align-items:center;gap:6px;font-size:12px}.theme-fields input{width:38px;height:31px;padding:0;border:0;background:none;cursor:pointer}
 .theme-hint{font-size:11px;color:#777;margin:12px 0 0;line-height:1.5}
 @media(max-width:800px){.theme-toolbar{top:auto;bottom:67px;right:10px}.theme-panel{max-height:65vh;overflow:auto}}
+ /* 작업 메모와 컬러칩 툴바 간격 */
+.plan-toolbar {
+  top: 14px;
+  right: 14px;
+}
+
+#themeToolbar,
+.theme-toolbar {
+  position: fixed;
+  top: 82px !important;
+  right: 14px !important;
+  z-index: 99998;
+}
 </style></head>
 <body style="">
 <section class="hero">
