@@ -875,8 +875,8 @@ refreshRestore();
 const toolbar=document.querySelector('.plan-toolbar');
 if(!toolbar)return;
 const button=document.createElement('button');
-button.type='button';button.id='publishTxtExport';button.textContent='배포용 TXT 저장';
-button.title='편집 도구 없이 현재 화면 그대로 노출되는 HTML 소스를 TXT로 저장';
+button.type='button';button.id='publishHtmlExport';button.textContent='배포용 HTML 저장';
+button.title='편집 도구를 제외한 배포용 HTML 파일 저장';
 toolbar.append(button);
 button.addEventListener('click',()=>{
  const clone=document.documentElement.cloneNode(true);
@@ -904,12 +904,12 @@ button.addEventListener('click',()=>{
   sec.querySelectorAll('button:not(.tab):not(.side-nav)').forEach(el=>el.remove());
  });
  const cleanStyle=clone.ownerDocument.createElement('style');
- cleanStyle.textContent='.custom-section .section-tools,.custom-section .table-tools,.original-section-tools{display:none!important} .custom-section [contenteditable]{outline:none!important}';
+ cleanStyle.textContent='body{padding-left:0!important} .custom-section .section-tools,.custom-section .table-tools,.original-section-tools{display:none!important} .custom-section [contenteditable]{outline:none!important}';
  clone.querySelector('head').append(cleanStyle);
  const source='<!doctype html>\n'+clone.outerHTML;
- const blob=new Blob([source],{type:'text/plain;charset=utf-8'});
+ const blob=new Blob([source],{type:'text/html;charset=utf-8'});
  const url=URL.createObjectURL(blob),a=document.createElement('a');
- a.href=url;a.download='n2_publish_only.txt';document.body.append(a);a.click();a.remove();
+ a.href=url;a.download='n2_publish_only.html';document.body.append(a);a.click();a.remove();
  setTimeout(()=>URL.revokeObjectURL(url),1500);
 });
 })();
