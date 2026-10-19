@@ -336,13 +336,26 @@ body{padding-left:194px!important}
  .hero .hero-event-dates{font-size:12px}
 }
 </style>
+<style id="hit-list-layout-v2">
+/* 강사별 적중 카드: 강사 수에 관계없이 한 행에 한 명씩 표시 */
+.hits .hit-teacher-grid{display:flex!important;flex-direction:column!important;gap:14px!important}
+.hits .hit-teacher-card{width:100%;min-height:176px!important;display:grid!important;grid-template-columns:minmax(0,1fr) minmax(255px,340px);grid-template-rows:auto auto auto auto;column-gap:34px;align-content:center;padding:24px 30px!important;transform:none!important}
+.hits .hit-teacher-card .hit-card-top{grid-column:1;grid-row:1;justify-content:flex-start;gap:16px}
+.hits .hit-teacher-card .hit-card-symbol{font-size:20px}
+.hits .hit-teacher-card .hit-card-subject{grid-column:1;grid-row:2;margin:13px 0 4px!important}
+.hits .hit-teacher-card h4{grid-column:1;grid-row:3;font-size:28px!important;margin:0 0 4px!important}
+.hits .hit-teacher-card .hit-card-description{grid-column:1;grid-row:4;margin:0!important}
+.hits .hit-teacher-card .hit-pdf-open{grid-column:2;grid-row:1 / span 2;align-self:end;margin:0 0 7px!important;min-height:51px}
+.hits .hit-teacher-card .hit-curriculum-open{grid-column:2;grid-row:3 / span 2;align-self:start;margin:0!important;min-height:51px}
+@media(max-width:700px){.hits .hit-teacher-card{grid-template-columns:minmax(0,1fr)!important;grid-template-rows:auto!important;padding:22px!important}.hits .hit-teacher-card .hit-card-top,.hits .hit-teacher-card .hit-card-subject,.hits .hit-teacher-card h4,.hits .hit-teacher-card .hit-card-description,.hits .hit-teacher-card .hit-pdf-open,.hits .hit-teacher-card .hit-curriculum-open{grid-column:1;grid-row:auto}.hits .hit-teacher-card .hit-card-description{margin-bottom:20px!important}.hits .hit-teacher-card .hit-pdf-open{margin-bottom:8px!important}}
+</style>
 </head>
 <body style="">
 <section class="hero" id="page-section-0">
  <div class="inner">
   <h1>메가변리사가 겨냥한 핵심,<br><em>이번에도 적중했습니다.</em></h1>
   <p>제63회 변리사 2차 시험<br>메가변리사가 짚은 쟁점, 실제 시험에서 다시 만났습니다.</p>
-  <div class="hero-event-period"><span class="hero-event-label">QUIZ EVENT</span><span class="hero-event-dates">이벤트 기간 | 11.11(수) ~ 11.18(수)</span></div>
+  <div class="hero-event-period"><span class="hero-event-label">QUIZ EVENT</span><span class="hero-event-dates">댓글 이벤트 기간 | 11.11(수) ~ 11.18(수)</span></div>
   <div class="scope"><b>HIT<br>POINT</b><img class="hero-icon-image" alt="메인 아이콘"></div>
  </div>
 </section>
