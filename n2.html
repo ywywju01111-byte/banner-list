@@ -306,6 +306,36 @@ body{padding-left:194px!important}
 .hero .hero-event-dates{color:#f3f3f3;font-size:16px;font-weight:750;letter-spacing:-.3px}
 @media(max-width:800px){.hero .hero-event-period{margin-top:24px;gap:9px}.hero .hero-event-label{font-size:11px;padding:8px 10px}.hero .hero-event-dates{font-size:13px}}
 </style>
+<style id="hero-compact-first-screen">
+/* 첫 화면에 다음 QUIZ EVENT 섹션이 보이도록 메인 비주얼 압축 */
+.hero,.hero .inner{min-height:clamp(480px,61svh,550px)}
+.hero .inner{padding-top:70px;padding-bottom:54px}
+.hero h1{font-size:clamp(46px,4.65vw,64px);line-height:1.12;margin:16px 0 18px}
+.hero p{font-size:18px;line-height:1.6;margin:0}
+.hero .hero-event-period{margin-top:23px}
+.hero .scope{width:335px;height:335px;right:70px;top:85px}
+.hero .scope:before{height:400px;top:-33px}
+.hero .scope:after{width:400px;left:-33px}
+.hero:before{width:480px;height:480px;top:30px}
+.hero:after{width:330px;height:330px;top:105px}
+@media(max-width:1100px){.hero .scope{right:0;opacity:.4}.hero h1{position:relative;z-index:1}}
+@media(max-width:800px){
+ .hero,.hero .inner{min-height:clamp(440px,65svh,510px)}
+ .hero .inner{padding-top:58px;padding-bottom:42px}
+ .hero h1{font-size:clamp(32px,6vw,43px);letter-spacing:-2px;margin:14px 0 16px}
+ .hero p{font-size:16px}
+ .hero .hero-event-period{margin-top:20px}
+ .hero .scope{width:280px;height:280px;right:-145px;top:95px;opacity:.18}
+ .quiz{padding:40px 0}
+ .quiz h2{font-size:clamp(25px,5vw,34px)}
+}
+@media(max-width:440px){
+ .hero,.hero .inner{min-height:455px}
+ .hero .inner{padding-top:55px}
+ .hero h1{font-size:34px}
+ .hero .hero-event-dates{font-size:12px}
+}
+</style>
 </head>
 <body style="">
 <section class="hero" id="page-section-0">
